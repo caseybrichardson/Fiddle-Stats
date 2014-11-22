@@ -7,9 +7,20 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <UIImageView+AFNetworking.h>
 
-@interface ViewController : UIViewController
+#import "FSCollectionViewCell.h"
+#import "Summoner+APIMethods.h"
+#import "UIColor+AppColors.h"
 
+@interface ViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate>
+
+@property (strong, nonatomic) IBOutlet UICollectionView *playerCollectionView;
+@property (strong, nonatomic) IBOutlet UITextField *playerNameInputView;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *playerNameInputViewBottom;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *playerCollectionViewBottom;
+
+- (IBAction)summonPlayer:(id)sender;
 
 @end
 

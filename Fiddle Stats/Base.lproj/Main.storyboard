@@ -1,25 +1,116 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="bQd-GU-ywb">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
-        <scene sceneID="ufC-wZ-h7g">
+        <!--Navigation Controller-->
+        <scene sceneID="FHH-zD-FUX">
             <objects>
-                <viewController id="vXZ-lx-hvc" customClass="ViewController" customModuleProvider="" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
-                        <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eT8-Fd-e7l" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <navigationController id="bQd-GU-ywb" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="EQb-st-OAJ">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="eQ1-sV-byf" kind="relationship" relationship="rootViewController" id="CVw-WL-Qx2"/>
+                    </connections>
+                </navigationController>
             </objects>
+            <point key="canvasLocation" x="102" y="459"/>
+        </scene>
+        <!--Fiddle-->
+        <scene sceneID="SD2-5m-eeJ">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XhE-bD-Zkh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController id="eQ1-sV-byf" customClass="ViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y7B-A5-NAE"/>
+                        <viewControllerLayoutGuide type="bottom" id="hL2-kC-uAU"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="xU1-rE-0BW">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="lvL-P8-3SI">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="wAQ-2M-x5C">
+                                    <size key="itemSize" width="96" height="96"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="10" minY="5" maxX="10" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="9ZH-AL-rJC">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="96" height="96"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="eQ1-sV-byf" id="fmb-hr-A1u"/>
+                                    <outlet property="delegate" destination="eQ1-sV-byf" id="C2P-cT-Hhh"/>
+                                </connections>
+                            </collectionView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Summoner Name" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="0GK-Db-0p9">
+                                <rect key="frame" x="16" y="550" width="479" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x9o-1m-nyC">
+                                <rect key="frame" x="503" y="550" width="81" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="81" id="7hW-e8-SvL"/>
+                                </constraints>
+                                <state key="normal" title="Summon">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="summonPlayer:" destination="eQ1-sV-byf" eventType="touchUpInside" id="9cD-U6-uq8"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="x9o-1m-nyC" firstAttribute="trailing" secondItem="xU1-rE-0BW" secondAttribute="trailingMargin" id="1tx-n3-xBU"/>
+                            <constraint firstItem="0GK-Db-0p9" firstAttribute="top" secondItem="x9o-1m-nyC" secondAttribute="top" id="BfZ-OB-9cp"/>
+                            <constraint firstItem="lvL-P8-3SI" firstAttribute="top" secondItem="xU1-rE-0BW" secondAttribute="topMargin" id="F25-xX-kbS"/>
+                            <constraint firstItem="0GK-Db-0p9" firstAttribute="centerY" secondItem="x9o-1m-nyC" secondAttribute="centerY" id="Fib-op-TM1"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="lvL-P8-3SI" secondAttribute="trailing" constant="-16" id="J6E-VV-TMz"/>
+                            <constraint firstItem="hL2-kC-uAU" firstAttribute="top" secondItem="0GK-Db-0p9" secondAttribute="bottom" constant="20" id="aFt-Ll-0YK"/>
+                            <constraint firstItem="x9o-1m-nyC" firstAttribute="leading" secondItem="0GK-Db-0p9" secondAttribute="trailing" constant="8" id="bIc-nE-hev"/>
+                            <constraint firstItem="0GK-Db-0p9" firstAttribute="leading" secondItem="xU1-rE-0BW" secondAttribute="leadingMargin" id="bKK-fu-iTD"/>
+                            <constraint firstItem="hL2-kC-uAU" firstAttribute="top" secondItem="lvL-P8-3SI" secondAttribute="bottom" id="jP0-ff-kMg"/>
+                            <constraint firstItem="lvL-P8-3SI" firstAttribute="leading" secondItem="xU1-rE-0BW" secondAttribute="leadingMargin" constant="-16" id="lx7-71-6qN"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="Fib-op-TM1"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <navigationItem key="navigationItem" title="Fiddle" id="D2z-sY-mz2"/>
+                    <connections>
+                        <outlet property="playerCollectionView" destination="lvL-P8-3SI" id="L65-g0-oJy"/>
+                        <outlet property="playerCollectionViewBottom" destination="jP0-ff-kMg" id="Ndp-r5-qJ1"/>
+                        <outlet property="playerNameInputView" destination="0GK-Db-0p9" id="FnS-yx-xlM"/>
+                        <outlet property="playerNameInputViewBottom" destination="aFt-Ll-0YK" id="xLI-d2-lZc"/>
+                    </connections>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="951" y="459"/>
         </scene>
     </scenes>
 </document>

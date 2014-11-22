@@ -16,7 +16,11 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    [[UINavigationBar appearance] setBarTintColor:[UIColor fiddlesticksMainColor]];
+    [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor fiddlesticksSecondaryColor], NSFontAttributeName : [UIFont fontWithName:@"HelveticaNeue-Light" size:20]}];
+    [[UINavigationBar appearance] setTintColor:[UIColor fiddlesticksSecondaryColor]];
+    [[UIButton appearance] setBackgroundColor:[UIColor fiddlesticksTertiaryColor]];
+    
     return YES;
 }
 
