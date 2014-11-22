@@ -24,7 +24,8 @@
     
     [self.playerCollectionView registerNib:[UINib nibWithNibName:@"FSCollectionViewCell" bundle:[NSBundle mainBundle]] forCellWithReuseIdentifier:@"PlayerCell"];
     
-    self.summoners = [NSArray array];
+    self.summoners = [Summoner storedSummoners];
+    [self.playerCollectionView reloadData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -69,7 +70,6 @@
     NSString *playerName = self.playerNameInputView.text;
     
     [Summoner summonerInformationFor:playerName region:@"na" withBlock:^(Summoner *summoner, NSError *error) {
-        NSLog(@"%@", summoner);
         self.summoners = [Summoner storedSummoners];
         [self.playerCollectionView reloadData];
     }];

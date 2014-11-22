@@ -13,7 +13,11 @@
 - (Summoner *)initWithAttributes:(NSDictionary *)attributes {
     AppDelegate *del = (AppDelegate *)[UIApplication sharedApplication].delegate;
     
-    Summoner *summoner = [NSEntityDescription insertNewObjectForEntityForName:@"Summoner" inManagedObjectContext:del.managedObjectContext];
+    Summoner *summoner = [Summoner storedSummonerWithID:[attributes[@"id"] integerValue]];
+    
+    if(!summoner) {
+        summoner = [NSEntityDescription insertNewObjectForEntityForName:@"Summoner" inManagedObjectContext:del.managedObjectContext];
+    }
     
     summoner.sID = attributes[@"id"];
     summoner.sName = attributes[@"name"];
@@ -31,6 +35,32 @@
 }
 
 #pragma mark - Core Data Retrieval
+
++ (Summoner *)storedSummonerWithID:(NSInteger)summonerID {
+    AppDelegate *del = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    
+    NSError *error;
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Summoner"];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"sID == %d", summonerID];
+    
+    [request setPredicate:predicate];
+    
+    NSArray *summoners = [del.managedObjectContext executeFetchRequest:request error:&error];
+    
+    if(!summoners) {
+        NSLog(@"%@", error);
+        return nil;
+    }
+    
+    if([summoners count] > 1) {
+        for (int i = (int)[summoners count] - 1; i > 0; i--)
+        {
+            [del.managedObjectContext deleteObject:summoners[i]];
+        }
+    }
+    
+    return ([summoners count] > 0 ? summoners[0] : nil);
+}
 
 + (NSArray *)storedSummoners {
     AppDelegate *del = (AppDelegate *)[UIApplication sharedApplication].delegate;
@@ -56,11 +86,9 @@
     NSLog(@"%@", summonerName);
     
     [[CRFiddleAPIClient sharedInstance] GET:url parameters:requestParams success:^(NSURLSessionDataTask *task, id responseObject) {
-        NSLog(@"%@", responseObject);
         NSDictionary *dict = (NSDictionary *)responseObject;
         Summoner *summoner = [[Summoner alloc] initWithAttributes:(NSDictionary *)[dict allValues].firstObject];
         block(summoner, nil);
-        
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         NSLog(@"%@", task.taskDescription);
         block(nil, error);
