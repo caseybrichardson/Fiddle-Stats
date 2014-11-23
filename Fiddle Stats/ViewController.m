@@ -10,6 +10,7 @@
 
 @interface ViewController ()
 
+@property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 @property (strong, nonatomic) NSArray *summoners;
 
 @end
@@ -35,6 +36,28 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+}
+
+- (NSFetchedResultsController *)fetchedResultsController {
+    if(_fetchedResultsController != nil) {
+        return _fetchedResultsController;
+    }
+    
+    AppDelegate *del = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Summoner"];
+    NSEntityDescription *description = [NSEntityDescription entityForName:@"Summoner" inManagedObjectContext:del.managedObjectContext];
+    NSSortDescriptor *descriptor = [NSSortDescriptor sortDescriptorWithKey:@"sName" ascending:YES];
+    
+    [request setEntity:description];
+    [request setSortDescriptors:@[descriptor]];
+    [request setFetchBatchSize:100];
+    
+    NSFetchedResultsController *controller = [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:del.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
+    self.fetchedResultsController = controller;
+    self.fetchedResultsController.delegate = self;
+    
+    return _fetchedResultsController;
 }
 
 #pragma mark - Notification Selectors
@@ -108,6 +131,40 @@
     [cell.backgroundImage setImageWithURL:imageURL];
     
     return cell;
+}
+
+#pragma mark - UICollectionViewDelegate
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    FSCollectionViewCell *cell = (FSCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
+    
+    CGFloat navBarY = self.navigationController.navigationBar.frame.origin.y + self.navigationController.navigationBar.frame.size.height;
+    CGFloat cardX = self.view.bounds.origin.x + 30;
+    CGFloat cardY = navBarY + 10;
+    CGFloat cardW = self.view.bounds.size.width - 60;
+    CGFloat cardH = self.view.bounds.size.height - (navBarY * 2);
+    
+    RKCardView *cardView = [[RKCardView alloc] initWithFrame:CGRectMake(cardX, cardY, cardW, cardH)];
+    
+    cardView.titleLabel.text = cell.nameLabel.text;
+    
+    cardView.coverImageView.image = [UIImage imageNamed:@"500x500"];
+    cardView.profileImageView.image = cell.backgroundImage.image;
+    [cardView addShadow];
+
+    UIButton *button = [[UIButton alloc] init];
+    button.frame = CGRectMake(10, cardView.frame.origin.y + cardView.frame.size.height - cardView.frame.origin.y - 55, cardView.frame.size.width - 20, 45);
+    button.backgroundColor = [UIColor redColor];
+    button.layer.cornerRadius = 5;
+    [button setTitle:@"Close" forState:UIControlStateNormal];
+    [cardView addSubview:button];
+
+    [cardView setAlpha:0];
+    [UIView animateWithDuration:0.25f animations:^{
+        cardView.alpha = 1.0f;
+    }];
+
+    [self.view addSubview:cardView];
 }
 
 @end

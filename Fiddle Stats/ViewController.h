@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <UIImageView+AFNetworking.h>
+#import <RKCardView/RKCardView.h>
 
 #import "FSCollectionViewCell.h"
 #import "Summoner+APIMethods.h"

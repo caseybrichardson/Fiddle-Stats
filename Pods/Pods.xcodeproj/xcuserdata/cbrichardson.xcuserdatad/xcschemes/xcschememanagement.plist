@@ -9,6 +9,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-RKCardView.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-RKDropdownAlert.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -22,17 +27,22 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>55AD01E4585D3BB809C1AD87</key>
+		<key>411F1598C3B5D682C18A93C8</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>D3F2B53E26DF085B7012F7BC</key>
+		<key>9F02F8FB34A5564FB11A18DF</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>FFE8FA64386AE0245EE1FECD</key>
+		<key>E21F247A7FDB5E31D7538F7F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F24B3D6ACDDEE291C1CE8055</key>
 		<dict>
 			<key>primary</key>
 			<true/>

@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "D3F2B53E26DF085B7012F7BC"
+               BlueprintIdentifier = "411F1598C3B5D682C18A93C8"
                BuildableName = "libPods-RKDropdownAlert.a"
                BlueprintName = "Pods-RKDropdownAlert"
                ReferencedContainer = "container:Pods.xcodeproj">
