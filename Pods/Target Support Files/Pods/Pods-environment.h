@@ -48,3 +48,9 @@
 #define COCOAPODS_VERSION_MINOR_AFNetworking_UIKit 5
 #define COCOAPODS_VERSION_PATCH_AFNetworking_UIKit 0
 
+// RKDropdownAlert
+#define COCOAPODS_POD_AVAILABLE_RKDropdownAlert
+#define COCOAPODS_VERSION_MAJOR_RKDropdownAlert 0
+#define COCOAPODS_VERSION_MINOR_RKDropdownAlert 1
+#define COCOAPODS_VERSION_PATCH_RKDropdownAlert 0
+

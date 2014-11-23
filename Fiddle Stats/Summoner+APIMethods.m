@@ -48,7 +48,6 @@
     NSArray *summoners = [del.managedObjectContext executeFetchRequest:request error:&error];
     
     if(!summoners) {
-        NSLog(@"%@", error);
         return nil;
     }
     
@@ -70,7 +69,7 @@
     NSArray *summoners = [del.managedObjectContext executeFetchRequest:request error:&error];
     
     if(!summoners) {
-        NSLog(@"%@", error);
+        return nil;
     }
     
     return summoners;

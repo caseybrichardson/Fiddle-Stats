@@ -8,7 +8,6 @@
         <!--Navigation Controller-->
         <scene sceneID="FHH-zD-FUX">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="eT8-Fd-e7l" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController id="bQd-GU-ywb" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="EQb-st-OAJ">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -18,13 +17,13 @@
                         <segue destination="eQ1-sV-byf" kind="relationship" relationship="rootViewController" id="CVw-WL-Qx2"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eT8-Fd-e7l" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="102" y="459"/>
         </scene>
         <!--Fiddle-->
         <scene sceneID="SD2-5m-eeJ">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="XhE-bD-Zkh" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="eQ1-sV-byf" customClass="ViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y7B-A5-NAE"/>
@@ -58,57 +57,70 @@
                                     <outlet property="delegate" destination="eQ1-sV-byf" id="C2P-cT-Hhh"/>
                                 </connections>
                             </collectionView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Summoner Name" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="0GK-Db-0p9">
-                                <rect key="frame" x="16" y="550" width="479" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x9o-1m-nyC">
-                                <rect key="frame" x="503" y="550" width="81" height="30"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n2o-pW-3Nb" userLabel="PlayerNameInputView">
+                                <rect key="frame" x="0.0" y="534" width="600" height="66"/>
+                                <subviews>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Summoner Name" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="0GK-Db-0p9">
+                                        <rect key="frame" x="8" y="18" width="495" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="done"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="eQ1-sV-byf" id="IMk-0M-pDi"/>
+                                        </connections>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x9o-1m-nyC">
+                                        <rect key="frame" x="511" y="18" width="81" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="81" id="7hW-e8-SvL"/>
+                                        </constraints>
+                                        <state key="normal" title="Summon">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="5"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="summonPlayer:" destination="eQ1-sV-byf" eventType="touchUpInside" id="9cD-U6-uq8"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="81" id="7hW-e8-SvL"/>
+                                    <constraint firstItem="x9o-1m-nyC" firstAttribute="top" secondItem="0GK-Db-0p9" secondAttribute="top" id="BjW-ze-A64"/>
+                                    <constraint firstItem="x9o-1m-nyC" firstAttribute="leading" secondItem="0GK-Db-0p9" secondAttribute="trailing" constant="8" id="TJJ-GO-jSS"/>
+                                    <constraint firstItem="0GK-Db-0p9" firstAttribute="leading" secondItem="n2o-pW-3Nb" secondAttribute="leading" constant="8" id="U6t-qC-x1N"/>
+                                    <constraint firstAttribute="trailing" secondItem="x9o-1m-nyC" secondAttribute="trailing" constant="8" id="WsM-x0-aFK"/>
+                                    <constraint firstAttribute="bottom" secondItem="0GK-Db-0p9" secondAttribute="bottom" constant="18" id="qxH-At-Zey"/>
+                                    <constraint firstAttribute="height" constant="66" id="zIe-d7-TTG"/>
                                 </constraints>
-                                <state key="normal" title="Summon">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="5"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="summonPlayer:" destination="eQ1-sV-byf" eventType="touchUpInside" id="9cD-U6-uq8"/>
-                                </connections>
-                            </button>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="x9o-1m-nyC" firstAttribute="trailing" secondItem="xU1-rE-0BW" secondAttribute="trailingMargin" id="1tx-n3-xBU"/>
-                            <constraint firstItem="0GK-Db-0p9" firstAttribute="top" secondItem="x9o-1m-nyC" secondAttribute="top" id="BfZ-OB-9cp"/>
+                            <constraint firstItem="n2o-pW-3Nb" firstAttribute="leading" secondItem="xU1-rE-0BW" secondAttribute="leadingMargin" constant="-16" id="88o-Md-vl6"/>
                             <constraint firstItem="lvL-P8-3SI" firstAttribute="top" secondItem="xU1-rE-0BW" secondAttribute="topMargin" id="F25-xX-kbS"/>
-                            <constraint firstItem="0GK-Db-0p9" firstAttribute="centerY" secondItem="x9o-1m-nyC" secondAttribute="centerY" id="Fib-op-TM1"/>
                             <constraint firstAttribute="trailingMargin" secondItem="lvL-P8-3SI" secondAttribute="trailing" constant="-16" id="J6E-VV-TMz"/>
-                            <constraint firstItem="hL2-kC-uAU" firstAttribute="top" secondItem="0GK-Db-0p9" secondAttribute="bottom" constant="20" id="aFt-Ll-0YK"/>
-                            <constraint firstItem="x9o-1m-nyC" firstAttribute="leading" secondItem="0GK-Db-0p9" secondAttribute="trailing" constant="8" id="bIc-nE-hev"/>
-                            <constraint firstItem="0GK-Db-0p9" firstAttribute="leading" secondItem="xU1-rE-0BW" secondAttribute="leadingMargin" id="bKK-fu-iTD"/>
+                            <constraint firstItem="hL2-kC-uAU" firstAttribute="top" secondItem="n2o-pW-3Nb" secondAttribute="bottom" id="XE6-x1-Mme"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="n2o-pW-3Nb" secondAttribute="trailing" constant="-16" id="a7d-nS-seS"/>
                             <constraint firstItem="hL2-kC-uAU" firstAttribute="top" secondItem="lvL-P8-3SI" secondAttribute="bottom" id="jP0-ff-kMg"/>
                             <constraint firstItem="lvL-P8-3SI" firstAttribute="leading" secondItem="xU1-rE-0BW" secondAttribute="leadingMargin" constant="-16" id="lx7-71-6qN"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="Fib-op-TM1"/>
-                            </mask>
-                        </variation>
                     </view>
-                    <navigationItem key="navigationItem" title="Fiddle" id="D2z-sY-mz2"/>
+                    <navigationItem key="navigationItem" title="Fiddle" id="D2z-sY-mz2">
+                        <barButtonItem key="rightBarButtonItem" title="Settings" id="OfU-wx-2a0"/>
+                    </navigationItem>
                     <connections>
+                        <outlet property="inputHolderView" destination="n2o-pW-3Nb" id="Qn6-BR-kGb"/>
                         <outlet property="playerCollectionView" destination="lvL-P8-3SI" id="L65-g0-oJy"/>
                         <outlet property="playerCollectionViewBottom" destination="jP0-ff-kMg" id="Ndp-r5-qJ1"/>
                         <outlet property="playerNameInputView" destination="0GK-Db-0p9" id="FnS-yx-xlM"/>
-                        <outlet property="playerNameInputViewBottom" destination="aFt-Ll-0YK" id="xLI-d2-lZc"/>
+                        <outlet property="playerNameInputViewBottom" destination="XE6-x1-Mme" id="bdc-t9-Ud4"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XhE-bD-Zkh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="951" y="459"/>
         </scene>

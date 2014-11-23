@@ -24,8 +24,13 @@
     
     [self.playerCollectionView registerNib:[UINib nibWithNibName:@"FSCollectionViewCell" bundle:[NSBundle mainBundle]] forCellWithReuseIdentifier:@"PlayerCell"];
     
-    self.summoners = [Summoner storedSummoners];
+    [self setSummoners:[Summoner storedSummoners]];
     [self.playerCollectionView reloadData];
+    
+    CAGradientLayer *gradient = [CAGradientLayer layer];
+    [gradient setFrame:self.inputHolderView.bounds];
+    [gradient setColors:@[(id)[UIColor clearColor].CGColor, (id)[UIColor blackColor].CGColor]];
+    [self.inputHolderView.layer insertSublayer:gradient atIndex:0];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -57,7 +62,7 @@
     NSTimeInterval animationDuration = [animationDurationValue doubleValue];
     
     self.playerCollectionViewBottom.constant = 0;
-    self.playerNameInputViewBottom.constant = 20;
+    self.playerNameInputViewBottom.constant = 0;
     
     [UIView animateWithDuration:animationDuration animations:^{
         [self.view layoutIfNeeded];
@@ -69,12 +74,21 @@
 - (IBAction)summonPlayer:(id)sender {
     NSString *playerName = self.playerNameInputView.text;
     
-    [Summoner summonerInformationFor:playerName region:@"na" withBlock:^(Summoner *summoner, NSError *error) {
-        self.summoners = [Summoner storedSummoners];
-        [self.playerCollectionView reloadData];
-    }];
+    if((![playerName isEqualToString:@""] && ![playerName isEqualToString:@" "])) {
+        [Summoner summonerInformationFor:playerName region:@"na" withBlock:^(Summoner *summoner, NSError *error) {
+            self.summoners = [Summoner storedSummoners];
+            [self.playerCollectionView reloadData];
+        }];
+    }
     
     [self.playerNameInputView resignFirstResponder];
+}
+
+#pragma mark - UITextFieldDelegate
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    return YES;
 }
 
 #pragma mark - UICollectionViewDataSource
