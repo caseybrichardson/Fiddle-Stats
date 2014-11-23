@@ -118,6 +118,7 @@
                         <outlet property="playerCollectionViewBottom" destination="jP0-ff-kMg" id="Ndp-r5-qJ1"/>
                         <outlet property="playerNameInputView" destination="0GK-Db-0p9" id="FnS-yx-xlM"/>
                         <outlet property="playerNameInputViewBottom" destination="XE6-x1-Mme" id="bdc-t9-Ud4"/>
+                        <outlet property="playerSummonButton" destination="x9o-1m-nyC" id="d55-nE-YFw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XhE-bD-Zkh" userLabel="First Responder" sceneMemberID="firstResponder"/>

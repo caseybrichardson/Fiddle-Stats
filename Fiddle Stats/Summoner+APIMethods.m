@@ -82,7 +82,6 @@
     NSString *url = [NSString stringWithFormat:@"/api/lol/%@/v1.4/summoner/by-name/%@", region, summonerName];
     
     summonerName = [summonerName stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@" "]];
-    NSLog(@"%@", summonerName);
     
     [[CRFiddleAPIClient sharedInstance] GET:url parameters:requestParams success:^(NSURLSessionDataTask *task, id responseObject) {
         NSDictionary *dict = (NSDictionary *)responseObject;

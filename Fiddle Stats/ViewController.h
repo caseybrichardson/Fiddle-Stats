@@ -11,13 +11,18 @@
 #import <RKCardView/RKCardView.h>
 
 #import "FSCollectionViewCell.h"
-#import "Summoner+APIMethods.h"
-#import "UIColor+AppColors.h"
+#import "CRBlockButton.h"
 
-@interface ViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, UITextFieldDelegate>
+#import "Summoner+APIMethods.h"
+#import "Match+APIMethods.h"
+#import "UIColor+AppColors.h"
+#import "UIView+Gradient.h"
+
+@interface ViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, UITextFieldDelegate, NSFetchedResultsControllerDelegate>
 
 @property (strong, nonatomic) IBOutlet UICollectionView *playerCollectionView;
 @property (strong, nonatomic) IBOutlet UITextField *playerNameInputView;
+@property (strong, nonatomic) IBOutlet UIButton *playerSummonButton;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *playerNameInputViewBottom;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *playerCollectionViewBottom;
 @property (strong, nonatomic) IBOutlet UIView *inputHolderView;

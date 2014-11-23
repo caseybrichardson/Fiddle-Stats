@@ -11,7 +11,11 @@
 @interface ViewController ()
 
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
+@property (strong, nonatomic) NSMutableArray *sectionChanges;
+@property (strong, nonatomic) NSMutableArray *itemChanges;
+
 @property (strong, nonatomic) NSArray *summoners;
+@property (strong, nonatomic) RKCardView *presentedCardView;
 
 @end
 
@@ -25,13 +29,14 @@
     
     [self.playerCollectionView registerNib:[UINib nibWithNibName:@"FSCollectionViewCell" bundle:[NSBundle mainBundle]] forCellWithReuseIdentifier:@"PlayerCell"];
     
-    [self setSummoners:[Summoner storedSummoners]];
-    [self.playerCollectionView reloadData];
+    [self.inputHolderView addGradientWithColors:@[[UIColor clearColor], [UIColor blackColor]]];
     
-    CAGradientLayer *gradient = [CAGradientLayer layer];
-    [gradient setFrame:self.inputHolderView.bounds];
-    [gradient setColors:@[(id)[UIColor clearColor].CGColor, (id)[UIColor blackColor].CGColor]];
-    [self.inputHolderView.layer insertSublayer:gradient atIndex:0];
+    NSError *error;
+    if(![[self fetchedResultsController] performFetch:&error]) {
+        NSLog(@"%@ %@", error, [error userInfo]);
+    } else {
+        [self.playerCollectionView reloadData];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -58,6 +63,46 @@
     self.fetchedResultsController.delegate = self;
     
     return _fetchedResultsController;
+}
+
+#pragma mark - Helpers
+
+- (RKCardView *)createCardViewForSummoner:(Summoner *)summoner {
+    CGFloat navBarY = self.navigationController.navigationBar.frame.origin.y + self.navigationController.navigationBar.frame.size.height;
+    CGFloat cardX = self.playerNameInputView.frame.origin.x;
+    CGFloat cardY = navBarY + 5;
+    CGFloat cardW = self.playerSummonButton.frame.origin.x + self.playerSummonButton.frame.size.width - self.playerNameInputView.frame.origin.x;
+    CGFloat cardH = self.inputHolderView.frame.origin.y + self.playerNameInputView.frame.origin.y + self.playerNameInputView.frame.size.height - navBarY;
+    
+    RKCardView *cardView = self.presentedCardView = [[RKCardView alloc] initWithFrame:CGRectMake(cardX, cardY, cardW, cardH)];
+    
+    cardView.titleLabel.text = summoner.sName;
+    
+    cardView.coverImageView.image = [UIImage imageNamed:@"500x200"];
+    cardView.profileImageView.image = [UIImage imageNamed:@"100x100"];
+    [cardView addShadow];
+    
+    CRBlockButton *button = [[CRBlockButton alloc] init];
+    button.frame = CGRectMake(10, cardView.frame.origin.y + cardView.frame.size.height - cardView.frame.origin.y - 55, cardView.frame.size.width - 20, 45);
+    button.backgroundColor = [UIColor redColor];
+    button.layer.cornerRadius = 5;
+    [button setTapBlock:^(CRBlockButton *button) {
+        [UIView animateWithDuration:0.25f animations:^{
+            [cardView setAlpha:0];
+        } completion:^(BOOL finished) {
+            [cardView removeFromSuperview];
+            self.presentedCardView = nil;
+        }];
+    }];
+    [button setTitle:@"Close" forState:UIControlStateNormal];
+    [cardView addSubview:button];
+    
+    [cardView setAlpha:0];
+    [UIView animateWithDuration:0.25f animations:^{
+        cardView.alpha = 1.0f;
+    }];
+    
+    return cardView;
 }
 
 #pragma mark - Notification Selectors
@@ -117,12 +162,14 @@
 #pragma mark - UICollectionViewDataSource
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return [self.summoners count];
+    id sectionInfo = [[self fetchedResultsController] sections][section];
+    NSLog(@"%lu", (unsigned long)[sectionInfo numberOfObjects]);
+    return [sectionInfo numberOfObjects];;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     FSCollectionViewCell *cell = (FSCollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"PlayerCell" forIndexPath:indexPath];
-    Summoner *summoner = ((Summoner *)[self.summoners objectAtIndex:indexPath.row]);
+    Summoner *summoner = ((Summoner *)[[self fetchedResultsController] objectAtIndexPath:indexPath]);
     
     cell.nameLabel.text = summoner.sName;
     
@@ -136,35 +183,94 @@
 #pragma mark - UICollectionViewDelegate
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    FSCollectionViewCell *cell = (FSCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
+    Summoner *summoner = (Summoner *)[[self fetchedResultsController] objectAtIndexPath:indexPath];
     
-    CGFloat navBarY = self.navigationController.navigationBar.frame.origin.y + self.navigationController.navigationBar.frame.size.height;
-    CGFloat cardX = self.view.bounds.origin.x + 30;
-    CGFloat cardY = navBarY + 10;
-    CGFloat cardW = self.view.bounds.size.width - 60;
-    CGFloat cardH = self.view.bounds.size.height - (navBarY * 2);
-    
-    RKCardView *cardView = [[RKCardView alloc] initWithFrame:CGRectMake(cardX, cardY, cardW, cardH)];
-    
-    cardView.titleLabel.text = cell.nameLabel.text;
-    
-    cardView.coverImageView.image = [UIImage imageNamed:@"500x500"];
-    cardView.profileImageView.image = cell.backgroundImage.image;
-    [cardView addShadow];
-
-    UIButton *button = [[UIButton alloc] init];
-    button.frame = CGRectMake(10, cardView.frame.origin.y + cardView.frame.size.height - cardView.frame.origin.y - 55, cardView.frame.size.width - 20, 45);
-    button.backgroundColor = [UIColor redColor];
-    button.layer.cornerRadius = 5;
-    [button setTitle:@"Close" forState:UIControlStateNormal];
-    [cardView addSubview:button];
-
-    [cardView setAlpha:0];
-    [UIView animateWithDuration:0.25f animations:^{
-        cardView.alpha = 1.0f;
+    [Match matchesInformationFor:summoner withBlock:^(NSArray *matches, NSError *error) {
+        NSLog(@"Match[0] is: %@", matches[0]);
     }];
 
-    [self.view addSubview:cardView];
+    [self.view addSubview:[self createCardViewForSummoner:summoner]];
+}
+
+#pragma mark - NSFetchedResultsControllerDelegate
+
+- (void)controllerWillChangeContent:(NSFetchedResultsController *)controller {
+    self.sectionChanges = [NSMutableArray array];
+    self.itemChanges = [NSMutableArray array];
+}
+
+- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
+    [self.playerCollectionView performBatchUpdates:^{
+        for (NSDictionary *dict in self.sectionChanges) {
+            [dict enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+                NSFetchedResultsChangeType type = [key unsignedIntegerValue];
+                
+                switch (type) {
+                    case NSFetchedResultsChangeInsert:
+                        [self.playerCollectionView insertSections:[NSIndexSet indexSetWithIndex:[obj unsignedIntegerValue]]];
+                        break;
+                    case NSFetchedResultsChangeDelete:
+                        [self.playerCollectionView deleteSections:[NSIndexSet indexSetWithIndex:[obj unsignedIntegerValue]]];
+                        break;
+                    case NSFetchedResultsChangeUpdate:
+                        break;
+                    case NSFetchedResultsChangeMove:
+                        break;
+                }
+            }];
+        }
+        
+        for (NSDictionary *dict in self.itemChanges) {
+            [dict enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+                NSFetchedResultsChangeType type = [key unsignedIntegerValue];
+                
+                switch (type) {
+                    case NSFetchedResultsChangeInsert:
+                        [self.playerCollectionView insertItemsAtIndexPaths:@[obj]];
+                        break;
+                    case NSFetchedResultsChangeDelete:
+                        [self.playerCollectionView deleteItemsAtIndexPaths:@[obj]];
+                        break;
+                    case NSFetchedResultsChangeUpdate:
+                        [self.playerCollectionView reloadItemsAtIndexPaths:@[obj]];
+                        break;
+                    case NSFetchedResultsChangeMove:
+                        [self.playerCollectionView moveItemAtIndexPath:obj[0] toIndexPath:obj[1]];
+                        break;
+                }
+            }];
+        }
+    } completion:^(BOOL finished) {
+        self.sectionChanges = nil;
+        self.itemChanges = nil;
+    }];
+}
+
+- (void)controller:(NSFetchedResultsController *)controller didChangeSection:(id<NSFetchedResultsSectionInfo>)sectionInfo atIndex:(NSUInteger)sectionIndex forChangeType:(NSFetchedResultsChangeType)type {
+    NSMutableDictionary *change = [NSMutableDictionary dictionary];
+    change[@(type)] = @(sectionIndex);
+    [self.sectionChanges addObject:change];
+}
+
+- (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath {
+    NSMutableDictionary *change = [NSMutableDictionary dictionary];
+    
+    switch (type) {
+        case NSFetchedResultsChangeInsert:
+            change[@(type)] = newIndexPath;
+            break;
+        case NSFetchedResultsChangeDelete:
+            change[@(type)] = indexPath;
+            break;
+        case NSFetchedResultsChangeUpdate:
+            change[@(type)] = indexPath;
+            break;
+        case NSFetchedResultsChangeMove:
+            change[@(type)] = @[indexPath, newIndexPath];
+            break;
+    }
+    
+    [self.sectionChanges addObject:change];
 }
 
 @end
