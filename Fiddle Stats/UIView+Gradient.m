@@ -14,8 +14,8 @@
     NSMutableArray *colorArray = [NSMutableArray array];
     CAGradientLayer *gradient = [CAGradientLayer layer];
     
-    for(UIColor *color in colorArray) {
-        [colorArray addObject:(id)color.CGColor];
+    for(UIColor *color in colors) {
+        [colorArray addObject:((id)color.CGColor)];
     }
     
     [gradient setFrame:self.bounds];
