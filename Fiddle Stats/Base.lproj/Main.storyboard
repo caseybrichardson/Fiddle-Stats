@@ -24,7 +24,7 @@
         <!--Fiddle-->
         <scene sceneID="SD2-5m-eeJ">
             <objects>
-                <viewController id="eQ1-sV-byf" customClass="ViewController" sceneMemberID="viewController">
+                <viewController id="eQ1-sV-byf" customClass="FSMainViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y7B-A5-NAE"/>
                         <viewControllerLayoutGuide type="bottom" id="hL2-kC-uAU"/>
@@ -39,7 +39,7 @@
                                     <size key="itemSize" width="96" height="96"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="10" minY="5" maxX="10" maxY="0.0"/>
+                                    <inset key="sectionInset" minX="10" minY="5" maxX="10" maxY="71"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="9ZH-AL-rJC">
@@ -119,11 +119,38 @@
                         <outlet property="playerNameInputView" destination="0GK-Db-0p9" id="FnS-yx-xlM"/>
                         <outlet property="playerNameInputViewBottom" destination="XE6-x1-Mme" id="bdc-t9-Ud4"/>
                         <outlet property="playerSummonButton" destination="x9o-1m-nyC" id="d55-nE-YFw"/>
+                        <segue destination="zJB-hp-uNK" kind="show" identifier="playerDetails" id="s3q-iD-dZe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XhE-bD-Zkh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="951" y="459"/>
+        </scene>
+        <!--Table View Controller-->
+        <scene sceneID="Gf8-Zw-YHg">
+            <objects>
+                <tableViewController id="zJB-hp-uNK" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="TVh-kt-SE2">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="V1c-7K-DGv">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="V1c-7K-DGv" id="dmW-fh-TNB">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="zJB-hp-uNK" id="syk-nq-T2a"/>
+                            <outlet property="delegate" destination="zJB-hp-uNK" id="32w-9s-mA8"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ERl-aV-yFu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1743" y="459"/>
         </scene>
     </scenes>
 </document>

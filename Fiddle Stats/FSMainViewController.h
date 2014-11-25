@@ -12,13 +12,14 @@
 
 #import "FSCollectionViewCell.h"
 #import "CRBlockButton.h"
+#import "CRStarView.h"
 
 #import "Summoner+APIMethods.h"
 #import "Match+APIMethods.h"
 #import "UIColor+AppColors.h"
 #import "UIView+Gradient.h"
 
-@interface ViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, UITextFieldDelegate, NSFetchedResultsControllerDelegate>
+@interface FSMainViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, UITextFieldDelegate, NSFetchedResultsControllerDelegate>
 
 @property (strong, nonatomic) IBOutlet UICollectionView *playerCollectionView;
 @property (strong, nonatomic) IBOutlet UITextField *playerNameInputView;

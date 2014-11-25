@@ -14,11 +14,6 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-RKDropdownAlert.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>Pods.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -27,22 +22,17 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>411F1598C3B5D682C18A93C8</key>
+		<key>4ABA1D78A1D881E6FA0DBAA6</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>9F02F8FB34A5564FB11A18DF</key>
+		<key>549771AC0AE97D6F6C19A166</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>E21F247A7FDB5E31D7538F7F</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>F24B3D6ACDDEE291C1CE8055</key>
+		<key>F71F363D97842A0C2E765811</key>
 		<dict>
 			<key>primary</key>
 			<true/>

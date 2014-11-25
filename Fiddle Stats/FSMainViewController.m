@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 Casey Richardson. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "FSMainViewController.h"
 
-@interface ViewController ()
+@interface FSMainViewController ()
 
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 @property (strong, nonatomic) NSMutableArray *sectionChanges;
@@ -18,7 +18,7 @@
 
 @end
 
-@implementation ViewController
+@implementation FSMainViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -51,10 +51,11 @@
     
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Summoner"];
     NSEntityDescription *description = [NSEntityDescription entityForName:@"Summoner" inManagedObjectContext:del.managedObjectContext];
-    NSSortDescriptor *descriptor = [NSSortDescriptor sortDescriptorWithKey:@"sName" ascending:YES];
+    NSSortDescriptor *favoriteDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"sFavorited" ascending:NO];
+    NSSortDescriptor *nameDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"sName" ascending:YES];
     
     [request setEntity:description];
-    [request setSortDescriptors:@[descriptor]];
+    [request setSortDescriptors:@[favoriteDescriptor, nameDescriptor]];
     [request setFetchBatchSize:100];
     
     NSFetchedResultsController *controller = [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:del.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
@@ -102,7 +103,12 @@
     favoriteButton.frame = CGRectMake(10, cardView.titleLabel.bounds.origin.y, cardView.frame.size.width - 20, 45);
     favoriteButton.backgroundColor = [UIColor greenColor];
     favoriteButton.layer.cornerRadius = 5;
-    [favoriteButton setTitle:@"☆" forState:UIControlStateNormal];
+    [favoriteButton setTitle:([summoner.sFavorited boolValue] ? @"★" : @"☆") forState:UIControlStateNormal];
+    [favoriteButton setTapBlock:^(CRBlockButton *button) {
+        [self toggleFavoriteForSummoner:summoner];
+        [button setTitle:([summoner.sFavorited boolValue] ? @"★" : @"☆") forState:UIControlStateNormal];
+        [self.playerCollectionView reloadData];
+    }];
     
     [cardView addSubview:closeButton];
     [cardView addSubview:favoriteButton];
@@ -125,6 +131,12 @@
             self.presentedCardView = nil;
         }];
     }
+}
+
+- (void)toggleFavoriteForSummoner:(Summoner *)summoner {
+    AppDelegate *del = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    summoner.sFavorited = @(![summoner.sFavorited boolValue]);
+    [del saveContext];
 }
 
 #pragma mark - Notification Selectors
@@ -182,9 +194,13 @@
 
 #pragma mark - UICollectionViewDataSource
 
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
+    return [[[self fetchedResultsController] sections] count];
+}
+
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     id sectionInfo = [[self fetchedResultsController] sections][section];
-    return [sectionInfo numberOfObjects];;
+    return [sectionInfo numberOfObjects];
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -197,21 +213,24 @@
     NSURL *imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://avatar.leagueoflegends.com/na/%@.png", name]];
     [cell.backgroundImage setImageWithURL:imageURL];
     
+    if([summoner.sFavorited boolValue]) {
+        [cell.favoriteView setFillColor:[UIColor yellowColor]];
+    }
+    
     return cell;
 }
 
 #pragma mark - UICollectionViewDelegate
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    FSCollectionViewCell *cell = (FSCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
-    [cell startQuivering];
     Summoner *summoner = (Summoner *)[[self fetchedResultsController] objectAtIndexPath:indexPath];
     
     [Match matchesInformationFor:summoner withBlock:^(NSArray *matches, NSError *error) {
-        NSLog(@"Match[0] is: %@", matches[0]);
+        if([matches count] > 0)
+            NSLog(@"Match[0] is: %@", matches[0]);
     }];
 
-    //[self.view addSubview:[self createCardViewForSummoner:summoner]];
+    [self.view addSubview:[self createCardViewForSummoner:summoner]];
 }
 
 #pragma mark - NSFetchedResultsControllerDelegate

@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "E21F247A7FDB5E31D7538F7F"
+               BlueprintIdentifier = "549771AC0AE97D6F6C19A166"
                BuildableName = "libPods-RKCardView.a"
                BlueprintName = "Pods-RKCardView"
                ReferencedContainer = "container:Pods.xcodeproj">

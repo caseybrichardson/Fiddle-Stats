@@ -21,16 +21,13 @@ PODS:
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
   - RKCardView (0.1.0)
-  - RKDropdownAlert (0.1.0)
 
 DEPENDENCIES:
   - AFNetworking
   - RKCardView
-  - RKDropdownAlert
 
 SPEC CHECKSUMS:
   AFNetworking: 0f54cb5d16ce38c1b76948faffb8d5fb705021c7
   RKCardView: bb96e9288f1ccc34468a2d52c5f83bcf58a506ee
-  RKDropdownAlert: bba6058a8b73c2ad79a51e1e2e7e8f01acfefc8b
 
 COCOAPODS: 0.35.0

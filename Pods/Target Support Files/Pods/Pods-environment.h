@@ -54,9 +54,3 @@
 #define COCOAPODS_VERSION_MINOR_RKCardView 1
 #define COCOAPODS_VERSION_PATCH_RKCardView 0
 
-// RKDropdownAlert
-#define COCOAPODS_POD_AVAILABLE_RKDropdownAlert
-#define COCOAPODS_VERSION_MAJOR_RKDropdownAlert 0
-#define COCOAPODS_VERSION_MINOR_RKDropdownAlert 1
-#define COCOAPODS_VERSION_PATCH_RKDropdownAlert 0
-
