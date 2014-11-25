@@ -13,4 +13,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *nameLabel;
 @property (strong, nonatomic) IBOutlet UIImageView *backgroundImage;
 
+- (void)startQuivering;
+- (void)stopQuivering;
+
 @end

@@ -12,7 +12,7 @@
 
 @interface Summoner (APIMethods)
 
-- (instancetype)initWithAttributes:(NSDictionary *)attributes;
+- (instancetype)initWithAttributes:(NSDictionary *)attributes inRegion:(NSString *)region;
 
 + (NSArray *)storedSummoners;
 + (void)summonerInformationFor:(NSString *)summonerName region:(NSString *)region withBlock:(void (^)(Summoner *, NSError *))block;

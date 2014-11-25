@@ -14,7 +14,6 @@
 @property (strong, nonatomic) NSMutableArray *sectionChanges;
 @property (strong, nonatomic) NSMutableArray *itemChanges;
 
-@property (strong, nonatomic) NSArray *summoners;
 @property (strong, nonatomic) RKCardView *presentedCardView;
 
 @end
@@ -68,6 +67,15 @@
 #pragma mark - Helpers
 
 - (RKCardView *)createCardViewForSummoner:(Summoner *)summoner {
+    static NSDateFormatter *dateFormatter = nil;
+    
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
+        [dateFormatter setTimeStyle:NSDateFormatterShortStyle];
+    });
+    
     CGFloat navBarY = self.navigationController.navigationBar.frame.origin.y + self.navigationController.navigationBar.frame.size.height;
     CGFloat cardX = self.playerNameInputView.frame.origin.x;
     CGFloat cardY = navBarY + 5;
@@ -80,29 +88,43 @@
     
     cardView.coverImageView.image = [UIImage imageNamed:@"500x200"];
     cardView.profileImageView.image = [UIImage imageNamed:@"100x100"];
-    [cardView addShadow];
     
-    CRBlockButton *button = [[CRBlockButton alloc] init];
-    button.frame = CGRectMake(10, cardView.frame.origin.y + cardView.frame.size.height - cardView.frame.origin.y - 55, cardView.frame.size.width - 20, 45);
-    button.backgroundColor = [UIColor redColor];
-    button.layer.cornerRadius = 5;
-    [button setTapBlock:^(CRBlockButton *button) {
-        [UIView animateWithDuration:0.25f animations:^{
-            [cardView setAlpha:0];
-        } completion:^(BOOL finished) {
-            [cardView removeFromSuperview];
-            self.presentedCardView = nil;
-        }];
+    CRBlockButton *closeButton = [[CRBlockButton alloc] init];
+    closeButton.frame = CGRectMake(10, cardView.frame.origin.y + cardView.frame.size.height - cardView.frame.origin.y - 55, cardView.frame.size.width - 20, 45);
+    closeButton.backgroundColor = [UIColor redColor];
+    closeButton.layer.cornerRadius = 5;
+    [closeButton setTitle:@"Close" forState:UIControlStateNormal];
+    [closeButton setTapBlock:^(CRBlockButton *button) {
+        [self hidePresentedCardView];
     }];
-    [button setTitle:@"Close" forState:UIControlStateNormal];
-    [cardView addSubview:button];
     
+    CRBlockButton *favoriteButton = [[CRBlockButton alloc] init];
+    favoriteButton.frame = CGRectMake(10, cardView.titleLabel.bounds.origin.y, cardView.frame.size.width - 20, 45);
+    favoriteButton.backgroundColor = [UIColor greenColor];
+    favoriteButton.layer.cornerRadius = 5;
+    [favoriteButton setTitle:@"☆" forState:UIControlStateNormal];
+    
+    [cardView addSubview:closeButton];
+    [cardView addSubview:favoriteButton];
     [cardView setAlpha:0];
     [UIView animateWithDuration:0.25f animations:^{
         cardView.alpha = 1.0f;
+    } completion:^(BOOL finished) {
+        [cardView addShadow];
     }];
     
     return cardView;
+}
+
+- (void)hidePresentedCardView {
+    if(self.presentedCardView) {
+        [UIView animateWithDuration:0.25f animations:^{
+            [self.presentedCardView setAlpha:0];
+        } completion:^(BOOL finished) {
+            [self.presentedCardView removeFromSuperview];
+            self.presentedCardView = nil;
+        }];
+    }
 }
 
 #pragma mark - Notification Selectors
@@ -144,7 +166,6 @@
     
     if((![playerName isEqualToString:@""] && ![playerName isEqualToString:@" "])) {
         [Summoner summonerInformationFor:playerName region:@"na" withBlock:^(Summoner *summoner, NSError *error) {
-            self.summoners = [Summoner storedSummoners];
             [self.playerCollectionView reloadData];
         }];
     }
@@ -163,7 +184,6 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     id sectionInfo = [[self fetchedResultsController] sections][section];
-    NSLog(@"%lu", (unsigned long)[sectionInfo numberOfObjects]);
     return [sectionInfo numberOfObjects];;
 }
 
@@ -183,13 +203,15 @@
 #pragma mark - UICollectionViewDelegate
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    FSCollectionViewCell *cell = (FSCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
+    [cell startQuivering];
     Summoner *summoner = (Summoner *)[[self fetchedResultsController] objectAtIndexPath:indexPath];
     
     [Match matchesInformationFor:summoner withBlock:^(NSArray *matches, NSError *error) {
         NSLog(@"Match[0] is: %@", matches[0]);
     }];
 
-    [self.view addSubview:[self createCardViewForSummoner:summoner]];
+    //[self.view addSubview:[self createCardViewForSummoner:summoner]];
 }
 
 #pragma mark - NSFetchedResultsControllerDelegate
@@ -270,7 +292,7 @@
             break;
     }
     
-    [self.sectionChanges addObject:change];
+    [self.itemChanges addObject:change];
 }
 
 @end

@@ -10,7 +10,7 @@
 
 @implementation Summoner (APIMethods)
 
-- (Summoner *)initWithAttributes:(NSDictionary *)attributes {
+- (Summoner *)initWithAttributes:(NSDictionary *)attributes inRegion:(NSString *)region {
     AppDelegate *del = (AppDelegate *)[UIApplication sharedApplication].delegate;
     
     Summoner *summoner = [Summoner storedSummonerWithID:[attributes[@"id"] integerValue]];
@@ -25,13 +25,15 @@
     summoner.sRevisionDate = attributes[@"revisionDate"];
     summoner.sSummonerLevel = attributes[@"summonerLevel"];
     
+    summoner.sRegion = region;
+    summoner.sAddedOn = [NSDate date];
+    summoner.sLastUpdated = [NSDate date];
+    
     [del saveContext];
     
+    NSLog(@"%@", attributes);
+    
     return summoner;
-}
-
-- (NSString *)description {
-    return [NSString stringWithFormat:@"sID: %@ sName: %@", self.sID, self.sName];
 }
 
 #pragma mark - Core Data Retrieval
@@ -85,7 +87,7 @@
     
     [[CRFiddleAPIClient sharedInstance] GET:url parameters:requestParams success:^(NSURLSessionDataTask *task, id responseObject) {
         NSDictionary *dict = (NSDictionary *)responseObject;
-        Summoner *summoner = [[Summoner alloc] initWithAttributes:(NSDictionary *)[dict allValues].firstObject];
+        Summoner *summoner = [[Summoner alloc] initWithAttributes:(NSDictionary *)[dict allValues].firstObject inRegion:region];
         block(summoner, nil);
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         NSLog(@"%@", task.taskDescription);

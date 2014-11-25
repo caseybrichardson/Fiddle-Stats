@@ -28,6 +28,8 @@
     match.mMatchCreation = attributes[@"matchCreation"];
     match.mMatchType = attributes[@"matchType"];
     match.mMatchID = attributes[@"matchId"];
+    match.mMatchMode = attributes[@"matchMode"];
+    match.mPlatformID = attributes[@"platformId"];
     
     [del saveContext];
     
