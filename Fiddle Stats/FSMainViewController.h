@@ -10,7 +10,9 @@
 #import <UIImageView+AFNetworking.h>
 #import <RKCardView/RKCardView.h>
 
+#import "FSSummonerDataSource.h"
 #import "FSCollectionViewCell.h"
+#import "FSDataDelegate.h"
 #import "CRBlockButton.h"
 #import "CRStarView.h"
 
@@ -19,7 +21,7 @@
 #import "UIColor+AppColors.h"
 #import "UIView+Gradient.h"
 
-@interface FSMainViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, UITextFieldDelegate, NSFetchedResultsControllerDelegate>
+@interface FSMainViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, UITextFieldDelegate, NSFetchedResultsControllerDelegate, FSSummonerDataSource>
 
 @property (strong, nonatomic) IBOutlet UICollectionView *playerCollectionView;
 @property (strong, nonatomic) IBOutlet UITextField *playerNameInputView;
@@ -29,6 +31,8 @@
 @property (strong, nonatomic) IBOutlet UIView *inputHolderView;
 
 - (IBAction)summonPlayer:(id)sender;
+
+- (Summoner *)summoner;
 
 @end
 

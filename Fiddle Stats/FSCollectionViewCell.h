@@ -14,7 +14,6 @@
 
 @property (strong, nonatomic) IBOutlet UILabel *nameLabel;
 @property (strong, nonatomic) IBOutlet UIImageView *backgroundImage;
-@property (strong, nonatomic) IBOutlet CRStarView *favoriteView;
 
 - (void)startQuivering;
 - (void)stopQuivering;

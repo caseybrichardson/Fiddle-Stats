@@ -8,14 +8,18 @@
 
 /* Begin PBXBuildFile section */
 		2C01A4C03A46E64E746BA2E7 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F0B7A333A5F8F0B05CD2A390 /* libPods.a */; };
-		3B052B581A21A47800665F23 /* Match.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B052B571A21A47800665F23 /* Match.m */; };
 		3B052B5E1A21A52E00665F23 /* Match+APIMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B052B5D1A21A52E00665F23 /* Match+APIMethods.m */; };
 		3B052B651A21C48400665F23 /* CRBlockButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B052B641A21C48400665F23 /* CRBlockButton.m */; };
 		3B052B681A21D3E300665F23 /* UIView+Gradient.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B052B671A21D3E300665F23 /* UIView+Gradient.m */; };
 		3B052B6B1A21F55600665F23 /* Summoner.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B052B6A1A21F55600665F23 /* Summoner.m */; };
+		3B0681711A25D657009B2F6E /* FSDataDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B0681701A25D657009B2F6E /* FSDataDelegate.m */; };
+		3B0681741A25E8D3009B2F6E /* Tuple.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B0681731A25E8D3009B2F6E /* Tuple.m */; };
 		3B0C71591A2420080026787C /* CRStarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B0C71581A2420080026787C /* CRStarView.m */; };
+		3B12AC5A1A2E7B8600016610 /* UINavigationController+Helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B12AC591A2E7B8600016610 /* UINavigationController+Helpers.m */; };
+		3B371EE51A2F2A37000C4BE0 /* Match.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B371EE41A2F2A37000C4BE0 /* Match.m */; };
 		3B4CB09F1A2002A6003B1C67 /* FSCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B4CB09E1A2002A6003B1C67 /* FSCollectionViewCell.xib */; };
 		3B4CB0A31A2002F2003B1C67 /* FSCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B4CB0A21A2002F2003B1C67 /* FSCollectionViewCell.m */; };
+		3B5F8B811A2F12EB00CE3AC5 /* FSNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B5F8B801A2F12EB00CE3AC5 /* FSNavigationController.m */; };
 		3B8AD52C1A1FDB6A00DFFA3A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B8AD52B1A1FDB6A00DFFA3A /* main.m */; };
 		3B8AD52F1A1FDB6A00DFFA3A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B8AD52E1A1FDB6A00DFFA3A /* AppDelegate.m */; };
 		3B8AD5321A1FDB6A00DFFA3A /* Fiddle_Stats.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3B8AD5301A1FDB6A00DFFA3A /* Fiddle_Stats.xcdatamodeld */; };
@@ -24,11 +28,14 @@
 		3B8AD53A1A1FDB6A00DFFA3A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3B8AD5391A1FDB6A00DFFA3A /* Images.xcassets */; };
 		3B8AD53D1A1FDB6A00DFFA3A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B8AD53B1A1FDB6A00DFFA3A /* LaunchScreen.xib */; };
 		3B8AD5491A1FDB6A00DFFA3A /* Fiddle_StatsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B8AD5481A1FDB6A00DFFA3A /* Fiddle_StatsTests.m */; };
+		3BA11FCA1A2F227D00AFC8EB /* Champion.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BA11FC91A2F227D00AFC8EB /* Champion.m */; };
+		3BA11FCD1A2F22A200AFC8EB /* Champion+APIMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BA11FCC1A2F22A200AFC8EB /* Champion+APIMethods.m */; };
 		3BF2263B1A1FE3CB004EB614 /* UIColor+AppColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BF2263A1A1FE3CB004EB614 /* UIColor+AppColors.m */; };
 		3BF226411A1FE3E0004EB614 /* Summoner+APIMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BF2263F1A1FE3E0004EB614 /* Summoner+APIMethods.m */; };
 		3BF226471A1FE47A004EB614 /* CRFiddleAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BF226461A1FE47A004EB614 /* CRFiddleAPIClient.m */; };
 		3BF2264A1A1FE57C004EB614 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BF226491A1FE57C004EB614 /* CoreText.framework */; };
 		3BF2264C1A1FE582004EB614 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BF2264B1A1FE582004EB614 /* QuartzCore.framework */; };
+		3BF472E81A25C78F000A93DA /* FSPlayerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BF472E71A25C78F000A93DA /* FSPlayerTableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,8 +50,6 @@
 
 /* Begin PBXFileReference section */
 		164CE89A1C54E2BABA16D866 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
-		3B052B561A21A47800665F23 /* Match.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Match.h; sourceTree = "<group>"; };
-		3B052B571A21A47800665F23 /* Match.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Match.m; sourceTree = "<group>"; };
 		3B052B5C1A21A52E00665F23 /* Match+APIMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Match+APIMethods.h"; sourceTree = "<group>"; };
 		3B052B5D1A21A52E00665F23 /* Match+APIMethods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Match+APIMethods.m"; sourceTree = "<group>"; };
 		3B052B631A21C48400665F23 /* CRBlockButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRBlockButton.h; sourceTree = "<group>"; };
@@ -53,11 +58,22 @@
 		3B052B671A21D3E300665F23 /* UIView+Gradient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Gradient.m"; sourceTree = "<group>"; };
 		3B052B691A21F55600665F23 /* Summoner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Summoner.h; sourceTree = "<group>"; };
 		3B052B6A1A21F55600665F23 /* Summoner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Summoner.m; sourceTree = "<group>"; };
+		3B06816F1A25D657009B2F6E /* FSDataDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSDataDelegate.h; sourceTree = "<group>"; };
+		3B0681701A25D657009B2F6E /* FSDataDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSDataDelegate.m; sourceTree = "<group>"; };
+		3B0681721A25E8D3009B2F6E /* Tuple.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tuple.h; sourceTree = "<group>"; };
+		3B0681731A25E8D3009B2F6E /* Tuple.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tuple.m; sourceTree = "<group>"; };
 		3B0C71571A2420080026787C /* CRStarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRStarView.h; sourceTree = "<group>"; };
 		3B0C71581A2420080026787C /* CRStarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRStarView.m; sourceTree = "<group>"; };
+		3B12AC571A2E74E600016610 /* FSSummonerDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSSummonerDataSource.h; sourceTree = "<group>"; };
+		3B12AC581A2E7B8600016610 /* UINavigationController+Helpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+Helpers.h"; sourceTree = "<group>"; };
+		3B12AC591A2E7B8600016610 /* UINavigationController+Helpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+Helpers.m"; sourceTree = "<group>"; };
+		3B371EE31A2F2A37000C4BE0 /* Match.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Match.h; sourceTree = "<group>"; };
+		3B371EE41A2F2A37000C4BE0 /* Match.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Match.m; sourceTree = "<group>"; };
 		3B4CB09E1A2002A6003B1C67 /* FSCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FSCollectionViewCell.xib; path = "../../Fiddle-Swift/Fiddle/FSCollectionViewCell.xib"; sourceTree = "<group>"; };
 		3B4CB0A11A2002F2003B1C67 /* FSCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSCollectionViewCell.h; sourceTree = "<group>"; };
 		3B4CB0A21A2002F2003B1C67 /* FSCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSCollectionViewCell.m; sourceTree = "<group>"; };
+		3B5F8B7F1A2F12EB00CE3AC5 /* FSNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSNavigationController.h; sourceTree = "<group>"; };
+		3B5F8B801A2F12EB00CE3AC5 /* FSNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSNavigationController.m; sourceTree = "<group>"; };
 		3B8AD5261A1FDB6A00DFFA3A /* Fiddle Stats.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fiddle Stats.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B8AD52A1A1FDB6A00DFFA3A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3B8AD52B1A1FDB6A00DFFA3A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -72,6 +88,10 @@
 		3B8AD5421A1FDB6A00DFFA3A /* Fiddle StatsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Fiddle StatsTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B8AD5471A1FDB6A00DFFA3A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3B8AD5481A1FDB6A00DFFA3A /* Fiddle_StatsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Fiddle_StatsTests.m; sourceTree = "<group>"; };
+		3BA11FC81A2F227D00AFC8EB /* Champion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Champion.h; sourceTree = "<group>"; };
+		3BA11FC91A2F227D00AFC8EB /* Champion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Champion.m; sourceTree = "<group>"; };
+		3BA11FCB1A2F22A200AFC8EB /* Champion+APIMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Champion+APIMethods.h"; sourceTree = "<group>"; };
+		3BA11FCC1A2F22A200AFC8EB /* Champion+APIMethods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Champion+APIMethods.m"; sourceTree = "<group>"; };
 		3BF226391A1FE3CB004EB614 /* UIColor+AppColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+AppColors.h"; sourceTree = "<group>"; };
 		3BF2263A1A1FE3CB004EB614 /* UIColor+AppColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+AppColors.m"; sourceTree = "<group>"; };
 		3BF2263E1A1FE3E0004EB614 /* Summoner+APIMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Summoner+APIMethods.h"; sourceTree = "<group>"; };
@@ -80,6 +100,8 @@
 		3BF226461A1FE47A004EB614 /* CRFiddleAPIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRFiddleAPIClient.m; sourceTree = "<group>"; };
 		3BF226491A1FE57C004EB614 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		3BF2264B1A1FE582004EB614 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		3BF472E61A25C78F000A93DA /* FSPlayerTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSPlayerTableViewController.h; sourceTree = "<group>"; };
+		3BF472E71A25C78F000A93DA /* FSPlayerTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSPlayerTableViewController.m; sourceTree = "<group>"; };
 		BBEC4275003366CB0D35ED7A /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		F0B7A333A5F8F0B05CD2A390 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -128,6 +150,14 @@
 			name = "Custom UIKit";
 			sourceTree = "<group>";
 		};
+		3B0681761A26BE4B009B2F6E /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				3B12AC571A2E74E600016610 /* FSSummonerDataSource.h */,
+			);
+			name = Protocols;
+			sourceTree = "<group>";
+		};
 		3B8AD51D1A1FDB6A00DFFA3A = {
 			isa = PBXGroup;
 			children = (
@@ -151,6 +181,7 @@
 		3B8AD5281A1FDB6A00DFFA3A /* Fiddle Stats */ = {
 			isa = PBXGroup;
 			children = (
+				3B0681761A26BE4B009B2F6E /* Protocols */,
 				3B052B621A21C25500665F23 /* Custom UIKit */,
 				3BF226381A1FDEB4004EB614 /* Design Files */,
 				3BF226481A1FE488004EB614 /* Categories */,
@@ -158,8 +189,16 @@
 				3BF226421A1FE3F7004EB614 /* Data Models */,
 				3B8AD52D1A1FDB6A00DFFA3A /* AppDelegate.h */,
 				3B8AD52E1A1FDB6A00DFFA3A /* AppDelegate.m */,
+				3B0681721A25E8D3009B2F6E /* Tuple.h */,
+				3B0681731A25E8D3009B2F6E /* Tuple.m */,
+				3B06816F1A25D657009B2F6E /* FSDataDelegate.h */,
+				3B0681701A25D657009B2F6E /* FSDataDelegate.m */,
+				3B5F8B7F1A2F12EB00CE3AC5 /* FSNavigationController.h */,
+				3B5F8B801A2F12EB00CE3AC5 /* FSNavigationController.m */,
 				3B8AD5331A1FDB6A00DFFA3A /* FSMainViewController.h */,
 				3B8AD5341A1FDB6A00DFFA3A /* FSMainViewController.m */,
+				3BF472E61A25C78F000A93DA /* FSPlayerTableViewController.h */,
+				3BF472E71A25C78F000A93DA /* FSPlayerTableViewController.m */,
 				3B8AD5291A1FDB6A00DFFA3A /* Supporting Files */,
 			);
 			path = "Fiddle Stats";
@@ -206,10 +245,12 @@
 		3BF226421A1FE3F7004EB614 /* Data Models */ = {
 			isa = PBXGroup;
 			children = (
+				3B371EE31A2F2A37000C4BE0 /* Match.h */,
+				3B371EE41A2F2A37000C4BE0 /* Match.m */,
+				3BA11FC81A2F227D00AFC8EB /* Champion.h */,
+				3BA11FC91A2F227D00AFC8EB /* Champion.m */,
 				3B052B691A21F55600665F23 /* Summoner.h */,
 				3B052B6A1A21F55600665F23 /* Summoner.m */,
-				3B052B561A21A47800665F23 /* Match.h */,
-				3B052B571A21A47800665F23 /* Match.m */,
 			);
 			name = "Data Models";
 			sourceTree = "<group>";
@@ -230,10 +271,14 @@
 				3BF2263F1A1FE3E0004EB614 /* Summoner+APIMethods.m */,
 				3B052B5C1A21A52E00665F23 /* Match+APIMethods.h */,
 				3B052B5D1A21A52E00665F23 /* Match+APIMethods.m */,
+				3BA11FCB1A2F22A200AFC8EB /* Champion+APIMethods.h */,
+				3BA11FCC1A2F22A200AFC8EB /* Champion+APIMethods.m */,
 				3BF226391A1FE3CB004EB614 /* UIColor+AppColors.h */,
 				3BF2263A1A1FE3CB004EB614 /* UIColor+AppColors.m */,
 				3B052B661A21D3E300665F23 /* UIView+Gradient.h */,
 				3B052B671A21D3E300665F23 /* UIView+Gradient.m */,
+				3B12AC581A2E7B8600016610 /* UINavigationController+Helpers.h */,
+				3B12AC591A2E7B8600016610 /* UINavigationController+Helpers.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -385,19 +430,26 @@
 			buildActionMask = 2147483647;
 			files = (
 				3BF2263B1A1FE3CB004EB614 /* UIColor+AppColors.m in Sources */,
+				3B0681741A25E8D3009B2F6E /* Tuple.m in Sources */,
 				3B052B681A21D3E300665F23 /* UIView+Gradient.m in Sources */,
 				3B4CB0A31A2002F2003B1C67 /* FSCollectionViewCell.m in Sources */,
-				3B052B581A21A47800665F23 /* Match.m in Sources */,
 				3B8AD52F1A1FDB6A00DFFA3A /* AppDelegate.m in Sources */,
 				3B8AD52C1A1FDB6A00DFFA3A /* main.m in Sources */,
 				3BF226471A1FE47A004EB614 /* CRFiddleAPIClient.m in Sources */,
+				3BA11FCA1A2F227D00AFC8EB /* Champion.m in Sources */,
+				3BA11FCD1A2F22A200AFC8EB /* Champion+APIMethods.m in Sources */,
+				3B371EE51A2F2A37000C4BE0 /* Match.m in Sources */,
 				3B052B651A21C48400665F23 /* CRBlockButton.m in Sources */,
+				3B5F8B811A2F12EB00CE3AC5 /* FSNavigationController.m in Sources */,
 				3B0C71591A2420080026787C /* CRStarView.m in Sources */,
+				3B12AC5A1A2E7B8600016610 /* UINavigationController+Helpers.m in Sources */,
+				3B0681711A25D657009B2F6E /* FSDataDelegate.m in Sources */,
 				3B8AD5351A1FDB6A00DFFA3A /* FSMainViewController.m in Sources */,
 				3B8AD5321A1FDB6A00DFFA3A /* Fiddle_Stats.xcdatamodeld in Sources */,
 				3B052B5E1A21A52E00665F23 /* Match+APIMethods.m in Sources */,
 				3BF226411A1FE3E0004EB614 /* Summoner+APIMethods.m in Sources */,
 				3B052B6B1A21F55600665F23 /* Summoner.m in Sources */,
+				3BF472E81A25C78F000A93DA /* FSPlayerTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

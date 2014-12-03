@@ -10,6 +10,8 @@
 #import <CoreData/CoreData.h>
 
 #import "UIColor+AppColors.h"
+#import "Summoner.h"
+#import "Match.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 

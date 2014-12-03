@@ -14,7 +14,7 @@
 @property (strong, nonatomic) NSMutableArray *sectionChanges;
 @property (strong, nonatomic) NSMutableArray *itemChanges;
 
-@property (strong, nonatomic) RKCardView *presentedCardView;
+@property (strong, nonatomic) Summoner *selectedSummoner;
 
 @end
 
@@ -36,6 +36,9 @@
     } else {
         [self.playerCollectionView reloadData];
     }
+    
+    //AppDelegate *del = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    //FSDataDelegate *dataDelegate = [[FSDataDelegate alloc] initWithType:FSDataDelegateTypeCollectionView entityName:@"Summoner" inContext:del.managedObjectContext];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -63,80 +66,6 @@
     self.fetchedResultsController.delegate = self;
     
     return _fetchedResultsController;
-}
-
-#pragma mark - Helpers
-
-- (RKCardView *)createCardViewForSummoner:(Summoner *)summoner {
-    static NSDateFormatter *dateFormatter = nil;
-    
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        dateFormatter = [[NSDateFormatter alloc] init];
-        [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
-        [dateFormatter setTimeStyle:NSDateFormatterShortStyle];
-    });
-    
-    CGFloat navBarY = self.navigationController.navigationBar.frame.origin.y + self.navigationController.navigationBar.frame.size.height;
-    CGFloat cardX = self.playerNameInputView.frame.origin.x;
-    CGFloat cardY = navBarY + 5;
-    CGFloat cardW = self.playerSummonButton.frame.origin.x + self.playerSummonButton.frame.size.width - self.playerNameInputView.frame.origin.x;
-    CGFloat cardH = self.inputHolderView.frame.origin.y + self.playerNameInputView.frame.origin.y + self.playerNameInputView.frame.size.height - navBarY;
-    
-    RKCardView *cardView = self.presentedCardView = [[RKCardView alloc] initWithFrame:CGRectMake(cardX, cardY, cardW, cardH)];
-    
-    cardView.titleLabel.text = summoner.sName;
-    
-    cardView.coverImageView.image = [UIImage imageNamed:@"500x200"];
-    cardView.profileImageView.image = [UIImage imageNamed:@"100x100"];
-    
-    CRBlockButton *closeButton = [[CRBlockButton alloc] init];
-    closeButton.frame = CGRectMake(10, cardView.frame.origin.y + cardView.frame.size.height - cardView.frame.origin.y - 55, cardView.frame.size.width - 20, 45);
-    closeButton.backgroundColor = [UIColor redColor];
-    closeButton.layer.cornerRadius = 5;
-    [closeButton setTitle:@"Close" forState:UIControlStateNormal];
-    [closeButton setTapBlock:^(CRBlockButton *button) {
-        [self hidePresentedCardView];
-    }];
-    
-    CRBlockButton *favoriteButton = [[CRBlockButton alloc] init];
-    favoriteButton.frame = CGRectMake(10, cardView.titleLabel.bounds.origin.y, cardView.frame.size.width - 20, 45);
-    favoriteButton.backgroundColor = [UIColor greenColor];
-    favoriteButton.layer.cornerRadius = 5;
-    [favoriteButton setTitle:([summoner.sFavorited boolValue] ? @"★" : @"☆") forState:UIControlStateNormal];
-    [favoriteButton setTapBlock:^(CRBlockButton *button) {
-        [self toggleFavoriteForSummoner:summoner];
-        [button setTitle:([summoner.sFavorited boolValue] ? @"★" : @"☆") forState:UIControlStateNormal];
-        [self.playerCollectionView reloadData];
-    }];
-    
-    [cardView addSubview:closeButton];
-    [cardView addSubview:favoriteButton];
-    [cardView setAlpha:0];
-    [UIView animateWithDuration:0.25f animations:^{
-        cardView.alpha = 1.0f;
-    } completion:^(BOOL finished) {
-        [cardView addShadow];
-    }];
-    
-    return cardView;
-}
-
-- (void)hidePresentedCardView {
-    if(self.presentedCardView) {
-        [UIView animateWithDuration:0.25f animations:^{
-            [self.presentedCardView setAlpha:0];
-        } completion:^(BOOL finished) {
-            [self.presentedCardView removeFromSuperview];
-            self.presentedCardView = nil;
-        }];
-    }
-}
-
-- (void)toggleFavoriteForSummoner:(Summoner *)summoner {
-    AppDelegate *del = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    summoner.sFavorited = @(![summoner.sFavorited boolValue]);
-    [del saveContext];
 }
 
 #pragma mark - Notification Selectors
@@ -209,13 +138,9 @@
     
     cell.nameLabel.text = summoner.sName;
     
-    NSString *name = [summoner.sName stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
-    NSURL *imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://avatar.leagueoflegends.com/na/%@.png", name]];
+    NSString *urlString = @"http://ddragon.leagueoflegends.com/cdn/4.20.1/img/profileicon/%d.png";
+    NSURL *imageURL = [NSURL URLWithString:[NSString stringWithFormat:urlString, [summoner.sProfileIconID integerValue]]];
     [cell.backgroundImage setImageWithURL:imageURL];
-    
-    if([summoner.sFavorited boolValue]) {
-        [cell.favoriteView setFillColor:[UIColor yellowColor]];
-    }
     
     return cell;
 }
@@ -224,13 +149,8 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     Summoner *summoner = (Summoner *)[[self fetchedResultsController] objectAtIndexPath:indexPath];
-    
-    [Match matchesInformationFor:summoner withBlock:^(NSArray *matches, NSError *error) {
-        if([matches count] > 0)
-            NSLog(@"Match[0] is: %@", matches[0]);
-    }];
-
-    [self.view addSubview:[self createCardViewForSummoner:summoner]];
+    self.selectedSummoner = summoner;
+    [self performSegueWithIdentifier:@"playerDetails" sender:self];
 }
 
 #pragma mark - NSFetchedResultsControllerDelegate
@@ -312,6 +232,12 @@
     }
     
     [self.itemChanges addObject:change];
+}
+
+#pragma mark - FSSummonerDataSource
+
+- (Summoner *)summoner {
+    return self.selectedSummoner;
 }
 
 @end

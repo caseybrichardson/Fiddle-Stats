@@ -30,6 +30,7 @@
     match.mMatchID = attributes[@"matchId"];
     match.mMatchMode = attributes[@"matchMode"];
     match.mPlatformID = attributes[@"platformId"];
+    match.mPlayerChampID = attributes[@"participants"][0][@"championId"];
     
     [del saveContext];
     

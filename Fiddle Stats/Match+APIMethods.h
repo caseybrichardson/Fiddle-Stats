@@ -7,6 +7,7 @@
 //
 
 #import "Match.h"
+#import "AppDelegate.h"
 #import "Summoner+APIMethods.h"
 
 @interface Match (APIMethods)

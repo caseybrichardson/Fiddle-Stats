@@ -8,7 +8,6 @@
 
 #import "Summoner.h"
 #import "CRFiddleAPIClient.h"
-#import "AppDelegate.h"
 
 @interface Summoner (APIMethods)
 
