@@ -54,6 +54,8 @@
 }
 
 + (void)championInformationFor:(NSInteger)champID region:(NSString *)region withBlock:(void (^)(Champion *, NSError *))block {
+    
+    // Caching for accessing the champ data
     static NSMutableDictionary *_champCache;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -75,17 +77,27 @@
                 
                 Champion *champ = [[Champion alloc] initWithAttributes:championDict];
                 _champCache[@(champID)] = champ;
-                block(champ, nil);
+                
+                if(block) {
+                    block(champ, nil);
+                }
             } failure:^(NSURLSessionDataTask *task, NSError *error) {
                 NSLog(@"Fail: %@", task.taskDescription);
-                block(nil, error);
+                if(block) {
+                    block(nil, error);
+                }
             }];
         } else {
             _champCache[@(champID)] = champion;
-            block(champion, nil);
+            
+            if(block) {
+                block(champion, nil);
+            }
         }
     } else {
-        block(champion, nil);
+        if(block) {
+            block(champion, nil);
+        }
     }
 }
 

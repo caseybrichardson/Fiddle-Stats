@@ -14,6 +14,7 @@
         <attribute name="mMatchMode" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="mMatchType" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="mMatchVersion" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="mParticipantID" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="mPlatformID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="mPlayerChampID" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="mQueueType" optional="YES" attributeType="String" syncable="YES"/>
@@ -33,7 +34,7 @@
     </entity>
     <elements>
         <element name="Champion" positionX="-180" positionY="-9" width="128" height="103"/>
-        <element name="Match" positionX="-63" positionY="18" width="128" height="225"/>
+        <element name="Match" positionX="-63" positionY="18" width="128" height="240"/>
         <element name="Summoner" positionX="-306" positionY="-162" width="128" height="178"/>
     </elements>
 </model>

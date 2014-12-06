@@ -19,9 +19,10 @@
 @dynamic mMatchType;
 @dynamic mMatchVersion;
 @dynamic mPlatformID;
+@dynamic mPlayerChampID;
 @dynamic mQueueType;
 @dynamic mRegion;
 @dynamic mSeason;
-@dynamic mPlayerChampID;
+@dynamic mParticipantID;
 
 @end

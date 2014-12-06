@@ -9,7 +9,6 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-#import "Summoner.h"
 
 @interface Match : NSManagedObject
 
@@ -21,9 +20,10 @@
 @property (nonatomic, retain) NSString * mMatchType;
 @property (nonatomic, retain) NSString * mMatchVersion;
 @property (nonatomic, retain) NSString * mPlatformID;
+@property (nonatomic, retain) NSNumber * mPlayerChampID;
 @property (nonatomic, retain) NSString * mQueueType;
 @property (nonatomic, retain) NSString * mRegion;
 @property (nonatomic, retain) NSString * mSeason;
-@property (nonatomic, retain) NSNumber * mPlayerChampID;
+@property (nonatomic, retain) NSNumber * mParticipantID;
 
 @end

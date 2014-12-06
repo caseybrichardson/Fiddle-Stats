@@ -34,28 +34,36 @@
         return;
     }
     
-    
     NSString *urlString = @"http://ddragon.leagueoflegends.com/cdn/4.20.1/img/profileicon/%d.png";
     NSURL *imageURL = [NSURL URLWithString:[NSString stringWithFormat:urlString, [summoner.sProfileIconID integerValue]]];
     UIImageView *view = self.champView;
     
     [self.nameLabel setText:summoner.sName];
     [self.summonerIcon setImageWithURL:imageURL placeholderImage:[UIImage imageNamed:@"100x100"]];
-    [self.champView setAlpha:0];
-    [self.champView setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://ddragon.leagueoflegends.com/cdn/img/champion/splash/FiddleSticks_0.jpg"]] placeholderImage:nil success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
-        [view setImage:image];
-        [UIView animateWithDuration:0.25 animations:^{
-            [view setAlpha:1];
-        }];
-    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
-        
-    }];
     
-    [Match matchesInformationFor:summoner withBlock:^(NSArray *matches, NSError *error) {
-        if(error) {
-            NSLog(@"%@", [error description]);
+    [self.gradientView addGradientWithColors:@[[UIColor blackColor], [UIColor clearColor]]];
+    
+    [Match matchesInformationFor:summoner withBlock:^(NSArray *m, NSError *e) {
+        self.matches = [Match storedMatchesForSummoner:summoner];
+        if([self.matches count] > 0) {
+            [Champion championInformationFor:[((Match *)self.matches[0]).mPlayerChampID integerValue] region:@"na" withBlock:^(Champion *champ, NSError *error) {
+                
+                NSString *champKey = champ.cKey;
+                
+                NSString *url = [NSString stringWithFormat:@"http://ddragon.leagueoflegends.com/cdn/img/champion/splash/%@_0.jpg", champKey];
+                
+                [self.champView setAlpha:0];
+                [self.champView setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:url]] placeholderImage:nil success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+                    [view setImage:image];
+                    [UIView animateWithDuration:0.25 animations:^{
+                        [view setAlpha:1];
+                    }];
+                } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+                    
+                }];
+            }];
         }
-        self.matches = matches;
+        
         [self.tableView reloadData];
     }];
 }

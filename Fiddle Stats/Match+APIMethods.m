@@ -31,10 +31,30 @@
     match.mMatchMode = attributes[@"matchMode"];
     match.mPlatformID = attributes[@"platformId"];
     match.mPlayerChampID = attributes[@"participants"][0][@"championId"];
+    match.mParticipantID = attributes[@"participantIdentities"][0][@"player"][@"summonerId"];
+    NSLog(@"%@", match.mParticipantID);
     
     [del saveContext];
     
     return match;
+}
+
++ (NSArray *)storedMatchesForSummoner:(Summoner *)summoner {
+    AppDelegate *del = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    
+    NSError *error;
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Match"];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"mParticipantID == %@", summoner.sID];
+    
+    [request setPredicate:predicate];
+    
+    NSArray *matches = [del.managedObjectContext executeFetchRequest:request error:&error];
+    
+    if(!matches) {
+        return nil;
+    }
+    
+    return matches;
 }
 
 + (Match *)storedMatchWithID:(NSInteger)matchID {
@@ -42,7 +62,7 @@
     
     NSError *error;
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Match"];
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"mMatchID == %d", matchID];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"mMatchID == %lld", matchID];
     
     [request setPredicate:predicate];
     
@@ -78,11 +98,15 @@
         for (NSDictionary *match in matches) {
             [parsedData addObject:[[Match alloc] initWithAttributes:match]];
         }
-        
-        block(parsedData, nil);
+    
+        if(block) {
+            block(parsedData, nil);
+        }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         NSLog(@"Fail: %@", task.taskDescription);
-        block(nil, error);
+        if(block) {
+            block(nil, error);
+        }
     }];
 }
 

@@ -14,6 +14,7 @@
 
 - (Match *)initWithAttributes:(NSDictionary *)attributes;
 
++ (NSArray *)storedMatchesForSummoner:(Summoner *)summoner;
 + (Match *)storedMatchWithID:(NSInteger)matchID;
 + (void)matchesInformationFor:(Summoner *)summoner withBlock:(void (^)(NSArray *, NSError *))block;
 

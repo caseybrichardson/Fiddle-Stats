@@ -88,10 +88,16 @@
     [[CRFiddleAPIClient sharedInstance] GET:url parameters:requestParams success:^(NSURLSessionDataTask *task, id responseObject) {
         NSDictionary *dict = (NSDictionary *)responseObject;
         Summoner *summoner = [[Summoner alloc] initWithAttributes:(NSDictionary *)[dict allValues].firstObject inRegion:region];
-        block(summoner, nil);
+        
+        if(block) {
+            block(summoner, nil);
+        }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         NSLog(@"%@", task.taskDescription);
-        block(nil, error);
+        
+        if(block) {
+            block(nil, error);
+        }
     }];
 }
 

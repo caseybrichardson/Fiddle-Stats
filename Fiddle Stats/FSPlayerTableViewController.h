@@ -14,12 +14,14 @@
 #import "Match+APIMethods.h"
 #import "Champion+APIMethods.h"
 #import "UINavigationController+Helpers.h"
+#import "UIView+Gradient.h"
 
 @interface FSPlayerTableViewController : UITableViewController
 
 @property (strong, nonatomic) IBOutlet UIImageView *champView;
 @property (strong, nonatomic) IBOutlet UILabel *nameLabel;
 @property (strong, nonatomic) IBOutlet UIImageView *summonerIcon;
+@property (strong, nonatomic) IBOutlet UIView *gradientView;
 
 @property (strong, nonatomic) id<FSSummonerDataSource> summonerDataSource;
 
