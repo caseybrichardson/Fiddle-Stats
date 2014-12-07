@@ -13,15 +13,14 @@
 #import "FSSummonerDataSource.h"
 #import "FSCollectionViewCell.h"
 #import "FSDataDelegate.h"
-#import "CRBlockButton.h"
-#import "CRStarView.h"
+#import "FSDataPair.h"
 
 #import "Summoner+APIMethods.h"
 #import "Match+APIMethods.h"
 #import "UIColor+AppColors.h"
 #import "UIView+Gradient.h"
 
-@interface FSMainViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, UITextFieldDelegate, NSFetchedResultsControllerDelegate, FSSummonerDataSource>
+@interface FSMainViewController : UIViewController <UITextFieldDelegate, FSSummonerDataSource>
 
 @property (strong, nonatomic) IBOutlet UICollectionView *playerCollectionView;
 @property (strong, nonatomic) IBOutlet UITextField *playerNameInputView;
