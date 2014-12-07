@@ -35,15 +35,11 @@
     self.playerCollectionView.dataSource = self.dataDelegate;
     self.playerCollectionView.delegate = self.dataDelegate;
     
-    FSDataPair *sort1 = [[FSDataPair alloc] init];
-    sort1.first = @"sFavorited";
-    sort1.second = @NO;
-    
-    FSDataPair *sort2 = [[FSDataPair alloc] init];
-    sort2.first = @"sName";
-    sort2.second = @YES;
+    FSDataPair *sort1 = [[FSDataPair alloc] initWithFirst:@"sFavorited" second:@NO];
+    FSDataPair *sort2 = [[FSDataPair alloc] initWithFirst:@"sName" second:@YES];
     
     [self.dataDelegate setSortingKeyPaths:@[sort1, sort2]];
+    
     [self.dataDelegate setCollectionViewCellSource:^(UICollectionView *collectionView, UICollectionViewCell *cell, NSFetchedResultsController *frc, NSIndexPath *indexPath) {
         FSCollectionViewCell *playerCell = (FSCollectionViewCell *)cell;
         Summoner *summoner = ((Summoner *)[frc objectAtIndexPath:indexPath]);
@@ -53,6 +49,13 @@
         NSString *urlString = @"http://ddragon.leagueoflegends.com/cdn/4.20.1/img/profileicon/%d.png";
         NSURL *imageURL = [NSURL URLWithString:[NSString stringWithFormat:urlString, [summoner.sProfileIconID integerValue]]];
         [playerCell.backgroundImage setImageWithURL:imageURL];
+    }];
+
+    __weak FSMainViewController *weakReference = self;
+    [self.dataDelegate setItemSelectionHandler:^(id view, NSFetchedResultsController *frc, NSIndexPath *path) {
+        Summoner *summoner = (Summoner *)[frc objectAtIndexPath:path];
+        weakReference.selectedSummoner = summoner;
+        [weakReference performSegueWithIdentifier:@"playerDetails" sender:weakReference];
     }];
     
     [self.dataDelegate performFetch];
