@@ -32,7 +32,6 @@
     match.mPlatformID = attributes[@"platformId"];
     match.mPlayerChampID = attributes[@"participants"][0][@"championId"];
     match.mParticipantID = attributes[@"participantIdentities"][0][@"player"][@"summonerId"];
-    NSLog(@"%@", match.mParticipantID);
     
     [del saveContext];
     

@@ -6,8 +6,8 @@
 //  Copyright (c) 2014 Casey Richardson. All rights reserved.
 //
 
-#import "Tuple.h"
+#import "FSDataPair.h"
 
-@implementation Tuple
+@implementation FSDataPair
 
 @end

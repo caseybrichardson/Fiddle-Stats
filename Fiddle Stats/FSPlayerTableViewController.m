@@ -27,6 +27,8 @@
         return;
     }
     
+    [self.tableView registerNib:[UINib nibWithNibName:@"FSMatchTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"MatchCell"];
+    
     Summoner *summoner = [self.summonerDataSource summoner];
     
     if(!summoner) {
@@ -78,18 +80,23 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
-    
-    if(!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
-    }
+    FSMatchTableViewCell *cell = (FSMatchTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"MatchCell"];
 
     Match *m = ((Match *)self.matches[indexPath.row]);
     [Champion championInformationFor:[[m mPlayerChampID] integerValue] region:@"na" withBlock:^(Champion *champ, NSError *error) {
-        [[cell textLabel] setText:champ.cName];
+        [cell.champNameLabelView setText:champ.cName];
+        
+        NSString *url = [NSString stringWithFormat:@"http://ddragon.leagueoflegends.com/cdn/4.20.1/img/champion/%@.png", champ.cKey];
+        [cell.champImageView setImageWithURL:[NSURL URLWithString:url]];
     }];
     
     return cell;
+}
+
+- (IBAction)optionsPressed:(id)sender
+{
+    UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:@"Actions" delegate:nil cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Favorite", @"Share", nil];
+    [sheet showInView:self.view];
 }
 
 @end

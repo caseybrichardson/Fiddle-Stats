@@ -53,10 +53,6 @@
                                         </view>
                                     </collectionViewCell>
                                 </cells>
-                                <connections>
-                                    <outlet property="dataSource" destination="eQ1-sV-byf" id="fmb-hr-A1u"/>
-                                    <outlet property="delegate" destination="eQ1-sV-byf" id="C2P-cT-Hhh"/>
-                                </connections>
                             </collectionView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n2o-pW-3Nb" userLabel="PlayerNameInputView">
                                 <rect key="frame" x="0.0" y="534" width="600" height="66"/>
@@ -127,11 +123,11 @@
             </objects>
             <point key="canvasLocation" x="951" y="459"/>
         </scene>
-        <!--Player-->
+        <!--Match History-->
         <scene sceneID="Gf8-Zw-YHg">
             <objects>
                 <tableViewController id="zJB-hp-uNK" customClass="FSPlayerTableViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="TVh-kt-SE2">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="120" sectionHeaderHeight="22" sectionFooterHeight="22" id="TVh-kt-SE2">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -143,7 +139,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="200"/>
                                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 </view>
-                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Jnh-Lt-asF">
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Jnh-Lt-asF">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="200"/>
                                 </imageView>
                                 <visualEffectView opaque="NO" alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Pi-sO-L1F">
@@ -211,11 +207,18 @@
                         </connections>
                     </tableView>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Player" id="s6Y-JF-f4G"/>
+                    <navigationItem key="navigationItem" title="Match History" id="s6Y-JF-f4G">
+                        <barButtonItem key="rightBarButtonItem" image="Share" id="hKw-Kc-cPW">
+                            <connections>
+                                <action selector="optionsPressed:" destination="zJB-hp-uNK" id="eKV-qC-UZK"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="champView" destination="Jnh-Lt-asF" id="D4p-si-5e3"/>
                         <outlet property="gradientView" destination="1qF-j8-q6J" id="eYf-mi-ngd"/>
+                        <outlet property="headerView" destination="Nel-Qt-VVC" id="xhJ-f3-NGq"/>
                         <outlet property="nameLabel" destination="xfz-x2-EbM" id="9Mv-AI-EEc"/>
                         <outlet property="summonerIcon" destination="bEN-wM-rsD" id="DJW-u5-MUW"/>
                     </connections>
@@ -225,4 +228,7 @@
             <point key="canvasLocation" x="1743" y="459"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Share" width="21" height="28"/>
+    </resources>
 </document>

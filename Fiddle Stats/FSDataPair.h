@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Tuple : NSObject
+@interface FSDataPair : NSObject
 
 @property (strong, nonatomic) id first;
 @property (strong, nonatomic) id second;
