@@ -68,6 +68,10 @@
     return _fetchedResultsController;
 }
 
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    [self.view endEditing:YES];
+}
+
 #pragma mark - Notification Selectors
 
 - (void)keyboardWillShow:(NSNotification *)notification {
