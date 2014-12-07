@@ -18,7 +18,7 @@ typedef NS_ENUM(NSUInteger, FSDataDelegateType) {
 
 typedef void(^TableViewCellSource)(UITableView *tableView, UITableViewCell *cell, NSFetchedResultsController *frc, NSIndexPath *indexPath);
 typedef void(^CollectionViewCellSource)(UICollectionView *collectionView, UICollectionViewCell *cell, NSFetchedResultsController *frc, NSIndexPath *indexPath);
-typedef void(^ItemSelected)(id view, NSFetchedResultsController *frc, NSIndexPath *path);
+typedef void(^ItemSelected)(id view, NSFetchedResultsController *frc, NSIndexPath *indexPath);
 
 @interface FSDataDelegate : NSObject <UITableViewDataSource, UITableViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate, NSFetchedResultsControllerDelegate>
 
