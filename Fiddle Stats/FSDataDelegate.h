@@ -30,7 +30,7 @@ typedef void(^ItemSelected)(id view, NSFetchedResultsController *frc, NSIndexPat
 - (void)setSortingKeyPaths:(NSArray *)sortingKeyPaths;
 - (void)setTableViewCellSource:(TableViewCellSource)tableViewCellSource;
 - (void)setCollectionViewCellSource:(CollectionViewCellSource)collectionViewCellSource;
-- (void)setItemSelected:(ItemSelected)itemSelectionHandler;
+- (void)setItemSelectionHandler:(ItemSelected)itemSelectionHandler;
 - (void)setReuseIdentifier:(NSString *)reuseIdentifier;
 
 - (void)performFetch;
