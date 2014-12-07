@@ -13,4 +13,8 @@
 @property (strong, nonatomic) id first;
 @property (strong, nonatomic) id second;
 
+- (instancetype)initWithFirst:(id)first second:(id)second;
+
+- (NSArray *)pairAsArray;
+
 @end

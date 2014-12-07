@@ -10,4 +10,19 @@
 
 @implementation FSDataPair
 
+- (instancetype)initWithFirst:(id)first second:(id)second {
+    self = [super init];
+    
+    if(self) {
+        self.first = first;
+        self.second = second;
+    }
+    
+    return self;
+}
+
+- (NSArray *)pairAsArray {
+    return @[self.first, self.second];
+}
+
 @end
