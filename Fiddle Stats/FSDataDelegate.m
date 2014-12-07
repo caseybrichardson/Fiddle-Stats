@@ -12,6 +12,7 @@
 
 @property (copy, nonatomic, readonly) TableViewCellSource tableViewCellSource;
 @property (copy, nonatomic, readonly) CollectionViewCellSource collectionViewCellSource;
+@property (copy, nonatomic, readonly) ItemSelected itemSelectionHandler;
 
 @property (strong, nonatomic) NSString *entityName;
 @property (strong, nonatomic) NSString *sectionNameKeyPath;
@@ -124,6 +125,10 @@
     _collectionViewCellSource = collectionViewCellSource;
 }
 
+- (void)setItemSelectionHandler:(ItemSelected)itemSelectionHandler {
+    _itemSelectionHandler = itemSelectionHandler;
+}
+
 - (void)setReuseIdentifier:(NSString *)reuseIdentifier {
     _reuseIdentifier = reuseIdentifier;
 }
@@ -158,6 +163,12 @@
     return cell;
 }
 
+#pragma mark - UITableViewDelegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    _itemSelectionHandler(tableView, [self fetchedResultsController], indexPath);
+}
+
 #pragma mark - UICollectionViewDataSource
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
@@ -171,6 +182,12 @@
     _collectionViewCellSource(collectionView, cell, [self fetchedResultsController], indexPath);
     
     return cell;
+}
+
+#pragma mark - UICollectionViewDelegate
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    _itemSelectionHandler(collectionView, [self fetchedResultsController], indexPath);
 }
 
 #pragma mark - NSFetchedResultsControllerDelegate
