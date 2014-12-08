@@ -22,4 +22,16 @@
     return [UIColor colorWithRed:42.0f/255.0f green:163.0f/255.0f blue:144.0f/255.0f alpha:1.0f];
 }
 
++ (UIColor *)positiveColor {
+    return [UIColor colorWithRed:76.0f/255.0f green:175.0f/255.0f blue:80.0f/255.0f alpha:1.0f];
+}
+
++ (UIColor *)negativeColor {
+    return [UIColor colorWithRed:244.0f/255.0f green:67.0f/255.0f blue:54.0f/255.0f alpha:1.0f];
+}
+
++ (UIColor *)neutralColor {
+    return [UIColor colorWithRed:236.0f/255.0 green:239.0f/255.0f blue:241.0f/255.0f alpha:1.0f];
+}
+
 @end

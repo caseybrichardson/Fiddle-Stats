@@ -13,5 +13,8 @@
 + (UIColor *)fiddlesticksMainColor;
 + (UIColor *)fiddlesticksSecondaryColor;
 + (UIColor *)fiddlesticksTertiaryColor;
++ (UIColor *)positiveColor;
++ (UIColor *)negativeColor;
++ (UIColor *)neutralColor;
 
 @end
