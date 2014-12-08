@@ -17,6 +17,7 @@
 @property (strong, nonatomic) NSString *entityName;
 @property (strong, nonatomic) NSString *sectionNameKeyPath;
 @property (strong, nonatomic) NSArray *sortingKeyPaths;
+@property (strong, nonatomic) FSDataPair *predicateValues;
 
 @property (weak, nonatomic) NSManagedObjectContext *context;
 
@@ -76,6 +77,12 @@
     _sortingKeyPaths = sortingKeyPaths;
 }
 
+- (void)setPredicateValues:(FSDataPair *)predicateValues{
+    _fetchedResultsController = nil;
+    
+    _predicateValues = predicateValues;
+}
+
 - (NSFetchedResultsController *)fetchedResultsController {
     if(_fetchedResultsController != nil) {
         return _fetchedResultsController;
@@ -95,12 +102,15 @@
     }
     
     [request setEntity:description];
+    [request setFetchBatchSize:100];
     
     if(sortDescriptors) {
         [request setSortDescriptors:sortDescriptors];
     }
-    
-    [request setFetchBatchSize:100];
+
+    if(self.predicateValues) {
+        [request setPredicate:[NSPredicate predicateWithFormat:self.predicateValues.first, self.predicateValues.second]];
+    }
     
     NSFetchedResultsController *controller = [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:self.context sectionNameKeyPath:self.sectionNameKeyPath cacheName:nil];
     self.fetchedResultsController = controller;
@@ -152,7 +162,8 @@
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 0;
+    id sectionInfo = [[self fetchedResultsController] sections][section];
+    return [sectionInfo numberOfObjects];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {

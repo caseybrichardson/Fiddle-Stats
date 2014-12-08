@@ -28,6 +28,7 @@ typedef void(^ItemSelected)(id view, NSFetchedResultsController *frc, NSIndexPat
 
 - (void)setSectionNameKeyPath:(NSString *)sectionNameKeyPath;
 - (void)setSortingKeyPaths:(NSArray *)sortingKeyPaths;
+- (void)setPredicateValues:(FSDataPair *)predicateValues;
 - (void)setTableViewCellSource:(TableViewCellSource)tableViewCellSource;
 - (void)setCollectionViewCellSource:(CollectionViewCellSource)collectionViewCellSource;
 - (void)setItemSelectionHandler:(ItemSelected)itemSelectionHandler;
