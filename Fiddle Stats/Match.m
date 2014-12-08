@@ -20,6 +20,7 @@
 @dynamic mMatchVersion;
 @dynamic mPlatformID;
 @dynamic mPlayerChampID;
+@dynamic mPlayerWinner;
 @dynamic mQueueType;
 @dynamic mRegion;
 @dynamic mSeason;

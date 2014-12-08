@@ -8,10 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-#import "CRStarView.h"
+#import "UIView+Effects.h"
 
 @interface FSCollectionViewCell : UICollectionViewCell
 
+@property (strong, nonatomic) IBOutlet UIView *gradientView;
 @property (strong, nonatomic) IBOutlet UILabel *nameLabel;
 @property (strong, nonatomic) IBOutlet UIImageView *backgroundImage;
 

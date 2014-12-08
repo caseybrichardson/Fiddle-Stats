@@ -10,7 +10,7 @@
 		2C01A4C03A46E64E746BA2E7 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F0B7A333A5F8F0B05CD2A390 /* libPods.a */; };
 		3B052B5E1A21A52E00665F23 /* Match+APIMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B052B5D1A21A52E00665F23 /* Match+APIMethods.m */; };
 		3B052B651A21C48400665F23 /* CRBlockButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B052B641A21C48400665F23 /* CRBlockButton.m */; };
-		3B052B681A21D3E300665F23 /* UIView+Gradient.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B052B671A21D3E300665F23 /* UIView+Gradient.m */; };
+		3B052B681A21D3E300665F23 /* UIView+Effects.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B052B671A21D3E300665F23 /* UIView+Effects.m */; };
 		3B052B6B1A21F55600665F23 /* Summoner.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B052B6A1A21F55600665F23 /* Summoner.m */; };
 		3B0681711A25D657009B2F6E /* FSDataDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B0681701A25D657009B2F6E /* FSDataDelegate.m */; };
 		3B0681741A25E8D3009B2F6E /* FSDataPair.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B0681731A25E8D3009B2F6E /* FSDataPair.m */; };
@@ -56,8 +56,8 @@
 		3B052B5D1A21A52E00665F23 /* Match+APIMethods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Match+APIMethods.m"; sourceTree = "<group>"; };
 		3B052B631A21C48400665F23 /* CRBlockButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRBlockButton.h; sourceTree = "<group>"; };
 		3B052B641A21C48400665F23 /* CRBlockButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRBlockButton.m; sourceTree = "<group>"; };
-		3B052B661A21D3E300665F23 /* UIView+Gradient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Gradient.h"; sourceTree = "<group>"; };
-		3B052B671A21D3E300665F23 /* UIView+Gradient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Gradient.m"; sourceTree = "<group>"; };
+		3B052B661A21D3E300665F23 /* UIView+Effects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Effects.h"; sourceTree = "<group>"; };
+		3B052B671A21D3E300665F23 /* UIView+Effects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Effects.m"; sourceTree = "<group>"; };
 		3B052B691A21F55600665F23 /* Summoner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Summoner.h; sourceTree = "<group>"; };
 		3B052B6A1A21F55600665F23 /* Summoner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Summoner.m; sourceTree = "<group>"; };
 		3B06816F1A25D657009B2F6E /* FSDataDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSDataDelegate.h; sourceTree = "<group>"; };
@@ -283,8 +283,8 @@
 				3BA11FCC1A2F22A200AFC8EB /* Champion+APIMethods.m */,
 				3BF226391A1FE3CB004EB614 /* UIColor+AppColors.h */,
 				3BF2263A1A1FE3CB004EB614 /* UIColor+AppColors.m */,
-				3B052B661A21D3E300665F23 /* UIView+Gradient.h */,
-				3B052B671A21D3E300665F23 /* UIView+Gradient.m */,
+				3B052B661A21D3E300665F23 /* UIView+Effects.h */,
+				3B052B671A21D3E300665F23 /* UIView+Effects.m */,
 				3B12AC581A2E7B8600016610 /* UINavigationController+Helpers.h */,
 				3B12AC591A2E7B8600016610 /* UINavigationController+Helpers.m */,
 			);
@@ -440,7 +440,7 @@
 			files = (
 				3BF2263B1A1FE3CB004EB614 /* UIColor+AppColors.m in Sources */,
 				3B0681741A25E8D3009B2F6E /* FSDataPair.m in Sources */,
-				3B052B681A21D3E300665F23 /* UIView+Gradient.m in Sources */,
+				3B052B681A21D3E300665F23 /* UIView+Effects.m in Sources */,
 				3B4CB0A31A2002F2003B1C67 /* FSCollectionViewCell.m in Sources */,
 				3B8AD52F1A1FDB6A00DFFA3A /* AppDelegate.m in Sources */,
 				3B8AD52C1A1FDB6A00DFFA3A /* main.m in Sources */,

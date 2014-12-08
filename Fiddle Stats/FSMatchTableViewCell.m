@@ -11,14 +11,12 @@
 @implementation FSMatchTableViewCell
 
 - (void)awakeFromNib {
-    // Initialization code
-    [self.contentView addGradientWithColors:@[[UIColor grayColor], [UIColor whiteColor]]];
+    self.contentView.backgroundColor = [UIColor neutralColor];
+    self.accessoryView.backgroundColor = [UIColor clearColor];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
+    
 }
 
 @end

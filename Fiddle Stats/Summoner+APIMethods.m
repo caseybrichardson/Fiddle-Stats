@@ -31,7 +31,7 @@
     
     [del saveContext];
     
-    NSLog(@"%@", attributes);
+    NSLog(@"Trying to initialize summoner with: %@", attributes);
     
     return summoner;
 }
@@ -93,7 +93,8 @@
             block(summoner, nil);
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        NSLog(@"%@", task.taskDescription);
+        NSLog(@"%ld", (long)((NSHTTPURLResponse *)task.response).statusCode);
+        NSLog(@"Failing to fetch summoner data with error: %@", error.description);
         
         if(block) {
             block(nil, error);

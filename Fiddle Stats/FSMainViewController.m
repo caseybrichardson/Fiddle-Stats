@@ -28,17 +28,32 @@
     
     [self.inputHolderView addGradientWithColors:@[[UIColor clearColor], [UIColor blackColor]]];
     
+    [self initializeDataDelegate];
+    
+    [self.playerCollectionView reloadData];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    [self.view endEditing:YES];
+}
+
+#pragma mark - Helpers
+
+- (void)initializeDataDelegate {
     AppDelegate *del = (AppDelegate *)[UIApplication sharedApplication].delegate;
     self.dataDelegate = [[FSDataDelegate alloc] initWithType:FSDataDelegateTypeCollectionView forView:self.playerCollectionView entityName:@"Summoner" inContext:del.managedObjectContext];
-    [self.dataDelegate setReuseIdentifier:@"PlayerCell"];
     
     self.playerCollectionView.dataSource = self.dataDelegate;
     self.playerCollectionView.delegate = self.dataDelegate;
     
     FSDataPair *sort1 = [[FSDataPair alloc] initWithFirst:@"sFavorited" second:@NO];
     FSDataPair *sort2 = [[FSDataPair alloc] initWithFirst:@"sName" second:@YES];
-    
     [self.dataDelegate setSortingKeyPaths:@[sort1, sort2]];
+    [self.dataDelegate setReuseIdentifier:@"PlayerCell"];
     
     [self.dataDelegate setCollectionViewCellSource:^(UICollectionView *collectionView, UICollectionViewCell *cell, NSFetchedResultsController *frc, NSIndexPath *indexPath) {
         FSCollectionViewCell *playerCell = (FSCollectionViewCell *)cell;
@@ -50,7 +65,7 @@
         NSURL *imageURL = [NSURL URLWithString:[NSString stringWithFormat:urlString, [summoner.sProfileIconID integerValue]]];
         [playerCell.backgroundImage setImageWithURL:imageURL];
     }];
-
+    
     __weak FSMainViewController *weakReference = self;
     [self.dataDelegate setItemSelectionHandler:^(id view, NSFetchedResultsController *frc, NSIndexPath *path) {
         Summoner *summoner = (Summoner *)[frc objectAtIndexPath:path];
@@ -59,15 +74,6 @@
     }];
     
     [self.dataDelegate performFetch];
-    [self.playerCollectionView reloadData];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-}
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    [self.view endEditing:YES];
 }
 
 #pragma mark - Notification Selectors
@@ -113,6 +119,7 @@
         }];
     }
     
+    [self.playerNameInputView setText:@""];
     [self.playerNameInputView resignFirstResponder];
 }
 

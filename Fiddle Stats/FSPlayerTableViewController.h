@@ -15,7 +15,7 @@
 #import "Match+APIMethods.h"
 #import "Champion+APIMethods.h"
 #import "UINavigationController+Helpers.h"
-#import "UIView+Gradient.h"
+#import "UIView+Effects.h"
 
 @interface FSPlayerTableViewController : UITableViewController
 

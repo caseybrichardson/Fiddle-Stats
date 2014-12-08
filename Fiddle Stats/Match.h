@@ -21,6 +21,7 @@
 @property (nonatomic, retain) NSString * mMatchVersion;
 @property (nonatomic, retain) NSString * mPlatformID;
 @property (nonatomic, retain) NSNumber * mPlayerChampID;
+@property (nonatomic, retain) NSNumber * mPlayerWinner;
 @property (nonatomic, retain) NSString * mQueueType;
 @property (nonatomic, retain) NSString * mRegion;
 @property (nonatomic, retain) NSString * mSeason;

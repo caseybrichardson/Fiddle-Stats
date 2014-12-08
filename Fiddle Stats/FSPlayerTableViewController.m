@@ -90,6 +90,8 @@
         [cell.champImageView setImageWithURL:[NSURL URLWithString:url]];
     }];
     
+    cell.matchOutcomeView.backgroundColor = [m.mPlayerWinner boolValue] ? [UIColor positiveColor] : [UIColor negativeColor];
+    
     return cell;
 }
 

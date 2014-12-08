@@ -18,7 +18,7 @@
 #import "Summoner+APIMethods.h"
 #import "Match+APIMethods.h"
 #import "UIColor+AppColors.h"
-#import "UIView+Gradient.h"
+#import "UIView+Effects.h"
 
 @interface FSMainViewController : UIViewController <UITextFieldDelegate, FSSummonerDataSource>
 
