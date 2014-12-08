@@ -10,7 +10,7 @@
 
 @interface FSPlayerTableViewController ()
 
-@property (strong, nonatomic) NSArray *matches;
+@property (strong, nonatomic) FSDataDelegate *dataDelegate;
 
 @end
 
@@ -46,9 +46,11 @@
     [self.gradientView addGradientWithColors:@[[UIColor blackColor], [UIColor clearColor]]];
     
     [Match matchesInformationFor:summoner withBlock:^(NSArray *m, NSError *e) {
-        self.matches = [Match storedMatchesForSummoner:summoner];
-        if([self.matches count] > 0) {
-            [Champion championInformationFor:[((Match *)self.matches[0]).mPlayerChampID integerValue] region:@"na" withBlock:^(Champion *champ, NSError *error) {
+        [self initializeDataDelegate];
+        [self.tableView reloadData];
+        
+        if([m count] > 0) {
+            [Champion championInformationFor:[((Match *)m[0]).mPlayerChampID integerValue] region:@"na" withBlock:^(Champion *champ, NSError *error) {
                 
                 NSString *champKey = champ.cKey;
                 
@@ -75,25 +77,43 @@
     
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [self.matches count];
-}
+#pragma mark - Helpers
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    FSMatchTableViewCell *cell = (FSMatchTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"MatchCell"];
-
-    Match *m = ((Match *)self.matches[indexPath.row]);
-    [Champion championInformationFor:[[m mPlayerChampID] integerValue] region:@"na" withBlock:^(Champion *champ, NSError *error) {
-        [cell.champNameLabelView setText:champ.cName];
+- (void)initializeDataDelegate {
+    AppDelegate *del = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    self.dataDelegate = [[FSDataDelegate alloc] initWithType:FSDataDelegateTypeTableView forView:self.tableView entityName:@"Match" inContext:del.managedObjectContext];
+    
+    self.tableView.dataSource = self.dataDelegate;
+    self.tableView.delegate = self.dataDelegate;
+    
+    FSDataPair *sort1 = [[FSDataPair alloc] initWithFirst:@"mMatchCreation" second:@YES];
+    [self.dataDelegate setSortingKeyPaths:@[sort1]];
+    [self.dataDelegate setReuseIdentifier:@"MatchCell"];
+    [self.dataDelegate setPredicateValues:[[FSDataPair alloc] initWithFirst:@"mParticipantID == %@" second:[self.summonerDataSource summoner].sID]];
+    
+    [self.dataDelegate setTableViewCellSource:^(UITableView *tableView, UITableViewCell *cell, NSFetchedResultsController *frc, NSIndexPath *indexPath) {
+        FSMatchTableViewCell *matchCell = (FSMatchTableViewCell *)cell;
         
-        NSString *url = [NSString stringWithFormat:@"http://ddragon.leagueoflegends.com/cdn/4.20.1/img/champion/%@.png", champ.cKey];
-        [cell.champImageView setImageWithURL:[NSURL URLWithString:url]];
+        Match *m = [frc objectAtIndexPath:indexPath];
+        [Champion championInformationFor:[[m mPlayerChampID] integerValue] region:@"na" withBlock:^(Champion *champ, NSError *error) {
+            [matchCell.champNameLabelView setText:champ.cName];
+            
+            NSString *url = [NSString stringWithFormat:@"http://ddragon.leagueoflegends.com/cdn/4.20.1/img/champion/%@.png", champ.cKey];
+            [matchCell.champImageView setImageWithURL:[NSURL URLWithString:url]];
+        }];
+        
+        matchCell.matchOutcomeView.backgroundColor = [m.mPlayerWinner boolValue] ? [UIColor positiveColor] : [UIColor negativeColor];
     }];
     
-    cell.matchOutcomeView.backgroundColor = [m.mPlayerWinner boolValue] ? [UIColor positiveColor] : [UIColor negativeColor];
+    //__weak FSPlayerTableViewController *weakReference = self;
+    [self.dataDelegate setItemSelectionHandler:^(id view, NSFetchedResultsController *frc, NSIndexPath *indexPath) {
+        NSLog(@"HEY: %@", [frc objectAtIndexPath:indexPath]);
+    }];
     
-    return cell;
+    [self.dataDelegate performFetch];
 }
+
+#pragma mark - IBActions
 
 - (IBAction)optionsPressed:(id)sender
 {

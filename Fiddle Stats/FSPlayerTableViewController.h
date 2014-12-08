@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import <UIImageView+AFNetworking.h>
 
+#import "FSDataPair.h"
+#import "FSDataDelegate.h"
 #import "FSSummonerDataSource.h"
 #import "FSMatchTableViewCell.h"
 

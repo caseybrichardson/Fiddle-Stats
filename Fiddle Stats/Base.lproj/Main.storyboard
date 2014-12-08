@@ -164,7 +164,7 @@
                                     <color key="textColor" red="0.75294117647058822" green="0.71372549019607845" blue="0.54117647058823526" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bEN-wM-rsD">
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Missing" translatesAutoresizingMaskIntoConstraints="NO" id="bEN-wM-rsD">
                                     <rect key="frame" x="8" y="8" width="100" height="100"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="100" id="25O-tF-Uxp"/>
@@ -202,10 +202,6 @@
                                 <constraint firstAttribute="trailing" secondItem="Jnh-Lt-asF" secondAttribute="trailing" id="y2h-S3-7Kw"/>
                             </constraints>
                         </view>
-                        <connections>
-                            <outlet property="dataSource" destination="zJB-hp-uNK" id="syk-nq-T2a"/>
-                            <outlet property="delegate" destination="zJB-hp-uNK" id="32w-9s-mA8"/>
-                        </connections>
                     </tableView>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Match History" id="s6Y-JF-f4G">
@@ -230,6 +226,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Missing" width="128" height="128"/>
         <image name="Share" width="21" height="28"/>
     </resources>
 </document>
