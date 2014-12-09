@@ -10,7 +10,7 @@
 
 @implementation Match (APIMethods)
 
-- (Match *)initWithAttributes:(NSDictionary *)attributes {
+- (Match *)initWithAttributes:(NSDictionary *)attributes forSummoner:(Summoner *)summoner {
     AppDelegate *del = (AppDelegate *)[UIApplication sharedApplication].delegate;
     
     Match *match = [Match storedMatchWithID:[attributes[@"matchId"] integerValue]];
@@ -33,6 +33,8 @@
     match.mPlayerChampID = attributes[@"participants"][0][@"championId"];
     match.mParticipantID = attributes[@"participantIdentities"][0][@"player"][@"summonerId"];
     match.mPlayerWinner = attributes[@"participants"][0][@"stats"][@"winner"];
+    
+    [summoner addSMatchesObject:match];
     
     [del saveContext];
     
@@ -96,7 +98,7 @@
         NSMutableArray *parsedData = [NSMutableArray array];
         
         for (NSDictionary *match in matches) {
-            [parsedData addObject:[[Match alloc] initWithAttributes:match]];
+            [parsedData addObject:[[Match alloc] initWithAttributes:match forSummoner:summoner]];
         }
     
         if(block) {

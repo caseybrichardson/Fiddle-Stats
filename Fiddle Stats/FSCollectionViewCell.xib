@@ -16,36 +16,35 @@
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Missing" translatesAutoresizingMaskIntoConstraints="NO" id="Z1g-Fa-WT5">
                         <rect key="frame" x="0.0" y="0.0" width="96" height="96"/>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Ts-pW-Unb">
-                        <rect key="frame" x="8" y="73" width="80" height="15"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fE1-Ra-Nrs" userLabel="Label Background">
+                        <rect key="frame" x="0.0" y="68" width="96" height="28"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.45000000000000001" colorSpace="calibratedRGB"/>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.85000000000000031" translatesAutoresizingMaskIntoConstraints="NO" id="1Ts-pW-Unb">
+                        <rect key="frame" x="8" y="76" width="80" height="15"/>
+                        <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="12"/>
                         <color key="textColor" red="0.75294117650000003" green="0.71372549019999998" blue="0.54117647059999996" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fE1-Ra-Nrs" userLabel="Gradient View">
-                        <rect key="frame" x="0.0" y="68" width="96" height="28"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    </view>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
             <constraints>
+                <constraint firstAttribute="bottom" secondItem="1Ts-pW-Unb" secondAttribute="bottom" constant="5" id="2fE-Fk-ZC4"/>
                 <constraint firstItem="Z1g-Fa-WT5" firstAttribute="top" secondItem="bKN-OL-kmi" secondAttribute="top" id="6ZI-6X-FQR"/>
-                <constraint firstAttribute="trailing" secondItem="1Ts-pW-Unb" secondAttribute="trailing" constant="8" id="LTr-Z3-6bt"/>
+                <constraint firstItem="1Ts-pW-Unb" firstAttribute="leading" secondItem="bKN-OL-kmi" secondAttribute="leading" constant="8" id="JgF-fw-1na"/>
                 <constraint firstAttribute="trailing" secondItem="fE1-Ra-Nrs" secondAttribute="trailing" id="POY-Mv-Slh"/>
                 <constraint firstAttribute="bottom" secondItem="Z1g-Fa-WT5" secondAttribute="bottom" id="ZKk-yM-84m"/>
+                <constraint firstItem="1Ts-pW-Unb" firstAttribute="top" secondItem="fE1-Ra-Nrs" secondAttribute="top" constant="8" id="bDD-eO-pfV"/>
                 <constraint firstAttribute="bottom" secondItem="fE1-Ra-Nrs" secondAttribute="bottom" id="epm-lM-6xk"/>
-                <constraint firstItem="1Ts-pW-Unb" firstAttribute="leading" secondItem="bKN-OL-kmi" secondAttribute="leading" constant="8" id="gkt-ej-MiK"/>
-                <constraint firstItem="1Ts-pW-Unb" firstAttribute="top" secondItem="fE1-Ra-Nrs" secondAttribute="top" constant="5" id="vjU-Zs-xMj"/>
+                <constraint firstAttribute="trailing" secondItem="1Ts-pW-Unb" secondAttribute="trailing" constant="8" id="hig-j1-Nla"/>
                 <constraint firstAttribute="trailing" secondItem="Z1g-Fa-WT5" secondAttribute="trailing" id="x8H-Sy-hnS"/>
                 <constraint firstItem="fE1-Ra-Nrs" firstAttribute="leading" secondItem="bKN-OL-kmi" secondAttribute="leading" id="yBm-qD-Akc"/>
-                <constraint firstAttribute="bottom" secondItem="1Ts-pW-Unb" secondAttribute="bottom" constant="8" id="yQO-z7-bmu"/>
                 <constraint firstItem="Z1g-Fa-WT5" firstAttribute="leading" secondItem="bKN-OL-kmi" secondAttribute="leading" id="yWm-Na-xj8"/>
             </constraints>
             <size key="customSize" width="139" height="72"/>
             <connections>
                 <outlet property="backgroundImage" destination="Z1g-Fa-WT5" id="J0c-t1-LiY"/>
-                <outlet property="gradientView" destination="fE1-Ra-Nrs" id="hcx-Of-ofy"/>
                 <outlet property="nameLabel" destination="1Ts-pW-Unb" id="Vid-4q-3Je"/>
             </connections>
             <point key="canvasLocation" x="373" y="338"/>

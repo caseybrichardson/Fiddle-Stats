@@ -33,6 +33,12 @@
     [self.playerCollectionView reloadData];
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    UIEdgeInsets insets = self.playerCollectionView.contentInset;
+    insets.bottom = self.inputHolderView.bounds.size.height;
+    [self.playerCollectionView setContentInset:insets];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
@@ -50,10 +56,10 @@
     self.playerCollectionView.dataSource = self.dataDelegate;
     self.playerCollectionView.delegate = self.dataDelegate;
     
-    FSDataPair *sort1 = [[FSDataPair alloc] initWithFirst:@"sFavorited" second:@NO];
-    FSDataPair *sort2 = [[FSDataPair alloc] initWithFirst:@"sName" second:@YES];
-    [self.dataDelegate setSortingKeyPaths:@[sort1, sort2]];
+    FSDataPair *sort1 = [[FSDataPair alloc] initWithFirst:@"sName" second:@YES];
+    [self.dataDelegate setSortingKeyPaths:@[sort1]];
     [self.dataDelegate setReuseIdentifier:@"PlayerCell"];
+    //[self.dataDelegate setSectionNameKeyPath:@"sGroup.gGroupTitle"];
     
     [self.dataDelegate setCollectionViewCellSource:^(UICollectionView *collectionView, UICollectionViewCell *cell, NSFetchedResultsController *frc, NSIndexPath *indexPath) {
         FSCollectionViewCell *playerCell = (FSCollectionViewCell *)cell;
@@ -121,6 +127,10 @@
     
     [self.playerNameInputView setText:@""];
     [self.playerNameInputView resignFirstResponder];
+}
+
+- (IBAction)settingsTapped:(id)sender {
+    //[self performSegueWithIdentifier:@"presentSettings" sender:self];
 }
 
 #pragma mark - UITextFieldDelegate

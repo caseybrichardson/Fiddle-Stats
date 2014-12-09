@@ -30,6 +30,8 @@
     [self.tableView registerNib:[UINib nibWithNibName:@"FSMatchTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"MatchCell"];
     
     Summoner *summoner = [self.summonerDataSource summoner];
+    SummonerGroup *group = [self.summonerDataSource summoner].sGroup;
+    [self.groupLabel setText:group.gGroupTitle];
     
     if(!summoner) {
         [self.navigationController popViewControllerAnimated:NO];
@@ -41,7 +43,7 @@
     UIImageView *view = self.champView;
     
     [self.nameLabel setText:summoner.sName];
-    [self.summonerIcon setImageWithURL:imageURL placeholderImage:[UIImage imageNamed:@"100x100"]];
+    [self.summonerIcon setImageWithURL:imageURL];
     
     [self.gradientView addGradientWithColors:@[[UIColor blackColor], [UIColor clearColor]]];
     
@@ -117,8 +119,60 @@
 
 - (IBAction)optionsPressed:(id)sender
 {
-    UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:@"Actions" delegate:nil cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Favorite", @"Share", nil];
-    [sheet showInView:self.view];
+    [self showOptionsDialog];
+}
+
+#pragma mark - UIAlertController Helpers
+
+- (void)showOptionsDialog {
+    
+    UIAlertController *optionsDialog = [UIAlertController alertControllerWithTitle:@"Actions" message:@"Choose an action to perform." preferredStyle:UIAlertControllerStyleActionSheet];
+    
+    id group = [self.summonerDataSource summoner].sGroup;
+    UIAlertAction *groupDialogDisplayAction = [UIAlertAction actionWithTitle:(group ? @"Edit Group" : @"Add To Group" ) style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        [self showGroupDialog];
+    }];
+    
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
+    
+    [optionsDialog addAction:groupDialogDisplayAction];
+    [optionsDialog addAction:cancelAction];
+    
+    [self presentViewController:optionsDialog animated:YES completion:nil];
+}
+
+- (void)showGroupDialog {
+    UIAlertController *groupDialog = [UIAlertController alertControllerWithTitle:@"Group" message:@"Choose a name for the group to add this summoner to:" preferredStyle:UIAlertControllerStyleAlert];
+    
+    SummonerGroup *currentGroup = [self.summonerDataSource summoner].sGroup;
+    UIAlertAction *groupAddAction = [UIAlertAction actionWithTitle:(currentGroup ? @"Edit Group" : @"Add To Group" ) style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        NSString *groupTitle = ((UITextField *)groupDialog.textFields[0]).text;
+        SummonerGroup *group = [[SummonerGroup alloc] initWithTitle:groupTitle];
+        [group addGSummonersObject:[self.summonerDataSource summoner]];
+        
+        [self.groupLabel setText:[self.summonerDataSource summoner].sGroup.gGroupTitle];
+        
+        AppDelegate *del = (AppDelegate *)[UIApplication sharedApplication].delegate;
+        [del saveContext];
+    }];
+    
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
+    
+    [groupDialog addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+        textField.placeholder = @"Group Name";
+        textField.autocapitalizationType = UITextAutocapitalizationTypeWords;
+
+        SummonerGroup *group = [self.summonerDataSource summoner].sGroup;
+        
+        if(group) {
+            textField.text = group.gGroupTitle;
+        }
+    }];
+    
+    [groupDialog addAction:groupAddAction];
+    [groupDialog addAction:cancelAction];
+    
+    [self presentViewController:groupDialog animated:YES completion:nil];
 }
 
 @end

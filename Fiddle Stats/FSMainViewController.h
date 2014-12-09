@@ -30,6 +30,7 @@
 @property (strong, nonatomic) IBOutlet UIView *inputHolderView;
 
 - (IBAction)summonPlayer:(id)sender;
+- (IBAction)settingsTapped:(id)sender;
 
 - (Summoner *)summoner;
 

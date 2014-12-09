@@ -18,12 +18,14 @@
 #import "Champion+APIMethods.h"
 #import "UINavigationController+Helpers.h"
 #import "UIView+Effects.h"
+#import "SummonerGroup+Helpers.h"
 
 @interface FSPlayerTableViewController : UITableViewController
 
 @property (strong, nonatomic) IBOutlet UIView *headerView;
 @property (strong, nonatomic) IBOutlet UIImageView *champView;
 @property (strong, nonatomic) IBOutlet UILabel *nameLabel;
+@property (strong, nonatomic) IBOutlet UILabel *groupLabel;
 @property (strong, nonatomic) IBOutlet UIImageView *summonerIcon;
 @property (strong, nonatomic) IBOutlet UIView *gradientView;
 

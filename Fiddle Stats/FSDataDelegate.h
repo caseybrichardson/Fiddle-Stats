@@ -10,6 +10,7 @@
 #import <CoreData/CoreData.h>
 
 #import "FSDataPair.h"
+#import "SummonerGroup+Helpers.h"
 
 typedef NS_ENUM(NSUInteger, FSDataDelegateType) {
     FSDataDelegateTypeTableView,

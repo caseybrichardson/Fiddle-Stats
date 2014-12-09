@@ -12,7 +12,7 @@
 
 @interface Match (APIMethods)
 
-- (Match *)initWithAttributes:(NSDictionary *)attributes;
+- (Match *)initWithAttributes:(NSDictionary *)attributes forSummoner:(Summoner *)summoner;
 
 + (NSArray *)storedMatchesForSummoner:(Summoner *)summoner;
 + (Match *)storedMatchWithID:(NSInteger)matchID;

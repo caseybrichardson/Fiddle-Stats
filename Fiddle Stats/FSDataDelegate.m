@@ -161,6 +161,10 @@
 
 #pragma mark - UITableViewDataSource
 
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+     return [[[self fetchedResultsController] sections] count];
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     id sectionInfo = [[self fetchedResultsController] sections][section];
     return [sectionInfo numberOfObjects];
@@ -182,6 +186,10 @@
 
 #pragma mark - UICollectionViewDataSource
 
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
+    return [[[self fetchedResultsController] sections] count];
+}
+
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     id sectionInfo = [[self fetchedResultsController] sections][section];
     return [sectionInfo numberOfObjects];
@@ -193,6 +201,19 @@
     _collectionViewCellSource(collectionView, cell, [self fetchedResultsController], indexPath);
     
     return cell;
+}
+
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
+    if(kind == UICollectionElementKindSectionHeader) {
+        UICollectionReusableView *header = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"SectionView" forIndexPath:indexPath];
+        UILabel *label = (UILabel *)[header viewWithTag:99];
+        NSString *sectionTitle = [[[[self fetchedResultsController] sections] objectAtIndex:[indexPath section]] name];
+        [label setText:sectionTitle];
+        
+        return header;
+    }
+    
+    return nil;
 }
 
 #pragma mark - UICollectionViewDelegate
@@ -268,8 +289,10 @@
                         [self.collectionView deleteSections:[NSIndexSet indexSetWithIndex:[obj unsignedIntegerValue]]];
                         break;
                     case NSFetchedResultsChangeUpdate:
+                        [self.collectionView reloadSections:[NSIndexSet indexSetWithIndex:[obj unsignedIntegerValue]]];
                         break;
                     case NSFetchedResultsChangeMove:
+                        //[self.collectionView moveSection:<#(NSInteger)#> toSection:<#(NSInteger)#>]
                         break;
                 }
             }];
@@ -303,6 +326,7 @@
 
 - (void)didChangeCollectionViewSection:(id)sectionInfo atIndex:(NSUInteger)sectionIndex forChangeType:(NSFetchedResultsChangeType)type {
     NSMutableDictionary *change = [NSMutableDictionary dictionary];
+    NSLog(@"%@", sectionInfo);
     change[@(type)] = @(sectionIndex);
     [self.sectionChanges addObject:change];
 }

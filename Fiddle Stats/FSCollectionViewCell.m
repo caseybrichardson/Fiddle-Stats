@@ -13,7 +13,6 @@
 - (void)awakeFromNib {
     self.contentView.layer.cornerRadius = 5.0f;
     self.contentView.clipsToBounds = YES;
-    [self.gradientView addGradientWithColors:@[[UIColor clearColor], [UIColor blackColor]]];
     [self.contentView bringSubviewToFront:self.nameLabel];
 }
 
