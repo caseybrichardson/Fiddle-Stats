@@ -22,6 +22,7 @@
 @dynamic sRegion;
 @dynamic sRevisionDate;
 @dynamic sSummonerLevel;
+@dynamic sLocallyUpdated;
 @dynamic sGroup;
 @dynamic sMatches;
 

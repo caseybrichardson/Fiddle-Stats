@@ -28,12 +28,21 @@
     summoner.sRegion = region;
     summoner.sAddedOn = [NSDate date];
     summoner.sLastUpdated = [NSDate date];
+    summoner.sLocallyUpdated = [NSDate date];
     
     [del saveContext];
     
     NSLog(@"Trying to initialize summoner with: %@", attributes);
     
     return summoner;
+}
+
+- (NSString *)groupName {
+    return (self.sGroup ? self.sGroup.gGroupTitle : @"No Group");
+}
+
+- (void)markSummonerUpdated {
+    self.sLocallyUpdated = [NSDate date];
 }
 
 #pragma mark - Core Data Retrieval

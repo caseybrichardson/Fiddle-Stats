@@ -24,6 +24,7 @@
 @property (nonatomic, retain) NSString * sRegion;
 @property (nonatomic, retain) NSNumber * sRevisionDate;
 @property (nonatomic, retain) NSNumber * sSummonerLevel;
+@property (nonatomic, retain) NSDate * sLocallyUpdated;
 @property (nonatomic, retain) SummonerGroup *sGroup;
 @property (nonatomic, retain) NSSet *sMatches;
 @end

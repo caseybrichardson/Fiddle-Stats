@@ -29,8 +29,6 @@
     [self.inputHolderView addGradientWithColors:@[[UIColor clearColor], [UIColor blackColor]]];
     
     [self initializeDataDelegate];
-    
-    [self.playerCollectionView reloadData];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -56,10 +54,11 @@
     self.playerCollectionView.dataSource = self.dataDelegate;
     self.playerCollectionView.delegate = self.dataDelegate;
     
-    FSDataPair *sort1 = [[FSDataPair alloc] initWithFirst:@"sName" second:@YES];
-    [self.dataDelegate setSortingKeyPaths:@[sort1]];
+    FSDataPair *sort1 = [[FSDataPair alloc] initWithFirst:@"sGroup.gGroupTitle" second:@YES];
+    FSDataPair *sort2 = [[FSDataPair alloc] initWithFirst:@"sName" second:@NO];
+    [self.dataDelegate setSortingKeyPaths:@[sort1, sort2]];
     [self.dataDelegate setReuseIdentifier:@"PlayerCell"];
-    //[self.dataDelegate setSectionNameKeyPath:@"sGroup.gGroupTitle"];
+    [self.dataDelegate setSectionNameKeyPath:@"groupName"];
     
     [self.dataDelegate setCollectionViewCellSource:^(UICollectionView *collectionView, UICollectionViewCell *cell, NSFetchedResultsController *frc, NSIndexPath *indexPath) {
         FSCollectionViewCell *playerCell = (FSCollectionViewCell *)cell;

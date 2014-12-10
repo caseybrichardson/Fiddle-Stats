@@ -30,6 +30,9 @@
 
 @property (strong, nonatomic) NSString *reuseIdentifier;
 
+@property (strong, nonatomic) NSBlockOperation *updateOperation;
+@property (assign, nonatomic) BOOL shouldReloadCollectionView;
+
 @end
 
 @implementation FSDataDelegate
@@ -159,6 +162,10 @@
     }
 }
 
+- (void)shouldReloadForChanges:(NSNotification *)notification {
+    [self performFetch];
+}
+
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -271,85 +278,101 @@
 #pragma mark - Collection View Functions
 
 - (void)willChangeCollectionViewContent:(NSFetchedResultsController *)controller {
-    self.sectionChanges = [NSMutableArray array];
-    self.itemChanges = [NSMutableArray array];
+    self.shouldReloadCollectionView = NO;
+    self.updateOperation = [[NSBlockOperation alloc] init];
 }
 
 - (void)didChangeCollectionViewContent:(NSFetchedResultsController *)controller {
-    [self.collectionView performBatchUpdates:^{
-        for (NSDictionary *dict in self.sectionChanges) {
-            [dict enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
-                NSFetchedResultsChangeType type = [key unsignedIntegerValue];
-                
-                switch (type) {
-                    case NSFetchedResultsChangeInsert:
-                        [self.collectionView insertSections:[NSIndexSet indexSetWithIndex:[obj unsignedIntegerValue]]];
-                        break;
-                    case NSFetchedResultsChangeDelete:
-                        [self.collectionView deleteSections:[NSIndexSet indexSetWithIndex:[obj unsignedIntegerValue]]];
-                        break;
-                    case NSFetchedResultsChangeUpdate:
-                        [self.collectionView reloadSections:[NSIndexSet indexSetWithIndex:[obj unsignedIntegerValue]]];
-                        break;
-                    case NSFetchedResultsChangeMove:
-                        //[self.collectionView moveSection:<#(NSInteger)#> toSection:<#(NSInteger)#>]
-                        break;
-                }
-            }];
-        }
-        
-        for (NSDictionary *dict in self.itemChanges) {
-            [dict enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
-                NSFetchedResultsChangeType type = [key unsignedIntegerValue];
-                
-                switch (type) {
-                    case NSFetchedResultsChangeInsert:
-                        [self.collectionView insertItemsAtIndexPaths:@[obj]];
-                        break;
-                    case NSFetchedResultsChangeDelete:
-                        [self.collectionView deleteItemsAtIndexPaths:@[obj]];
-                        break;
-                    case NSFetchedResultsChangeUpdate:
-                        [self.collectionView reloadItemsAtIndexPaths:@[obj]];
-                        break;
-                    case NSFetchedResultsChangeMove:
-                        [self.collectionView moveItemAtIndexPath:obj[0] toIndexPath:obj[1]];
-                        break;
-                }
-            }];
-        }
-    } completion:^(BOOL finished) {
-        self.sectionChanges = nil;
-        self.itemChanges = nil;
-    }];
+    
+    if(!self.collectionView.window) {
+        [self.collectionView reloadData];
+    }
+    
+    if (self.shouldReloadCollectionView) {
+        [self.collectionView reloadData];
+    } else {
+        [self.collectionView performBatchUpdates:^{
+            [self.updateOperation start];
+        } completion:nil];
+    }
 }
 
 - (void)didChangeCollectionViewSection:(id)sectionInfo atIndex:(NSUInteger)sectionIndex forChangeType:(NSFetchedResultsChangeType)type {
-    NSMutableDictionary *change = [NSMutableDictionary dictionary];
-    NSLog(@"%@", sectionInfo);
-    change[@(type)] = @(sectionIndex);
-    [self.sectionChanges addObject:change];
+    if(!self.collectionView.window) {
+        return;
+    }
+    
+    __weak UICollectionView *collectionView = self.collectionView;
+    switch (type) {
+        case NSFetchedResultsChangeInsert: {
+            [self.updateOperation addExecutionBlock:^{
+                [collectionView insertSections:[NSIndexSet indexSetWithIndex:sectionIndex]];
+            }];
+            break;
+        }
+        case NSFetchedResultsChangeDelete: {
+            [self.updateOperation addExecutionBlock:^{
+                [collectionView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex]];
+            }];
+            break;
+        }
+        case NSFetchedResultsChangeUpdate: {
+            [self.updateOperation addExecutionBlock:^{
+                [collectionView reloadSections:[NSIndexSet indexSetWithIndex:sectionIndex]];
+            }];
+            break;
+        }
+        default:
+            break;
+    }
 }
 
 - (void)didChangeCollectionViewObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath {
-    NSMutableDictionary *change = [NSMutableDictionary dictionary];
-    
-    switch (type) {
-        case NSFetchedResultsChangeInsert:
-            change[@(type)] = newIndexPath;
-            break;
-        case NSFetchedResultsChangeDelete:
-            change[@(type)] = indexPath;
-            break;
-        case NSFetchedResultsChangeUpdate:
-            change[@(type)] = indexPath;
-            break;
-        case NSFetchedResultsChangeMove:
-            change[@(type)] = @[indexPath, newIndexPath];
-            break;
+    if(!self.collectionView.window) {
+        return;
     }
     
-    [self.itemChanges addObject:change];
+    __weak UICollectionView *collectionView = self.collectionView;
+    switch (type) {
+        case NSFetchedResultsChangeInsert: {
+            if ([self.collectionView numberOfSections] > 0) {
+                if ([self.collectionView numberOfItemsInSection:indexPath.section] == 0) {
+                    self.shouldReloadCollectionView = YES;
+                } else {
+                    [self.updateOperation addExecutionBlock:^{
+                        [collectionView insertItemsAtIndexPaths:@[newIndexPath]];
+                    }];
+                }
+            } else {
+                self.shouldReloadCollectionView = YES;
+            }
+            break;
+        }
+        case NSFetchedResultsChangeDelete: {
+            if ([self.collectionView numberOfItemsInSection:indexPath.section] == 1) {
+                self.shouldReloadCollectionView = YES;
+            } else {
+                [self.updateOperation addExecutionBlock:^{
+                    [collectionView deleteItemsAtIndexPaths:@[indexPath]];
+                }];
+            }
+            break;
+        }
+            
+        case NSFetchedResultsChangeUpdate: {
+            [self.updateOperation addExecutionBlock:^{
+                [collectionView reloadItemsAtIndexPaths:@[indexPath]];
+            }];
+            break;
+        }
+            
+        case NSFetchedResultsChangeMove: {
+            [self.updateOperation addExecutionBlock:^{
+                [collectionView moveItemAtIndexPath:indexPath toIndexPath:newIndexPath];
+            }];
+            break;
+        }
+    }
 }
 
 #pragma mark - Table View Functions

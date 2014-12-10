@@ -91,7 +91,7 @@
     FSDataPair *sort1 = [[FSDataPair alloc] initWithFirst:@"mMatchCreation" second:@YES];
     [self.dataDelegate setSortingKeyPaths:@[sort1]];
     [self.dataDelegate setReuseIdentifier:@"MatchCell"];
-    [self.dataDelegate setPredicateValues:[[FSDataPair alloc] initWithFirst:@"mParticipantID == %@" second:[self.summonerDataSource summoner].sID]];
+    [self.dataDelegate setPredicateValues:[[FSDataPair alloc] initWithFirst:@"mMatchOwner == %@" second:[self.summonerDataSource summoner]]];
     
     [self.dataDelegate setTableViewCellSource:^(UITableView *tableView, UITableViewCell *cell, NSFetchedResultsController *frc, NSIndexPath *indexPath) {
         FSMatchTableViewCell *matchCell = (FSMatchTableViewCell *)cell;
@@ -147,13 +147,36 @@
     SummonerGroup *currentGroup = [self.summonerDataSource summoner].sGroup;
     UIAlertAction *groupAddAction = [UIAlertAction actionWithTitle:(currentGroup ? @"Edit Group" : @"Add To Group" ) style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
         NSString *groupTitle = ((UITextField *)groupDialog.textFields[0]).text;
-        SummonerGroup *group = [[SummonerGroup alloc] initWithTitle:groupTitle];
-        [group addGSummonersObject:[self.summonerDataSource summoner]];
         
-        [self.groupLabel setText:[self.summonerDataSource summoner].sGroup.gGroupTitle];
+        if(![groupTitle isEqualToString:@""]) {
+            SummonerGroup *group = [[SummonerGroup alloc] initWithTitle:groupTitle];
+            [group addGSummonersObject:[self.summonerDataSource summoner]];
+            [[self.summonerDataSource summoner] markSummonerUpdated];
+            [self.groupLabel setText:[self.summonerDataSource summoner].groupName];
+            
+            AppDelegate *del = (AppDelegate *)[UIApplication sharedApplication].delegate;
+            [del saveContext];
+        } else {
+            if(currentGroup) {
+                [currentGroup removeGSummonersObject:[self.summonerDataSource summoner]];
+                [[self.summonerDataSource summoner] markSummonerUpdated];
+                [self.groupLabel setText:[self.summonerDataSource summoner].groupName];
+                
+                AppDelegate *del = (AppDelegate *)[UIApplication sharedApplication].delegate;
+                [del saveContext];
+            }
+        }
+    }];
+    
+    UIAlertAction *groupRemoveAction = [UIAlertAction actionWithTitle:@"Remove From Group" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        action.enabled = (currentGroup ? YES : NO);
+        [currentGroup removeGSummonersObject:[self.summonerDataSource summoner]];
+        [[self.summonerDataSource summoner] markSummonerUpdated];
         
         AppDelegate *del = (AppDelegate *)[UIApplication sharedApplication].delegate;
         [del saveContext];
+        
+        [self.groupLabel setText:[self.summonerDataSource summoner].groupName];
     }];
     
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
@@ -161,15 +184,14 @@
     [groupDialog addTextFieldWithConfigurationHandler:^(UITextField *textField) {
         textField.placeholder = @"Group Name";
         textField.autocapitalizationType = UITextAutocapitalizationTypeWords;
-
-        SummonerGroup *group = [self.summonerDataSource summoner].sGroup;
         
-        if(group) {
-            textField.text = group.gGroupTitle;
+        if(currentGroup) {
+            textField.text = currentGroup.gGroupTitle;
         }
     }];
     
     [groupDialog addAction:groupAddAction];
+    [groupDialog addAction:groupRemoveAction];
     [groupDialog addAction:cancelAction];
     
     [self presentViewController:groupDialog animated:YES completion:nil];
