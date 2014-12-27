@@ -26,17 +26,37 @@
                         <color key="textColor" red="0.75294117650000003" green="0.71372549019999998" blue="0.54117647059999996" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7x8-jm-mjH" userLabel="Select View">
+                        <rect key="frame" x="0.0" y="0.0" width="96" height="96"/>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2N1-j1-jUF" customClass="CRCheckMark">
+                        <rect key="frame" x="58" y="8" width="30" height="30"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="30" id="0xk-9C-YnL"/>
+                            <constraint firstAttribute="height" constant="30" id="wDt-nq-VAi"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="checked" value="NO"/>
+                        </userDefinedRuntimeAttributes>
+                    </view>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
             <constraints>
+                <constraint firstItem="2N1-j1-jUF" firstAttribute="top" secondItem="bKN-OL-kmi" secondAttribute="top" constant="8" id="0kL-ih-JpF"/>
+                <constraint firstAttribute="trailing" secondItem="7x8-jm-mjH" secondAttribute="trailing" id="26L-mZ-3F5"/>
+                <constraint firstAttribute="trailing" secondItem="2N1-j1-jUF" secondAttribute="trailing" constant="8" id="2F7-BE-cuB"/>
                 <constraint firstAttribute="bottom" secondItem="1Ts-pW-Unb" secondAttribute="bottom" constant="5" id="2fE-Fk-ZC4"/>
                 <constraint firstItem="Z1g-Fa-WT5" firstAttribute="top" secondItem="bKN-OL-kmi" secondAttribute="top" id="6ZI-6X-FQR"/>
                 <constraint firstItem="1Ts-pW-Unb" firstAttribute="leading" secondItem="bKN-OL-kmi" secondAttribute="leading" constant="8" id="JgF-fw-1na"/>
+                <constraint firstItem="7x8-jm-mjH" firstAttribute="top" secondItem="bKN-OL-kmi" secondAttribute="top" id="O4J-73-nX4"/>
                 <constraint firstAttribute="trailing" secondItem="fE1-Ra-Nrs" secondAttribute="trailing" id="POY-Mv-Slh"/>
                 <constraint firstAttribute="bottom" secondItem="Z1g-Fa-WT5" secondAttribute="bottom" id="ZKk-yM-84m"/>
                 <constraint firstItem="1Ts-pW-Unb" firstAttribute="top" secondItem="fE1-Ra-Nrs" secondAttribute="top" constant="8" id="bDD-eO-pfV"/>
+                <constraint firstItem="7x8-jm-mjH" firstAttribute="leading" secondItem="bKN-OL-kmi" secondAttribute="leading" id="eSM-Zf-Z9T"/>
                 <constraint firstAttribute="bottom" secondItem="fE1-Ra-Nrs" secondAttribute="bottom" id="epm-lM-6xk"/>
+                <constraint firstAttribute="bottom" secondItem="7x8-jm-mjH" secondAttribute="bottom" id="fn8-04-PdV"/>
                 <constraint firstAttribute="trailing" secondItem="1Ts-pW-Unb" secondAttribute="trailing" constant="8" id="hig-j1-Nla"/>
                 <constraint firstAttribute="trailing" secondItem="Z1g-Fa-WT5" secondAttribute="trailing" id="x8H-Sy-hnS"/>
                 <constraint firstItem="fE1-Ra-Nrs" firstAttribute="leading" secondItem="bKN-OL-kmi" secondAttribute="leading" id="yBm-qD-Akc"/>
@@ -45,7 +65,9 @@
             <size key="customSize" width="139" height="72"/>
             <connections>
                 <outlet property="backgroundImage" destination="Z1g-Fa-WT5" id="J0c-t1-LiY"/>
+                <outlet property="checkMark" destination="2N1-j1-jUF" id="Efj-CJ-m3Q"/>
                 <outlet property="nameLabel" destination="1Ts-pW-Unb" id="Vid-4q-3Je"/>
+                <outlet property="selectView" destination="7x8-jm-mjH" id="gdj-kq-Ivk"/>
             </connections>
             <point key="canvasLocation" x="373" y="338"/>
         </collectionViewCell>

@@ -14,6 +14,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-UIImageView-Letters.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -22,17 +27,22 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>239D85F0602C320CDAB7713E</key>
+		<key>6007D6FE4CA687F229B07BDD</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C391EBFD378048E208C9288D</key>
+		<key>8AB70FAFA4913F3DA45B8D46</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C56DFA4633ECB18C5C12F12D</key>
+		<key>978889E1F2F6E850DA7107C2</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E9BB27D69139E73BDEABC73C</key>
 		<dict>
 			<key>primary</key>
 			<true/>

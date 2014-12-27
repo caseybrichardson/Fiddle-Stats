@@ -10,12 +10,15 @@
 
 #import "UIView+Effects.h"
 
+#import "CRCheckMark.h"
+
 @interface FSCollectionViewCell : UICollectionViewCell
 
 @property (strong, nonatomic) IBOutlet UILabel *nameLabel;
 @property (strong, nonatomic) IBOutlet UIImageView *backgroundImage;
+@property (strong, nonatomic) IBOutlet CRCheckMark *checkMark;
+@property (strong, nonatomic) IBOutlet UIView *selectView;
 
-- (void)startQuivering;
-- (void)stopQuivering;
+- (void)setEditing:(BOOL)editing;
 
 @end

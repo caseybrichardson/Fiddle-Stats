@@ -12,6 +12,10 @@
 
 @protocol FSSummonerDataSource <NSObject>
 
+@required
 - (Summoner *)summoner;
+
+@optional
+- (NSArray *)summoners;
 
 @end

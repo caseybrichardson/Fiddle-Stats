@@ -14,6 +14,13 @@
 
 @property (strong, nonatomic) FSDataDelegate *dataDelegate;
 
+@property (assign, nonatomic) BOOL editing;
+@property (strong, nonatomic) NSMutableSet *editingCells;
+
+@property (strong, nonatomic) UIBarButtonItem *selectBarButton;
+@property (strong, nonatomic) UIBarButtonItem *cancelBarButton;
+@property (strong, nonatomic) UIBarButtonItem *lastUsedButton;
+
 @end
 
 @implementation FSMainViewController
@@ -26,6 +33,23 @@
     
     [self.playerCollectionView registerNib:[UINib nibWithNibName:@"FSCollectionViewCell" bundle:[NSBundle mainBundle]] forCellWithReuseIdentifier:@"PlayerCell"];
     
+    self.selectBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Select" style:UIBarButtonItemStylePlain target:self action:@selector(selectPressed:)];
+    self.cancelBarButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancelPressed:)];
+    self.navigationItem.rightBarButtonItem = self.selectBarButton;
+    
+    UIBarButtonItem *flexibleSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+    UIBarButtonItem *actionSheet = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(actionPressed:)];
+    [self setToolbarItems:@[flexibleSpace, actionSheet, flexibleSpace]];
+
+    UITapGestureRecognizer *tgr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
+    tgr.delegate = self;
+    [self.playerCollectionView addGestureRecognizer:tgr];
+    
+    UILongPressGestureRecognizer *lpgr = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];
+    lpgr.delegate = self;
+    lpgr.minimumPressDuration = 0.75f;
+    [self.playerCollectionView addGestureRecognizer:lpgr];
+    
     [self.inputHolderView addGradientWithColors:@[[UIColor clearColor], [UIColor blackColor]]];
     
     [self initializeDataDelegate];
@@ -37,12 +61,24 @@
     [self.playerCollectionView setContentInset:insets];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-}
-
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     [self.view endEditing:YES];
+    
+    if([segue.identifier isEqualToString:@"SummonerGroupAdd"]) {
+        FSSummonerGroupViewController *sgvc = [segue destinationViewController];
+        [sgvc setSummonerDataSource:self];
+        [sgvc setCompletion:^(BOOL completedWithChanges) {
+            
+            NSLog(@"IN HANDLER: %@", (completedWithChanges ? @"YES" : @"NO"));
+            
+            if(completedWithChanges) {
+                AppDelegate *del = (AppDelegate *)[UIApplication sharedApplication].delegate;
+                [del saveContext];
+            }
+            
+            self.editing = !completedWithChanges;
+        }];
+    }
 }
 
 #pragma mark - Helpers
@@ -53,6 +89,8 @@
     
     self.playerCollectionView.dataSource = self.dataDelegate;
     self.playerCollectionView.delegate = self.dataDelegate;
+    self.playerCollectionView.allowsSelection = YES;
+    self.playerCollectionView.allowsMultipleSelection = YES;
     
     FSDataPair *sort1 = [[FSDataPair alloc] initWithFirst:@"sGroup.gGroupTitle" second:@YES];
     FSDataPair *sort2 = [[FSDataPair alloc] initWithFirst:@"sName" second:@NO];
@@ -60,8 +98,16 @@
     [self.dataDelegate setReuseIdentifier:@"PlayerCell"];
     [self.dataDelegate setSectionNameKeyPath:@"groupName"];
     
+    __weak FSMainViewController *mvc = self;
     [self.dataDelegate setCollectionViewCellSource:^(UICollectionView *collectionView, UICollectionViewCell *cell, NSFetchedResultsController *frc, NSIndexPath *indexPath) {
         FSCollectionViewCell *playerCell = (FSCollectionViewCell *)cell;
+        
+        if([mvc.editingCells containsObject:indexPath]) {
+            [playerCell setEditing:YES];
+        } else {
+            [playerCell setEditing:NO];
+        }
+        
         Summoner *summoner = ((Summoner *)[frc objectAtIndexPath:indexPath]);
         
         playerCell.nameLabel.text = summoner.sName;
@@ -71,19 +117,99 @@
         [playerCell.backgroundImage setImageWithURL:imageURL];
     }];
     
-    __weak FSMainViewController *weakReference = self;
     [self.dataDelegate setItemSelectionHandler:^(id view, NSFetchedResultsController *frc, NSIndexPath *path) {
-        Summoner *summoner = (Summoner *)[frc objectAtIndexPath:path];
-        weakReference.selectedSummoner = summoner;
-        [weakReference performSegueWithIdentifier:@"playerDetails" sender:weakReference];
+        if(!mvc.editing) {
+            Summoner *summoner = (Summoner *)[frc objectAtIndexPath:path];
+            mvc.selectedSummoner = summoner;
+            [mvc performSegueWithIdentifier:@"playerDetails" sender:mvc];
+        }
     }];
     
     [self.dataDelegate performFetch];
 }
 
+- (void)beganEditingCellAtIndexPath:(NSIndexPath *)path {
+    FSCollectionViewCell *cell = (FSCollectionViewCell *)[self.playerCollectionView cellForItemAtIndexPath:path];
+    [cell setEditing:YES];
+}
+
+- (void)stopEditingCellAtIndexPath:(NSIndexPath *)path {
+    FSCollectionViewCell *cell = (FSCollectionViewCell *)[self.playerCollectionView cellForItemAtIndexPath:path];
+    [cell setEditing:NO];
+}
+
+- (void)setEditing:(BOOL)editing {
+    NSLog(@"In Changer: %@", (editing ? @"YES" : @"NO"));
+    if(_editing != editing) {
+        _editing = editing;
+        if(editing) {
+            [self.navigationController setToolbarHidden:NO animated:YES];
+            self.navigationItem.rightBarButtonItem = self.cancelBarButton;
+            
+            self.editingCells = [NSMutableSet set];
+        } else {
+            NSLog(@"IM CHANGING");
+            [self.navigationController setToolbarHidden:YES animated:YES];
+            self.navigationItem.rightBarButtonItem = self.selectBarButton;
+            
+            [self.editingCells addObjectsFromArray:[self.playerCollectionView indexPathsForVisibleItems]];
+            for (NSIndexPath *path in self.editingCells) {
+                [self stopEditingCellAtIndexPath:path];
+            }
+            
+            self.editingCells = nil;
+        }
+    }
+}
+
+#pragma mark - UIGestureRecognizer Handlers
+
+- (void)handleTap:(UITapGestureRecognizer *)tgr {
+    CGPoint point = [tgr locationInView:self.playerCollectionView];
+    NSIndexPath *path = [self.playerCollectionView indexPathForItemAtPoint:point];
+    
+    if(path) {
+        if([self.editingCells containsObject:path]) {
+            [self.editingCells removeObject:path];
+            [self stopEditingCellAtIndexPath:path];
+        } else {
+            [self.editingCells addObject:path];
+            [self beganEditingCellAtIndexPath:path];
+        }
+    }
+}
+
+- (void)handleLongPress:(UILongPressGestureRecognizer *)lpgr {
+    CGPoint point = [lpgr locationInView:self.playerCollectionView];
+    NSIndexPath *path = [self.playerCollectionView indexPathForItemAtPoint:point];
+    
+    if(path) {
+        UICollectionViewCell *cell = [self.playerCollectionView cellForItemAtIndexPath:path];
+        [cell becomeFirstResponder];
+        UIMenuController *controller = [UIMenuController sharedMenuController];
+        [controller setTargetRect:cell.frame inView:self.playerCollectionView];
+        [controller setMenuVisible:YES animated:YES];
+    }
+}
+
+#pragma mark - UIGestureRecognizerDelegate
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
+    if([gestureRecognizer class] == [UITapGestureRecognizer class]) {
+        return self.editing;
+    } else if ([gestureRecognizer class] == [UILongPressGestureRecognizer class]) {
+        return !self.editing;
+    } else {
+        return YES;
+    }
+}
+
 #pragma mark - Notification Selectors
 
 - (void)keyboardWillShow:(NSNotification *)notification {
+    
+    [self.navigationController setToolbarHidden:YES animated:YES];
+    
     NSDictionary *info = [notification userInfo];
     id keyboardFrameValue = [info objectForKey:UIKeyboardFrameEndUserInfoKey];
     id animationDurationValue = [info objectForKey:UIKeyboardAnimationDurationUserInfoKey];
@@ -100,6 +226,7 @@
 }
 
 - (void)keyboardWillHide:(NSNotification *)notification {
+    
     NSDictionary *info = [notification userInfo];
     id animationDurationValue = [info objectForKey:UIKeyboardAnimationDurationUserInfoKey];
     
@@ -110,6 +237,10 @@
     
     [UIView animateWithDuration:animationDuration animations:^{
         [self.view layoutIfNeeded];
+    } completion:^(BOOL finished) {
+        if(self.editing) {
+            [self.navigationController setToolbarHidden:NO animated:YES];
+        }
     }];
 }
 
@@ -118,6 +249,7 @@
 - (IBAction)summonPlayer:(id)sender {
     NSString *playerName = self.playerNameInputView.text;
     
+    // TODO: implement a regex to check for nothing but whitespace
     if((![playerName isEqualToString:@""] && ![playerName isEqualToString:@" "])) {
         [Summoner summonerInformationFor:playerName region:@"na" withBlock:^(Summoner *summoner, NSError *error) {
             [self.playerCollectionView reloadData];
@@ -128,8 +260,23 @@
     [self.playerNameInputView resignFirstResponder];
 }
 
-- (IBAction)settingsTapped:(id)sender {
-    //[self performSegueWithIdentifier:@"presentSettings" sender:self];
+- (void)selectPressed:(id)sender {
+    self.editing = YES;
+    self.navigationItem.rightBarButtonItem = self.cancelBarButton;
+}
+
+- (void)cancelPressed:(id)sender {
+    self.editing = NO;
+    
+    self.navigationItem.rightBarButtonItem = self.selectBarButton;
+    
+    for (NSIndexPath *path in self.editingCells) {
+        [self stopEditingCellAtIndexPath:path];
+    }
+}
+
+- (void)actionPressed:(id)sender {
+    [self showOptionsDialog];
 }
 
 #pragma mark - UITextFieldDelegate
@@ -143,6 +290,72 @@
 
 - (Summoner *)summoner {
     return self.selectedSummoner;
+}
+
+- (NSArray *)summoners {
+    NSMutableArray *summoners = [NSMutableArray array];
+    
+    for (NSIndexPath *path in self.editingCells) {
+        [summoners addObject:[self.dataDelegate objectInResultsAtIndexPath:path]];
+    }
+    
+    return summoners;
+}
+
+#pragma mark - UIAlertController Helpers
+
+- (void)showOptionsDialog {
+    
+    UIAlertController *optionsDialog = [UIAlertController alertControllerWithTitle:@"Actions" message:@"Choose an action to perform." preferredStyle:UIAlertControllerStyleActionSheet];
+    
+    UIAlertAction *groupDialogDisplayAction = [UIAlertAction actionWithTitle:@"Edit Group" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        [self performSegueWithIdentifier:@"SummonerGroupAdd" sender:self];
+    }];
+    
+    UIAlertAction *groupRemoveAction = [UIAlertAction actionWithTitle:@"Remove From Group" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        AppDelegate *del = (AppDelegate *)[UIApplication sharedApplication].delegate;
+        
+        for (NSIndexPath *path in self.editingCells) {
+            [self stopEditingCellAtIndexPath:path];
+            Summoner *summoner = [self.dataDelegate objectInResultsAtIndexPath:path];
+            
+            if(summoner) {
+                if(summoner.sGroup) {
+                    SummonerGroup *group = summoner.sGroup;
+                    [summoner.sGroup removeGSummonersObject:summoner];
+                    
+                    if([group.gSummoners count] == 0) {
+                        [del.managedObjectContext deleteObject:group];
+                    }
+                }
+            }
+        }
+        
+        [del saveContext];
+        [self.playerCollectionView reloadData];
+        self.editing = NO;
+    }];
+    
+    NSString *deleteSummonerTitle = (self.editingCells.count > 1 ? @"Delete Summoners" : @"Delete Summoner");
+    UIAlertAction *deleteSummonerAction = [UIAlertAction actionWithTitle:deleteSummonerTitle style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
+        AppDelegate *del = (AppDelegate *)[UIApplication sharedApplication].delegate;
+        
+        for (NSIndexPath *path in self.editingCells) {
+            [del.managedObjectContext deleteObject:[self.dataDelegate objectInResultsAtIndexPath:path]];
+        }
+        
+        [del saveContext];
+        self.editing = NO;
+    }];
+    
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
+    
+    [optionsDialog addAction:groupDialogDisplayAction];
+    [optionsDialog addAction:groupRemoveAction];
+    [optionsDialog addAction:deleteSummonerAction];
+    [optionsDialog addAction:cancelAction];
+    
+    [self presentViewController:optionsDialog animated:YES completion:nil];
 }
 
 @end

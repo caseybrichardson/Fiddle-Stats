@@ -19,7 +19,9 @@
     [[UINavigationBar appearance] setBarTintColor:[UIColor fiddlesticksMainColor]];
     [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor fiddlesticksSecondaryColor], NSFontAttributeName : [UIFont fontWithName:@"HelveticaNeue-Light" size:20]}];
     [[UINavigationBar appearance] setTintColor:[UIColor fiddlesticksSecondaryColor]];
-    [[UIButton appearance] setBackgroundColor:[UIColor fiddlesticksTertiaryColor]];
+    [[UIToolbar appearance] setBarTintColor:[UIColor fiddlesticksMainColor]];
+    [[UIToolbar appearance] setTintColor:[UIColor fiddlesticksSecondaryColor]];
+    //[[UIButton appearance] setBackgroundColor:[UIColor fiddlesticksTertiaryColor]];
     
     return YES;
 }
@@ -91,7 +93,6 @@
         // Replace this with code to handle the error appropriately.
         // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-        abort();
     }
     
     return _persistentStoreCoordinator;
@@ -123,7 +124,6 @@
             // Replace this implementation with code to handle the error appropriately.
             // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
             NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-            abort();
         }
     }
 }

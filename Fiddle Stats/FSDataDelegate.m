@@ -19,6 +19,8 @@
 @property (strong, nonatomic) NSArray *sortingKeyPaths;
 @property (strong, nonatomic) FSDataPair *predicateValues;
 
+@property (assign, nonatomic) NSInteger staticCellCount;
+
 @property (weak, nonatomic) NSManagedObjectContext *context;
 
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
@@ -146,6 +148,10 @@
     _reuseIdentifier = reuseIdentifier;
 }
 
+- (void)setStaticCellCount:(NSInteger)staticCellCount {
+    _staticCellCount = staticCellCount;
+}
+
 - (void)performFetch {
     NSError *error;
     if(![[self fetchedResultsController] performFetch:&error]) {
@@ -162,8 +168,12 @@
     }
 }
 
-- (void)shouldReloadForChanges:(NSNotification *)notification {
-    [self performFetch];
+- (id)objectInResultsAtIndexPath:(NSIndexPath *)indexPath {
+    if(self.fetchedResultsController) {
+        return [self.fetchedResultsController objectAtIndexPath:indexPath];
+    } else {
+        return nil;
+    }
 }
 
 #pragma mark - UITableViewDataSource
@@ -174,7 +184,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     id sectionInfo = [[self fetchedResultsController] sections][section];
-    return [sectionInfo numberOfObjects];
+    return [sectionInfo numberOfObjects] + self.staticCellCount;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -188,7 +198,9 @@
 #pragma mark - UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    _itemSelectionHandler(tableView, [self fetchedResultsController], indexPath);
+    if(_itemSelectionHandler) {
+        _itemSelectionHandler(tableView, [self fetchedResultsController], indexPath);
+    }
 }
 
 #pragma mark - UICollectionViewDataSource
@@ -226,7 +238,9 @@
 #pragma mark - UICollectionViewDelegate
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    _itemSelectionHandler(collectionView, [self fetchedResultsController], indexPath);
+    if(_itemSelectionHandler) {
+        _itemSelectionHandler(collectionView, [self fetchedResultsController], indexPath);
+    }
 }
 
 #pragma mark - NSFetchedResultsControllerDelegate
@@ -288,7 +302,7 @@
         [self.collectionView reloadData];
     }
     
-    if (self.shouldReloadCollectionView) {
+    if (self.shouldReloadCollectionView || !self.collectionView.window) {
         [self.collectionView reloadData];
     } else {
         [self.collectionView performBatchUpdates:^{
@@ -358,18 +372,20 @@
             }
             break;
         }
-            
         case NSFetchedResultsChangeUpdate: {
             [self.updateOperation addExecutionBlock:^{
                 [collectionView reloadItemsAtIndexPaths:@[indexPath]];
             }];
             break;
         }
-            
         case NSFetchedResultsChangeMove: {
-            [self.updateOperation addExecutionBlock:^{
-                [collectionView moveItemAtIndexPath:indexPath toIndexPath:newIndexPath];
-            }];
+            if([collectionView numberOfItemsInSection:indexPath.section] == 1) {
+                [collectionView reloadData];
+            } else {
+                [self.updateOperation addExecutionBlock:^{
+                    [collectionView moveItemAtIndexPath:indexPath toIndexPath:newIndexPath];
+                }];
+            }
             break;
         }
     }

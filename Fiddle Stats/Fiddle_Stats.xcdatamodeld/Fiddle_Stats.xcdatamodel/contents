@@ -45,6 +45,6 @@
         <element name="Champion" positionX="52" positionY="32" width="128" height="103"/>
         <element name="Match" positionX="-218" positionY="-160" width="128" height="268"/>
         <element name="Summoner" positionX="-524" positionY="-175" width="128" height="223"/>
-        <element name="SummonerGroup" positionX="-333" positionY="153" width="128" height="75"/>
+        <element name="SummonerGroup" positionX="-333" positionY="153" width="128" height="73"/>
     </elements>
 </model>

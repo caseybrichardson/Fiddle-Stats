@@ -14,13 +14,14 @@
 #import "FSCollectionViewCell.h"
 #import "FSDataDelegate.h"
 #import "FSDataPair.h"
+#import "FSSummonerGroupViewController.h"
 
 #import "Summoner+APIMethods.h"
 #import "Match+APIMethods.h"
 #import "UIColor+AppColors.h"
 #import "UIView+Effects.h"
 
-@interface FSMainViewController : UIViewController <UITextFieldDelegate, FSSummonerDataSource>
+@interface FSMainViewController : UIViewController <UITextFieldDelegate, UIGestureRecognizerDelegate, FSSummonerDataSource>
 
 @property (strong, nonatomic) IBOutlet UICollectionView *playerCollectionView;
 @property (strong, nonatomic) IBOutlet UITextField *playerNameInputView;
@@ -30,9 +31,9 @@
 @property (strong, nonatomic) IBOutlet UIView *inputHolderView;
 
 - (IBAction)summonPlayer:(id)sender;
-- (IBAction)settingsTapped:(id)sender;
 
 - (Summoner *)summoner;
+- (NSArray *)summoners;
 
 @end
 

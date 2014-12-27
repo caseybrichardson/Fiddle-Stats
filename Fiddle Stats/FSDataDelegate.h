@@ -26,7 +26,6 @@ typedef void(^ItemSelected)(id view, NSFetchedResultsController *frc, NSIndexPat
 @property (assign, nonatomic, readonly) FSDataDelegateType delegateType;
 
 - (instancetype)initWithType:(FSDataDelegateType)type forView:(id)view entityName:(NSString *)entityName inContext:(NSManagedObjectContext *)context;
-
 - (void)setSectionNameKeyPath:(NSString *)sectionNameKeyPath;
 - (void)setSortingKeyPaths:(NSArray *)sortingKeyPaths;
 - (void)setPredicateValues:(FSDataPair *)predicateValues;
@@ -34,7 +33,8 @@ typedef void(^ItemSelected)(id view, NSFetchedResultsController *frc, NSIndexPat
 - (void)setCollectionViewCellSource:(CollectionViewCellSource)collectionViewCellSource;
 - (void)setItemSelectionHandler:(ItemSelected)itemSelectionHandler;
 - (void)setReuseIdentifier:(NSString *)reuseIdentifier;
-
+- (void)setStaticCellCount:(NSInteger)staticCellCount;
 - (void)performFetch;
+- (id)objectInResultsAtIndexPath:(NSIndexPath *)indexPath;
 
 @end

@@ -40,6 +40,8 @@
 		3BF2264A1A1FE57C004EB614 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BF226491A1FE57C004EB614 /* CoreText.framework */; };
 		3BF2264C1A1FE582004EB614 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BF2264B1A1FE582004EB614 /* QuartzCore.framework */; };
 		3BF472E81A25C78F000A93DA /* FSPlayerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BF472E71A25C78F000A93DA /* FSPlayerTableViewController.m */; };
+		3BF6B9791A479478007C10BF /* CRCheckMark.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BF6B9781A479478007C10BF /* CRCheckMark.m */; };
+		3BF6B97C1A4C1ED2007C10BF /* FSSummonerGroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BF6B97B1A4C1ED2007C10BF /* FSSummonerGroupViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -113,6 +115,10 @@
 		3BF2264B1A1FE582004EB614 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		3BF472E61A25C78F000A93DA /* FSPlayerTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSPlayerTableViewController.h; sourceTree = "<group>"; };
 		3BF472E71A25C78F000A93DA /* FSPlayerTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSPlayerTableViewController.m; sourceTree = "<group>"; };
+		3BF6B9771A479478007C10BF /* CRCheckMark.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRCheckMark.h; sourceTree = "<group>"; };
+		3BF6B9781A479478007C10BF /* CRCheckMark.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRCheckMark.m; sourceTree = "<group>"; };
+		3BF6B97A1A4C1ED2007C10BF /* FSSummonerGroupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSSummonerGroupViewController.h; sourceTree = "<group>"; };
+		3BF6B97B1A4C1ED2007C10BF /* FSSummonerGroupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSSummonerGroupViewController.m; sourceTree = "<group>"; };
 		BBEC4275003366CB0D35ED7A /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		F0B7A333A5F8F0B05CD2A390 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -159,6 +165,8 @@
 				3B4CB0A21A2002F2003B1C67 /* FSCollectionViewCell.m */,
 				3B9D1A631A344BC70052787C /* FSMatchTableViewCell.h */,
 				3B9D1A641A344BC70052787C /* FSMatchTableViewCell.m */,
+				3BF6B9771A479478007C10BF /* CRCheckMark.h */,
+				3BF6B9781A479478007C10BF /* CRCheckMark.m */,
 			);
 			name = "Custom UIKit";
 			sourceTree = "<group>";
@@ -212,6 +220,8 @@
 				3B8AD5341A1FDB6A00DFFA3A /* FSMainViewController.m */,
 				3BF472E61A25C78F000A93DA /* FSPlayerTableViewController.h */,
 				3BF472E71A25C78F000A93DA /* FSPlayerTableViewController.m */,
+				3BF6B97A1A4C1ED2007C10BF /* FSSummonerGroupViewController.h */,
+				3BF6B97B1A4C1ED2007C10BF /* FSSummonerGroupViewController.m */,
 				3B8AD5291A1FDB6A00DFFA3A /* Supporting Files */,
 			);
 			path = "Fiddle Stats";
@@ -459,12 +469,14 @@
 				3B8AD52C1A1FDB6A00DFFA3A /* main.m in Sources */,
 				3BF226471A1FE47A004EB614 /* CRFiddleAPIClient.m in Sources */,
 				3BA11FCA1A2F227D00AFC8EB /* Champion.m in Sources */,
+				3BF6B9791A479478007C10BF /* CRCheckMark.m in Sources */,
 				3BA11FCD1A2F22A200AFC8EB /* Champion+APIMethods.m in Sources */,
 				3B9D1A651A344BC70052787C /* FSMatchTableViewCell.m in Sources */,
 				3B052B651A21C48400665F23 /* CRBlockButton.m in Sources */,
 				3B5F8B811A2F12EB00CE3AC5 /* FSNavigationController.m in Sources */,
 				3B0C71591A2420080026787C /* CRStarView.m in Sources */,
 				3B12AC5A1A2E7B8600016610 /* UINavigationController+Helpers.m in Sources */,
+				3BF6B97C1A4C1ED2007C10BF /* FSSummonerGroupViewController.m in Sources */,
 				3B0681711A25D657009B2F6E /* FSDataDelegate.m in Sources */,
 				3B8AD5351A1FDB6A00DFFA3A /* FSMainViewController.m in Sources */,
 				3B2ABF9A1A36E4810095C015 /* Summoner.m in Sources */,
