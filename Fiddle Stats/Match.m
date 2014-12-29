@@ -25,5 +25,6 @@
 @dynamic mQueueType;
 @dynamic mRegion;
 @dynamic mSeason;
+@dynamic mMatchParticipants;
 
 @end

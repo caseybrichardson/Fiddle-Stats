@@ -69,14 +69,12 @@
         [sgvc setSummonerDataSource:self];
         [sgvc setCompletion:^(BOOL completedWithChanges) {
             
-            NSLog(@"IN HANDLER: %@", (completedWithChanges ? @"YES" : @"NO"));
-            
             if(completedWithChanges) {
                 AppDelegate *del = (AppDelegate *)[UIApplication sharedApplication].delegate;
                 [del saveContext];
             }
             
-            self.editing = !completedWithChanges;
+            [self setEditing:!completedWithChanges];
         }];
     }
 }
@@ -114,7 +112,7 @@
         
         NSString *urlString = @"http://ddragon.leagueoflegends.com/cdn/4.20.1/img/profileicon/%d.png";
         NSURL *imageURL = [NSURL URLWithString:[NSString stringWithFormat:urlString, [summoner.sProfileIconID integerValue]]];
-        [playerCell.backgroundImage setImageWithURL:imageURL];
+        [playerCell.backgroundImage setImageWithURL:imageURL placeholderImage:[UIImage imageNamed:@"Missing"]];
     }];
     
     [self.dataDelegate setItemSelectionHandler:^(id view, NSFetchedResultsController *frc, NSIndexPath *path) {
@@ -138,17 +136,36 @@
     [cell setEditing:NO];
 }
 
+- (void)showSummonerAddView {
+    self.playerCollectionViewBottom.constant = 0;
+    self.playerNameInputViewBottom.constant = 0;
+    
+    [UIView animateWithDuration:0.2f animations:^{
+        [self.view layoutIfNeeded];
+    }];
+}
+
+- (void)hideSummonerAddView {
+    self.playerCollectionViewBottom.constant = 0;
+    self.playerNameInputViewBottom.constant = -self.inputHolderView.bounds.size.height * 2;
+    
+    [UIView animateWithDuration:0.2f animations:^{
+        [self.view layoutIfNeeded];
+    }];
+}
+
 - (void)setEditing:(BOOL)editing {
-    NSLog(@"In Changer: %@", (editing ? @"YES" : @"NO"));
     if(_editing != editing) {
+        [self.view endEditing:YES];
         _editing = editing;
         if(editing) {
+            [self hideSummonerAddView];
             [self.navigationController setToolbarHidden:NO animated:YES];
             self.navigationItem.rightBarButtonItem = self.cancelBarButton;
             
             self.editingCells = [NSMutableSet set];
         } else {
-            NSLog(@"IM CHANGING");
+            [self showSummonerAddView];
             [self.navigationController setToolbarHidden:YES animated:YES];
             self.navigationItem.rightBarButtonItem = self.selectBarButton;
             
@@ -261,18 +278,18 @@
 }
 
 - (void)selectPressed:(id)sender {
-    self.editing = YES;
     self.navigationItem.rightBarButtonItem = self.cancelBarButton;
+    [self setEditing:YES];
 }
 
 - (void)cancelPressed:(id)sender {
-    self.editing = NO;
-    
     self.navigationItem.rightBarButtonItem = self.selectBarButton;
     
     for (NSIndexPath *path in self.editingCells) {
         [self stopEditingCellAtIndexPath:path];
     }
+    
+    [self setEditing:NO];
 }
 
 - (void)actionPressed:(id)sender {
@@ -332,8 +349,8 @@
         }
         
         [del saveContext];
+        [self setEditing:NO];
         [self.playerCollectionView reloadData];
-        self.editing = NO;
     }];
     
     NSString *deleteSummonerTitle = (self.editingCells.count > 1 ? @"Delete Summoners" : @"Delete Summoner");
@@ -345,7 +362,7 @@
         }
         
         [del saveContext];
-        self.editing = NO;
+        [self setEditing:NO];
     }];
     
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];

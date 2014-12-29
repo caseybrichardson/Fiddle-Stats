@@ -319,15 +319,17 @@
     __weak UICollectionView *collectionView = self.collectionView;
     switch (type) {
         case NSFetchedResultsChangeInsert: {
-            [self.updateOperation addExecutionBlock:^{
+            self.shouldReloadCollectionView = YES;
+            /*[self.updateOperation addExecutionBlock:^{
                 [collectionView insertSections:[NSIndexSet indexSetWithIndex:sectionIndex]];
-            }];
+            }];*/
             break;
         }
         case NSFetchedResultsChangeDelete: {
-            [self.updateOperation addExecutionBlock:^{
+            self.shouldReloadCollectionView = YES;
+            /*[self.updateOperation addExecutionBlock:^{
                 [collectionView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex]];
-            }];
+            }];*/
             break;
         }
         case NSFetchedResultsChangeUpdate: {

@@ -21,7 +21,7 @@
         <attribute name="mQueueType" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="mRegion" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="mSeason" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="mMatchOwner" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Summoner" inverseName="sMatches" inverseEntity="Summoner" syncable="YES"/>
+        <relationship name="mMatchParticipants" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Summoner" inverseName="sMatches" inverseEntity="Summoner" syncable="YES"/>
     </entity>
     <entity name="Summoner" representedClassName="Summoner" syncable="YES">
         <attribute name="sAddedOn" optional="YES" attributeType="Date" syncable="YES"/>
@@ -35,16 +35,16 @@
         <attribute name="sRevisionDate" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="sSummonerLevel" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <relationship name="sGroup" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SummonerGroup" inverseName="gSummoners" inverseEntity="SummonerGroup" syncable="YES"/>
-        <relationship name="sMatches" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Match" inverseName="mMatchOwner" inverseEntity="Match" syncable="YES"/>
+        <relationship name="sMatches" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Match" inverseName="mMatchParticipants" inverseEntity="Match" syncable="YES"/>
     </entity>
     <entity name="SummonerGroup" representedClassName="SummonerGroup" syncable="YES">
         <attribute name="gGroupTitle" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="gSummoners" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Summoner" inverseName="sGroup" inverseEntity="Summoner" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Champion" positionX="52" positionY="32" width="128" height="103"/>
-        <element name="Match" positionX="-218" positionY="-160" width="128" height="268"/>
-        <element name="Summoner" positionX="-524" positionY="-175" width="128" height="223"/>
-        <element name="SummonerGroup" positionX="-333" positionY="153" width="128" height="73"/>
+        <element name="Champion" positionX="-218" positionY="135" width="128" height="103"/>
+        <element name="Match" positionX="-218" positionY="-160" width="128" height="270"/>
+        <element name="Summoner" positionX="-549" positionY="-115" width="128" height="223"/>
+        <element name="SummonerGroup" positionX="-380" positionY="-117" width="128" height="73"/>
     </elements>
 </model>

@@ -34,6 +34,7 @@
     match.mParticipantID = attributes[@"participantIdentities"][0][@"player"][@"summonerId"];
     match.mPlayerWinner = attributes[@"participants"][0][@"stats"][@"winner"];
     
+    [match addMMatchParticipantsObject:summoner];
     [summoner addSMatchesObject:match];
     
     [del saveContext];

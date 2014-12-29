@@ -91,7 +91,7 @@
     FSDataPair *sort1 = [[FSDataPair alloc] initWithFirst:@"mMatchCreation" second:@YES];
     [self.dataDelegate setSortingKeyPaths:@[sort1]];
     [self.dataDelegate setReuseIdentifier:@"MatchCell"];
-    [self.dataDelegate setPredicateValues:[[FSDataPair alloc] initWithFirst:@"mMatchOwner == %@" second:[self.summonerDataSource summoner]]];
+    [self.dataDelegate setPredicateValues:[[FSDataPair alloc] initWithFirst:@"mMatchParticipants CONTAINS %@" second:[self.summonerDataSource summoner]]];
     
     [self.dataDelegate setTableViewCellSource:^(UITableView *tableView, UITableViewCell *cell, NSFetchedResultsController *frc, NSIndexPath *indexPath) {
         FSMatchTableViewCell *matchCell = (FSMatchTableViewCell *)cell;

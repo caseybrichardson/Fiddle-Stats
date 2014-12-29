@@ -27,6 +27,14 @@
 @property (nonatomic, retain) NSString * mQueueType;
 @property (nonatomic, retain) NSString * mRegion;
 @property (nonatomic, retain) NSString * mSeason;
-@property (nonatomic, retain) Summoner * mMatchOwner;
+@property (nonatomic, retain) NSSet * mMatchParticipants;
+@end
+
+@interface Match (CoreDataGeneratedAccessors)
+
+- (void)addMMatchParticipantsObject:(Summoner *)value;
+- (void)removeMMatchParticipantsObject:(Summoner *)value;
+- (void)addMMatchParticipants:(NSSet *)values;
+- (void)removeMMatchParticipants:(NSSet *)values;
 
 @end
