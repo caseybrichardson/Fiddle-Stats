@@ -56,13 +56,13 @@
 + (void)championInformationFor:(NSInteger)champID region:(NSString *)region withBlock:(void (^)(Champion *, NSError *))block {
     
     // Caching for accessing the champ data
-    static NSMutableDictionary *_champCache;
+    static NSCache *_champCache;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        _champCache = [NSMutableDictionary dictionary];
+        _champCache = [NSCache new];
     });
     
-    Champion *champion = _champCache[@(champID)];
+    Champion *champion = [_champCache objectForKey:@(champID)];
     
     if(!champion) {
         
@@ -76,7 +76,7 @@
                 NSDictionary *championDict = (NSDictionary *)responseObject;
                 
                 Champion *champ = [[Champion alloc] initWithAttributes:championDict];
-                _champCache[@(champID)] = champ;
+                [_champCache setObject:champ forKey:@(champID)];
                 
                 if(block) {
                     block(champ, nil);
@@ -88,7 +88,7 @@
                 }
             }];
         } else {
-            _champCache[@(champID)] = champion;
+            [_champCache setObject:champion forKey:@(champID)];
             
             if(block) {
                 block(champion, nil);
