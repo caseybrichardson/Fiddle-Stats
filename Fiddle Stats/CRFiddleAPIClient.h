@@ -11,5 +11,7 @@
 @interface CRFiddleAPIClient : AFHTTPSessionManager
 
 + (instancetype)sharedInstance;
++ (NSString *)currentAPIVersionForRegion:(NSString *)region;
++ (void)currentAPIVersionForRegion:(NSString *)region block:(void (^)(NSArray *, NSError *))block;
 
 @end

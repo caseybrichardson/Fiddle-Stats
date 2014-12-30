@@ -22,7 +22,6 @@
     [super viewDidLoad];
     
     self.editingSummoners = [self.summonerDataSource summoners];
-    //[self.summonerGroupTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"Cell"];
     self.groupImageCache = [NSCache new];
     [self initializeDataDelegate];
 }

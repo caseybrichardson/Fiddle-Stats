@@ -10,6 +10,7 @@
 #import <CoreData/CoreData.h>
 
 #import "UIColor+AppColors.h"
+#import "CRFiddleAPIClient.h"
 #import "Summoner.h"
 #import "Match.h"
 

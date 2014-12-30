@@ -21,7 +21,10 @@
     [[UINavigationBar appearance] setTintColor:[UIColor fiddlesticksSecondaryColor]];
     [[UIToolbar appearance] setBarTintColor:[UIColor fiddlesticksMainColor]];
     [[UIToolbar appearance] setTintColor:[UIColor fiddlesticksSecondaryColor]];
-    //[[UIButton appearance] setBackgroundColor:[UIColor fiddlesticksTertiaryColor]];
+    
+    [CRFiddleAPIClient currentAPIVersionForRegion:@"na" block:^(NSArray *versions, NSError *error) {
+        NSLog(@"%@", [versions firstObject]);
+    }];
     
     return YES;
 }
