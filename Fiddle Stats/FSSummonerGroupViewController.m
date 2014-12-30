@@ -87,6 +87,10 @@
     [self.dataDelegate performFetch];
 }
 
+- (UIStatusBarStyle)preferredStatusBarStyle {
+    return UIStatusBarStyleLightContent;
+}
+
 - (void)setCompletion:(FSModalCompleted)completion {
     _completion = completion;
 }

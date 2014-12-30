@@ -47,7 +47,15 @@ install_resource()
       ;;
   esac
 }
-
+          install_resource "STKWebKitViewController/Pod/Assets/back.png"
+                    install_resource "STKWebKitViewController/Pod/Assets/back@2x.png"
+                    install_resource "STKWebKitViewController/Pod/Assets/forward.png"
+                    install_resource "STKWebKitViewController/Pod/Assets/forward@2x.png"
+                    install_resource "STKWebKitViewController/Pod/Assets/refresh.png"
+                    install_resource "STKWebKitViewController/Pod/Assets/refresh@2x.png"
+                    install_resource "STKWebKitViewController/Pod/Assets/stop.png"
+                    install_resource "STKWebKitViewController/Pod/Assets/stop@2x.png"
+          
 rsync -avr --copy-links --no-relative --exclude '*/.svn/*' --files-from="$RESOURCES_TO_COPY" / "${CONFIGURATION_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}"
 if [[ "${ACTION}" == "install" ]]; then
   rsync -avr --copy-links --no-relative --exclude '*/.svn/*' --files-from="$RESOURCES_TO_COPY" / "${INSTALL_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}"

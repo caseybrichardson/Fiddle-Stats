@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "6744E4DED0135B7970BB74D1"
-               BuildableName = "libPods-AFNetworking.a"
-               BlueprintName = "Pods-AFNetworking"
+               BlueprintIdentifier = "77FDC6CB4BE75F59C2C73B80"
+               BuildableName = "libPods-STKWebKitViewController.a"
+               BlueprintName = "Pods-STKWebKitViewController"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

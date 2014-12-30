@@ -32,8 +32,6 @@
     
     [del saveContext];
     
-    NSLog(@"Trying to initialize summoner with: %@", attributes);
-    
     return summoner;
 }
 

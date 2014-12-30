@@ -14,6 +14,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-STKWebKitViewController.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-UIImageView-Letters.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -27,22 +32,27 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>6007D6FE4CA687F229B07BDD</key>
+		<key>6744E4DED0135B7970BB74D1</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>8AB70FAFA4913F3DA45B8D46</key>
+		<key>77FDC6CB4BE75F59C2C73B80</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>978889E1F2F6E850DA7107C2</key>
+		<key>81F054C4A73D611F7192E462</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>E9BB27D69139E73BDEABC73C</key>
+		<key>900C6211BA58761C52FE40D5</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D3311CA751D6A08EA62901CA</key>
 		<dict>
 			<key>primary</key>
 			<true/>

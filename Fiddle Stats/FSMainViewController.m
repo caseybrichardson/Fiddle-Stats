@@ -19,7 +19,6 @@
 
 @property (strong, nonatomic) UIBarButtonItem *selectBarButton;
 @property (strong, nonatomic) UIBarButtonItem *cancelBarButton;
-@property (strong, nonatomic) UIBarButtonItem *lastUsedButton;
 
 @end
 
@@ -193,6 +192,8 @@
             [self.editingCells addObject:path];
             [self beganEditingCellAtIndexPath:path];
         }
+        
+        [((UIBarButtonItem *)self.toolbarItems[1]) setEnabled:([self.editingCells count] != 0)];
     }
 }
 
@@ -279,6 +280,7 @@
 
 - (void)selectPressed:(id)sender {
     self.navigationItem.rightBarButtonItem = self.cancelBarButton;
+    [((UIBarButtonItem *)self.toolbarItems[1]) setEnabled:NO];
     [self setEditing:YES];
 }
 

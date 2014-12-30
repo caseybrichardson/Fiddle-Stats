@@ -21,16 +21,19 @@ PODS:
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
   - RKCardView (0.1.0)
+  - STKWebKitViewController (0.1.9)
   - UIImageView-Letters (1.0)
 
 DEPENDENCIES:
   - AFNetworking
   - RKCardView
+  - STKWebKitViewController
   - UIImageView-Letters
 
 SPEC CHECKSUMS:
   AFNetworking: 0f54cb5d16ce38c1b76948faffb8d5fb705021c7
   RKCardView: bb96e9288f1ccc34468a2d52c5f83bcf58a506ee
+  STKWebKitViewController: 30f6640db11822af3365c2875c9988c4bda43ddc
   UIImageView-Letters: 9f21bca067a6cf8651e104c3b1c9253bc98c9071
 
 COCOAPODS: 0.35.0

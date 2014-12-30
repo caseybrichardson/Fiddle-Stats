@@ -54,6 +54,12 @@
 #define COCOAPODS_VERSION_MINOR_RKCardView 1
 #define COCOAPODS_VERSION_PATCH_RKCardView 0
 
+// STKWebKitViewController
+#define COCOAPODS_POD_AVAILABLE_STKWebKitViewController
+#define COCOAPODS_VERSION_MAJOR_STKWebKitViewController 0
+#define COCOAPODS_VERSION_MINOR_STKWebKitViewController 1
+#define COCOAPODS_VERSION_PATCH_STKWebKitViewController 9
+
 // UIImageView-Letters
 #define COCOAPODS_POD_AVAILABLE_UIImageView_Letters
 #define COCOAPODS_VERSION_MAJOR_UIImageView_Letters 1

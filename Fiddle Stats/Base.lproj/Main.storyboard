@@ -339,7 +339,7 @@
                     </tableView>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Match History" id="s6Y-JF-f4G">
-                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="action" id="hKw-Kc-cPW">
+                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="hKw-Kc-cPW">
                             <connections>
                                 <action selector="optionsPressed:" destination="zJB-hp-uNK" id="eKV-qC-UZK"/>
                             </connections>
