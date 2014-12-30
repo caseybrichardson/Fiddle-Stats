@@ -11,6 +11,7 @@
 @interface FSPlayerTableViewController ()
 
 @property (strong, nonatomic) FSDataDelegate *dataDelegate;
+@property (strong, nonatomic) NSDateFormatter *dateFormatter;
 
 @end
 
@@ -28,6 +29,11 @@
     }
     
     [self.tableView registerNib:[UINib nibWithNibName:@"FSMatchTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"MatchCell"];
+    
+    self.dateFormatter = [NSDateFormatter new];
+    self.dateFormatter.formatterBehavior = NSDateFormatterBehavior10_4;
+    self.dateFormatter.dateStyle = NSDateFormatterShortStyle;
+    self.dateFormatter.timeStyle = NSDateFormatterNoStyle;
     
     Summoner *summoner = [self.summonerDataSource summoner];
     SummonerGroup *group = [self.summonerDataSource summoner].sGroup;
@@ -47,12 +53,12 @@
     
     [self.gradientView addGradientWithColors:@[[UIColor blackColor], [UIColor clearColor]]];
     
-    [Match matchesInformationFor:summoner withBlock:^(NSArray *m, NSError *e) {
+    [Match matchesInformationFor:summoner withBlock:^(NSArray *matches, NSError *e) {
         [self initializeDataDelegate];
         [self.tableView reloadData];
         
-        if([m count] > 0) {
-            [Champion championInformationFor:[((Match *)m[0]).mPlayerChampID integerValue] region:@"na" withBlock:^(Champion *champ, NSError *error) {
+        if([matches count] > 0) {
+            [Champion championInformationFor:[((Match *)[matches lastObject]).mPlayerChampID integerValue] region:@"na" withBlock:^(Champion *champ, NSError *error) {
                 
                 NSString *champKey = champ.cKey;
                 
@@ -74,11 +80,6 @@
     }];
 }
 
-- (void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-    
-}
-
 #pragma mark - Helpers
 
 - (void)initializeDataDelegate {
@@ -88,15 +89,18 @@
     self.tableView.dataSource = self.dataDelegate;
     self.tableView.delegate = self.dataDelegate;
     
-    FSDataPair *sort1 = [[FSDataPair alloc] initWithFirst:@"mMatchCreation" second:@YES];
+    FSDataPair *sort1 = [[FSDataPair alloc] initWithFirst:@"mMatchCreation" second:@NO];
     [self.dataDelegate setSortingKeyPaths:@[sort1]];
     [self.dataDelegate setReuseIdentifier:@"MatchCell"];
     [self.dataDelegate setPredicateValues:[[FSDataPair alloc] initWithFirst:@"mMatchParticipants CONTAINS %@" second:[self.summonerDataSource summoner]]];
     
+    __weak FSPlayerTableViewController *ptvc = self;
     [self.dataDelegate setTableViewCellSource:^(UITableView *tableView, UITableViewCell *cell, NSFetchedResultsController *frc, NSIndexPath *indexPath) {
         FSMatchTableViewCell *matchCell = (FSMatchTableViewCell *)cell;
-        
         Match *m = [frc objectAtIndexPath:indexPath];
+        
+        [matchCell.matchDate setText:[ptvc.dateFormatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:[m.mMatchCreation longLongValue]/1000]]];
+        
         [Champion championInformationFor:[[m mPlayerChampID] integerValue] region:@"na" withBlock:^(Champion *champ, NSError *error) {
             [matchCell.champNameLabelView setText:champ.cName];
             
@@ -107,9 +111,8 @@
         matchCell.matchOutcomeView.backgroundColor = [m.mPlayerWinner boolValue] ? [UIColor positiveColor] : [UIColor negativeColor];
     }];
     
-    //__weak FSPlayerTableViewController *weakReference = self;
     [self.dataDelegate setItemSelectionHandler:^(id view, NSFetchedResultsController *frc, NSIndexPath *indexPath) {
-        NSLog(@"HEY: %@", [frc objectAtIndexPath:indexPath]);
+        NSLog(@"Selected match: %@", [frc objectAtIndexPath:indexPath]);
     }];
     
     [self.dataDelegate performFetch];
@@ -119,7 +122,37 @@
 
 - (IBAction)optionsPressed:(id)sender
 {
-    //[self showOptionsDialog];
+    [self showExternalServicesDialog];
+}
+
+- (void)showExternalServicesDialog {
+    UIAlertController *optionsDialog = [UIAlertController alertControllerWithTitle:@"External Services" message:@"Choose an external service to view this player on." preferredStyle:UIAlertControllerStyleActionSheet];
+    
+    UIAlertAction *lolNexusAction = [UIAlertAction actionWithTitle:@"LoLNexus" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        Summoner *summoner = [self.summonerDataSource summoner];
+        NSString *urlString = [NSString stringWithFormat:@"http://www.lolnexus.com/NA/search?name=%@&region=na", summoner.sName];
+        NSURL *nexusURL = [NSURL URLWithString:urlString];
+        STKWebKitModalViewController *wv = [[STKWebKitModalViewController alloc] initWithURL:nexusURL];
+        wv.webKitViewController.newTabOpenMode = OpenNewTabInternal;
+        [self presentViewController:wv animated:YES completion:nil];
+    }];
+    
+    UIAlertAction *lolKingAction = [UIAlertAction actionWithTitle:@"LoLKing" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        Summoner *summoner = [self.summonerDataSource summoner];
+        NSString *urlString = [NSString stringWithFormat:@"http://www.lolking.net/summoner/na/%lld", [summoner.sID longLongValue]];
+        NSURL *kingURL = [NSURL URLWithString:urlString];
+        STKWebKitModalViewController *wv = [[STKWebKitModalViewController alloc] initWithURL:kingURL];
+        wv.webKitViewController.newTabOpenMode = OpenNewTabInternal;
+        [self presentViewController:wv animated:YES completion:nil];
+    }];
+    
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
+    
+    [optionsDialog addAction:lolNexusAction];
+    [optionsDialog addAction:lolKingAction];
+    [optionsDialog addAction:cancelAction];
+    
+    [self presentViewController:optionsDialog animated:YES completion:nil];
 }
 
 @end

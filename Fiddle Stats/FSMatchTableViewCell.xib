@@ -13,8 +13,8 @@
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3Vl-wa-jaj" id="Jvb-d0-H0f">
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TpT-Oc-9qj" userLabel="Match Outcome">
-                        <rect key="frame" x="0.0" y="10" width="60" height="100"/>
+                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TpT-Oc-9qj" userLabel="Match Outcome">
+                        <rect key="frame" x="0.0" y="11" width="60" height="100"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Missing" translatesAutoresizingMaskIntoConstraints="NO" id="dNX-zH-g5a">
@@ -24,8 +24,8 @@
                             <constraint firstAttribute="width" constant="100" id="B2C-sY-51p"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Fiddlesticks" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wNR-wB-9lI">
-                        <rect key="frame" x="118" y="11" width="594" height="30"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fiddlesticks" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wNR-wB-9lI">
+                        <rect key="frame" x="118" y="10" width="594" height="30"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="30" id="Rpp-bE-ztJ"/>
                         </constraints>
@@ -33,10 +33,22 @@
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Summoner's Rift" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BwX-rn-kdG">
-                        <rect key="frame" x="118" y="40" width="594" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Summoner's Rift" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BwX-rn-kdG">
+                        <rect key="frame" x="118" y="41" width="120" height="21"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="21" id="EZ3-Oa-UJ6"/>
+                            <constraint firstAttribute="height" constant="21" id="2Cz-nS-WMZ"/>
+                            <constraint firstAttribute="width" constant="120" id="jRH-5z-KJs"/>
+                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="120" id="sU1-bR-bKC"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Match Date" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ps3-pr-BPa">
+                        <rect key="frame" x="246" y="41" width="120" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="120" id="mwo-Rd-Jem"/>
+                            <constraint firstAttribute="height" constant="21" id="wBI-CO-9wb"/>
                         </constraints>
                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -44,27 +56,30 @@
                     </label>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="BwX-rn-kdG" firstAttribute="leading" secondItem="wNR-wB-9lI" secondAttribute="leading" id="6pX-Br-Oze"/>
                     <constraint firstItem="TpT-Oc-9qj" firstAttribute="trailing" secondItem="dNX-zH-g5a" secondAttribute="trailing" constant="-50" id="C22-Cv-XHW"/>
-                    <constraint firstItem="BwX-rn-kdG" firstAttribute="leading" secondItem="wNR-wB-9lI" secondAttribute="leading" id="QgL-0F-gxn"/>
+                    <constraint firstItem="BwX-rn-kdG" firstAttribute="top" secondItem="wNR-wB-9lI" secondAttribute="bottom" constant="1" id="H7o-ur-PYD"/>
                     <constraint firstAttribute="bottomMargin" secondItem="TpT-Oc-9qj" secondAttribute="bottom" constant="1" id="Sr6-kr-k0l"/>
+                    <constraint firstItem="BwX-rn-kdG" firstAttribute="top" secondItem="Ps3-pr-BPa" secondAttribute="top" id="V20-WJ-jBF"/>
                     <constraint firstItem="wNR-wB-9lI" firstAttribute="trailing" secondItem="Jvb-d0-H0f" secondAttribute="trailingMargin" id="Vdf-hZ-zj2"/>
                     <constraint firstItem="dNX-zH-g5a" firstAttribute="top" secondItem="Jvb-d0-H0f" secondAttribute="topMargin" constant="2" id="ZMv-kF-fat"/>
                     <constraint firstItem="dNX-zH-g5a" firstAttribute="leading" secondItem="Jvb-d0-H0f" secondAttribute="leadingMargin" constant="2" id="ZjE-3x-hqf"/>
-                    <constraint firstItem="BwX-rn-kdG" firstAttribute="width" secondItem="wNR-wB-9lI" secondAttribute="width" id="aZm-qP-o2d"/>
                     <constraint firstItem="TpT-Oc-9qj" firstAttribute="top" secondItem="Jvb-d0-H0f" secondAttribute="topMargin" constant="2" id="e9A-Q0-uvk"/>
-                    <constraint firstItem="BwX-rn-kdG" firstAttribute="top" secondItem="wNR-wB-9lI" secondAttribute="bottom" constant="-1" id="jF7-D0-xHr"/>
+                    <constraint firstItem="Ps3-pr-BPa" firstAttribute="leading" secondItem="BwX-rn-kdG" secondAttribute="trailing" constant="8" id="jnp-eA-1NB"/>
                     <constraint firstItem="TpT-Oc-9qj" firstAttribute="leading" secondItem="Jvb-d0-H0f" secondAttribute="leadingMargin" constant="-8" id="kfr-1J-QEs"/>
                     <constraint firstItem="dNX-zH-g5a" firstAttribute="top" secondItem="wNR-wB-9lI" secondAttribute="top" id="ntb-UC-TRo"/>
                     <constraint firstItem="wNR-wB-9lI" firstAttribute="leading" secondItem="dNX-zH-g5a" secondAttribute="trailing" constant="8" id="o7s-1w-uXT"/>
+                    <constraint firstAttribute="trailingMargin" relation="lessThanOrEqual" secondItem="Ps3-pr-BPa" secondAttribute="trailing" constant="346" id="rax-T0-B4i"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="champImageView" destination="dNX-zH-g5a" id="lPo-lZ-Xq6"/>
                 <outlet property="champNameLabelView" destination="wNR-wB-9lI" id="UlC-ga-IVc"/>
+                <outlet property="matchDate" destination="Ps3-pr-BPa" id="ZrF-2F-Pxr"/>
                 <outlet property="matchMapName" destination="BwX-rn-kdG" id="Srq-jw-VjE"/>
                 <outlet property="matchOutcomeView" destination="TpT-Oc-9qj" id="d5R-8S-zQr"/>
             </connections>
-            <point key="canvasLocation" x="350" y="365"/>
+            <point key="canvasLocation" x="350" y="352"/>
         </tableViewCell>
     </objects>
     <resources>

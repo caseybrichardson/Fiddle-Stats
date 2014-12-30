@@ -17,5 +17,6 @@
 @property (strong, nonatomic) IBOutlet UIImageView *champImageView;
 @property (strong, nonatomic) IBOutlet UILabel *champNameLabelView;
 @property (strong, nonatomic) IBOutlet UILabel *matchMapName;
+@property (strong, nonatomic) IBOutlet UILabel *matchDate;
 
 @end
