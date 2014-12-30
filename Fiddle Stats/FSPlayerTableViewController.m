@@ -81,6 +81,11 @@
     }];
 }
 
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    [[self.gradientView.layer sublayers][0] setFrame:self.gradientView.bounds];
+}
+
 #pragma mark - Helpers
 
 - (void)initializeDataDelegate {
@@ -131,7 +136,8 @@
     
     UIAlertAction *lolNexusAction = [UIAlertAction actionWithTitle:@"LoLNexus" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
         Summoner *summoner = [self.summonerDataSource summoner];
-        NSString *urlString = [NSString stringWithFormat:@"http://www.lolnexus.com/NA/search?name=%@&region=na", summoner.sName];
+        NSString *name = [summoner.sName stringByReplacingOccurrencesOfString:@" " withString:@"+"];
+        NSString *urlString = [NSString stringWithFormat:@"http://www.lolnexus.com/NA/search?name=%@&region=na", name];
         NSURL *nexusURL = [NSURL URLWithString:urlString];
         STKWebKitModalViewController *wv = [[STKWebKitModalViewController alloc] initWithURL:nexusURL];
         wv.webKitViewController.newTabOpenMode = OpenNewTabInternal;

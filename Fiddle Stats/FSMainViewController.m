@@ -60,6 +60,11 @@
     [self.playerCollectionView setContentInset:insets];
 }
 
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    [[self.inputHolderView.layer sublayers][0] setFrame:self.inputHolderView.bounds];
+}
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     [self.view endEditing:YES];
     
