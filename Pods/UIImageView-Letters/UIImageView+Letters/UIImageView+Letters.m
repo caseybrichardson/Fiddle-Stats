@@ -31,25 +31,13 @@
 }
 
 - (void)setImageWithString:(NSString *)string color:(UIColor *)color {
-    
-    //
-    // Set up a temporary view to contain the text label
-    //
-    UIView *tempView = [[UIView alloc] initWithFrame:self.bounds];
-    
-    UILabel *letterLabel = [[UILabel alloc] initWithFrame:self.bounds];
-    letterLabel.textAlignment = NSTextAlignmentCenter;
-    letterLabel.backgroundColor = [UIColor clearColor];
-    letterLabel.textColor = [UIColor whiteColor];
-    letterLabel.adjustsFontSizeToFitWidth = YES;
-    letterLabel.minimumScaleFactor = 8.0f / 65.0f;
-    letterLabel.font = [self fontForLetterLabel];
-    [tempView addSubview:letterLabel];
-    
     NSMutableString *displayString = [NSMutableString stringWithString:@""];
     
     NSArray *words = [string componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     
+    //
+    // Get first letter of the first and last word
+    //
     if ([words count]) {
         NSString *firstWord = words[0];
         if ([firstWord length]) {
@@ -63,22 +51,15 @@
             }
         }
     }
-    letterLabel.text = [displayString uppercaseString];
     
-    //
-    // Set the background color
-    //
-    tempView.backgroundColor = color ? color : [self randomColor];
+    UIColor *backgroundColor = color ? color : [self randomColor];
     
-    //
-    // Return an image instance of the temporary view
-    //
-    self.image = [self imageSnapshotFromText:[displayString uppercaseString] backgroundColor:tempView.backgroundColor];
+    self.image = [self imageSnapshotFromText:[displayString uppercaseString] backgroundColor:backgroundColor];
 }
 
 #pragma mark - Helpers
 
-- (UIFont *)fontForLetterLabel {
+- (UIFont *)fontForText {
     return [UIFont systemFontOfSize:CGRectGetWidth(self.bounds) * 0.48];
 }
 
@@ -115,19 +96,31 @@
         size.width = floorf(size.width * scale) / scale;
         size.height = floorf(size.height * scale) / scale;
     }
+    
     UIGraphicsBeginImageContextWithOptions(size, NO, scale);
     
     CGContextRef context = UIGraphicsGetCurrentContext();
     
+    //
+    // Clip context to a circle
+    //
     CGPathRef path = CGPathCreateWithEllipseInRect(self.bounds, NULL);
     CGContextAddPath(context, path);
     CGContextClip(context);
     
+    //
+    // Fill background of context
+    //
     CGContextSetFillColorWithColor(context, color.CGColor);
     CGContextFillRect(context, CGRectMake(0, 0, size.width, size.height));
     
-    CGSize textSize = [text sizeWithAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:32]}];
-    [text drawInRect:CGRectMake(self.bounds.size.width/2 - textSize.width/2, self.bounds.size.height/2 - textSize.height/2, textSize.width, textSize.height) withAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:32]}];
+    //
+    // Draw text in the context
+    //
+    CGSize textSize = [text sizeWithAttributes:@{NSFontAttributeName:[self fontForText]}];
+    CGRect bounds = self.bounds;
+    [text drawInRect:CGRectMake(bounds.size.width/2 - textSize.width/2, bounds.size.height/2 - textSize.height/2, textSize.width, textSize.height)
+          withAttributes:@{NSFontAttributeName:[self fontForText], NSForegroundColorAttributeName:[UIColor whiteColor]}];
     
     UIImage *snapshot = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();

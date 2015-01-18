@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
+#import <JVFloatingDrawer/JVFloatingDrawerViewController.h>
+#import <JVFloatingDrawer/JVFloatingDrawerSpringAnimator.h>
 
 #import "UIColor+AppColors.h"
 #import "CRFiddleAPIClient.h"
@@ -22,9 +24,20 @@
 @property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
 @property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 
+@property (nonatomic, strong) JVFloatingDrawerViewController *drawerViewController;
+@property (nonatomic, strong) JVFloatingDrawerSpringAnimator *drawerAnimator;
+
+@property (nonatomic, strong) UITableViewController *leftDrawerViewController;
+@property (nonatomic, strong) UIViewController *summonersViewController;
+@property (nonatomic, strong) UIViewController *settingsViewController;
+
 - (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory;
 
++ (AppDelegate *)globalDelegate;
+
+- (void)toggleLeftDrawer:(id)sender animated:(BOOL)animated;
+- (void)toggleRightDrawer:(id)sender animated:(BOOL)animated;
 
 @end
 

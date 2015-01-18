@@ -9,7 +9,7 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-RKCardView.xcscheme</key>
+		<key>Pods-JVFloatingDrawer.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -32,27 +32,27 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>6744E4DED0135B7970BB74D1</key>
+		<key>28694A0C0D5DB9AE8589BB75</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>77FDC6CB4BE75F59C2C73B80</key>
+		<key>37E71D367A743AE08B50571F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>81F054C4A73D611F7192E462</key>
+		<key>9822DBD14BFF481FCD6F1030</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>900C6211BA58761C52FE40D5</key>
+		<key>C09976C87A536D6FBEC30E7E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>D3311CA751D6A08EA62901CA</key>
+		<key>CC60BEA66D378EA27089D185</key>
 		<dict>
 			<key>primary</key>
 			<true/>

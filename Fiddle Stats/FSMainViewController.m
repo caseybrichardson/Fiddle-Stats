@@ -14,7 +14,6 @@
 
 @property (strong, nonatomic) FSDataDelegate *dataDelegate;
 
-@property (assign, nonatomic) BOOL editing;
 @property (strong, nonatomic) NSMutableSet *editingCells;
 
 @property (strong, nonatomic) UIBarButtonItem *selectBarButton;
@@ -124,7 +123,7 @@
         if(!mvc.editing) {
             Summoner *summoner = (Summoner *)[frc objectAtIndexPath:path];
             mvc.selectedSummoner = summoner;
-            [mvc performSegueWithIdentifier:@"playerDetails" sender:mvc];
+            [mvc performSegueWithIdentifier:@"PlayerDetails" sender:mvc];
         }
     }];
     
@@ -160,9 +159,9 @@
 }
 
 - (void)setEditing:(BOOL)editing {
-    if(_editing != editing) {
+    if(super.editing != editing) {
         [self.view endEditing:YES];
-        _editing = editing;
+        super.editing = editing;
         if(editing) {
             [self hideSummonerAddView];
             [self.navigationController setToolbarHidden:NO animated:YES];
@@ -180,6 +179,17 @@
             }
             
             self.editingCells = nil;
+        }
+    }
+}
+
+- (void)reloadAppearance {
+    NSArray * windows = [UIApplication sharedApplication].windows;
+    
+    for (UIWindow *window in windows) {
+        for (UIView *view in window.subviews) {
+            [view removeFromSuperview];
+            [window addSubview:view];
         }
     }
 }
@@ -282,6 +292,10 @@
     
     [self.playerNameInputView setText:@""];
     [self.playerNameInputView resignFirstResponder];
+}
+
+- (IBAction)drawerPressed:(id)sender {
+    [[AppDelegate globalDelegate] toggleLeftDrawer:self animated:YES];
 }
 
 - (void)selectPressed:(id)sender {

@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import <UIImageView+AFNetworking.h>
-#import <RKCardView/RKCardView.h>
 
 #import "FSSummonerDataSource.h"
 #import "FSCollectionViewCell.h"
@@ -31,6 +30,7 @@
 @property (strong, nonatomic) IBOutlet UIView *inputHolderView;
 
 - (IBAction)summonPlayer:(id)sender;
+- (IBAction)drawerPressed:(id)sender;
 
 - (Summoner *)summoner;
 - (NSArray *)summoners;

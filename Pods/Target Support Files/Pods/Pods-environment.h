@@ -48,11 +48,11 @@
 #define COCOAPODS_VERSION_MINOR_AFNetworking_UIKit 5
 #define COCOAPODS_VERSION_PATCH_AFNetworking_UIKit 0
 
-// RKCardView
-#define COCOAPODS_POD_AVAILABLE_RKCardView
-#define COCOAPODS_VERSION_MAJOR_RKCardView 0
-#define COCOAPODS_VERSION_MINOR_RKCardView 1
-#define COCOAPODS_VERSION_PATCH_RKCardView 0
+// JVFloatingDrawer
+#define COCOAPODS_POD_AVAILABLE_JVFloatingDrawer
+#define COCOAPODS_VERSION_MAJOR_JVFloatingDrawer 0
+#define COCOAPODS_VERSION_MINOR_JVFloatingDrawer 1
+#define COCOAPODS_VERSION_PATCH_JVFloatingDrawer 0
 
 // STKWebKitViewController
 #define COCOAPODS_POD_AVAILABLE_STKWebKitViewController

@@ -12,6 +12,7 @@
 
 @property (strong, nonatomic) FSDataDelegate *dataDelegate;
 @property (strong, nonatomic) NSDateFormatter *dateFormatter;
+@property (strong, nonatomic) UINib *statsView;
 
 @end
 
@@ -34,6 +35,8 @@
     self.dateFormatter.formatterBehavior = NSDateFormatterBehavior10_4;
     self.dateFormatter.dateStyle = NSDateFormatterShortStyle;
     self.dateFormatter.timeStyle = NSDateFormatterNoStyle;
+    
+    self.statsView = [UINib nibWithNibName:@"FSParticipantStatsView" bundle:[NSBundle mainBundle]];
     
     Summoner *summoner = [self.summonerDataSource summoner];
     SummonerGroup *group = [self.summonerDataSource summoner].sGroup;
@@ -119,6 +122,14 @@
     
     [self.dataDelegate setItemSelectionHandler:^(id view, NSFetchedResultsController *frc, NSIndexPath *indexPath) {
         NSLog(@"Selected match: %@", [frc objectAtIndexPath:indexPath]);
+        UIView *v = [[ptvc.statsView instantiateWithOwner:[UIView new] options:nil] firstObject];
+        UITableViewCell *cell = [ptvc.tableView cellForRowAtIndexPath:indexPath];
+        CGRect f = v.frame;
+        f.origin = CGPointMake(0, cell.frame.size.height);
+        v.frame = f;
+        [cell.contentView addSubview:v];
+        [ptvc.tableView beginUpdates];
+        [ptvc.tableView endUpdates];
     }];
     
     [self.dataDelegate performFetch];
