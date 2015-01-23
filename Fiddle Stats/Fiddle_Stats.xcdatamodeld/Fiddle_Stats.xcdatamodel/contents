@@ -44,6 +44,16 @@
         <relationship name="mpiParticipant" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MatchParticipant" inverseName="mpParticipantIdentity" inverseEntity="MatchParticipant" syncable="YES"/>
     </entity>
     <entity name="MatchParticipantStats" representedClassName="MatchParticipantStats" syncable="YES">
+        <attribute name="mpsAssists" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="mpsChampLevel" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="mpsDeaths" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="mpsDoubleKills" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="mpsFirstBloodKill" optional="YES" attributeType="Boolean" defaultValueString="0" syncable="YES"/>
+        <attribute name="mpsFirstInhibKill" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="mpsFirstTowerKill" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="mpsGoldEarned" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="mpsGoldSpent" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="mpsInhibKills" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="mpsItem0" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="mpsItem1" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="mpsItem2" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
@@ -51,6 +61,29 @@
         <attribute name="mpsItem4" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="mpsItem5" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="mpsItem6" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="mpsKillingSprees" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="mpsKills" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="mpsLargestMultiKill" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="mpsMagicDamageDealt" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="mpsMagicDamageDealtToChampions" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="mpsMinionsKilled" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="mpsNeutralMinionsKilled" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="mpsPentaKills" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="mpsPhysicalDamageDealt" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="mpsPhysicalDamageDealtToChampions" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="mpsQuadraKills" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="mpsTotalDamageDealt" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="mpsTotalDamageDealtToChampions" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="mpsTotalHeal" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="mpsTowerKills" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="mpsTripleKills" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="mpsTrueDamageDealt" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="mpsTrueDamageDealToChampions" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="mpsUnrealKills" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="mpsVisionWardsBoughtInGame" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="mpsWardsKilled" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="mpsWardsPlaced" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="mpsWinner" optional="YES" attributeType="Boolean" defaultValueString="0" syncable="YES"/>
         <relationship name="mpsParticipant" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MatchParticipant" inverseName="mpParticipantStats" inverseEntity="MatchParticipant" syncable="YES"/>
     </entity>
     <entity name="MatchTeam" representedClassName="MatchTeam" syncable="YES">
@@ -90,7 +123,7 @@
         <element name="Summoner" positionX="-549" positionY="-115" width="128" height="223"/>
         <element name="SummonerGroup" positionX="-335" positionY="-153" width="128" height="73"/>
         <element name="MatchTeam" positionX="-225" positionY="63" width="128" height="208"/>
-        <element name="MatchParticipantStats" positionX="322" positionY="153" width="128" height="163"/>
+        <element name="MatchParticipantStats" positionX="313" positionY="-297" width="128" height="658"/>
         <element name="MatchParticipant" positionX="162" positionY="-162" width="128" height="178"/>
         <element name="MatchParticipantIdentity" positionX="9" positionY="171" width="128" height="118"/>
     </elements>

@@ -7,7 +7,13 @@
 //
 
 #import "MatchParticipantStats.h"
+#import "AppDelegate.h"
 
 @interface MatchParticipantStats (Helpers)
+
+- (MatchParticipantStats *)initWithAttributes:(NSDictionary *)attributes participant:(MatchParticipant *)participant;
+
++ (MatchParticipantStats *)storedMatchParticipantStatsForParticipant:(MatchParticipant *)participant;
+
 
 @end

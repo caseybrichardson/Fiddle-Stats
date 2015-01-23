@@ -16,7 +16,9 @@
 @property (strong, nonatomic) IBOutlet UIView *matchOutcomeView;
 @property (strong, nonatomic) IBOutlet UIImageView *champImageView;
 @property (strong, nonatomic) IBOutlet UILabel *champNameLabelView;
-@property (strong, nonatomic) IBOutlet UILabel *matchMapName;
+@property (strong, nonatomic) IBOutlet UILabel *matchGameType;
 @property (strong, nonatomic) IBOutlet UILabel *matchDate;
+@property (strong, nonatomic) IBOutlet UILabel *kdaLabel;
+@property (strong, nonatomic) IBOutlet UILabel *minionsLabel;
 
 @end

@@ -8,6 +8,7 @@
 
 #import "MatchParticipant.h"
 #import "AppDelegate.h"
+#import "MatchParticipantStats+Helpers.h"
 
 @interface MatchParticipant (Helpers)
 

@@ -27,11 +27,14 @@
     participant.mpTeamID = attributes[@"teamId"];
     
     participant.mpMatch = match;
+    participant.mpParticipantStats = [[MatchParticipantStats alloc] initWithAttributes:attributes[@"stats"] participant:participant];
+    
+    NSLog(@"%@", participant.mpParticipantStats);
     
     return participant;
 }
 
-+ (MatchParticipant *)storedMatchParticipantForMatch:(Match *)match participantID:(NSInteger)participantID{
++ (MatchParticipant *)storedMatchParticipantForMatch:(Match *)match participantID:(NSInteger)participantID {
     AppDelegate *del = (AppDelegate *)[UIApplication sharedApplication].delegate;
     
     NSError *error;

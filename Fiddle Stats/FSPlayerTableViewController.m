@@ -120,7 +120,11 @@
             [matchCell.champImageView setImageWithURL:[NSURL URLWithString:url]];
         }];
         
-        matchCell.matchOutcomeView.backgroundColor = [m.mPlayerWinner boolValue] ? [UIColor positiveColor] : [UIColor negativeColor];
+        MatchParticipantStats *stats = participant.mpParticipantStats;
+        matchCell.matchGameType.text = m.mMatchType;
+        matchCell.matchOutcomeView.backgroundColor = [stats.mpsWinner boolValue] ? [UIColor positiveColor] : [UIColor negativeColor];
+        matchCell.kdaLabel.text = [NSString stringWithFormat:@"%@/%@/%@", stats.mpsKills, stats.mpsDeaths, stats.mpsAssists];
+        matchCell.minionsLabel.text = [stats.mpsMinionsKilled stringValue];
     }];
     
     [self.dataDelegate setItemSelectionHandler:^(id view, NSFetchedResultsController *frc, NSIndexPath *indexPath) {

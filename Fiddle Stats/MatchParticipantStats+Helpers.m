@@ -9,52 +9,85 @@
 #import "MatchParticipantStats+Helpers.h"
 
 @implementation MatchParticipantStats (Helpers)
-/*
-- (MatchParticipant *)initWithAttributes:(NSDictionary *)attributes match:(Match *)match {
+
+- (MatchParticipantStats *)initWithAttributes:(NSDictionary *)attributes participant:(MatchParticipant *)participant {
     AppDelegate *del = (AppDelegate *)[UIApplication sharedApplication].delegate;
     
-    MatchParticipant *participant = [MatchParticipant storedMatchParticipantForMatch:match participantID:[attributes[@"participantId"] integerValue]];
+    MatchParticipantStats *stats = [MatchParticipantStats storedMatchParticipantStatsForParticipant:participant];
     
-    if(!participant) {
-        participant = [NSEntityDescription insertNewObjectForEntityForName:@"MatchParticipant" inManagedObjectContext:del.managedObjectContext];
+    if(!stats) {
+        stats = [NSEntityDescription insertNewObjectForEntityForName:@"MatchParticipantStats" inManagedObjectContext:del.managedObjectContext];
     }
     
-    participant.mpChampionID = attributes[@"championId"];
-    participant.mpHighestAchievedSeasonTier = attributes[@"highestAchievedSeasonTier"];
-    participant.mpParticipantID = attributes[@"participantId"];
-    participant.mpSpellID1 = attributes[@"championId"];
-    participant.mpSpellID2 = attributes[@"championId"];
-    participant.mpTeamID = attributes[@"teamId"];
+    stats.mpsItem0 = attributes[@"item0"];
+    stats.mpsItem1 = attributes[@"item1"];
+    stats.mpsItem2 = attributes[@"item2"];
+    stats.mpsItem3 = attributes[@"item3"];
+    stats.mpsItem4 = attributes[@"item4"];
+    stats.mpsItem5 = attributes[@"item5"];
+    stats.mpsItem6 = attributes[@"item6"];
+    stats.mpsWinner = attributes[@"winner"];
+    stats.mpsKills = attributes[@"kills"];
+    stats.mpsDeaths = attributes[@"deaths"];
+    stats.mpsAssists = attributes[@"assists"];
+    stats.mpsGoldEarned = attributes[@"goldEarned"];
+    stats.mpsGoldSpent = attributes[@"goldSpent"];
+    stats.mpsTotalHeal = attributes[@"totalHeal"];
+    stats.mpsChampLevel = attributes[@"champLevel"];
+    stats.mpsInhibKills = attributes[@"inhibitorKills"];
+    stats.mpsTowerKills = attributes[@"towerKills"];
+    stats.mpsDoubleKills = attributes[@"doubleKills"];
+    stats.mpsTripleKills = attributes[@"tripleKills"];
+    stats.mpsQuadraKills = attributes[@"quadraKills"];
+    stats.mpsPentaKills = attributes[@"pentaKills"];
+    stats.mpsUnrealKills = attributes[@"unrealKills"];
+    stats.mpsTotalDamageDealt = attributes[@"totalDamageDealt"];
+    stats.mpsTotalDamageDealtToChampions = attributes[@"totalDamageDealtToChampions"];
+    stats.mpsMagicDamageDealt = attributes[@"magicDamage"];
+    stats.mpsMagicDamageDealtToChampions = attributes[@"magicDamageDealtToChampions"];
+    stats.mpsPhysicalDamageDealt = attributes[@"physicalDamageDealt"];
+    stats.mpsPhysicalDamageDealtToChampions = attributes[@"physicalDamageDealtToChampions"];
+    stats.mpsTrueDamageDealt = attributes[@"trueDamageDealt"];
+    stats.mpsTrueDamageDealToChampions = attributes[@"trueDamageDealtToChampions"];
+    stats.mpsKillingSprees = attributes[@"killingSprees"];
+    stats.mpsWardsKilled = attributes[@"wardsKilled"];
+    stats.mpsWardsPlaced = attributes[@"wardsPlaced"];
+    stats.mpsMinionsKilled = attributes[@"minionsKilled"];
+    stats.mpsFirstBloodKill = attributes[@"firstBloodKill"];
+    stats.mpsFirstInhibKill = attributes[@"firstInhibitorKill"];
+    stats.mpsFirstTowerKill = attributes[@"firstTowerKill"];
+    stats.mpsLargestMultiKill = attributes[@"largestMultiKill"];
+    stats.mpsNeutralMinionsKilled = attributes[@"neutralMinionsKilled"];
+    stats.mpsVisionWardsBoughtInGame = attributes[@"visionWardsBoughtInGame"];
     
-    participant.mpParticipantStats = nil;
-    participant.mpMatch = match;
+    stats.mpsParticipant = participant;
     
-    return participant;
+    return stats;
 }
 
-+ (MatchParticipant *)storedMatchParticipantForMatch:(Match *)match participantID:(NSInteger)participantID{
++ (MatchParticipantStats *)storedMatchParticipantStatsForParticipant:(MatchParticipant *)participant {
     AppDelegate *del = (AppDelegate *)[UIApplication sharedApplication].delegate;
     
     NSError *error;
-    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"MatchParticipant"];
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"mpMatch == %@ AND mpParticipantID == %@", match, participantID];
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"MatchParticipantStats"];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"mpsParticipant == %@", participant];
     
     [request setPredicate:predicate];
     
-    NSArray *participants = [del.managedObjectContext executeFetchRequest:request error:&error];
+    NSArray *stats = [del.managedObjectContext executeFetchRequest:request error:&error];
     
-    if(!participants) {
+    if(!stats) {
         return nil;
     }
     
-    if([participants count] > 1) {
-        for (int i = (int)[participants count] - 1; i > 0; i--)
+    if([stats count] > 1) {
+        for (int i = (int)[stats count] - 1; i > 0; i--)
         {
-            [del.managedObjectContext deleteObject:participants[i]];
+            [del.managedObjectContext deleteObject:stats[i]];
         }
     }
     
-    return ([participants count] > 0 ? participants[0] : nil);
-}*/
+    return ([stats count] > 0 ? stats[0] : nil);
+}
 
 @end

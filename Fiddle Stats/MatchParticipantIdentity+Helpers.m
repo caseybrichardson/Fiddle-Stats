@@ -27,7 +27,7 @@
     return identity;
 }
 
-+ (MatchParticipantIdentity *)storedMatchParticipantIdentityForMatchParticipant:(MatchParticipant *)participant{
++ (MatchParticipantIdentity *)storedMatchParticipantIdentityForMatchParticipant:(MatchParticipant *)participant {
     AppDelegate *del = (AppDelegate *)[UIApplication sharedApplication].delegate;
     
     NSError *error;

@@ -17,7 +17,6 @@
 		3B12AC5A1A2E7B8600016610 /* UINavigationController+Helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B12AC591A2E7B8600016610 /* UINavigationController+Helpers.m */; };
 		3B2ABF9A1A36E4810095C015 /* Summoner.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B2ABF991A36E4810095C015 /* Summoner.m */; };
 		3B2F489C1A71A34000A80AA0 /* SummonerGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B2F489B1A71A34000A80AA0 /* SummonerGroup.m */; };
-		3B2F48B41A71AE4300A80AA0 /* MatchParticipantStats.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B2F48B31A71AE4300A80AA0 /* MatchParticipantStats.m */; };
 		3B2F48BA1A71AE4400A80AA0 /* Match.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B2F48B91A71AE4400A80AA0 /* Match.m */; };
 		3B2F48BD1A71AE4400A80AA0 /* MatchTeam.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B2F48BC1A71AE4400A80AA0 /* MatchTeam.m */; };
 		3B2F48C31A71B2B700A80AA0 /* MatchParticipant+Helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B2F48C21A71B2B700A80AA0 /* MatchParticipant+Helpers.m */; };
@@ -25,6 +24,7 @@
 		3B2F48C91A71B68F00A80AA0 /* MatchParticipantStats+Helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B2F48C81A71B68F00A80AA0 /* MatchParticipantStats+Helpers.m */; };
 		3B2F48CC1A71B86900A80AA0 /* MatchParticipantIdentity.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B2F48CB1A71B86900A80AA0 /* MatchParticipantIdentity.m */; };
 		3B2F48CF1A71B9FF00A80AA0 /* MatchParticipant.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B2F48CE1A71B9FF00A80AA0 /* MatchParticipant.m */; };
+		3B2F48D51A71D92A00A80AA0 /* MatchParticipantStats.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B2F48D41A71D92A00A80AA0 /* MatchParticipantStats.m */; };
 		3B3948C41A5546150091B5AD /* FSSettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B3948C31A5546150091B5AD /* FSSettingsTableViewController.m */; };
 		3B4CB0A31A2002F2003B1C67 /* FSCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B4CB0A21A2002F2003B1C67 /* FSCollectionViewCell.m */; };
 		3B5F8B811A2F12EB00CE3AC5 /* FSNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B5F8B801A2F12EB00CE3AC5 /* FSNavigationController.m */; };
@@ -91,8 +91,6 @@
 		3B2ABF991A36E4810095C015 /* Summoner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Summoner.m; sourceTree = "<group>"; };
 		3B2F489A1A71A34000A80AA0 /* SummonerGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SummonerGroup.h; sourceTree = "<group>"; };
 		3B2F489B1A71A34000A80AA0 /* SummonerGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SummonerGroup.m; sourceTree = "<group>"; };
-		3B2F48B21A71AE4300A80AA0 /* MatchParticipantStats.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchParticipantStats.h; sourceTree = "<group>"; };
-		3B2F48B31A71AE4300A80AA0 /* MatchParticipantStats.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchParticipantStats.m; sourceTree = "<group>"; };
 		3B2F48B81A71AE4400A80AA0 /* Match.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Match.h; sourceTree = "<group>"; };
 		3B2F48B91A71AE4400A80AA0 /* Match.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Match.m; sourceTree = "<group>"; };
 		3B2F48BB1A71AE4400A80AA0 /* MatchTeam.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchTeam.h; sourceTree = "<group>"; };
@@ -107,6 +105,8 @@
 		3B2F48CB1A71B86900A80AA0 /* MatchParticipantIdentity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchParticipantIdentity.m; sourceTree = "<group>"; };
 		3B2F48CD1A71B9FF00A80AA0 /* MatchParticipant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchParticipant.h; sourceTree = "<group>"; };
 		3B2F48CE1A71B9FF00A80AA0 /* MatchParticipant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchParticipant.m; sourceTree = "<group>"; };
+		3B2F48D31A71D92A00A80AA0 /* MatchParticipantStats.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchParticipantStats.h; sourceTree = "<group>"; };
+		3B2F48D41A71D92A00A80AA0 /* MatchParticipantStats.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchParticipantStats.m; sourceTree = "<group>"; };
 		3B3948C21A5546150091B5AD /* FSSettingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSSettingsTableViewController.h; sourceTree = "<group>"; };
 		3B3948C31A5546150091B5AD /* FSSettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSSettingsTableViewController.m; sourceTree = "<group>"; };
 		3B4CB0A11A2002F2003B1C67 /* FSCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSCollectionViewCell.h; sourceTree = "<group>"; };
@@ -347,6 +347,8 @@
 		3BF226421A1FE3F7004EB614 /* Data Models */ = {
 			isa = PBXGroup;
 			children = (
+				3B2F48D31A71D92A00A80AA0 /* MatchParticipantStats.h */,
+				3B2F48D41A71D92A00A80AA0 /* MatchParticipantStats.m */,
 				3B2F48CD1A71B9FF00A80AA0 /* MatchParticipant.h */,
 				3B2F48CE1A71B9FF00A80AA0 /* MatchParticipant.m */,
 				3B2F48CA1A71B86900A80AA0 /* MatchParticipantIdentity.h */,
@@ -355,8 +357,6 @@
 				3B2F48BC1A71AE4400A80AA0 /* MatchTeam.m */,
 				3B2F48B81A71AE4400A80AA0 /* Match.h */,
 				3B2F48B91A71AE4400A80AA0 /* Match.m */,
-				3B2F48B21A71AE4300A80AA0 /* MatchParticipantStats.h */,
-				3B2F48B31A71AE4300A80AA0 /* MatchParticipantStats.m */,
 				3B2F489A1A71A34000A80AA0 /* SummonerGroup.h */,
 				3B2F489B1A71A34000A80AA0 /* SummonerGroup.m */,
 				3B2ABF981A36E4810095C015 /* Summoner.h */,
@@ -549,6 +549,7 @@
 				3B2F489C1A71A34000A80AA0 /* SummonerGroup.m in Sources */,
 				3BEEE5871A3691DD00CEFE9F /* SummonerGroup+Helpers.m in Sources */,
 				3B052B681A21D3E300665F23 /* UIView+Effects.m in Sources */,
+				3B2F48D51A71D92A00A80AA0 /* MatchParticipantStats.m in Sources */,
 				3B4CB0A31A2002F2003B1C67 /* FSCollectionViewCell.m in Sources */,
 				3B2F48C31A71B2B700A80AA0 /* MatchParticipant+Helpers.m in Sources */,
 				3B8AD52F1A1FDB6A00DFFA3A /* AppDelegate.m in Sources */,
@@ -570,7 +571,6 @@
 				3B2F48C61A71B67600A80AA0 /* MatchParticipantIdentity+Helpers.m in Sources */,
 				3B12AC5A1A2E7B8600016610 /* UINavigationController+Helpers.m in Sources */,
 				3BF6B97C1A4C1ED2007C10BF /* FSSummonerGroupViewController.m in Sources */,
-				3B2F48B41A71AE4300A80AA0 /* MatchParticipantStats.m in Sources */,
 				3B9A17C01A6D15C300473700 /* FSMatchCollectionViewController.m in Sources */,
 				3B0681711A25D657009B2F6E /* FSDataDelegate.m in Sources */,
 				3B8AD5351A1FDB6A00DFFA3A /* FSMainViewController.m in Sources */,
