@@ -62,7 +62,8 @@
         [self.tableView reloadData];
         
         if([matches count] > 0) {
-            [Champion championInformationFor:[((Match *)[matches lastObject]).mPlayerChampID integerValue] region:@"na" withBlock:^(Champion *champ, NSError *error) {
+            MatchParticipant *participant = [matches[0] matchParticipantForSummoner:[self.summonerDataSource summoner]];
+            [Champion championInformationFor:[participant.mpChampionID integerValue] region:@"na" withBlock:^(Champion *champ, NSError *error) {
                 
                 NSString *champKey = champ.cKey;
                 
@@ -101,7 +102,7 @@
     FSDataPair *sort1 = [[FSDataPair alloc] initWithFirst:@"mMatchCreation" second:@NO];
     [self.dataDelegate setSortingKeyPaths:@[sort1]];
     [self.dataDelegate setReuseIdentifier:@"MatchCell"];
-    [self.dataDelegate setPredicateValues:[[FSDataPair alloc] initWithFirst:@"mMatchParticipants CONTAINS %@" second:[self.summonerDataSource summoner]]];
+    [self.dataDelegate setPredicateValues:[[FSDataPair alloc] initWithFirst:@"mMatchSummoners CONTAINS %@" second:[self.summonerDataSource summoner]]];
     
     __weak FSPlayerTableViewController *ptvc = self;
     [self.dataDelegate setTableViewCellSource:^(UITableView *tableView, UITableViewCell *cell, NSFetchedResultsController *frc, NSIndexPath *indexPath) {
@@ -110,7 +111,9 @@
         
         [matchCell.matchDate setText:[ptvc.dateFormatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:[m.mMatchCreation longLongValue]/1000]]];
         
-        [Champion championInformationFor:[[m mPlayerChampID] integerValue] region:@"na" withBlock:^(Champion *champ, NSError *error) {
+        MatchParticipant *participant = [m matchParticipantForSummoner:[ptvc.summonerDataSource summoner]];
+        
+        [Champion championInformationFor:[participant.mpChampionID integerValue] region:@"na" withBlock:^(Champion *champ, NSError *error) {
             [matchCell.champNameLabelView setText:champ.cName];
             
             NSString *url = [NSString stringWithFormat:@"http://ddragon.leagueoflegends.com/cdn/4.20.1/img/champion/%@.png", champ.cKey];
@@ -121,15 +124,7 @@
     }];
     
     [self.dataDelegate setItemSelectionHandler:^(id view, NSFetchedResultsController *frc, NSIndexPath *indexPath) {
-        NSLog(@"Selected match: %@", [frc objectAtIndexPath:indexPath]);
-        UIView *v = [[ptvc.statsView instantiateWithOwner:[UIView new] options:nil] firstObject];
-        UITableViewCell *cell = [ptvc.tableView cellForRowAtIndexPath:indexPath];
-        CGRect f = v.frame;
-        f.origin = CGPointMake(0, cell.frame.size.height);
-        v.frame = f;
-        [cell.contentView addSubview:v];
-        [ptvc.tableView beginUpdates];
-        [ptvc.tableView endUpdates];
+        [ptvc performSegueWithIdentifier:@"MatchDetails" sender:ptvc];
     }];
     
     [self.dataDelegate performFetch];

@@ -2,11 +2,14 @@
 //  Match.m
 //  Fiddle Stats
 //
-//  Created by Casey Richardson on 12/8/14.
-//  Copyright (c) 2014 Casey Richardson. All rights reserved.
+//  Created by Casey Richardson on 1/22/15.
+//  Copyright (c) 2015 Casey Richardson. All rights reserved.
 //
 
 #import "Match.h"
+#import "MatchParticipant.h"
+#import "MatchTeam.h"
+#import "Summoner.h"
 
 
 @implementation Match
@@ -26,5 +29,7 @@
 @dynamic mRegion;
 @dynamic mSeason;
 @dynamic mMatchParticipants;
+@dynamic mMatchTeams;
+@dynamic mMatchSummoners;
 
 @end

@@ -21,7 +21,50 @@
         <attribute name="mQueueType" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="mRegion" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="mSeason" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="mMatchParticipants" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Summoner" inverseName="sMatches" inverseEntity="Summoner" syncable="YES"/>
+        <relationship name="mMatchParticipants" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="MatchParticipant" inverseName="mpMatch" inverseEntity="MatchParticipant" syncable="YES"/>
+        <relationship name="mMatchSummoners" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Summoner" inverseName="sMatches" inverseEntity="Summoner" syncable="YES"/>
+        <relationship name="mMatchTeams" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="MatchTeam" inverseName="mtMatch" inverseEntity="MatchTeam" syncable="YES"/>
+    </entity>
+    <entity name="MatchParticipant" representedClassName="MatchParticipant" syncable="YES">
+        <attribute name="mpChampionID" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="mpHighestAchievedSeasonTier" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="mpParticipantID" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="mpSpellID1" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="mpSpellID2" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="mpTeamID" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <relationship name="mpMatch" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Match" inverseName="mMatchParticipants" inverseEntity="Match" syncable="YES"/>
+        <relationship name="mpParticipantIdentity" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MatchParticipantIdentity" inverseName="mpiParticipant" inverseEntity="MatchParticipantIdentity" syncable="YES"/>
+        <relationship name="mpParticipantStats" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MatchParticipantStats" inverseName="mpsParticipant" inverseEntity="MatchParticipantStats" syncable="YES"/>
+    </entity>
+    <entity name="MatchParticipantIdentity" representedClassName="MatchParticipantIdentity" syncable="YES">
+        <attribute name="mpiParticipantID" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="mpiProfileIconID" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="mpiSummonerID" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="mpiSummonerName" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="mpiParticipant" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MatchParticipant" inverseName="mpParticipantIdentity" inverseEntity="MatchParticipant" syncable="YES"/>
+    </entity>
+    <entity name="MatchParticipantStats" representedClassName="MatchParticipantStats" syncable="YES">
+        <attribute name="mpsItem0" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="mpsItem1" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="mpsItem2" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="mpsItem3" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="mpsItem4" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="mpsItem5" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="mpsItem6" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <relationship name="mpsParticipant" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MatchParticipant" inverseName="mpParticipantStats" inverseEntity="MatchParticipant" syncable="YES"/>
+    </entity>
+    <entity name="MatchTeam" representedClassName="MatchTeam" syncable="YES">
+        <attribute name="mtBaronKills" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="mtDragonKills" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="mtFirstBaron" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="mtFirstBlood" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="mtFirstDragon" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="mtFirstTower" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="mtInhibNumber" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="mtTeamID" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="mtTowerNumber" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="mtWinner" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <relationship name="mtMatch" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Match" inverseName="mMatchTeams" inverseEntity="Match" syncable="YES"/>
     </entity>
     <entity name="Summoner" representedClassName="Summoner" syncable="YES">
         <attribute name="sAddedOn" optional="YES" attributeType="Date" syncable="YES"/>
@@ -35,16 +78,20 @@
         <attribute name="sRevisionDate" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="sSummonerLevel" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <relationship name="sGroup" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SummonerGroup" inverseName="gSummoners" inverseEntity="SummonerGroup" syncable="YES"/>
-        <relationship name="sMatches" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Match" inverseName="mMatchParticipants" inverseEntity="Match" syncable="YES"/>
+        <relationship name="sMatches" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Match" inverseName="mMatchSummoners" inverseEntity="Match" syncable="YES"/>
     </entity>
     <entity name="SummonerGroup" representedClassName="SummonerGroup" syncable="YES">
         <attribute name="gGroupTitle" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="gSummoners" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Summoner" inverseName="sGroup" inverseEntity="Summoner" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Champion" positionX="-218" positionY="135" width="128" height="103"/>
-        <element name="Match" positionX="-218" positionY="-160" width="128" height="268"/>
+        <element name="Champion" positionX="-441" positionY="158" width="128" height="103"/>
+        <element name="Match" positionX="-119" positionY="-298" width="128" height="298"/>
         <element name="Summoner" positionX="-549" positionY="-115" width="128" height="223"/>
-        <element name="SummonerGroup" positionX="-380" positionY="-117" width="128" height="73"/>
+        <element name="SummonerGroup" positionX="-335" positionY="-153" width="128" height="73"/>
+        <element name="MatchTeam" positionX="-225" positionY="63" width="128" height="208"/>
+        <element name="MatchParticipantStats" positionX="322" positionY="153" width="128" height="163"/>
+        <element name="MatchParticipant" positionX="162" positionY="-162" width="128" height="178"/>
+        <element name="MatchParticipantIdentity" positionX="9" positionY="171" width="128" height="118"/>
     </elements>
 </model>

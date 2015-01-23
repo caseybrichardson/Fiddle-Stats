@@ -2,14 +2,14 @@
 //  Match.h
 //  Fiddle Stats
 //
-//  Created by Casey Richardson on 12/8/14.
-//  Copyright (c) 2014 Casey Richardson. All rights reserved.
+//  Created by Casey Richardson on 1/22/15.
+//  Copyright (c) 2015 Casey Richardson. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class Summoner;
+@class MatchParticipant, MatchTeam, Summoner;
 
 @interface Match : NSManagedObject
 
@@ -27,14 +27,26 @@
 @property (nonatomic, retain) NSString * mQueueType;
 @property (nonatomic, retain) NSString * mRegion;
 @property (nonatomic, retain) NSString * mSeason;
-@property (nonatomic, retain) NSSet * mMatchParticipants;
+@property (nonatomic, retain) NSSet *mMatchParticipants;
+@property (nonatomic, retain) NSSet *mMatchTeams;
+@property (nonatomic, retain) NSSet *mMatchSummoners;
 @end
 
 @interface Match (CoreDataGeneratedAccessors)
 
-- (void)addMMatchParticipantsObject:(Summoner *)value;
-- (void)removeMMatchParticipantsObject:(Summoner *)value;
+- (void)addMMatchParticipantsObject:(MatchParticipant *)value;
+- (void)removeMMatchParticipantsObject:(MatchParticipant *)value;
 - (void)addMMatchParticipants:(NSSet *)values;
 - (void)removeMMatchParticipants:(NSSet *)values;
+
+- (void)addMMatchTeamsObject:(MatchTeam *)value;
+- (void)removeMMatchTeamsObject:(MatchTeam *)value;
+- (void)addMMatchTeams:(NSSet *)values;
+- (void)removeMMatchTeams:(NSSet *)values;
+
+- (void)addMMatchSummonersObject:(Summoner *)value;
+- (void)removeMMatchSummonersObject:(Summoner *)value;
+- (void)addMMatchSummoners:(NSSet *)values;
+- (void)removeMMatchSummoners:(NSSet *)values;
 
 @end

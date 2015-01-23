@@ -16,6 +16,15 @@
 		3B0C71591A2420080026787C /* CRStarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B0C71581A2420080026787C /* CRStarView.m */; };
 		3B12AC5A1A2E7B8600016610 /* UINavigationController+Helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B12AC591A2E7B8600016610 /* UINavigationController+Helpers.m */; };
 		3B2ABF9A1A36E4810095C015 /* Summoner.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B2ABF991A36E4810095C015 /* Summoner.m */; };
+		3B2F489C1A71A34000A80AA0 /* SummonerGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B2F489B1A71A34000A80AA0 /* SummonerGroup.m */; };
+		3B2F48B41A71AE4300A80AA0 /* MatchParticipantStats.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B2F48B31A71AE4300A80AA0 /* MatchParticipantStats.m */; };
+		3B2F48BA1A71AE4400A80AA0 /* Match.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B2F48B91A71AE4400A80AA0 /* Match.m */; };
+		3B2F48BD1A71AE4400A80AA0 /* MatchTeam.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B2F48BC1A71AE4400A80AA0 /* MatchTeam.m */; };
+		3B2F48C31A71B2B700A80AA0 /* MatchParticipant+Helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B2F48C21A71B2B700A80AA0 /* MatchParticipant+Helpers.m */; };
+		3B2F48C61A71B67600A80AA0 /* MatchParticipantIdentity+Helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B2F48C51A71B67600A80AA0 /* MatchParticipantIdentity+Helpers.m */; };
+		3B2F48C91A71B68F00A80AA0 /* MatchParticipantStats+Helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B2F48C81A71B68F00A80AA0 /* MatchParticipantStats+Helpers.m */; };
+		3B2F48CC1A71B86900A80AA0 /* MatchParticipantIdentity.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B2F48CB1A71B86900A80AA0 /* MatchParticipantIdentity.m */; };
+		3B2F48CF1A71B9FF00A80AA0 /* MatchParticipant.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B2F48CE1A71B9FF00A80AA0 /* MatchParticipant.m */; };
 		3B3948C41A5546150091B5AD /* FSSettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B3948C31A5546150091B5AD /* FSSettingsTableViewController.m */; };
 		3B4CB0A31A2002F2003B1C67 /* FSCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B4CB0A21A2002F2003B1C67 /* FSCollectionViewCell.m */; };
 		3B5F8B811A2F12EB00CE3AC5 /* FSNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B5F8B801A2F12EB00CE3AC5 /* FSNavigationController.m */; };
@@ -29,16 +38,18 @@
 		3B8AD5491A1FDB6A00DFFA3A /* Fiddle_StatsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B8AD5481A1FDB6A00DFFA3A /* Fiddle_StatsTests.m */; };
 		3B9A17A31A6BC11900473700 /* Main (With Drawer).storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B9A17A11A6BC11900473700 /* Main (With Drawer).storyboard */; };
 		3B9A17A61A6BCB6E00473700 /* FSDrawerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B9A17A51A6BCB6E00473700 /* FSDrawerTableViewController.m */; };
+		3B9A17BA1A6D0F1800473700 /* FSGameOverviewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B9A17B91A6D0F1800473700 /* FSGameOverviewCell.xib */; };
+		3B9A17BD1A6D155300473700 /* FSGameOverviewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B9A17BC1A6D155300473700 /* FSGameOverviewCell.m */; };
+		3B9A17C01A6D15C300473700 /* FSMatchCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B9A17BF1A6D15C300473700 /* FSMatchCollectionViewController.m */; };
+		3B9A17C51A6D4FF200473700 /* FSGamePlayerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B9A17C41A6D4FF200473700 /* FSGamePlayerCell.xib */; };
+		3B9A17C81A6D55E700473700 /* FSGamePlayerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B9A17C71A6D55E700473700 /* FSGamePlayerCell.m */; };
 		3B9D1A601A32C9E00052787C /* FSCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B9D1A5F1A32C9E00052787C /* FSCollectionViewCell.xib */; };
 		3B9D1A621A3303E50052787C /* FSMatchTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B9D1A611A3303E50052787C /* FSMatchTableViewCell.xib */; };
 		3B9D1A651A344BC70052787C /* FSMatchTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B9D1A641A344BC70052787C /* FSMatchTableViewCell.m */; };
 		3BA11FCA1A2F227D00AFC8EB /* Champion.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BA11FC91A2F227D00AFC8EB /* Champion.m */; };
 		3BA11FCD1A2F22A200AFC8EB /* Champion+APIMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BA11FCC1A2F22A200AFC8EB /* Champion+APIMethods.m */; };
 		3BAF9C1E1A55135300460C5F /* FSParticipantStatsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BAF9C1D1A55135300460C5F /* FSParticipantStatsView.xib */; };
-		3BAF9C201A55182200460C5F /* FSGameStatsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BAF9C1F1A55182200460C5F /* FSGameStatsView.xib */; };
-		3BEEE5811A368D4700CEFE9F /* Match.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BEEE5801A368D4700CEFE9F /* Match.m */; };
 		3BEEE5871A3691DD00CEFE9F /* SummonerGroup+Helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BEEE5861A3691DD00CEFE9F /* SummonerGroup+Helpers.m */; };
-		3BEEE58A1A36944500CEFE9F /* SummonerGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BEEE5891A36944500CEFE9F /* SummonerGroup.m */; };
 		3BF2263B1A1FE3CB004EB614 /* UIColor+AppColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BF2263A1A1FE3CB004EB614 /* UIColor+AppColors.m */; };
 		3BF226411A1FE3E0004EB614 /* Summoner+APIMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BF2263F1A1FE3E0004EB614 /* Summoner+APIMethods.m */; };
 		3BF226471A1FE47A004EB614 /* CRFiddleAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BF226461A1FE47A004EB614 /* CRFiddleAPIClient.m */; };
@@ -78,6 +89,24 @@
 		3B12AC591A2E7B8600016610 /* UINavigationController+Helpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+Helpers.m"; sourceTree = "<group>"; };
 		3B2ABF981A36E4810095C015 /* Summoner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Summoner.h; sourceTree = "<group>"; };
 		3B2ABF991A36E4810095C015 /* Summoner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Summoner.m; sourceTree = "<group>"; };
+		3B2F489A1A71A34000A80AA0 /* SummonerGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SummonerGroup.h; sourceTree = "<group>"; };
+		3B2F489B1A71A34000A80AA0 /* SummonerGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SummonerGroup.m; sourceTree = "<group>"; };
+		3B2F48B21A71AE4300A80AA0 /* MatchParticipantStats.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchParticipantStats.h; sourceTree = "<group>"; };
+		3B2F48B31A71AE4300A80AA0 /* MatchParticipantStats.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchParticipantStats.m; sourceTree = "<group>"; };
+		3B2F48B81A71AE4400A80AA0 /* Match.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Match.h; sourceTree = "<group>"; };
+		3B2F48B91A71AE4400A80AA0 /* Match.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Match.m; sourceTree = "<group>"; };
+		3B2F48BB1A71AE4400A80AA0 /* MatchTeam.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchTeam.h; sourceTree = "<group>"; };
+		3B2F48BC1A71AE4400A80AA0 /* MatchTeam.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchTeam.m; sourceTree = "<group>"; };
+		3B2F48C11A71B2B700A80AA0 /* MatchParticipant+Helpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MatchParticipant+Helpers.h"; sourceTree = "<group>"; };
+		3B2F48C21A71B2B700A80AA0 /* MatchParticipant+Helpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MatchParticipant+Helpers.m"; sourceTree = "<group>"; };
+		3B2F48C41A71B67600A80AA0 /* MatchParticipantIdentity+Helpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MatchParticipantIdentity+Helpers.h"; sourceTree = "<group>"; };
+		3B2F48C51A71B67600A80AA0 /* MatchParticipantIdentity+Helpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MatchParticipantIdentity+Helpers.m"; sourceTree = "<group>"; };
+		3B2F48C71A71B68F00A80AA0 /* MatchParticipantStats+Helpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MatchParticipantStats+Helpers.h"; sourceTree = "<group>"; };
+		3B2F48C81A71B68F00A80AA0 /* MatchParticipantStats+Helpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MatchParticipantStats+Helpers.m"; sourceTree = "<group>"; };
+		3B2F48CA1A71B86900A80AA0 /* MatchParticipantIdentity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchParticipantIdentity.h; sourceTree = "<group>"; };
+		3B2F48CB1A71B86900A80AA0 /* MatchParticipantIdentity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchParticipantIdentity.m; sourceTree = "<group>"; };
+		3B2F48CD1A71B9FF00A80AA0 /* MatchParticipant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchParticipant.h; sourceTree = "<group>"; };
+		3B2F48CE1A71B9FF00A80AA0 /* MatchParticipant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchParticipant.m; sourceTree = "<group>"; };
 		3B3948C21A5546150091B5AD /* FSSettingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSSettingsTableViewController.h; sourceTree = "<group>"; };
 		3B3948C31A5546150091B5AD /* FSSettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSSettingsTableViewController.m; sourceTree = "<group>"; };
 		3B4CB0A11A2002F2003B1C67 /* FSCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSCollectionViewCell.h; sourceTree = "<group>"; };
@@ -101,6 +130,14 @@
 		3B9A17A21A6BC11900473700 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "Fiddle Stats/Base.lproj/Main (With Drawer).storyboard"; sourceTree = "<group>"; };
 		3B9A17A41A6BCB6E00473700 /* FSDrawerTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSDrawerTableViewController.h; sourceTree = "<group>"; };
 		3B9A17A51A6BCB6E00473700 /* FSDrawerTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSDrawerTableViewController.m; sourceTree = "<group>"; };
+		3B9A17B91A6D0F1800473700 /* FSGameOverviewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FSGameOverviewCell.xib; sourceTree = "<group>"; };
+		3B9A17BB1A6D155300473700 /* FSGameOverviewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSGameOverviewCell.h; sourceTree = "<group>"; };
+		3B9A17BC1A6D155300473700 /* FSGameOverviewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSGameOverviewCell.m; sourceTree = "<group>"; };
+		3B9A17BE1A6D15C300473700 /* FSMatchCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSMatchCollectionViewController.h; sourceTree = "<group>"; };
+		3B9A17BF1A6D15C300473700 /* FSMatchCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSMatchCollectionViewController.m; sourceTree = "<group>"; };
+		3B9A17C41A6D4FF200473700 /* FSGamePlayerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FSGamePlayerCell.xib; sourceTree = "<group>"; };
+		3B9A17C61A6D55E700473700 /* FSGamePlayerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSGamePlayerCell.h; sourceTree = "<group>"; };
+		3B9A17C71A6D55E700473700 /* FSGamePlayerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSGamePlayerCell.m; sourceTree = "<group>"; };
 		3B9D1A5F1A32C9E00052787C /* FSCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FSCollectionViewCell.xib; sourceTree = "<group>"; };
 		3B9D1A611A3303E50052787C /* FSMatchTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FSMatchTableViewCell.xib; sourceTree = "<group>"; };
 		3B9D1A631A344BC70052787C /* FSMatchTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSMatchTableViewCell.h; sourceTree = "<group>"; };
@@ -110,13 +147,8 @@
 		3BA11FCB1A2F22A200AFC8EB /* Champion+APIMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Champion+APIMethods.h"; sourceTree = "<group>"; };
 		3BA11FCC1A2F22A200AFC8EB /* Champion+APIMethods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Champion+APIMethods.m"; sourceTree = "<group>"; };
 		3BAF9C1D1A55135300460C5F /* FSParticipantStatsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FSParticipantStatsView.xib; sourceTree = "<group>"; };
-		3BAF9C1F1A55182200460C5F /* FSGameStatsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FSGameStatsView.xib; sourceTree = "<group>"; };
-		3BEEE57F1A368D4700CEFE9F /* Match.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Match.h; sourceTree = "<group>"; };
-		3BEEE5801A368D4700CEFE9F /* Match.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Match.m; sourceTree = "<group>"; };
 		3BEEE5851A3691DD00CEFE9F /* SummonerGroup+Helpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SummonerGroup+Helpers.h"; sourceTree = "<group>"; };
 		3BEEE5861A3691DD00CEFE9F /* SummonerGroup+Helpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SummonerGroup+Helpers.m"; sourceTree = "<group>"; };
-		3BEEE5881A36944500CEFE9F /* SummonerGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SummonerGroup.h; path = ../SummonerGroup.h; sourceTree = "<group>"; };
-		3BEEE5891A36944500CEFE9F /* SummonerGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SummonerGroup.m; path = ../SummonerGroup.m; sourceTree = "<group>"; };
 		3BF226391A1FE3CB004EB614 /* UIColor+AppColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+AppColors.h"; sourceTree = "<group>"; };
 		3BF2263A1A1FE3CB004EB614 /* UIColor+AppColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+AppColors.m"; sourceTree = "<group>"; };
 		3BF2263E1A1FE3E0004EB614 /* Summoner+APIMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Summoner+APIMethods.h"; sourceTree = "<group>"; };
@@ -179,6 +211,10 @@
 				3B9D1A641A344BC70052787C /* FSMatchTableViewCell.m */,
 				3BF6B9771A479478007C10BF /* CRCheckMark.h */,
 				3BF6B9781A479478007C10BF /* CRCheckMark.m */,
+				3B9A17BB1A6D155300473700 /* FSGameOverviewCell.h */,
+				3B9A17BC1A6D155300473700 /* FSGameOverviewCell.m */,
+				3B9A17C61A6D55E700473700 /* FSGamePlayerCell.h */,
+				3B9A17C71A6D55E700473700 /* FSGamePlayerCell.m */,
 			);
 			name = "Custom UIKit";
 			sourceTree = "<group>";
@@ -202,6 +238,12 @@
 				3BA11FCC1A2F22A200AFC8EB /* Champion+APIMethods.m */,
 				3BEEE5851A3691DD00CEFE9F /* SummonerGroup+Helpers.h */,
 				3BEEE5861A3691DD00CEFE9F /* SummonerGroup+Helpers.m */,
+				3B2F48C11A71B2B700A80AA0 /* MatchParticipant+Helpers.h */,
+				3B2F48C21A71B2B700A80AA0 /* MatchParticipant+Helpers.m */,
+				3B2F48C41A71B67600A80AA0 /* MatchParticipantIdentity+Helpers.h */,
+				3B2F48C51A71B67600A80AA0 /* MatchParticipantIdentity+Helpers.m */,
+				3B2F48C71A71B68F00A80AA0 /* MatchParticipantStats+Helpers.h */,
+				3B2F48C81A71B68F00A80AA0 /* MatchParticipantStats+Helpers.m */,
 			);
 			name = "Data Model Categories";
 			sourceTree = "<group>";
@@ -250,6 +292,8 @@
 				3B3948C31A5546150091B5AD /* FSSettingsTableViewController.m */,
 				3BF472E61A25C78F000A93DA /* FSPlayerTableViewController.h */,
 				3BF472E71A25C78F000A93DA /* FSPlayerTableViewController.m */,
+				3B9A17BE1A6D15C300473700 /* FSMatchCollectionViewController.h */,
+				3B9A17BF1A6D15C300473700 /* FSMatchCollectionViewController.m */,
 				3BF6B97A1A4C1ED2007C10BF /* FSSummonerGroupViewController.h */,
 				3BF6B97B1A4C1ED2007C10BF /* FSSummonerGroupViewController.m */,
 				3B8AD5291A1FDB6A00DFFA3A /* Supporting Files */,
@@ -293,8 +337,9 @@
 				3B9D1A611A3303E50052787C /* FSMatchTableViewCell.xib */,
 				3B8AD5361A1FDB6A00DFFA3A /* Main.storyboard */,
 				3B8AD53B1A1FDB6A00DFFA3A /* LaunchScreen.xib */,
-				3BAF9C1F1A55182200460C5F /* FSGameStatsView.xib */,
 				3BAF9C1D1A55135300460C5F /* FSParticipantStatsView.xib */,
+				3B9A17B91A6D0F1800473700 /* FSGameOverviewCell.xib */,
+				3B9A17C41A6D4FF200473700 /* FSGamePlayerCell.xib */,
 			);
 			name = "Design Files";
 			sourceTree = "<group>";
@@ -302,12 +347,20 @@
 		3BF226421A1FE3F7004EB614 /* Data Models */ = {
 			isa = PBXGroup;
 			children = (
+				3B2F48CD1A71B9FF00A80AA0 /* MatchParticipant.h */,
+				3B2F48CE1A71B9FF00A80AA0 /* MatchParticipant.m */,
+				3B2F48CA1A71B86900A80AA0 /* MatchParticipantIdentity.h */,
+				3B2F48CB1A71B86900A80AA0 /* MatchParticipantIdentity.m */,
+				3B2F48BB1A71AE4400A80AA0 /* MatchTeam.h */,
+				3B2F48BC1A71AE4400A80AA0 /* MatchTeam.m */,
+				3B2F48B81A71AE4400A80AA0 /* Match.h */,
+				3B2F48B91A71AE4400A80AA0 /* Match.m */,
+				3B2F48B21A71AE4300A80AA0 /* MatchParticipantStats.h */,
+				3B2F48B31A71AE4300A80AA0 /* MatchParticipantStats.m */,
+				3B2F489A1A71A34000A80AA0 /* SummonerGroup.h */,
+				3B2F489B1A71A34000A80AA0 /* SummonerGroup.m */,
 				3B2ABF981A36E4810095C015 /* Summoner.h */,
 				3B2ABF991A36E4810095C015 /* Summoner.m */,
-				3BEEE5881A36944500CEFE9F /* SummonerGroup.h */,
-				3BEEE5891A36944500CEFE9F /* SummonerGroup.m */,
-				3BEEE57F1A368D4700CEFE9F /* Match.h */,
-				3BEEE5801A368D4700CEFE9F /* Match.m */,
 				3BA11FC81A2F227D00AFC8EB /* Champion.h */,
 				3BA11FC91A2F227D00AFC8EB /* Champion.m */,
 			);
@@ -431,12 +484,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				3B9D1A621A3303E50052787C /* FSMatchTableViewCell.xib in Resources */,
+				3B9A17BA1A6D0F1800473700 /* FSGameOverviewCell.xib in Resources */,
 				3BAF9C1E1A55135300460C5F /* FSParticipantStatsView.xib in Resources */,
-				3BAF9C201A55182200460C5F /* FSGameStatsView.xib in Resources */,
 				3B9A17A31A6BC11900473700 /* Main (With Drawer).storyboard in Resources */,
 				3B8AD5381A1FDB6A00DFFA3A /* Main.storyboard in Resources */,
 				3B9D1A601A32C9E00052787C /* FSCollectionViewCell.xib in Resources */,
 				3B8AD53D1A1FDB6A00DFFA3A /* LaunchScreen.xib in Resources */,
+				3B9A17C51A6D4FF200473700 /* FSGamePlayerCell.xib in Resources */,
 				3B8AD53A1A1FDB6A00DFFA3A /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -490,24 +544,34 @@
 			files = (
 				3BF2263B1A1FE3CB004EB614 /* UIColor+AppColors.m in Sources */,
 				3B9A17A61A6BCB6E00473700 /* FSDrawerTableViewController.m in Sources */,
-				3BEEE5811A368D4700CEFE9F /* Match.m in Sources */,
 				3B0681741A25E8D3009B2F6E /* FSDataPair.m in Sources */,
+				3B2F48CC1A71B86900A80AA0 /* MatchParticipantIdentity.m in Sources */,
+				3B2F489C1A71A34000A80AA0 /* SummonerGroup.m in Sources */,
 				3BEEE5871A3691DD00CEFE9F /* SummonerGroup+Helpers.m in Sources */,
 				3B052B681A21D3E300665F23 /* UIView+Effects.m in Sources */,
-				3BEEE58A1A36944500CEFE9F /* SummonerGroup.m in Sources */,
 				3B4CB0A31A2002F2003B1C67 /* FSCollectionViewCell.m in Sources */,
+				3B2F48C31A71B2B700A80AA0 /* MatchParticipant+Helpers.m in Sources */,
 				3B8AD52F1A1FDB6A00DFFA3A /* AppDelegate.m in Sources */,
 				3B8AD52C1A1FDB6A00DFFA3A /* main.m in Sources */,
 				3BF226471A1FE47A004EB614 /* CRFiddleAPIClient.m in Sources */,
+				3B9A17BD1A6D155300473700 /* FSGameOverviewCell.m in Sources */,
 				3BA11FCA1A2F227D00AFC8EB /* Champion.m in Sources */,
+				3B2F48BA1A71AE4400A80AA0 /* Match.m in Sources */,
 				3BF6B9791A479478007C10BF /* CRCheckMark.m in Sources */,
+				3B2F48C91A71B68F00A80AA0 /* MatchParticipantStats+Helpers.m in Sources */,
+				3B9A17C81A6D55E700473700 /* FSGamePlayerCell.m in Sources */,
 				3BA11FCD1A2F22A200AFC8EB /* Champion+APIMethods.m in Sources */,
+				3B2F48BD1A71AE4400A80AA0 /* MatchTeam.m in Sources */,
 				3B9D1A651A344BC70052787C /* FSMatchTableViewCell.m in Sources */,
+				3B2F48CF1A71B9FF00A80AA0 /* MatchParticipant.m in Sources */,
 				3B052B651A21C48400665F23 /* CRBlockButton.m in Sources */,
 				3B5F8B811A2F12EB00CE3AC5 /* FSNavigationController.m in Sources */,
 				3B0C71591A2420080026787C /* CRStarView.m in Sources */,
+				3B2F48C61A71B67600A80AA0 /* MatchParticipantIdentity+Helpers.m in Sources */,
 				3B12AC5A1A2E7B8600016610 /* UINavigationController+Helpers.m in Sources */,
 				3BF6B97C1A4C1ED2007C10BF /* FSSummonerGroupViewController.m in Sources */,
+				3B2F48B41A71AE4300A80AA0 /* MatchParticipantStats.m in Sources */,
+				3B9A17C01A6D15C300473700 /* FSMatchCollectionViewController.m in Sources */,
 				3B0681711A25D657009B2F6E /* FSDataDelegate.m in Sources */,
 				3B8AD5351A1FDB6A00DFFA3A /* FSMainViewController.m in Sources */,
 				3B2ABF9A1A36E4810095C015 /* Summoner.m in Sources */,
@@ -648,9 +712,34 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = "Fiddle Stats/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-l\"Pods-AFNetworking\"",
+					"-l\"Pods-JVFloatingDrawer\"",
+					"-l\"Pods-STKWebKitViewController\"",
+					"-l\"Pods-UIImageView-Letters\"",
+					"-framework",
+					"\"CoreGraphics\"",
+					"-framework",
+					"\"MobileCoreServices\"",
+					"-framework",
+					"\"Security\"",
+					"-framework",
+					"\"SystemConfiguration\"",
+					"-framework",
+					"\"UIKit\"",
+					"-weak_framework",
+					"\"WebKit\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALID_ARCHS = "arm64 armv7 armv7s i386";
 			};
 			name = Debug;
 		};
@@ -660,9 +749,33 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = "Fiddle Stats/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-l\"Pods-AFNetworking\"",
+					"-l\"Pods-JVFloatingDrawer\"",
+					"-l\"Pods-STKWebKitViewController\"",
+					"-l\"Pods-UIImageView-Letters\"",
+					"-framework",
+					"\"CoreGraphics\"",
+					"-framework",
+					"\"MobileCoreServices\"",
+					"-framework",
+					"\"Security\"",
+					"-framework",
+					"\"SystemConfiguration\"",
+					"-framework",
+					"\"UIKit\"",
+					"-weak_framework",
+					"\"WebKit\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALID_ARCHS = "arm64 armv7 armv7s i386";
 			};
 			name = Release;
 		};

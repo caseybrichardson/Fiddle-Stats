@@ -34,13 +34,25 @@
             vc = [[AppDelegate globalDelegate] summonersViewController];
             break;
         case 1:
+            vc = nil;
+            break;
+        case 2:
+            vc = nil;
+            break;
+        case 3:
+            vc = nil;
+            break;
+        case 4:
             vc = [[AppDelegate globalDelegate] settingsViewController];
             break;
         default:
             break;
     }
     
-    [[[AppDelegate globalDelegate] drawerViewController] setCenterViewController:vc];
+    if(vc) {
+        [[[AppDelegate globalDelegate] drawerViewController] setCenterViewController:vc];
+    }
+    
     [[AppDelegate globalDelegate] toggleLeftDrawer:self animated:YES];
 }
 

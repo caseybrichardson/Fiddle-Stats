@@ -1,0 +1,17 @@
+//
+//  MatchParticipant+Helpers.h
+//  Fiddle Stats
+//
+//  Created by Casey Richardson on 1/22/15.
+//  Copyright (c) 2015 Casey Richardson. All rights reserved.
+//
+
+#import "MatchParticipant.h"
+#import "AppDelegate.h"
+
+@interface MatchParticipant (Helpers)
+
+- (MatchParticipant *)initWithAttributes:(NSDictionary *)attributes match:(Match *)match;
++ (MatchParticipant *)storedMatchParticipantForMatch:(Match *)match participantID:(NSInteger)participantID;
+
+@end
