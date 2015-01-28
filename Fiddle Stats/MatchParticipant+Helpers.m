@@ -29,8 +29,6 @@
     participant.mpMatch = match;
     participant.mpParticipantStats = [[MatchParticipantStats alloc] initWithAttributes:attributes[@"stats"] participant:participant];
     
-    NSLog(@"%@", participant.mpParticipantStats);
-    
     return participant;
 }
 
@@ -39,7 +37,7 @@
     
     NSError *error;
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"MatchParticipant"];
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"mpMatch == %@ AND mpParticipantID == %@", match, participantID];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"mpMatch == %@ AND mpParticipantID == %ld", match, (long)participantID];
     
     [request setPredicate:predicate];
     

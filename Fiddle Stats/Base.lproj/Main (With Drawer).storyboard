@@ -133,7 +133,6 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="EQb-st-OAJ">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" red="0.10196078431372549" green="0.16862745098039217" blue="0.18823529411764706" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <connections>
                         <segue destination="eQ1-sV-byf" kind="relationship" relationship="rootViewController" id="CVw-WL-Qx2"/>
@@ -505,7 +504,6 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="qx5-7y-52E">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" red="0.1019607843" green="0.16862745100000001" blue="0.18823529410000001" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <connections>
                         <segue destination="iEd-rC-l21" kind="relationship" relationship="rootViewController" id="Jk6-6Q-NXE"/>

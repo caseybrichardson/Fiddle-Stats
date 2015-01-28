@@ -10,6 +10,8 @@
 
 @interface FSMatchCollectionViewController ()
 
+@property (strong, nonatomic) NSMutableDictionary *participants;
+
 @end
 
 @implementation FSMatchCollectionViewController
@@ -23,6 +25,12 @@ static NSString * const reuseIdentifier = @"Cell";
     UINib *playerCell = [UINib nibWithNibName:@"FSGamePlayerCell" bundle:[NSBundle mainBundle]];
     [self.collectionView registerNib:overviewCell forCellWithReuseIdentifier:@"FSGameOverviewCell"];
     [self.collectionView registerNib:playerCell forCellWithReuseIdentifier:@"FSGamePlayerCell"];
+    
+    self.participants = [NSMutableDictionary dictionary];
+    for (MatchParticipant *p in [self.dataSource match].mMatchParticipants) {
+        self.participants[p.mpParticipantID] = p;
+    }
+
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(screenDidChangeOrientation:) name:UIDeviceOrientationDidChangeNotification object:nil];
 }
@@ -58,9 +66,69 @@ static NSString * const reuseIdentifier = @"Cell";
     
     if(indexPath.row == 0) {
         cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"FSGameOverviewCell" forIndexPath:indexPath];
-        ((FSGameOverviewCell *) cell).delegate = self;
+        FSGameOverviewCell *overviewCell = ((FSGameOverviewCell *) cell);
+        overviewCell.delegate = self;
+        
+        
+        for (UIButton *summonerButton in overviewCell.summonerButtons) {
+            MatchParticipant *p = [self.participants objectForKey:@(summonerButton.tag)];
+            if(p) {
+                [summonerButton setTitle:p.mpParticipantIdentity.mpiSummonerName forState:UIControlStateNormal];
+            }
+        }
+        
+        for(UIImageView *summonerImage in overviewCell.summonerImages) {
+            MatchParticipant *p = [self.participants objectForKey:@(summonerImage.tag - 10)];
+            [Champion championInformationFor:[p.mpChampionID integerValue] region:@"na" withBlock:^(Champion *champ, NSError *error) {
+                NSString *url = [NSString stringWithFormat:@"http://ddragon.leagueoflegends.com/cdn/4.20.1/img/champion/%@.png", champ.cKey];
+                [summonerImage setImageWithURL:[NSURL URLWithString:url]];
+            }];
+        }
     } else {
         cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"FSGamePlayerCell" forIndexPath:indexPath];
+        FSGamePlayerCell *playerCell = ((FSGamePlayerCell *) cell);
+        MatchParticipant *p = [self.participants objectForKey:@(indexPath.row)];
+        
+        playerCell.playerName.text = p.mpParticipantIdentity.mpiSummonerName;
+        [Champion championInformationFor:[p.mpChampionID integerValue] region:@"na" withBlock:^(Champion *champ, NSError *error) {
+            NSString *url = [NSString stringWithFormat:@"http://ddragon.leagueoflegends.com/cdn/4.20.1/img/champion/%@.png", champ.cKey];
+            [playerCell.champImage setImageWithURL:[NSURL URLWithString:url]];
+        }];
+        
+        for (UIImageView *itemImage in playerCell.itemImages) {
+            NSInteger item = [[p.mpParticipantStats valueForKeyPath:[NSString stringWithFormat:@"mpsItem%ld", (long)(itemImage.tag - 1)]] integerValue];
+            if(item != 0) {
+                [Item itemInformationFor:item region:@"na" withBlock:^(Item *i, NSError *e) {
+                    bool haveImage = [CRDataManager imageExistsWithFilename:i.iImage];
+                    if(haveImage) {
+                        NSLog(@"Have Image");
+                        [itemImage setImage:[CRDataManager imageForImageNamed:i.iImage]];
+                    } else {
+                        if(!e) {
+                            NSString *urlString = [NSString stringWithFormat:@"http://ddragon.leagueoflegends.com/cdn/%@/img/item/%@", [CRFiddleAPIClient currentAPIVersionForRegion:@"na"], i.iImage];
+                            NSURL *url = [NSURL URLWithString:urlString];
+                            [itemImage setImageWithURL:url];
+                            
+//                            [Item downloadItemImageForItem:i withBlock:^(UIImage *image, NSError *error) {
+//                                NSLog(@"ALL GOOD");
+//                                [itemImage setImage:image];
+//                            }];
+                        } else {
+                            [itemImage setImage:[UIImage imageNamed:@"Missing"]];
+                        }
+                    }
+                }];
+            }
+        }
+        
+        for (UILabel *itemLabel in playerCell.itemNames) {
+            NSInteger item = [[p.mpParticipantStats valueForKeyPath:[NSString stringWithFormat:@"mpsItem%ld", (long)(itemLabel.tag - 11)]] integerValue];
+            if(item != 0) {
+                [Item itemInformationFor:item region:@"na" withBlock:^(Item *i, NSError *e) {
+                    itemLabel.text = (!e ? i.iName : @"None");
+                }];
+            }
+        }
     }
     
     return cell;

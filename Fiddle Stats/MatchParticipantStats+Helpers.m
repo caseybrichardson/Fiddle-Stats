@@ -65,6 +65,10 @@
     return stats;
 }
 
+- (NSInteger)mpsTotalMinionsKilled {
+    return [self.mpsMinionsKilled integerValue] + [self.mpsNeutralMinionsKilled integerValue];
+}
+
 + (MatchParticipantStats *)storedMatchParticipantStatsForParticipant:(MatchParticipant *)participant {
     AppDelegate *del = (AppDelegate *)[UIApplication sharedApplication].delegate;
     

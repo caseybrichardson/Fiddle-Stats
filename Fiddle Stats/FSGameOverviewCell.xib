@@ -46,63 +46,63 @@
                                 <color key="textColor" red="0.75294117650000003" green="0.71372549019999998" blue="0.54117647059999996" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Missing" translatesAutoresizingMaskIntoConstraints="NO" id="PL3-V2-vkI">
+                            <imageView userInteractionEnabled="NO" tag="13" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Missing" translatesAutoresizingMaskIntoConstraints="NO" id="PL3-V2-vkI">
                                 <rect key="frame" x="8" y="222" width="50" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="PL3-V2-vkI" secondAttribute="height" multiplier="1:1" id="tfK-Ub-tco"/>
                                 </constraints>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Missing" translatesAutoresizingMaskIntoConstraints="NO" id="0SH-dG-zKX">
+                            <imageView userInteractionEnabled="NO" tag="12" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Missing" translatesAutoresizingMaskIntoConstraints="NO" id="0SH-dG-zKX">
                                 <rect key="frame" x="8" y="169" width="50" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="0SH-dG-zKX" secondAttribute="height" multiplier="1:1" id="pnG-sf-Qtg"/>
                                 </constraints>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Missing" translatesAutoresizingMaskIntoConstraints="NO" id="rE0-Ck-3bf">
+                            <imageView userInteractionEnabled="NO" tag="14" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Missing" translatesAutoresizingMaskIntoConstraints="NO" id="rE0-Ck-3bf">
                                 <rect key="frame" x="8" y="275" width="50" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="rE0-Ck-3bf" secondAttribute="height" multiplier="1:1" id="ZDw-f9-bWI"/>
                                 </constraints>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Missing" translatesAutoresizingMaskIntoConstraints="NO" id="q0R-7R-Rgd">
+                            <imageView userInteractionEnabled="NO" tag="15" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Missing" translatesAutoresizingMaskIntoConstraints="NO" id="q0R-7R-Rgd">
                                 <rect key="frame" x="8" y="328" width="50" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="q0R-7R-Rgd" secondAttribute="height" multiplier="1:1" id="hjc-d1-xyi"/>
                                 </constraints>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Missing" translatesAutoresizingMaskIntoConstraints="NO" id="fjP-GX-tTd">
+                            <imageView userInteractionEnabled="NO" tag="11" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Missing" translatesAutoresizingMaskIntoConstraints="NO" id="fjP-GX-tTd">
                                 <rect key="frame" x="8" y="116" width="50" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="fjP-GX-tTd" secondAttribute="height" multiplier="1:1" id="By1-KO-mWd"/>
                                     <constraint firstAttribute="height" relation="lessThanOrEqual" constant="50" id="dB2-ah-8vU"/>
                                 </constraints>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Missing" translatesAutoresizingMaskIntoConstraints="NO" id="sRD-nA-0sv">
+                            <imageView userInteractionEnabled="NO" tag="16" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Missing" translatesAutoresizingMaskIntoConstraints="NO" id="sRD-nA-0sv">
                                 <rect key="frame" x="282" y="116" width="50" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="lessThanOrEqual" constant="50" id="Zid-EM-4Xi"/>
                                     <constraint firstAttribute="width" secondItem="sRD-nA-0sv" secondAttribute="height" multiplier="1:1" id="dbd-Tc-3dU"/>
                                 </constraints>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Missing" translatesAutoresizingMaskIntoConstraints="NO" id="qqe-hX-i7f">
+                            <imageView userInteractionEnabled="NO" tag="17" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Missing" translatesAutoresizingMaskIntoConstraints="NO" id="qqe-hX-i7f">
                                 <rect key="frame" x="282" y="169" width="50" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="qqe-hX-i7f" secondAttribute="height" multiplier="1:1" id="J7G-Sd-CcI"/>
                                 </constraints>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Missing" translatesAutoresizingMaskIntoConstraints="NO" id="Dg2-Hl-FNp">
+                            <imageView userInteractionEnabled="NO" tag="18" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Missing" translatesAutoresizingMaskIntoConstraints="NO" id="Dg2-Hl-FNp">
                                 <rect key="frame" x="282" y="222" width="50" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="Dg2-Hl-FNp" secondAttribute="height" multiplier="1:1" id="Aam-Xc-SWw"/>
                                 </constraints>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Missing" translatesAutoresizingMaskIntoConstraints="NO" id="yaD-Al-Rv4">
+                            <imageView userInteractionEnabled="NO" tag="19" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Missing" translatesAutoresizingMaskIntoConstraints="NO" id="yaD-Al-Rv4">
                                 <rect key="frame" x="282" y="275" width="50" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="yaD-Al-Rv4" secondAttribute="height" multiplier="1:1" id="6Vg-4t-EVG"/>
                                 </constraints>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Missing" translatesAutoresizingMaskIntoConstraints="NO" id="LBq-Fh-vEV">
+                            <imageView userInteractionEnabled="NO" tag="20" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Missing" translatesAutoresizingMaskIntoConstraints="NO" id="LBq-Fh-vEV">
                                 <rect key="frame" x="282" y="328" width="50" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="LBq-Fh-vEV" secondAttribute="height" multiplier="1:1" id="Yap-1i-ErR"/>
@@ -125,6 +125,82 @@
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="summonerPressed:" destination="eI0-nj-P4U" eventType="touchUpInside" id="SYx-hi-PEs"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YHH-IV-Aql">
+                                <rect key="frame" x="66" y="179" width="102" height="30"/>
+                                <color key="backgroundColor" red="0.0" green="0.53725490200000003" blue="0.56470588239999997" alpha="0.29999999999999999" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="ZUU-31-plO"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <state key="normal" title="Summoner 2">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="summonerPressed:" destination="eI0-nj-P4U" eventType="touchUpInside" id="IXM-Gn-WJL"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Jr-WC-xwY">
+                                <rect key="frame" x="66" y="232" width="102" height="30"/>
+                                <color key="backgroundColor" red="0.0" green="0.53725490200000003" blue="0.56470588239999997" alpha="0.29999999999999999" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="CnU-ZS-C7k"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <state key="normal" title="Summoner 3">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="summonerPressed:" destination="eI0-nj-P4U" eventType="touchUpInside" id="7Ae-8a-Uj6"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pXc-UI-3U9">
+                                <rect key="frame" x="66" y="285" width="102" height="30"/>
+                                <color key="backgroundColor" red="0.0" green="0.53725490200000003" blue="0.56470588239999997" alpha="0.29999999999999999" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="zzN-BW-dwe"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <state key="normal" title="Summoner 4">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="summonerPressed:" destination="eI0-nj-P4U" eventType="touchUpInside" id="rW8-Qv-Eik"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="53A-0G-kJh">
+                                <rect key="frame" x="66" y="338" width="102" height="30"/>
+                                <color key="backgroundColor" red="0.0" green="0.53725490200000003" blue="0.56470588239999997" alpha="0.29999999999999999" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="eMc-ff-C6C"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <state key="normal" title="Summoner 5">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="summonerPressed:" destination="eI0-nj-P4U" eventType="touchUpInside" id="tGE-Dr-RQc"/>
                                 </connections>
                             </button>
                             <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kk2-z2-HxY">
@@ -220,82 +296,6 @@
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="summonerPressed:" destination="eI0-nj-P4U" eventType="touchUpInside" id="OkE-4g-Amc"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YHH-IV-Aql">
-                                <rect key="frame" x="66" y="179" width="102" height="30"/>
-                                <color key="backgroundColor" red="0.0" green="0.53725490200000003" blue="0.56470588239999997" alpha="0.29999999999999999" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="ZUU-31-plO"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <state key="normal" title="Summoner 2">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="5"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="summonerPressed:" destination="eI0-nj-P4U" eventType="touchUpInside" id="IXM-Gn-WJL"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Jr-WC-xwY">
-                                <rect key="frame" x="66" y="232" width="102" height="30"/>
-                                <color key="backgroundColor" red="0.0" green="0.53725490200000003" blue="0.56470588239999997" alpha="0.29999999999999999" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="CnU-ZS-C7k"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <state key="normal" title="Summoner 3">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="5"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="summonerPressed:" destination="eI0-nj-P4U" eventType="touchUpInside" id="7Ae-8a-Uj6"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pXc-UI-3U9">
-                                <rect key="frame" x="66" y="285" width="102" height="30"/>
-                                <color key="backgroundColor" red="0.0" green="0.53725490200000003" blue="0.56470588239999997" alpha="0.29999999999999999" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="zzN-BW-dwe"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <state key="normal" title="Summoner 4">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="5"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="summonerPressed:" destination="eI0-nj-P4U" eventType="touchUpInside" id="rW8-Qv-Eik"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="53A-0G-kJh">
-                                <rect key="frame" x="66" y="338" width="102" height="30"/>
-                                <color key="backgroundColor" red="0.0" green="0.53725490200000003" blue="0.56470588239999997" alpha="0.29999999999999999" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="eMc-ff-C6C"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <state key="normal" title="Summoner 5">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="5"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="summonerPressed:" destination="eI0-nj-P4U" eventType="touchUpInside" id="tGE-Dr-RQc"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="VS" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="htk-VY-clz">
@@ -402,6 +402,28 @@
                 <constraint firstItem="dTB-fN-nwy" firstAttribute="top" secondItem="eI0-nj-P4U" secondAttribute="top" constant="8" id="tdQ-7Q-MJ5"/>
             </constraints>
             <size key="customSize" width="131" height="426"/>
+            <connections>
+                <outletCollection property="summonerButtons" destination="tJa-6E-2Il" id="4Ta-tI-Chf"/>
+                <outletCollection property="summonerButtons" destination="YHH-IV-Aql" id="gSV-Ia-a2g"/>
+                <outletCollection property="summonerButtons" destination="0Jr-WC-xwY" id="YkC-ax-QPi"/>
+                <outletCollection property="summonerButtons" destination="pXc-UI-3U9" id="9Ku-ud-d43"/>
+                <outletCollection property="summonerButtons" destination="53A-0G-kJh" id="vOr-yt-oPf"/>
+                <outletCollection property="summonerButtons" destination="Kk2-z2-HxY" id="EsT-Jm-TB2"/>
+                <outletCollection property="summonerButtons" destination="Wea-Ig-Q6x" id="jgU-N7-k5i"/>
+                <outletCollection property="summonerButtons" destination="I9T-D5-erC" id="YH9-x7-PRf"/>
+                <outletCollection property="summonerButtons" destination="x89-Bz-AHM" id="ir1-ly-uGn"/>
+                <outletCollection property="summonerButtons" destination="9x3-I2-Dj2" id="tUx-E4-XWK"/>
+                <outletCollection property="summonerImages" destination="fjP-GX-tTd" id="aUa-hP-dVh"/>
+                <outletCollection property="summonerImages" destination="0SH-dG-zKX" id="9kV-Ge-Dpw"/>
+                <outletCollection property="summonerImages" destination="PL3-V2-vkI" id="HBg-Jj-lG8"/>
+                <outletCollection property="summonerImages" destination="rE0-Ck-3bf" id="Zvb-iR-Z2F"/>
+                <outletCollection property="summonerImages" destination="q0R-7R-Rgd" id="Bav-yn-LlA"/>
+                <outletCollection property="summonerImages" destination="sRD-nA-0sv" id="LD3-Fp-1xB"/>
+                <outletCollection property="summonerImages" destination="qqe-hX-i7f" id="lfQ-xv-53o"/>
+                <outletCollection property="summonerImages" destination="Dg2-Hl-FNp" id="Q6z-ue-8CT"/>
+                <outletCollection property="summonerImages" destination="yaD-Al-Rv4" id="WQB-We-vGG"/>
+                <outletCollection property="summonerImages" destination="LBq-Fh-vEV" id="RgK-mk-Exv"/>
+            </connections>
             <point key="canvasLocation" x="376" y="91"/>
         </collectionViewCell>
     </objects>

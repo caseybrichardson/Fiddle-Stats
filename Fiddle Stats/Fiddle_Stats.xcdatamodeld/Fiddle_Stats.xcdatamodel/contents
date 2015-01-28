@@ -6,6 +6,13 @@
         <attribute name="cName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="cTitle" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
+    <entity name="Item" representedClassName="Item" syncable="YES">
+        <attribute name="iDescription" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="iImage" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="iItemID" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="iName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="iPlaintext" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
     <entity name="Match" representedClassName="Match" syncable="YES">
         <attribute name="mMapID" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="mMatchCreation" optional="YES" attributeType="Integer 64" defaultValueString="0.0" syncable="YES"/>
@@ -120,11 +127,12 @@
     <elements>
         <element name="Champion" positionX="-441" positionY="158" width="128" height="103"/>
         <element name="Match" positionX="-119" positionY="-298" width="128" height="298"/>
-        <element name="Summoner" positionX="-549" positionY="-115" width="128" height="223"/>
-        <element name="SummonerGroup" positionX="-335" positionY="-153" width="128" height="73"/>
-        <element name="MatchTeam" positionX="-225" positionY="63" width="128" height="208"/>
-        <element name="MatchParticipantStats" positionX="313" positionY="-297" width="128" height="658"/>
         <element name="MatchParticipant" positionX="162" positionY="-162" width="128" height="178"/>
         <element name="MatchParticipantIdentity" positionX="9" positionY="171" width="128" height="118"/>
+        <element name="MatchParticipantStats" positionX="313" positionY="-297" width="128" height="658"/>
+        <element name="MatchTeam" positionX="-225" positionY="63" width="128" height="208"/>
+        <element name="Summoner" positionX="-549" positionY="-115" width="128" height="223"/>
+        <element name="SummonerGroup" positionX="-335" positionY="-153" width="128" height="73"/>
+        <element name="Item" positionX="-342" positionY="-144" width="128" height="120"/>
     </elements>
 </model>

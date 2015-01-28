@@ -7,9 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <AFNetworking/UIImageView+AFNetworking.h>
 
 #import "FSGameOverviewCell.h"
+#import "FSGamePlayerCell.h"
+#import "FSMatchDataSource.h"
+#import "CRDataManager.h"
+
+#import "Champion+APIMethods.h"
+#import "Item+APIMethods.h"
 
 @interface FSMatchCollectionViewController : UICollectionViewController <UICollectionViewDelegateFlowLayout, FSGameOverviewCellDelegate>
+
+@property (weak, nonatomic) id<FSMatchDataSource> dataSource;
 
 @end

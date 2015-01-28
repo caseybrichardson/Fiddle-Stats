@@ -7,6 +7,8 @@
 //
 
 #import "AppDelegate.h"
+#import <Fabric/Fabric.h>
+#import <Crashlytics/Crashlytics.h>
 
 @interface AppDelegate ()
 
@@ -19,6 +21,8 @@
 @synthesize drawersStoryboard = _drawersStoryboard;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    [Fabric with:@[CrashlyticsKit]];
+    
     [[UINavigationBar appearance] setBarTintColor:[UIColor fiddlesticksMainColor]];
     [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor fiddlesticksSecondaryColor], NSFontAttributeName : [UIFont fontWithName:@"HelveticaNeue-Light" size:20]}];
     [[UINavigationBar appearance] setTintColor:[UIColor fiddlesticksSecondaryColor]];
@@ -28,7 +32,7 @@
     [[UIBarButtonItem appearance] setTintColor:[UIColor fiddlesticksSecondaryColor]];
     
     [CRFiddleAPIClient currentAPIVersionForRegion:@"na" block:^(NSArray *versions, NSError *error) {
-        NSLog(@"%@", [versions firstObject]);
+        //NSLog(@"%@", [versions firstObject]);
     }];
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
@@ -202,6 +206,17 @@
 
 - (void)toggleRightDrawer:(id)sender animated:(BOOL)animated {
     [self.drawerViewController toggleDrawerWithSide:JVFloatingDrawerSideRight animated:animated completion:nil];
+}
+
+- (void)reloadAppearance {
+    NSArray * windows = [UIApplication sharedApplication].windows;
+    
+    for (UIWindow *window in windows) {
+        for (UIView *view in window.subviews) {
+            [view removeFromSuperview];
+            [window addSubview:view];
+        }
+    }
 }
 
 @end

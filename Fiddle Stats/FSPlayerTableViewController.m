@@ -13,6 +13,7 @@
 @property (strong, nonatomic) FSDataDelegate *dataDelegate;
 @property (strong, nonatomic) NSDateFormatter *dateFormatter;
 @property (strong, nonatomic) UINib *statsView;
+@property (strong, nonatomic) Match *selectedMatch;
 
 @end
 
@@ -29,11 +30,16 @@
         return;
     }
     
+    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
+    [refreshControl addTarget:self action:@selector(refreshMatches:) forControlEvents:UIControlEventValueChanged];
+    [self.tableView addSubview:refreshControl];
+    [self.tableView sendSubviewToBack:refreshControl];
+    
     [self.tableView registerNib:[UINib nibWithNibName:@"FSMatchTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"MatchCell"];
     
     self.dateFormatter = [NSDateFormatter new];
     self.dateFormatter.formatterBehavior = NSDateFormatterBehavior10_4;
-    self.dateFormatter.dateStyle = NSDateFormatterShortStyle;
+    self.dateFormatter.dateStyle = NSDateFormatterLongStyle;
     self.dateFormatter.timeStyle = NSDateFormatterNoStyle;
     
     self.statsView = [UINib nibWithNibName:@"FSParticipantStatsView" bundle:[NSBundle mainBundle]];
@@ -90,6 +96,15 @@
     [[self.gradientView.layer sublayers][0] setFrame:self.gradientView.bounds];
 }
 
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    [self.view endEditing:YES];
+    
+    if([segue.identifier isEqualToString:@"MatchDetails"]) {
+        FSMatchCollectionViewController *mcvc = [segue destinationViewController];
+        mcvc.dataSource = self;
+    }
+}
+
 #pragma mark - Helpers
 
 - (void)initializeDataDelegate {
@@ -124,14 +139,64 @@
         matchCell.matchGameType.text = m.mMatchType;
         matchCell.matchOutcomeView.backgroundColor = [stats.mpsWinner boolValue] ? [UIColor positiveColor] : [UIColor negativeColor];
         matchCell.kdaLabel.text = [NSString stringWithFormat:@"%@/%@/%@", stats.mpsKills, stats.mpsDeaths, stats.mpsAssists];
-        matchCell.minionsLabel.text = [stats.mpsMinionsKilled stringValue];
+        matchCell.minionsLabel.text = [NSString stringWithFormat:@"%ld", (long)stats.mpsTotalMinionsKilled];
     }];
     
     [self.dataDelegate setItemSelectionHandler:^(id view, NSFetchedResultsController *frc, NSIndexPath *indexPath) {
-        [ptvc performSegueWithIdentifier:@"MatchDetails" sender:ptvc];
+        [Match expandedMatchInformationFor:[frc objectAtIndexPath:indexPath] withBlock:^(Match *match, NSError *error) {
+            ptvc.selectedMatch = match;
+            [ptvc performSegueWithIdentifier:@"MatchDetails" sender:ptvc];
+        }];
     }];
     
     [self.dataDelegate performFetch];
+}
+
+- (void)refreshMatches:(id)sender {
+    Summoner *summoner = [self.summonerDataSource summoner];
+    SummonerGroup *group = [self.summonerDataSource summoner].sGroup;
+    [self.groupLabel setText:group.gGroupTitle];
+    
+    if(!summoner) {
+        [self.navigationController popViewControllerAnimated:NO];
+        return;
+    }
+    
+    NSString *urlString = @"http://ddragon.leagueoflegends.com/cdn/%@/img/profileicon/%d.png";
+    NSString *currentVersion = [CRFiddleAPIClient currentAPIVersionForRegion:summoner.sRegion];
+    NSURL *imageURL = [NSURL URLWithString:[NSString stringWithFormat:urlString, currentVersion, [summoner.sProfileIconID integerValue]]];
+    UIImageView *view = self.champView;
+    
+    [self.summonerIcon setImageWithURL:imageURL];
+    
+    [Match matchesInformationFor:summoner withBlock:^(NSArray *matches, NSError *e) {
+        [self.dataDelegate performFetch];
+        
+        if([matches count] > 0) {
+            MatchParticipant *participant = [matches[0] matchParticipantForSummoner:[self.summonerDataSource summoner]];
+            [Champion championInformationFor:[participant.mpChampionID integerValue] region:@"na" withBlock:^(Champion *champ, NSError *error) {
+                
+                NSString *champKey = champ.cKey;
+                NSString *url = [NSString stringWithFormat:@"http://ddragon.leagueoflegends.com/cdn/img/champion/splash/%@_0.jpg", champKey];
+                
+                [self.champView setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:url]] placeholderImage:nil success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+                    [view setImage:image];
+                } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+                    
+                }];
+            }];
+        }
+        
+        [self.tableView reloadData];
+    }];
+    
+    [((UIRefreshControl *)sender) endRefreshing];
+}
+
+#pragma mark - FSMatchDataSource
+
+- (Match *)match {
+    return self.selectedMatch;
 }
 
 #pragma mark - IBActions

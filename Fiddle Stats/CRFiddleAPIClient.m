@@ -59,6 +59,7 @@ static NSString * const RiotAPIIconURL = @"https://avatar.leagueoflegends.com/";
         [[CRFiddleAPIClient sharedInstance] GET:url parameters:requestParams success:^(NSURLSessionDataTask *task, id responseObject) {
             NSArray *versions = (NSArray *)responseObject;
             [[CRFiddleAPIClient sharedInstance].versionCache setObject:versions forKey:region];
+            [[NSBundle mainBundle].infoDictionary setValue:versions[0] forKey:@"FSAPIVersion"];
             
             if(block) {
                 block(versions, nil);

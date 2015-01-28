@@ -21,5 +21,6 @@
 + (NSArray *)storedMatchesForSummoner:(Summoner *)summoner;
 + (Match *)storedMatchWithID:(NSInteger)matchID;
 + (void)matchesInformationFor:(Summoner *)summoner withBlock:(void (^)(NSArray *, NSError *))block;
++ (void)expandedMatchInformationFor:(Match *)match withBlock:(void (^)(Match *, NSError *))block;
 
 @end

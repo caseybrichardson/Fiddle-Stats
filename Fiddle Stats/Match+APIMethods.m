@@ -30,9 +30,6 @@
     match.mMatchID = attributes[@"matchId"];
     match.mMatchMode = attributes[@"matchMode"];
     match.mPlatformID = attributes[@"platformId"];
-    /*match.mPlayerChampID = attributes[@"participants"][0][@"championId"];
-    match.mParticipantID = attributes[@"participantIdentities"][0][@"player"][@"summonerId"];
-    match.mPlayerWinner = attributes[@"participants"][0][@"stats"][@"winner"];*/
     
     [match addMMatchSummonersObject:summoner];
     [summoner addSMatchesObject:match];
@@ -57,7 +54,23 @@
 }
 
 - (void)updateWithExtendedInformation:(NSDictionary *)attributes {
+    AppDelegate *del = (AppDelegate *)[UIApplication sharedApplication].delegate;
     
+    NSMutableDictionary *participants = [NSMutableDictionary dictionary];
+    for (NSDictionary *participant in attributes[@"participants"]) {
+        MatchParticipant *p = [[MatchParticipant alloc] initWithAttributes:participant match:self];
+        [participants setObject:p forKey:p.mpParticipantID];
+    }
+    
+    for (NSDictionary *identities in attributes[@"participantIdentities"]) {
+        MatchParticipant *participant = participants[identities[@"participantId"]];
+        if(participant) {
+            MatchParticipantIdentity *i = [[MatchParticipantIdentity alloc] initWithAttributes:identities participant:participant];
+            [i setMpiParticipant:participant];
+        }
+    }
+    
+    [del saveContext];
 }
 
 - (MatchParticipant *)matchParticipantForSummoner:(Summoner *)summoner {
@@ -75,7 +88,10 @@
         }];
         
         id obj = [participants anyObject];
-        [_cache setObject:obj forKey:key];
+        
+        if(obj) {
+            [_cache setObject:obj forKey:key];
+        }
         
         return obj;
     } else {
@@ -156,10 +172,10 @@
 
 + (void)expandedMatchInformationFor:(Match *)match withBlock:(void (^)(Match *, NSError *))block {
     NSDictionary *requestParams = @{@"api_key": @"8ad21685-9e9f-4c18-9e72-30b8d598fce9"};
-    NSString *url = [NSString stringWithFormat:@"/api/lol/%@/v2.2/match/%lld", match.mRegion, [match.mMatchID longLongValue]];
+    NSString *url = [NSString stringWithFormat:@"/api/lol/%@/v2.2/match/%lld", [match.mRegion lowercaseString], [match.mMatchID longLongValue]];
     
     [[CRFiddleAPIClient sharedInstance] GET:url parameters:requestParams success:^(NSURLSessionDataTask *task, id responseObject) {
-        NSDictionary *details = (NSDictionary *)responseObject;;
+        NSDictionary *details = (NSDictionary *)responseObject;
         
         [match updateWithExtendedInformation:details];
         
@@ -167,7 +183,7 @@
             block(match, nil);
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        NSLog(@"Fail: %@", task.taskDescription);
+        NSLog(@"Fail: %@", error);
         if(block) {
             block(nil, error);
         }

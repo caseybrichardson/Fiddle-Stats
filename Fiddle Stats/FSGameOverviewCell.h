@@ -29,6 +29,8 @@
 
 @property (weak, nonatomic) id<FSGameOverviewCellDelegate> delegate;
 @property (weak, nonatomic) id<FSGameOverviewCellDataSource> dataSource;
+@property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *summonerButtons;
+@property (strong, nonatomic) IBOutletCollection(UIImageView) NSArray *summonerImages;
 
 - (IBAction)summonerPressed:(id)sender;
 

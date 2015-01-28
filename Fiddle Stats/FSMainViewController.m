@@ -54,6 +54,7 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
     UIEdgeInsets insets = self.playerCollectionView.contentInset;
     insets.bottom = self.inputHolderView.bounds.size.height;
     [self.playerCollectionView setContentInset:insets];
@@ -179,17 +180,6 @@
             }
             
             self.editingCells = nil;
-        }
-    }
-}
-
-- (void)reloadAppearance {
-    NSArray * windows = [UIApplication sharedApplication].windows;
-    
-    for (UIWindow *window in windows) {
-        for (UIView *view in window.subviews) {
-            [view removeFromSuperview];
-            [window addSubview:view];
         }
     }
 }

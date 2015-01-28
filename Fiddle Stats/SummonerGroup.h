@@ -15,6 +15,7 @@
 
 @property (nonatomic, retain) NSString * gGroupTitle;
 @property (nonatomic, retain) NSSet *gSummoners;
+
 @end
 
 @interface SummonerGroup (CoreDataGeneratedAccessors)

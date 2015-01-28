@@ -14,6 +14,8 @@
 #import "FSDataDelegate.h"
 #import "FSSummonerDataSource.h"
 #import "FSMatchTableViewCell.h"
+#import "FSMatchDataSource.h"
+#import "FSMatchCollectionViewController.h"
 
 #import "Match+APIMethods.h"
 #import "Champion+APIMethods.h"
@@ -21,7 +23,7 @@
 #import "UIView+Effects.h"
 #import "SummonerGroup+Helpers.h"
 
-@interface FSPlayerTableViewController : UITableViewController
+@interface FSPlayerTableViewController : UITableViewController <FSMatchDataSource>
 
 @property (strong, nonatomic) IBOutlet UIView *headerView;
 @property (strong, nonatomic) IBOutlet UIImageView *champView;
@@ -31,6 +33,8 @@
 @property (strong, nonatomic) IBOutlet UIView *gradientView;
 
 @property (strong, nonatomic) id<FSSummonerDataSource> summonerDataSource;
+
+- (Match *)match;
 
 - (IBAction)optionsPressed:(id)sender;
 

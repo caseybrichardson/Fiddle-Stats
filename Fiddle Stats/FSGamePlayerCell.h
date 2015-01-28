@@ -10,4 +10,9 @@
 
 @interface FSGamePlayerCell : UICollectionViewCell
 
+@property (strong, nonatomic) IBOutlet UIImageView *champImage;
+@property (strong, nonatomic) IBOutlet UILabel *playerName;
+@property (strong, nonatomic) IBOutletCollection(UIImageView) NSArray *itemImages;
+@property (strong, nonatomic) IBOutletCollection(UILabel) NSArray *itemNames;
+
 @end

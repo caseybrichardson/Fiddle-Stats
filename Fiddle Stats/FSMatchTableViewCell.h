@@ -20,5 +20,6 @@
 @property (strong, nonatomic) IBOutlet UILabel *matchDate;
 @property (strong, nonatomic) IBOutlet UILabel *kdaLabel;
 @property (strong, nonatomic) IBOutlet UILabel *minionsLabel;
+@property (strong, nonatomic) IBOutlet UILabel *matchTime;
 
 @end
