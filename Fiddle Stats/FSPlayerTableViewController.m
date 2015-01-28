@@ -140,6 +140,17 @@
         matchCell.matchOutcomeView.backgroundColor = [stats.mpsWinner boolValue] ? [UIColor positiveColor] : [UIColor negativeColor];
         matchCell.kdaLabel.text = [NSString stringWithFormat:@"%@/%@/%@", stats.mpsKills, stats.mpsDeaths, stats.mpsAssists];
         matchCell.minionsLabel.text = [NSString stringWithFormat:@"%ld", (long)stats.mpsTotalMinionsKilled];
+        
+        NSUInteger duration = [m.mMatchDuration unsignedIntegerValue];
+        NSUInteger hours = duration / 3600;
+        NSUInteger minutes = (duration / 60) % 60;
+        NSUInteger seconds = duration % 60;
+        
+        if(hours > 0) {
+            matchCell.matchTime.text = [NSString stringWithFormat:@"%lu:%02lu:%02lu", (unsigned long)hours, (unsigned long)minutes, (unsigned long)seconds];
+        } else {
+            matchCell.matchTime.text = [NSString stringWithFormat:@"%lu:%02lu", (unsigned long)minutes, (unsigned long)seconds];
+        }
     }];
     
     [self.dataDelegate setItemSelectionHandler:^(id view, NSFetchedResultsController *frc, NSIndexPath *indexPath) {

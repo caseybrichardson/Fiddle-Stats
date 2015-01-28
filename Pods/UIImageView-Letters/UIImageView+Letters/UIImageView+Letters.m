@@ -107,6 +107,7 @@
     CGPathRef path = CGPathCreateWithEllipseInRect(self.bounds, NULL);
     CGContextAddPath(context, path);
     CGContextClip(context);
+    CGPathRelease(path);
     
     //
     // Fill background of context

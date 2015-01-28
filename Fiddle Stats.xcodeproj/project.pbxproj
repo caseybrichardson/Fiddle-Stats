@@ -33,11 +33,10 @@
 		3B8AD52F1A1FDB6A00DFFA3A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B8AD52E1A1FDB6A00DFFA3A /* AppDelegate.m */; };
 		3B8AD5321A1FDB6A00DFFA3A /* Fiddle_Stats.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3B8AD5301A1FDB6A00DFFA3A /* Fiddle_Stats.xcdatamodeld */; };
 		3B8AD5351A1FDB6A00DFFA3A /* FSMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B8AD5341A1FDB6A00DFFA3A /* FSMainViewController.m */; };
-		3B8AD5381A1FDB6A00DFFA3A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B8AD5361A1FDB6A00DFFA3A /* Main.storyboard */; };
 		3B8AD53A1A1FDB6A00DFFA3A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3B8AD5391A1FDB6A00DFFA3A /* Images.xcassets */; };
 		3B8AD53D1A1FDB6A00DFFA3A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B8AD53B1A1FDB6A00DFFA3A /* LaunchScreen.xib */; };
 		3B8AD5491A1FDB6A00DFFA3A /* Fiddle_StatsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B8AD5481A1FDB6A00DFFA3A /* Fiddle_StatsTests.m */; };
-		3B9A17A31A6BC11900473700 /* Main (With Drawer).storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B9A17A11A6BC11900473700 /* Main (With Drawer).storyboard */; };
+		3B9A17A31A6BC11900473700 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B9A17A11A6BC11900473700 /* Main.storyboard */; };
 		3B9A17A61A6BCB6E00473700 /* FSDrawerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B9A17A51A6BCB6E00473700 /* FSDrawerTableViewController.m */; };
 		3B9A17BA1A6D0F1800473700 /* FSGameOverviewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B9A17B91A6D0F1800473700 /* FSGameOverviewCell.xib */; };
 		3B9A17BD1A6D155300473700 /* FSGameOverviewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B9A17BC1A6D155300473700 /* FSGameOverviewCell.m */; };
@@ -129,13 +128,12 @@
 		3B8AD5311A1FDB6A00DFFA3A /* Fiddle_Stats.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Fiddle_Stats.xcdatamodel; sourceTree = "<group>"; };
 		3B8AD5331A1FDB6A00DFFA3A /* FSMainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSMainViewController.h; sourceTree = "<group>"; };
 		3B8AD5341A1FDB6A00DFFA3A /* FSMainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSMainViewController.m; sourceTree = "<group>"; };
-		3B8AD5371A1FDB6A00DFFA3A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3B8AD5391A1FDB6A00DFFA3A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		3B8AD53C1A1FDB6A00DFFA3A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		3B8AD5421A1FDB6A00DFFA3A /* Fiddle StatsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Fiddle StatsTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B8AD5471A1FDB6A00DFFA3A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3B8AD5481A1FDB6A00DFFA3A /* Fiddle_StatsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Fiddle_StatsTests.m; sourceTree = "<group>"; };
-		3B9A17A21A6BC11900473700 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "Fiddle Stats/Base.lproj/Main (With Drawer).storyboard"; sourceTree = "<group>"; };
+		3B9A17A21A6BC11900473700 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "Fiddle Stats/Base.lproj/Main.storyboard"; sourceTree = "<group>"; };
 		3B9A17A41A6BCB6E00473700 /* FSDrawerTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSDrawerTableViewController.h; sourceTree = "<group>"; };
 		3B9A17A51A6BCB6E00473700 /* FSDrawerTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSDrawerTableViewController.m; sourceTree = "<group>"; };
 		3B9A17B91A6D0F1800473700 /* FSGameOverviewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FSGameOverviewCell.xib; sourceTree = "<group>"; };
@@ -365,10 +363,9 @@
 		3BF226381A1FDEB4004EB614 /* Design Files */ = {
 			isa = PBXGroup;
 			children = (
-				3B9A17A11A6BC11900473700 /* Main (With Drawer).storyboard */,
+				3B9A17A11A6BC11900473700 /* Main.storyboard */,
 				3B9D1A5F1A32C9E00052787C /* FSCollectionViewCell.xib */,
 				3B9D1A611A3303E50052787C /* FSMatchTableViewCell.xib */,
-				3B8AD5361A1FDB6A00DFFA3A /* Main.storyboard */,
 				3B8AD53B1A1FDB6A00DFFA3A /* LaunchScreen.xib */,
 				3BAF9C1D1A55135300460C5F /* FSParticipantStatsView.xib */,
 				3B9A17B91A6D0F1800473700 /* FSGameOverviewCell.xib */,
@@ -448,7 +445,7 @@
 				3B8AD5231A1FDB6A00DFFA3A /* Frameworks */,
 				3B8AD5241A1FDB6A00DFFA3A /* Resources */,
 				2862A1658B9F5B4637DBDDA6 /* Copy Pods Resources */,
-				3BA9A9F61A78183F002FB316 /* ShellScript */,
+				3BA9A9FC1A78C7E6002FB316 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -524,8 +521,7 @@
 				3B9A17BA1A6D0F1800473700 /* FSGameOverviewCell.xib in Resources */,
 				3BAF9C1E1A55135300460C5F /* FSParticipantStatsView.xib in Resources */,
 				3B2F48D71A72FD2800A80AA0 /* AppProperties.plist in Resources */,
-				3B9A17A31A6BC11900473700 /* Main (With Drawer).storyboard in Resources */,
-				3B8AD5381A1FDB6A00DFFA3A /* Main.storyboard in Resources */,
+				3B9A17A31A6BC11900473700 /* Main.storyboard in Resources */,
 				3B9D1A601A32C9E00052787C /* FSCollectionViewCell.xib in Resources */,
 				3B8AD53D1A1FDB6A00DFFA3A /* LaunchScreen.xib in Resources */,
 				3B9A17C51A6D4FF200473700 /* FSGamePlayerCell.xib in Resources */,
@@ -558,7 +554,7 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		3BA9A9F61A78183F002FB316 /* ShellScript */ = {
+		3BA9A9FC1A78C7E6002FB316 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -569,7 +565,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "./Fabric.framework/run c939a8f8d4151067ef07bffff5d70c3a377a90ee dffa7c81b5d2a2675eaffb51d92c85bdcbfa80217087106b9339beb191e4600b";
+			shellScript = "./Fiddle\\ Stats/Fabric.framework/run c939a8f8d4151067ef07bffff5d70c3a377a90ee dffa7c81b5d2a2675eaffb51d92c85bdcbfa80217087106b9339beb191e4600b";
 		};
 		8E105AC8EE7E40ED94943E74 /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -656,14 +652,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		3B8AD5361A1FDB6A00DFFA3A /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				3B8AD5371A1FDB6A00DFFA3A /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		3B8AD53B1A1FDB6A00DFFA3A /* LaunchScreen.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -672,12 +660,12 @@
 			name = LaunchScreen.xib;
 			sourceTree = "<group>";
 		};
-		3B9A17A11A6BC11900473700 /* Main (With Drawer).storyboard */ = {
+		3B9A17A11A6BC11900473700 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				3B9A17A21A6BC11900473700 /* Base */,
 			);
-			name = "Main (With Drawer).storyboard";
+			name = Main.storyboard;
 			path = ..;
 			sourceTree = "<group>";
 		};
@@ -769,8 +757,8 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/Fiddle",
-					Stats,
+					"$(PROJECT_DIR)/Fiddle\\ Stats",
+					"$(SRCROOT)/**",
 				);
 				INFOPLIST_FILE = "Fiddle Stats/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -793,6 +781,7 @@
 					"\"UIKit\"",
 					"-weak_framework",
 					"\"WebKit\"",
+					"$(inherited)",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				VALID_ARCHS = "arm64 armv7 armv7s i386";
@@ -808,8 +797,8 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/Fiddle",
-					Stats,
+					"$(PROJECT_DIR)/Fiddle\\ Stats",
+					"$(SRCROOT)/**",
 				);
 				INFOPLIST_FILE = "Fiddle Stats/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -831,6 +820,7 @@
 					"\"UIKit\"",
 					"-weak_framework",
 					"\"WebKit\"",
+					"$(inherited)",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				VALID_ARCHS = "arm64 armv7 armv7s i386";

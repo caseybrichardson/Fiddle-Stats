@@ -16,8 +16,6 @@
 
 @implementation FSMatchCollectionViewController
 
-static NSString * const reuseIdentifier = @"Cell";
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -31,22 +29,19 @@ static NSString * const reuseIdentifier = @"Cell";
         self.participants[p.mpParticipantID] = p;
     }
 
-    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(screenDidChangeOrientation:) name:UIDeviceOrientationDidChangeNotification object:nil];
 }
 
 #pragma mark - Helpers
 
 - (void)screenDidChangeOrientation:(NSNotification *)notification {
-    [self.collectionView.collectionViewLayout invalidateLayout];
-    [self.collectionView setNeedsLayout];
     [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UICollectionViewScrollPositionNone animated:YES];
+    [self.collectionView.collectionViewLayout invalidateLayout];
 }
 
 #pragma mark - FSGameOverviewCellDelegate
 
 - (void)summonerPressed:(NSInteger)summonerAtPosition overviewCell:(FSGameOverviewCell *)cell {
-    NSLog(@"TEST");
     [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:summonerAtPosition inSection:0] atScrollPosition:UICollectionViewScrollPositionNone animated:YES];
 }
 
@@ -108,11 +103,6 @@ static NSString * const reuseIdentifier = @"Cell";
                             NSString *urlString = [NSString stringWithFormat:@"http://ddragon.leagueoflegends.com/cdn/%@/img/item/%@", [CRFiddleAPIClient currentAPIVersionForRegion:@"na"], i.iImage];
                             NSURL *url = [NSURL URLWithString:urlString];
                             [itemImage setImageWithURL:url];
-                            
-//                            [Item downloadItemImageForItem:i withBlock:^(UIImage *image, NSError *error) {
-//                                NSLog(@"ALL GOOD");
-//                                [itemImage setImage:image];
-//                            }];
                         } else {
                             [itemImage setImage:[UIImage imageNamed:@"Missing"]];
                         }
@@ -140,10 +130,12 @@ static NSString * const reuseIdentifier = @"Cell";
     if(UIInterfaceOrientationIsPortrait([[UIApplication sharedApplication] statusBarOrientation])) {
         return CGSizeMake(screenSize.width, screenSize.height - 84);
     } else {
+        UICollectionViewFlowLayout *flow = (UICollectionViewFlowLayout *)collectionViewLayout;
+        NSLog(@"INSETS: %@", NSStringFromUIEdgeInsets(flow.sectionInset));
         if(indexPath.row == 0) {
-            return CGSizeMake(screenSize.width, screenSize.height - 44);
+            return CGSizeMake(screenSize.width, screenSize.height - (flow.sectionInset.top + flow.sectionInset.bottom));
         } else {
-            return CGSizeMake(screenSize.width / 2, screenSize.height - 44);
+            return CGSizeMake(screenSize.width / 2, screenSize.height - (flow.sectionInset.top + flow.sectionInset.bottom));
         }
     }
 }

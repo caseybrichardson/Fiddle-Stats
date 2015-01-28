@@ -145,9 +145,6 @@
 + (void)matchesInformationFor:(Summoner *)summoner withBlock:(void (^)(NSArray *, NSError *))block {
     NSDictionary *requestParams = @{@"api_key": @"8ad21685-9e9f-4c18-9e72-30b8d598fce9"};
     NSString *url = [NSString stringWithFormat:@"/api/lol/%@/v2.2/matchhistory/%lld", summoner.sRegion, [summoner.sID longLongValue]];
-
-    NSString *summonerName = summoner.sName;
-    summonerName = [summonerName stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@" "]];
     
     [[CRFiddleAPIClient sharedInstance] GET:url parameters:requestParams success:^(NSURLSessionDataTask *task, id responseObject) {
         NSDictionary *dict = (NSDictionary *)responseObject;

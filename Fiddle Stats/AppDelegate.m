@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 Casey Richardson. All rights reserved.
 //
 
-#import "AppDelegate.h"
 #import <Fabric/Fabric.h>
 #import <Crashlytics/Crashlytics.h>
+#import "AppDelegate.h"
 
 @interface AppDelegate ()
 
@@ -179,7 +179,7 @@
 
 - (UIStoryboard *)drawersStoryboard {
     if(!_drawersStoryboard) {
-        _drawersStoryboard = [UIStoryboard storyboardWithName:@"Main (With Drawer)" bundle:nil];
+        _drawersStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     }
     
     return _drawersStoryboard;
