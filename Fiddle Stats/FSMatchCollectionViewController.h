@@ -11,13 +11,16 @@
 
 #import "FSGameOverviewCell.h"
 #import "FSGamePlayerCell.h"
+#import "FSMatchPlayerCollectionViewCell.h"
+#import "FSItemTableViewCell.h"
 #import "FSMatchDataSource.h"
 #import "CRDataManager.h"
 
 #import "Champion+APIMethods.h"
 #import "Item+APIMethods.h"
+#import "UIColor+AppColors.h"
 
-@interface FSMatchCollectionViewController : UICollectionViewController <UICollectionViewDelegateFlowLayout, FSGameOverviewCellDelegate>
+@interface FSMatchCollectionViewController : UICollectionViewController <UICollectionViewDelegateFlowLayout, UITableViewDataSource, FSGameOverviewCellDelegate>
 
 @property (weak, nonatomic) id<FSMatchDataSource> dataSource;
 

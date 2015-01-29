@@ -15,6 +15,8 @@
 		3B0681741A25E8D3009B2F6E /* FSDataPair.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B0681731A25E8D3009B2F6E /* FSDataPair.m */; };
 		3B0C71591A2420080026787C /* CRStarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B0C71581A2420080026787C /* CRStarView.m */; };
 		3B12AC5A1A2E7B8600016610 /* UINavigationController+Helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B12AC591A2E7B8600016610 /* UINavigationController+Helpers.m */; };
+		3B1CD9491A7A157D004601DA /* FSItemTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B1CD9481A7A157D004601DA /* FSItemTableViewCell.xib */; };
+		3B1CD94C1A7A194C004601DA /* FSItemTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B1CD94B1A7A194C004601DA /* FSItemTableViewCell.m */; };
 		3B2ABF9A1A36E4810095C015 /* Summoner.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B2ABF991A36E4810095C015 /* Summoner.m */; };
 		3B2F489C1A71A34000A80AA0 /* SummonerGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B2F489B1A71A34000A80AA0 /* SummonerGroup.m */; };
 		3B2F48BA1A71AE4400A80AA0 /* Match.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B2F48B91A71AE4400A80AA0 /* Match.m */; };
@@ -53,6 +55,8 @@
 		3BA11FCD1A2F22A200AFC8EB /* Champion+APIMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BA11FCC1A2F22A200AFC8EB /* Champion+APIMethods.m */; };
 		3BA9A9F91A781875002FB316 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BA9A9F71A781875002FB316 /* Crashlytics.framework */; };
 		3BA9A9FA1A781875002FB316 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BA9A9F81A781875002FB316 /* Fabric.framework */; };
+		3BA9A9FE1A78E91C002FB316 /* FSMatchPlayerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BA9A9FD1A78E91C002FB316 /* FSMatchPlayerCell.xib */; };
+		3BA9AA011A78EED6002FB316 /* FSMatchPlayerCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BA9AA001A78EED6002FB316 /* FSMatchPlayerCollectionViewCell.m */; };
 		3BAF9C1E1A55135300460C5F /* FSParticipantStatsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BAF9C1D1A55135300460C5F /* FSParticipantStatsView.xib */; };
 		3BEEE5871A3691DD00CEFE9F /* SummonerGroup+Helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BEEE5861A3691DD00CEFE9F /* SummonerGroup+Helpers.m */; };
 		3BF2263B1A1FE3CB004EB614 /* UIColor+AppColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BF2263A1A1FE3CB004EB614 /* UIColor+AppColors.m */; };
@@ -92,6 +96,9 @@
 		3B12AC571A2E74E600016610 /* FSSummonerDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSSummonerDataSource.h; sourceTree = "<group>"; };
 		3B12AC581A2E7B8600016610 /* UINavigationController+Helpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+Helpers.h"; sourceTree = "<group>"; };
 		3B12AC591A2E7B8600016610 /* UINavigationController+Helpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+Helpers.m"; sourceTree = "<group>"; };
+		3B1CD9481A7A157D004601DA /* FSItemTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FSItemTableViewCell.xib; sourceTree = "<group>"; };
+		3B1CD94A1A7A194C004601DA /* FSItemTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSItemTableViewCell.h; sourceTree = "<group>"; };
+		3B1CD94B1A7A194C004601DA /* FSItemTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSItemTableViewCell.m; sourceTree = "<group>"; };
 		3B2ABF981A36E4810095C015 /* Summoner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Summoner.h; sourceTree = "<group>"; };
 		3B2ABF991A36E4810095C015 /* Summoner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Summoner.m; sourceTree = "<group>"; };
 		3B2F489A1A71A34000A80AA0 /* SummonerGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SummonerGroup.h; sourceTree = "<group>"; };
@@ -160,6 +167,9 @@
 		3BA11FCC1A2F22A200AFC8EB /* Champion+APIMethods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Champion+APIMethods.m"; sourceTree = "<group>"; };
 		3BA9A9F71A781875002FB316 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Crashlytics.framework; path = "Fiddle Stats/Crashlytics.framework"; sourceTree = "<group>"; };
 		3BA9A9F81A781875002FB316 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fabric.framework; path = "Fiddle Stats/Fabric.framework"; sourceTree = "<group>"; };
+		3BA9A9FD1A78E91C002FB316 /* FSMatchPlayerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FSMatchPlayerCell.xib; sourceTree = "<group>"; };
+		3BA9A9FF1A78EED6002FB316 /* FSMatchPlayerCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSMatchPlayerCollectionViewCell.h; sourceTree = "<group>"; };
+		3BA9AA001A78EED6002FB316 /* FSMatchPlayerCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSMatchPlayerCollectionViewCell.m; sourceTree = "<group>"; };
 		3BAF9C1D1A55135300460C5F /* FSParticipantStatsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FSParticipantStatsView.xib; sourceTree = "<group>"; };
 		3BEEE5851A3691DD00CEFE9F /* SummonerGroup+Helpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SummonerGroup+Helpers.h"; sourceTree = "<group>"; };
 		3BEEE5861A3691DD00CEFE9F /* SummonerGroup+Helpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SummonerGroup+Helpers.m"; sourceTree = "<group>"; };
@@ -233,6 +243,10 @@
 				3B9A17BC1A6D155300473700 /* FSGameOverviewCell.m */,
 				3B9A17C61A6D55E700473700 /* FSGamePlayerCell.h */,
 				3B9A17C71A6D55E700473700 /* FSGamePlayerCell.m */,
+				3BA9A9FF1A78EED6002FB316 /* FSMatchPlayerCollectionViewCell.h */,
+				3BA9AA001A78EED6002FB316 /* FSMatchPlayerCollectionViewCell.m */,
+				3B1CD94A1A7A194C004601DA /* FSItemTableViewCell.h */,
+				3B1CD94B1A7A194C004601DA /* FSItemTableViewCell.m */,
 			);
 			name = "Custom UIKit";
 			sourceTree = "<group>";
@@ -307,10 +321,10 @@
 				3B5F8B801A2F12EB00CE3AC5 /* FSNavigationController.m */,
 				3B9A17A41A6BCB6E00473700 /* FSDrawerTableViewController.h */,
 				3B9A17A51A6BCB6E00473700 /* FSDrawerTableViewController.m */,
-				3B8AD5331A1FDB6A00DFFA3A /* FSMainViewController.h */,
-				3B8AD5341A1FDB6A00DFFA3A /* FSMainViewController.m */,
 				3B3948C21A5546150091B5AD /* FSSettingsTableViewController.h */,
 				3B3948C31A5546150091B5AD /* FSSettingsTableViewController.m */,
+				3B8AD5331A1FDB6A00DFFA3A /* FSMainViewController.h */,
+				3B8AD5341A1FDB6A00DFFA3A /* FSMainViewController.m */,
 				3BF472E61A25C78F000A93DA /* FSPlayerTableViewController.h */,
 				3BF472E71A25C78F000A93DA /* FSPlayerTableViewController.m */,
 				3B9A17BE1A6D15C300473700 /* FSMatchCollectionViewController.h */,
@@ -370,6 +384,8 @@
 				3BAF9C1D1A55135300460C5F /* FSParticipantStatsView.xib */,
 				3B9A17B91A6D0F1800473700 /* FSGameOverviewCell.xib */,
 				3B9A17C41A6D4FF200473700 /* FSGamePlayerCell.xib */,
+				3BA9A9FD1A78E91C002FB316 /* FSMatchPlayerCell.xib */,
+				3B1CD9481A7A157D004601DA /* FSItemTableViewCell.xib */,
 			);
 			name = "Design Files";
 			sourceTree = "<group>";
@@ -520,10 +536,12 @@
 				3B9D1A621A3303E50052787C /* FSMatchTableViewCell.xib in Resources */,
 				3B9A17BA1A6D0F1800473700 /* FSGameOverviewCell.xib in Resources */,
 				3BAF9C1E1A55135300460C5F /* FSParticipantStatsView.xib in Resources */,
+				3B1CD9491A7A157D004601DA /* FSItemTableViewCell.xib in Resources */,
 				3B2F48D71A72FD2800A80AA0 /* AppProperties.plist in Resources */,
 				3B9A17A31A6BC11900473700 /* Main.storyboard in Resources */,
 				3B9D1A601A32C9E00052787C /* FSCollectionViewCell.xib in Resources */,
 				3B8AD53D1A1FDB6A00DFFA3A /* LaunchScreen.xib in Resources */,
+				3BA9A9FE1A78E91C002FB316 /* FSMatchPlayerCell.xib in Resources */,
 				3B9A17C51A6D4FF200473700 /* FSGamePlayerCell.xib in Resources */,
 				3B8AD53A1A1FDB6A00DFFA3A /* Images.xcassets in Resources */,
 			);
@@ -611,6 +629,7 @@
 				3B2F48C91A71B68F00A80AA0 /* MatchParticipantStats+Helpers.m in Sources */,
 				3B9A17C81A6D55E700473700 /* FSGamePlayerCell.m in Sources */,
 				3BA0B5BA1A762BA500211EED /* Item+APIMethods.m in Sources */,
+				3B1CD94C1A7A194C004601DA /* FSItemTableViewCell.m in Sources */,
 				3BA11FCD1A2F22A200AFC8EB /* Champion+APIMethods.m in Sources */,
 				3B2F48BD1A71AE4400A80AA0 /* MatchTeam.m in Sources */,
 				3B9D1A651A344BC70052787C /* FSMatchTableViewCell.m in Sources */,
@@ -621,6 +640,7 @@
 				3B2F48C61A71B67600A80AA0 /* MatchParticipantIdentity+Helpers.m in Sources */,
 				3B12AC5A1A2E7B8600016610 /* UINavigationController+Helpers.m in Sources */,
 				3BF6B97C1A4C1ED2007C10BF /* FSSummonerGroupViewController.m in Sources */,
+				3BA9AA011A78EED6002FB316 /* FSMatchPlayerCollectionViewCell.m in Sources */,
 				3B9A17C01A6D15C300473700 /* FSMatchCollectionViewController.m in Sources */,
 				3B0681711A25D657009B2F6E /* FSDataDelegate.m in Sources */,
 				3B8AD5351A1FDB6A00DFFA3A /* FSMainViewController.m in Sources */,

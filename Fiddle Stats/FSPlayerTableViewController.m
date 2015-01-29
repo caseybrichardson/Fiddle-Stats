@@ -31,7 +31,7 @@
     }
     
     UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
-    [refreshControl addTarget:self action:@selector(refreshMatches:) forControlEvents:UIControlEventValueChanged];
+    [refreshControl addTarget:self action:@selector(refreshViews:) forControlEvents:UIControlEventValueChanged];
     [self.tableView addSubview:refreshControl];
     [self.tableView sendSubviewToBack:refreshControl];
     
@@ -53,13 +53,16 @@
         return;
     }
     
-    NSString *urlString = @"http://ddragon.leagueoflegends.com/cdn/%@/img/profileicon/%d.png";
-    NSString *currentVersion = [CRFiddleAPIClient currentAPIVersionForRegion:summoner.sRegion];
-    NSURL *imageURL = [NSURL URLWithString:[NSString stringWithFormat:urlString, currentVersion, [summoner.sProfileIconID integerValue]]];
+    [CRFiddleAPIClient currentAPIVersionForRegion:@"na" block:^(NSArray *versions, NSError *error) {
+        NSString *urlString = @"http://ddragon.leagueoflegends.com/cdn/%@/img/profileicon/%d.png";
+        NSString *currentVersion = versions[0];
+        NSURL *imageURL = [NSURL URLWithString:[NSString stringWithFormat:urlString, currentVersion, [summoner.sProfileIconID integerValue]]];
+        [self.summonerIcon setImageWithURL:imageURL];
+    }];
+    
     UIImageView *view = self.champView;
     
     [self.nameLabel setText:summoner.sName];
-    [self.summonerIcon setImageWithURL:imageURL];
     
     [self.gradientView addGradientWithColors:@[[UIColor blackColor], [UIColor clearColor]]];
     
@@ -139,7 +142,7 @@
         matchCell.matchGameType.text = m.mMatchType;
         matchCell.matchOutcomeView.backgroundColor = [stats.mpsWinner boolValue] ? [UIColor positiveColor] : [UIColor negativeColor];
         matchCell.kdaLabel.text = [NSString stringWithFormat:@"%@/%@/%@", stats.mpsKills, stats.mpsDeaths, stats.mpsAssists];
-        matchCell.minionsLabel.text = [NSString stringWithFormat:@"%ld", (long)stats.mpsTotalMinionsKilled];
+        matchCell.minionsLabel.text = [stats.mpsTotalMinionsKilled stringValue];
         
         NSUInteger duration = [m.mMatchDuration unsignedIntegerValue];
         NSUInteger hours = duration / 3600;
@@ -163,7 +166,7 @@
     [self.dataDelegate performFetch];
 }
 
-- (void)refreshMatches:(id)sender {
+- (void)refreshViews:(id)sender {
     Summoner *summoner = [self.summonerDataSource summoner];
     SummonerGroup *group = [self.summonerDataSource summoner].sGroup;
     [self.groupLabel setText:group.gGroupTitle];

@@ -114,10 +114,12 @@
         
         playerCell.nameLabel.text = summoner.sName;
         
-        NSString *urlString = @"http://ddragon.leagueoflegends.com/cdn/%@/img/profileicon/%d.png";
-        NSString *currentVersion = [CRFiddleAPIClient currentAPIVersionForRegion:summoner.sRegion];
-        NSURL *imageURL = [NSURL URLWithString:[NSString stringWithFormat:urlString, currentVersion, [summoner.sProfileIconID integerValue]]];
-        [playerCell.backgroundImage setImageWithURL:imageURL placeholderImage:[UIImage imageNamed:@"Missing"]];
+        [CRFiddleAPIClient currentAPIVersionForRegion:@"na" block:^(NSArray *versions, NSError *error) {
+            NSString *urlString = @"http://ddragon.leagueoflegends.com/cdn/%@/img/profileicon/%d.png";
+            NSString *currentVersion = versions[0];
+            NSURL *imageURL = [NSURL URLWithString:[NSString stringWithFormat:urlString, currentVersion, [summoner.sProfileIconID integerValue]]];
+            [playerCell.backgroundImage setImageWithURL:imageURL placeholderImage:[UIImage imageNamed:@"Missing"]];
+        }];
     }];
     
     [self.dataDelegate setItemSelectionHandler:^(id view, NSFetchedResultsController *frc, NSIndexPath *path) {

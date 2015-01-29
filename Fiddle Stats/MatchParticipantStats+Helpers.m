@@ -65,8 +65,8 @@
     return stats;
 }
 
-- (NSInteger)mpsTotalMinionsKilled {
-    return [self.mpsMinionsKilled integerValue] + [self.mpsNeutralMinionsKilled integerValue];
+- (NSNumber *)mpsTotalMinionsKilled {
+    return @([self.mpsMinionsKilled integerValue] + [self.mpsNeutralMinionsKilled integerValue]);
 }
 
 + (MatchParticipantStats *)storedMatchParticipantStatsForParticipant:(MatchParticipant *)participant {
