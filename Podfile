@@ -1,6 +1,6 @@
 platform :ios, '8.0'
 pod 'AFNetworking'
 pod 'UIImageView-Letters'
-pod 'STKWebKitViewController'
 pod 'JVFloatingDrawer'
 pod 'SVProgressHUD'
+pod 'STKWebKitViewController'
