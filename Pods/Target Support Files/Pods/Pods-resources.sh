@@ -55,6 +55,7 @@ install_resource()
                     install_resource "STKWebKitViewController/Pod/Assets/refresh@2x.png"
                     install_resource "STKWebKitViewController/Pod/Assets/stop.png"
                     install_resource "STKWebKitViewController/Pod/Assets/stop@2x.png"
+                    install_resource "SVProgressHUD/SVProgressHUD/SVProgressHUD.bundle"
           
 rsync -avr --copy-links --no-relative --exclude '*/.svn/*' --files-from="$RESOURCES_TO_COPY" / "${CONFIGURATION_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}"
 if [[ "${ACTION}" == "install" ]]; then

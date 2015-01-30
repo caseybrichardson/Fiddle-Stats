@@ -23,6 +23,8 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [Fabric with:@[CrashlyticsKit]];
     
+    [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeBlack];
+    
     [[UINavigationBar appearance] setBarTintColor:[UIColor fiddlesticksMainColor]];
     [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor fiddlesticksSecondaryColor], NSFontAttributeName : [UIFont fontWithName:@"HelveticaNeue-Light" size:20]}];
     [[UINavigationBar appearance] setTintColor:[UIColor fiddlesticksSecondaryColor]];

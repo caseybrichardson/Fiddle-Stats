@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <UIImageView+AFNetworking.h>
 #import <STKWebKitViewController/STKWebKitViewController.h>
+#import <SVProgressHUD/SVProgressHUD.h>
 
 #import "FSDataPair.h"
 #import "FSDataDelegate.h"

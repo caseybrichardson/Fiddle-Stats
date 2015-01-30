@@ -13,7 +13,6 @@
 		3B052B681A21D3E300665F23 /* UIView+Effects.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B052B671A21D3E300665F23 /* UIView+Effects.m */; };
 		3B0681711A25D657009B2F6E /* FSDataDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B0681701A25D657009B2F6E /* FSDataDelegate.m */; };
 		3B0681741A25E8D3009B2F6E /* FSDataPair.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B0681731A25E8D3009B2F6E /* FSDataPair.m */; };
-		3B0C71591A2420080026787C /* CRStarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B0C71581A2420080026787C /* CRStarView.m */; };
 		3B12AC5A1A2E7B8600016610 /* UINavigationController+Helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B12AC591A2E7B8600016610 /* UINavigationController+Helpers.m */; };
 		3B1CD9491A7A157D004601DA /* FSItemTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B1CD9481A7A157D004601DA /* FSItemTableViewCell.xib */; };
 		3B1CD94C1A7A194C004601DA /* FSItemTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B1CD94B1A7A194C004601DA /* FSItemTableViewCell.m */; };
@@ -91,8 +90,6 @@
 		3B0681701A25D657009B2F6E /* FSDataDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSDataDelegate.m; sourceTree = "<group>"; };
 		3B0681721A25E8D3009B2F6E /* FSDataPair.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSDataPair.h; sourceTree = "<group>"; };
 		3B0681731A25E8D3009B2F6E /* FSDataPair.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSDataPair.m; sourceTree = "<group>"; };
-		3B0C71571A2420080026787C /* CRStarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRStarView.h; sourceTree = "<group>"; };
-		3B0C71581A2420080026787C /* CRStarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRStarView.m; sourceTree = "<group>"; };
 		3B12AC571A2E74E600016610 /* FSSummonerDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSSummonerDataSource.h; sourceTree = "<group>"; };
 		3B12AC581A2E7B8600016610 /* UINavigationController+Helpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+Helpers.h"; sourceTree = "<group>"; };
 		3B12AC591A2E7B8600016610 /* UINavigationController+Helpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+Helpers.m"; sourceTree = "<group>"; };
@@ -231,8 +228,6 @@
 			children = (
 				3B052B631A21C48400665F23 /* CRBlockButton.h */,
 				3B052B641A21C48400665F23 /* CRBlockButton.m */,
-				3B0C71571A2420080026787C /* CRStarView.h */,
-				3B0C71581A2420080026787C /* CRStarView.m */,
 				3B4CB0A11A2002F2003B1C67 /* FSCollectionViewCell.h */,
 				3B4CB0A21A2002F2003B1C67 /* FSCollectionViewCell.m */,
 				3B9D1A631A344BC70052787C /* FSMatchTableViewCell.h */,
@@ -636,7 +631,6 @@
 				3B2F48CF1A71B9FF00A80AA0 /* MatchParticipant.m in Sources */,
 				3B052B651A21C48400665F23 /* CRBlockButton.m in Sources */,
 				3B5F8B811A2F12EB00CE3AC5 /* FSNavigationController.m in Sources */,
-				3B0C71591A2420080026787C /* CRStarView.m in Sources */,
 				3B2F48C61A71B67600A80AA0 /* MatchParticipantIdentity+Helpers.m in Sources */,
 				3B12AC5A1A2E7B8600016610 /* UINavigationController+Helpers.m in Sources */,
 				3BF6B97C1A4C1ED2007C10BF /* FSSummonerGroupViewController.m in Sources */,

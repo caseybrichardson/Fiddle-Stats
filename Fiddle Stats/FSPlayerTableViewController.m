@@ -23,6 +23,8 @@
 {
     [super viewDidLoad];
     
+    [SVProgressHUD show];
+    
     if([[self.navigationController backViewController] conformsToProtocol:@protocol(FSSummonerDataSource)]) {
         [self setSummonerDataSource:((id<FSSummonerDataSource>)[self.navigationController backViewController])];
     } else {
@@ -46,12 +48,10 @@
     
     Summoner *summoner = [self.summonerDataSource summoner];
     SummonerGroup *group = [self.summonerDataSource summoner].sGroup;
-    [self.groupLabel setText:group.gGroupTitle];
-    
-    if(!summoner) {
-        [self.navigationController popViewControllerAnimated:NO];
-        return;
-    }
+    self.groupLabel.text = group.gGroupTitle;
+    self.nameLabel.text = summoner.sName;
+    [self.gradientView addGradientWithColors:@[[UIColor blackColor], [UIColor clearColor]]];
+    UIImageView *view = self.champView;
     
     [CRFiddleAPIClient currentAPIVersionForRegion:@"na" block:^(NSArray *versions, NSError *error) {
         NSString *urlString = @"http://ddragon.leagueoflegends.com/cdn/%@/img/profileicon/%d.png";
@@ -60,24 +60,16 @@
         [self.summonerIcon setImageWithURL:imageURL];
     }];
     
-    UIImageView *view = self.champView;
-    
-    [self.nameLabel setText:summoner.sName];
-    
-    [self.gradientView addGradientWithColors:@[[UIColor blackColor], [UIColor clearColor]]];
     
     [Match matchesInformationFor:summoner withBlock:^(NSArray *matches, NSError *e) {
         [self initializeDataDelegate];
-        [self.tableView reloadData];
         
         if([matches count] > 0) {
             MatchParticipant *participant = [matches[0] matchParticipantForSummoner:[self.summonerDataSource summoner]];
             [Champion championInformationFor:[participant.mpChampionID integerValue] region:@"na" withBlock:^(Champion *champ, NSError *error) {
                 
                 NSString *champKey = champ.cKey;
-                
                 NSString *url = [NSString stringWithFormat:@"http://ddragon.leagueoflegends.com/cdn/img/champion/splash/%@_0.jpg", champKey];
-                
                 [self.champView setAlpha:0];
                 [self.champView setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:url]] placeholderImage:nil success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
                     [view setImage:image];
@@ -90,6 +82,7 @@
             }];
         }
         
+        [SVProgressHUD dismiss];
         [self.tableView reloadData];
     }];
 }
@@ -157,7 +150,9 @@
     }];
     
     [self.dataDelegate setItemSelectionHandler:^(id view, NSFetchedResultsController *frc, NSIndexPath *indexPath) {
+        [SVProgressHUD show];
         [Match expandedMatchInformationFor:[frc objectAtIndexPath:indexPath] withBlock:^(Match *match, NSError *error) {
+            [SVProgressHUD dismiss];
             ptvc.selectedMatch = match;
             [ptvc performSegueWithIdentifier:@"MatchDetails" sender:ptvc];
         }];

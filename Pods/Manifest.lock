@@ -22,18 +22,21 @@ PODS:
     - AFNetworking/NSURLSession
   - JVFloatingDrawer (0.1.0)
   - STKWebKitViewController (0.1.9)
+  - SVProgressHUD (1.1.2)
   - UIImageView-Letters (1.0)
 
 DEPENDENCIES:
   - AFNetworking
   - JVFloatingDrawer
   - STKWebKitViewController
+  - SVProgressHUD
   - UIImageView-Letters
 
 SPEC CHECKSUMS:
   AFNetworking: 0f54cb5d16ce38c1b76948faffb8d5fb705021c7
   JVFloatingDrawer: 0fcbfed4abba0b6209c79fafaa35959f427cc821
   STKWebKitViewController: 30f6640db11822af3365c2875c9988c4bda43ddc
+  SVProgressHUD: da7a49e789af645d9279ffbca62318945a832438
   UIImageView-Letters: 9f21bca067a6cf8651e104c3b1c9253bc98c9071
 
 COCOAPODS: 0.35.0

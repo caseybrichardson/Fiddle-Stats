@@ -10,6 +10,7 @@
 #import <CoreData/CoreData.h>
 #import <JVFloatingDrawer/JVFloatingDrawerViewController.h>
 #import <JVFloatingDrawer/JVFloatingDrawerSpringAnimator.h>
+#import <SVProgressHUD/SVProgressHUD.h>
 
 #import "UIColor+AppColors.h"
 #import "CRFiddleAPIClient.h"

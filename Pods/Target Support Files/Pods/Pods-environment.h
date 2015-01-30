@@ -60,6 +60,12 @@
 #define COCOAPODS_VERSION_MINOR_STKWebKitViewController 1
 #define COCOAPODS_VERSION_PATCH_STKWebKitViewController 9
 
+// SVProgressHUD
+#define COCOAPODS_POD_AVAILABLE_SVProgressHUD
+#define COCOAPODS_VERSION_MAJOR_SVProgressHUD 1
+#define COCOAPODS_VERSION_MINOR_SVProgressHUD 1
+#define COCOAPODS_VERSION_PATCH_SVProgressHUD 2
+
 // UIImageView-Letters
 #define COCOAPODS_POD_AVAILABLE_UIImageView_Letters
 #define COCOAPODS_VERSION_MAJOR_UIImageView_Letters 1

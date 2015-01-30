@@ -21,7 +21,7 @@
     }
 }
 
-- (void)setChecked:(bool)checked
+- (void)setChecked:(BOOL)checked
 {
     _checked = checked;
     [self setNeedsDisplay];
