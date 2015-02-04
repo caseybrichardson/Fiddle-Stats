@@ -69,7 +69,7 @@
         NSInteger iconID = [summoner.sProfileIconID integerValue];
         NSString *formattedURL = [NSString stringWithFormat:urlString, currentVersion, iconID];
         NSURL *imageURL = [NSURL URLWithString:formattedURL];
-        [self.summonerIcon setImageWithURL:imageURL];
+        [self.summonerIcon sd_setImageWithURL:imageURL placeholderImage:[UIImage imageNamed:@"Missing"]];
     }];
     
     // Grab our new matches
@@ -78,7 +78,7 @@
         [self initializeDataDelegate];
         
         if(matches.count > 0) {
-            MatchParticipant *participant = [matches[0] matchParticipantForSummoner:summoner];
+            MatchParticipant *participant = [[matches lastObject] matchParticipantForSummoner:summoner];
             [Champion championInformationFor:[participant.mpChampionID integerValue] region:@"na" withBlock:^(Champion *champ, NSError *error) {
                 
                 NSString *urlString = @"http://ddragon.leagueoflegends.com/cdn/img/champion/splash/%@_0.jpg";
@@ -143,7 +143,7 @@
             [matchCell.champNameLabelView setText:champ.cName];
             
             NSString *url = [NSString stringWithFormat:@"http://ddragon.leagueoflegends.com/cdn/4.20.1/img/champion/%@.png", champ.cKey];
-            [matchCell.champImageView setImageWithURL:[NSURL URLWithString:url]];
+            [matchCell.champImageView sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"Missing"]];
         }];
         
         MatchParticipantStats *stats = participant.mpParticipantStats;
@@ -189,25 +189,21 @@
     NSString *urlString = @"http://ddragon.leagueoflegends.com/cdn/%@/img/profileicon/%d.png";
     NSString *currentVersion = [CRFiddleAPIClient currentAPIVersionForRegion:summoner.sRegion];
     NSURL *imageURL = [NSURL URLWithString:[NSString stringWithFormat:urlString, currentVersion, [summoner.sProfileIconID integerValue]]];
-    UIImageView *view = self.champView;
     
-    [self.summonerIcon setImageWithURL:imageURL];
+    [self.summonerIcon sd_setImageWithURL:imageURL placeholderImage:[UIImage imageNamed:@"Missing"]];
     
     [Match matchesInformationFor:summoner withBlock:^(NSArray *matches, NSError *e) {
         [self.dataDelegate performFetch];
         
         if([matches count] > 0) {
-            MatchParticipant *participant = [matches[0] matchParticipantForSummoner:[self.summonerDataSource summoner]];
+            MatchParticipant *participant = [[matches lastObject] matchParticipantForSummoner:[self.summonerDataSource summoner]];
             [Champion championInformationFor:[participant.mpChampionID integerValue] region:@"na" withBlock:^(Champion *champ, NSError *error) {
                 
                 NSString *champKey = champ.cKey;
-                NSString *url = [NSString stringWithFormat:@"http://ddragon.leagueoflegends.com/cdn/img/champion/splash/%@_0.jpg", champKey];
+                NSString *urlString = [NSString stringWithFormat:@"http://ddragon.leagueoflegends.com/cdn/img/champion/splash/%@_0.jpg", champKey];
+                NSURL *url = [NSURL URLWithString:urlString];
                 
-                [self.champView setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:url]] placeholderImage:nil success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
-                    [view setImage:image];
-                } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
-                    
-                }];
+                [self.champView sd_setImageWithURL:url];
             }];
         }
         

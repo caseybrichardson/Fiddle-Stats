@@ -77,7 +77,7 @@
             
             NSString *urlString = [NSString stringWithFormat:@"http://ddragon.leagueoflegends.com/cdn/%@/img/item/%@", [CRFiddleAPIClient currentAPIVersionForRegion:@"na"], item.iImage];
             NSURL *url = [NSURL URLWithString:urlString];
-            [cell.itemImage setImageWithURL:url placeholderImage:[UIImage imageNamed:@"Missing"]];
+            [cell.itemImage sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"Missing"]];
         } else {
             cell.itemNameLabel.text = @"None";
             [cell.itemImage setImage:[UIImage imageNamed:@"Missing"]];
@@ -136,7 +136,7 @@
             MatchParticipant *p = [self.participants objectForKey:@(summonerImage.tag - 10)];
             [Champion championInformationFor:[p.mpChampionID integerValue] region:@"na" withBlock:^(Champion *champ, NSError *error) {
                 NSString *url = [NSString stringWithFormat:@"http://ddragon.leagueoflegends.com/cdn/4.20.1/img/champion/%@.png", champ.cKey];
-                [summonerImage setImageWithURL:[NSURL URLWithString:url]];
+                [summonerImage sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"Missing"]];
             }];
         }
     } else {
@@ -148,7 +148,7 @@
         
         [Champion championInformationFor:[p.mpChampionID integerValue] region:@"na" withBlock:^(Champion *champ, NSError *error) {
             NSString *url = [NSString stringWithFormat:@"http://ddragon.leagueoflegends.com/cdn/4.20.1/img/champion/%@.png", champ.cKey];
-            [playerCell.championImage setImageWithURL:[NSURL URLWithString:url]];
+            [playerCell.championImage sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"Missing"]];
         }];
         
         playerCell.playerNameLabel.text = p.mpParticipantIdentity.mpiSummonerName;

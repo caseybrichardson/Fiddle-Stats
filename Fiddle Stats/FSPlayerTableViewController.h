@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <UIImageView+AFNetworking.h>
+#import <SDWebImage/UIImageView+WebCache.h>
 #import <STKWebKitViewController/STKWebKitViewController.h>
 #import <SVProgressHUD/SVProgressHUD.h>
 

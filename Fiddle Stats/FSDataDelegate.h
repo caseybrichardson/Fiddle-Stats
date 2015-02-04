@@ -34,6 +34,7 @@ typedef void(^ItemSelected)(id view, NSFetchedResultsController *frc, NSIndexPat
 - (void)setItemSelectionHandler:(ItemSelected)itemSelectionHandler;
 - (void)setReuseIdentifier:(NSString *)reuseIdentifier;
 - (void)setStaticCellCount:(NSInteger)staticCellCount;
+- (NSArray *)fetchedObjects;
 - (void)performFetch;
 - (id)objectInResultsAtIndexPath:(NSIndexPath *)indexPath;
 

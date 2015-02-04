@@ -168,6 +168,10 @@
     }
 }
 
+- (NSArray *)fetchedObjects {
+    return self.fetchedResultsController.fetchedObjects;
+}
+
 - (id)objectInResultsAtIndexPath:(NSIndexPath *)indexPath {
     if(self.fetchedResultsController) {
         return [self.fetchedResultsController objectAtIndexPath:indexPath];

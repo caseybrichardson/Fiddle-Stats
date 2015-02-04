@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <UIImageView+AFNetworking.h>
+#import <SDWebImage/UIImageView+WebCache.h>
+#import <SDWebImage/SDWebImagePrefetcher.h>
 
 #import "FSSummonerDataSource.h"
 #import "FSCollectionViewCell.h"
@@ -20,7 +21,7 @@
 #import "UIColor+AppColors.h"
 #import "UIView+Effects.h"
 
-@interface FSMainViewController : UIViewController <UITextFieldDelegate, UIGestureRecognizerDelegate, FSSummonerDataSource>
+@interface FSMainViewController : UIViewController <UITextFieldDelegate, UIGestureRecognizerDelegate, UIScrollViewDelegate, FSSummonerDataSource>
 
 @property (strong, nonatomic) IBOutlet UICollectionView *playerCollectionView;
 @property (strong, nonatomic) IBOutlet UITextField *playerNameInputView;
