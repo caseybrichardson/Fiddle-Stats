@@ -16,6 +16,8 @@
 }
 
 - (void)prepareForReuse {
+    [super prepareForReuse];
+    
     self.champImageView.image = [UIImage imageNamed:@"Missing"];
     self.champNameLabelView.text = @"";
     self.matchGameType.text = @"";

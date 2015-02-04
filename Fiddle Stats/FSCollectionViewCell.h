@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 #import "UIView+Effects.h"
+#import "UIColor+AppColors.h"
 
 #import "CRCheckMark.h"
 
@@ -18,6 +19,7 @@
 @property (strong, nonatomic) IBOutlet UIImageView *backgroundImage;
 @property (strong, nonatomic) IBOutlet CRCheckMark *checkMark;
 @property (strong, nonatomic) IBOutlet UIView *selectView;
+@property (strong, nonatomic) IBOutlet UIView *labelBackground;
 
 - (void)setEditing:(BOOL)editing;
 

@@ -19,6 +19,8 @@
 }
 
 - (void)prepareForReuse {
+    [super prepareForReuse];
+    
     self.playerNameLabel.text = @"";
     self.championImage.image = [UIImage imageNamed:@"Missing"];
 }

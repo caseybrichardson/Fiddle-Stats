@@ -43,10 +43,10 @@
     tgr.delegate = self;
     [self.playerCollectionView addGestureRecognizer:tgr];
     
-    UILongPressGestureRecognizer *lpgr = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];
+    /*UILongPressGestureRecognizer *lpgr = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];
     lpgr.delegate = self;
     lpgr.minimumPressDuration = 0.75f;
-    [self.playerCollectionView addGestureRecognizer:lpgr];
+    [self.playerCollectionView addGestureRecognizer:lpgr];*/
     
     [self.inputHolderView addGradientWithColors:@[[UIColor clearColor], [UIColor blackColor]]];
     

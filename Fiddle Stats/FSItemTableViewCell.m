@@ -15,6 +15,8 @@
 }
 
 - (void)prepareForReuse {
+    [super prepareForReuse];
+    
     self.itemImage.image = [UIImage imageNamed:@"Missing"];
     self.itemNameLabel.text = @"";
     self.itemNumberLabel.text = @"Item ";

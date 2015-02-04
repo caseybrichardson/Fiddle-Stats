@@ -68,6 +68,7 @@
             <connections>
                 <outlet property="backgroundImage" destination="Z1g-Fa-WT5" id="J0c-t1-LiY"/>
                 <outlet property="checkMark" destination="2N1-j1-jUF" id="Efj-CJ-m3Q"/>
+                <outlet property="labelBackground" destination="fE1-Ra-Nrs" id="Drm-3j-S6k"/>
                 <outlet property="nameLabel" destination="1Ts-pW-Unb" id="Vid-4q-3Je"/>
                 <outlet property="selectView" destination="7x8-jm-mjH" id="gdj-kq-Ivk"/>
             </connections>
