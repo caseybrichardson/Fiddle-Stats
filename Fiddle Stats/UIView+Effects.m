@@ -48,8 +48,8 @@
     
     if (xAxis || yAxis)
     {
-        UIMotionEffectGroup *group = [[UIMotionEffectGroup alloc] init];
-        NSMutableArray *effects = [[NSMutableArray alloc] init];
+        UIMotionEffectGroup *group = [UIMotionEffectGroup new];
+        NSMutableArray *effects = [NSMutableArray new];
         if (xAxis)
         {
             [effects addObject:xAxis];

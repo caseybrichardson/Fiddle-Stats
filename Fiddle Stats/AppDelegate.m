@@ -116,7 +116,7 @@
     if (!coordinator) {
         return nil;
     }
-    _managedObjectContext = [[NSManagedObjectContext alloc] init];
+    _managedObjectContext = [NSManagedObjectContext new];
     [_managedObjectContext setPersistentStoreCoordinator:coordinator];
     return _managedObjectContext;
 }
@@ -137,7 +137,7 @@
 
 - (JVFloatingDrawerViewController *)drawerViewController {
     if (!_drawerViewController) {
-        _drawerViewController = [[JVFloatingDrawerViewController alloc] init];
+        _drawerViewController = [JVFloatingDrawerViewController new];
     }
     
     return _drawerViewController;
@@ -173,7 +173,7 @@
 
 - (JVFloatingDrawerSpringAnimator *)drawerAnimator {
     if (!_drawerAnimator) {
-        _drawerAnimator = [[JVFloatingDrawerSpringAnimator alloc] init];
+        _drawerAnimator = [JVFloatingDrawerSpringAnimator new];
     }
     
     return _drawerAnimator;

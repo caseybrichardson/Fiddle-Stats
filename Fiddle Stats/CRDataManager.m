@@ -32,7 +32,7 @@
     
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        cache = [[NSCache alloc] init];
+        cache = [NSCache new];
         [cache setCountLimit:50];
     });
     
@@ -61,7 +61,7 @@
     
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        cache = [[NSCache alloc] init];
+        cache = [NSCache new];
     });
     
     if(filename) {

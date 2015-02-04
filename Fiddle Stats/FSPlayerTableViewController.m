@@ -23,57 +23,72 @@
 {
     [super viewDidLoad];
     
-    [SVProgressHUD show];
+    UIViewController *back = [self.navigationController backViewController];
     
-    if([[self.navigationController backViewController] conformsToProtocol:@protocol(FSSummonerDataSource)]) {
-        [self setSummonerDataSource:((id<FSSummonerDataSource>)[self.navigationController backViewController])];
+    // Get our data source ready
+    if([back conformsToProtocol:@protocol(FSSummonerDataSource)]) {
+        id<FSSummonerDataSource> dataSource = (id<FSSummonerDataSource>)back;
+        self.summonerDataSource = dataSource;
     } else {
         [self.navigationController popViewControllerAnimated:NO];
         return;
     }
     
-    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
+    Summoner *summoner = [self.summonerDataSource summoner];
+    SummonerGroup *summonerGroup = summoner.sGroup;
+    
+    // Setup refresh control
+    UIRefreshControl *refreshControl = [UIRefreshControl new];
     [refreshControl addTarget:self action:@selector(refreshViews:) forControlEvents:UIControlEventValueChanged];
     [self.tableView addSubview:refreshControl];
     [self.tableView sendSubviewToBack:refreshControl];
     
-    [self.tableView registerNib:[UINib nibWithNibName:@"FSMatchTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"MatchCell"];
+    UINib *matchCell = [UINib nibWithNibName:@"FSMatchTableViewCell" bundle:[NSBundle mainBundle]];
+    [self.tableView registerNib:matchCell forCellReuseIdentifier:@"MatchCell"];
     
-    self.dateFormatter = [NSDateFormatter new];
-    self.dateFormatter.formatterBehavior = NSDateFormatterBehavior10_4;
-    self.dateFormatter.dateStyle = NSDateFormatterLongStyle;
-    self.dateFormatter.timeStyle = NSDateFormatterNoStyle;
+    // Setup a date formatter for use
+    NSDateFormatter *dateFormatter = [NSDateFormatter new];
+    dateFormatter.formatterBehavior = NSDateFormatterBehavior10_4;
+    dateFormatter.dateStyle = NSDateFormatterLongStyle;
+    dateFormatter.timeStyle = NSDateFormatterNoStyle;
+    self.dateFormatter = dateFormatter;
     
-    self.statsView = [UINib nibWithNibName:@"FSParticipantStatsView" bundle:[NSBundle mainBundle]];
-    
-    Summoner *summoner = [self.summonerDataSource summoner];
-    SummonerGroup *group = [self.summonerDataSource summoner].sGroup;
-    self.groupLabel.text = group.gGroupTitle;
+    // Setup some UI stuff
+    self.groupLabel.text = summonerGroup.gGroupTitle;
     self.nameLabel.text = summoner.sName;
-    [self.gradientView addGradientWithColors:@[[UIColor blackColor], [UIColor clearColor]]];
-    UIImageView *view = self.champView;
     
+    NSArray *colors = @[[UIColor blackColor], [UIColor clearColor]];
+    [self.gradientView addGradientWithColors:colors];
+    
+    [SVProgressHUD show];
+    
+    // Get our current version number
     [CRFiddleAPIClient currentAPIVersionForRegion:@"na" block:^(NSArray *versions, NSError *error) {
         NSString *urlString = @"http://ddragon.leagueoflegends.com/cdn/%@/img/profileicon/%d.png";
         NSString *currentVersion = versions[0];
-        NSURL *imageURL = [NSURL URLWithString:[NSString stringWithFormat:urlString, currentVersion, [summoner.sProfileIconID integerValue]]];
+        NSInteger iconID = [summoner.sProfileIconID integerValue];
+        NSString *formattedURL = [NSString stringWithFormat:urlString, currentVersion, iconID];
+        NSURL *imageURL = [NSURL URLWithString:formattedURL];
         [self.summonerIcon setImageWithURL:imageURL];
     }];
     
-    
+    // Grab our new matches
+    UIImageView *view = self.champView;
     [Match matchesInformationFor:summoner withBlock:^(NSArray *matches, NSError *e) {
         [self initializeDataDelegate];
         
-        if([matches count] > 0) {
-            MatchParticipant *participant = [matches[0] matchParticipantForSummoner:[self.summonerDataSource summoner]];
+        if(matches.count > 0) {
+            MatchParticipant *participant = [matches[0] matchParticipantForSummoner:summoner];
             [Champion championInformationFor:[participant.mpChampionID integerValue] region:@"na" withBlock:^(Champion *champ, NSError *error) {
                 
+                NSString *urlString = @"http://ddragon.leagueoflegends.com/cdn/img/champion/splash/%@_0.jpg";
                 NSString *champKey = champ.cKey;
-                NSString *url = [NSString stringWithFormat:@"http://ddragon.leagueoflegends.com/cdn/img/champion/splash/%@_0.jpg", champKey];
+                NSString *url = [NSString stringWithFormat:urlString, champKey];
+                NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
                 [self.champView setAlpha:0];
-                [self.champView setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:url]] placeholderImage:nil success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+                [self.champView setImageWithURLRequest:request placeholderImage:nil success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
                     [view setImage:image];
-                    [UIView animateWithDuration:0.25 animations:^{
+                    [UIView animateWithDuration:0.25f animations:^{
                         [view setAlpha:1];
                     }];
                 } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {

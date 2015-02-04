@@ -71,19 +71,19 @@
 }
 
 - (void)setSectionNameKeyPath:(NSString *)sectionNameKeyPath {
-    _fetchedResultsController = nil;
+    self.fetchedResultsController = nil;
     
     _sectionNameKeyPath = sectionNameKeyPath;
 }
 
 - (void)setSortingKeyPaths:(NSArray *)sortingKeyPaths {
-    _fetchedResultsController = nil;
+    self.fetchedResultsController = nil;
     
     _sortingKeyPaths = sortingKeyPaths;
 }
 
 - (void)setPredicateValues:(FSDataPair *)predicateValues{
-    _fetchedResultsController = nil;
+    self.fetchedResultsController = nil;
     
     _predicateValues = predicateValues;
 }
@@ -293,7 +293,7 @@
 
 - (void)willChangeCollectionViewContent:(NSFetchedResultsController *)controller {
     self.shouldReloadCollectionView = NO;
-    self.updateOperation = [[NSBlockOperation alloc] init];
+    self.updateOperation = [NSBlockOperation new];
 }
 
 - (void)didChangeCollectionViewContent:(NSFetchedResultsController *)controller {

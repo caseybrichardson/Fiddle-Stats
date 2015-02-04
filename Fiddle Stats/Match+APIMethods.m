@@ -77,7 +77,7 @@
     static NSCache *_cache;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        _cache = [[NSCache alloc] init];
+        _cache = [NSCache new];
     });
     
     NSString *key = [NSString stringWithFormat:@"%@+%@", self.mMatchID, summoner.sID];
