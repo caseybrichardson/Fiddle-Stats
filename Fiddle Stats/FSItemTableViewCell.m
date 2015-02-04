@@ -14,6 +14,12 @@
     // Initialization code
 }
 
+- (void)prepareForReuse {
+    self.itemImage.image = [UIImage imageNamed:@"Missing"];
+    self.itemNameLabel.text = @"";
+    self.itemNumberLabel.text = @"Item ";
+}
+
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 

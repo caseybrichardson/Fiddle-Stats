@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface FSItemTableViewCell : UITableViewCell
+
 @property (strong, nonatomic) IBOutlet UIImageView *itemImage;
 @property (strong, nonatomic) IBOutlet UILabel *itemNameLabel;
 @property (strong, nonatomic) IBOutlet UILabel *itemNumberLabel;

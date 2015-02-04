@@ -16,6 +16,11 @@
     [self.contentView bringSubviewToFront:self.nameLabel];
 }
 
+- (void)prepareForReuse {
+    self.nameLabel.text = @"";
+    self.backgroundImage.image = [UIImage imageNamed:@"Missing"];
+}
+
 - (BOOL)canBecomeFirstResponder {
     return YES;
 }

@@ -12,17 +12,23 @@
 
 - (void)awakeFromNib {
     self.statisticsTableView.separatorColor = [UIColor colorWithWhite:0.1f alpha:1.0f];
+    
     UINib *itemCell = [UINib nibWithNibName:@"FSItemTableViewCell" bundle:[NSBundle mainBundle]];
     [self.statisticsTableView registerNib:itemCell forCellReuseIdentifier:@"ItemCell"];
     self.statisticsTableView.rowHeight = UITableViewAutomaticDimension;
 }
 
+- (void)prepareForReuse {
+    self.playerNameLabel.text = @"";
+    self.championImage.image = [UIImage imageNamed:@"Missing"];
+}
+
 - (void)setSelected:(BOOL)selected {
-    //NSLog(@"SELECTED");
+    
 }
 
 - (void)setHighlighted:(BOOL)highlighted {
-    //NSLog(@"HIGHLIGHTED");
+    
 }
 
 @end

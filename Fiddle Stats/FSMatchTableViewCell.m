@@ -15,6 +15,16 @@
     self.accessoryView.backgroundColor = [UIColor clearColor];
 }
 
+- (void)prepareForReuse {
+    self.champImageView.image = [UIImage imageNamed:@"Missing"];
+    self.champNameLabelView.text = @"";
+    self.matchGameType.text = @"";
+    self.matchDate.text = @"";
+    self.kdaLabel.text = @"";
+    self.minionsLabel.text = @"";
+    self.matchTime.text = @"";
+}
+
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     
 }
