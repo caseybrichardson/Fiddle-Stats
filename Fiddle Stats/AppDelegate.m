@@ -37,11 +37,14 @@
         //NSLog(@"%@", [versions firstObject]);
     }];
     
+    [[BlitFeedback sharedInstance] start:@"773a82de-5f0a-4953-acb2-5267cccfff29"];
+    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.rootViewController = self.drawerViewController;
     [self configureDrawerViewController];
     
     [self.window makeKeyAndVisible];
+    [[BlitFeedback sharedInstance] attachWithIntegrationType:kBFShake];
     
     return YES;
 }

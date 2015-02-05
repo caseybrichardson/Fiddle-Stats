@@ -16,6 +16,7 @@
     UINib *itemCell = [UINib nibWithNibName:@"FSItemTableViewCell" bundle:[NSBundle mainBundle]];
     [self.statisticsTableView registerNib:itemCell forCellReuseIdentifier:@"ItemCell"];
     self.statisticsTableView.rowHeight = UITableViewAutomaticDimension;
+    self.statisticsTableView.allowsSelection = NO;
 }
 
 - (void)prepareForReuse {
