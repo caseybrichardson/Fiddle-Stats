@@ -15,6 +15,7 @@
 #import "FSItemTableViewCell.h"
 #import "FSMatchDataSource.h"
 #import "CRDataManager.h"
+#import "CRFiddleAPIClient.h"
 
 #import "Champion+APIMethods.h"
 #import "Item+APIMethods.h"

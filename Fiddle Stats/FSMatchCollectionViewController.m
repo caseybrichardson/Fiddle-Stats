@@ -135,8 +135,10 @@
         for(UIImageView *summonerImage in overviewCell.summonerImages) {
             MatchParticipant *p = [self.participants objectForKey:@(summonerImage.tag - 10)];
             [Champion championInformationFor:[p.mpChampionID integerValue] region:@"na" withBlock:^(Champion *champ, NSError *error) {
-                NSString *url = [NSString stringWithFormat:@"http://ddragon.leagueoflegends.com/cdn/4.20.1/img/champion/%@.png", champ.cKey];
-                [summonerImage sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"Missing"]];
+                [CRFiddleAPIClient currentAPIVersionForRegion:@"na" block:^(NSArray *versions, NSError *error1) {
+                    NSString *url = [NSString stringWithFormat:@"http://ddragon.leagueoflegends.com/cdn/%@/img/champion/%@.png", versions[0], champ.cKey];
+                    [summonerImage sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"Missing"]];
+                }];
             }];
         }
     } else {
@@ -147,8 +149,12 @@
         MatchParticipant *p = [self.participants objectForKey:@(indexPath.row)];
         
         [Champion championInformationFor:[p.mpChampionID integerValue] region:@"na" withBlock:^(Champion *champ, NSError *error) {
-            NSString *url = [NSString stringWithFormat:@"http://ddragon.leagueoflegends.com/cdn/4.20.1/img/champion/%@.png", champ.cKey];
-            [playerCell.championImage sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"Missing"]];
+            [CRFiddleAPIClient currentAPIVersionForRegion:@"na" block:^(NSArray *versions, NSError *error1) {
+                NSString *url1 = [NSString stringWithFormat:@"http://ddragon.leagueoflegends.com/cdn/%@/img/champion/%@.png", versions[0], champ.cKey];
+                NSString *url2 = [NSString stringWithFormat:@"http://ddragon.leagueoflegends.com/cdn/img/champion/loading/%@_0.jpg", champ.cKey];
+                [playerCell.championImage sd_setImageWithURL:[NSURL URLWithString:url1] placeholderImage:[UIImage imageNamed:@"Missing"]];
+                [playerCell.backgroundImage sd_setImageWithURL:[NSURL URLWithString:url2] placeholderImage:nil];
+            }];
         }];
         
         playerCell.playerNameLabel.text = p.mpParticipantIdentity.mpiSummonerName;

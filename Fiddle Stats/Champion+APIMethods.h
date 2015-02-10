@@ -14,6 +14,6 @@
 
 - (Champion *)initWithAttributes:(NSDictionary *)attributes;
 
-+ (void)championInformationFor:(NSInteger)champID region:(NSString *)region withBlock:(void (^)(Champion *, NSError *))block;
++ (void)championInformationFor:(NSInteger)champID region:(NSString *)region withBlock:(void (^)(Champion *champ, NSError *error))block;
 
 @end

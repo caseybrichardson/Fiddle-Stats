@@ -14,6 +14,27 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="468"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="iav-W3-tLo">
+                        <rect key="frame" x="8" y="8" width="304" height="452"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="5"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </imageView>
+                    <visualEffectView opaque="NO" clipsSubviews="YES" alpha="0.84999999999999998" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jmf-RZ-yrh">
+                        <rect key="frame" x="8" y="8" width="304" height="452"/>
+                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="f3V-Xa-evk">
+                            <rect key="frame" x="0.0" y="0.0" width="304" height="452"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        </view>
+                        <blurEffect style="light"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="5"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </visualEffectView>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8nl-Kj-NMF">
                         <rect key="frame" x="8" y="8" width="304" height="452"/>
                         <subviews>
@@ -28,7 +49,7 @@
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="aYp-5e-lLx">
                                 <rect key="frame" x="8" y="96" width="288" height="348"/>
-                                <color key="backgroundColor" red="0.0" green="0.53725490200000003" blue="0.56470588239999997" alpha="0.25" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                         <integer key="value" value="5"/>
@@ -49,7 +70,7 @@
                                 </constraints>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" red="0.1019607843" green="0.16862745100000001" blue="0.18823529410000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.1019607843" green="0.16862745100000001" blue="0.18823529410000001" alpha="0.75" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="PVY-SN-dNJ" secondAttribute="trailing" constant="8" id="2Um-Ce-dcg"/>
                             <constraint firstAttribute="bottom" secondItem="aYp-5e-lLx" secondAttribute="bottom" constant="8" id="BvH-43-yeQ"/>
@@ -72,13 +93,22 @@
             </view>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="8nl-Kj-NMF" firstAttribute="centerX" secondItem="iav-W3-tLo" secondAttribute="centerX" id="0cN-A5-KwD"/>
                 <constraint firstAttribute="bottom" secondItem="8nl-Kj-NMF" secondAttribute="bottom" constant="8" id="3Mb-WQ-hvr"/>
+                <constraint firstItem="8nl-Kj-NMF" firstAttribute="centerY" secondItem="iav-W3-tLo" secondAttribute="centerY" id="4Bp-6P-hGO"/>
+                <constraint firstItem="8nl-Kj-NMF" firstAttribute="height" secondItem="iav-W3-tLo" secondAttribute="height" id="7jT-1R-Lbe"/>
+                <constraint firstItem="8nl-Kj-NMF" firstAttribute="width" secondItem="jmf-RZ-yrh" secondAttribute="width" id="FHg-Oo-uEg"/>
+                <constraint firstItem="8nl-Kj-NMF" firstAttribute="width" secondItem="iav-W3-tLo" secondAttribute="width" id="GBG-6d-aTV"/>
                 <constraint firstItem="8nl-Kj-NMF" firstAttribute="top" secondItem="mLe-Yf-OHz" secondAttribute="top" constant="8" id="PBB-Zx-zEv"/>
+                <constraint firstItem="8nl-Kj-NMF" firstAttribute="centerX" secondItem="jmf-RZ-yrh" secondAttribute="centerX" id="RQO-F9-3H2"/>
                 <constraint firstAttribute="trailing" secondItem="8nl-Kj-NMF" secondAttribute="trailing" constant="8" id="Siz-2o-iXx"/>
+                <constraint firstItem="8nl-Kj-NMF" firstAttribute="height" secondItem="jmf-RZ-yrh" secondAttribute="height" id="Ye8-g1-oOf"/>
+                <constraint firstItem="8nl-Kj-NMF" firstAttribute="centerY" secondItem="jmf-RZ-yrh" secondAttribute="centerY" id="dHX-B0-4SW"/>
                 <constraint firstItem="8nl-Kj-NMF" firstAttribute="leading" secondItem="mLe-Yf-OHz" secondAttribute="leading" constant="8" id="lwf-Gq-B28"/>
             </constraints>
             <size key="customSize" width="320" height="468"/>
             <connections>
+                <outlet property="backgroundImage" destination="iav-W3-tLo" id="jMP-JW-H6R"/>
                 <outlet property="championImage" destination="7fO-zR-CfD" id="Css-X4-Yk3"/>
                 <outlet property="playerNameLabel" destination="PVY-SN-dNJ" id="CO7-w4-7pQ"/>
                 <outlet property="statisticsTableView" destination="aYp-5e-lLx" id="MDT-r6-nrh"/>

@@ -39,7 +39,6 @@
 		3B8AD5491A1FDB6A00DFFA3A /* Fiddle_StatsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B8AD5481A1FDB6A00DFFA3A /* Fiddle_StatsTests.m */; };
 		3B917A871A83617B00ED75E0 /* NSObject+BlitMethodSwizzling.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B917A821A83617B00ED75E0 /* NSObject+BlitMethodSwizzling.m */; };
 		3B917A881A83617B00ED75E0 /* UIPopoverController+BlitFeedbackAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B917A841A83617B00ED75E0 /* UIPopoverController+BlitFeedbackAdditions.m */; };
-		3B917A891A83617B00ED75E0 /* libBlitFeedback.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B917A851A83617B00ED75E0 /* libBlitFeedback.a */; };
 		3B917A8B1A83625600ED75E0 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B917A8A1A83625600ED75E0 /* AVFoundation.framework */; };
 		3B917A8D1A83625F00ED75E0 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B917A8C1A83625F00ED75E0 /* CoreVideo.framework */; };
 		3B917A8F1A83626900ED75E0 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B917A8E1A83626900ED75E0 /* CoreMedia.framework */; };
@@ -232,7 +231,6 @@
 				3BF2264C1A1FE582004EB614 /* QuartzCore.framework in Frameworks */,
 				3BA9A9FA1A781875002FB316 /* Fabric.framework in Frameworks */,
 				3BF2264A1A1FE57C004EB614 /* CoreText.framework in Frameworks */,
-				3B917A891A83617B00ED75E0 /* libBlitFeedback.a in Frameworks */,
 				3BA9A9F91A781875002FB316 /* Crashlytics.framework in Frameworks */,
 				2C01A4C03A46E64E746BA2E7 /* libPods.a in Frameworks */,
 			);

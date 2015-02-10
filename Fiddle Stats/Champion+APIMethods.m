@@ -53,7 +53,7 @@
     return ([champions count] > 0 ? champions[0] : nil);
 }
 
-+ (void)championInformationFor:(NSInteger)champID region:(NSString *)region withBlock:(void (^)(Champion *, NSError *))block {
++ (void)championInformationFor:(NSInteger)champID region:(NSString *)region withBlock:(void (^)(Champion *champ, NSError *error))block {
     
     // Caching for accessing the champ data
     static NSCache *_champCache;

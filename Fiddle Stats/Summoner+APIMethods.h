@@ -17,6 +17,6 @@
 - (void)markSummonerUpdated;
 
 + (NSArray *)storedSummoners;
-+ (void)summonerInformationFor:(NSString *)summonerName region:(NSString *)region withBlock:(void (^)(Summoner *, NSError *))block;
++ (void)summonerInformationFor:(NSString *)summonerName region:(NSString *)region withBlock:(void (^)(Summoner *summoner, NSError *error))block;
 
 @end

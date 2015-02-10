@@ -54,7 +54,7 @@
     return ([Items count] > 0 ? Items[0] : nil);
 }
 
-+ (void)itemInformationFor:(NSInteger)itemID region:(NSString *)region withBlock:(void (^)(Item *, NSError *))block {
++ (void)itemInformationFor:(NSInteger)itemID region:(NSString *)region withBlock:(void (^)(Item *item, NSError *error))block {
     
     // Caching for accessing the item data
     static NSCache *_itemCache;
@@ -102,17 +102,16 @@
     }
 }
 
-+ (void)downloadItemImageForItem:(Item *)item withBlock:(void (^)(UIImage *, NSError *))block
++ (void)downloadItemImageForItem:(Item *)item withBlock:(void (^)(UIImage *image, NSError *error))block
 {
-    NSString *urlString = [NSString stringWithFormat:@"http://ddragon.leagueoflegends.com/cdn/%@/img/item/%@", [CRFiddleAPIClient currentAPIVersionForRegion:@"na"], item.iImage];
-    NSURL *url = [NSURL URLWithString:urlString];
+    NSString *itemURLString = [NSString stringWithFormat:@"http://ddragon.leagueoflegends.com/cdn/%@/img/item/%@", @"", @"" ];
+    NSURL *itemURL = [NSURL URLWithString:itemURLString];
     
-    UIImageView *view = [UIImageView new];
-    [view setImageWithURLRequest:[NSURLRequest requestWithURL:url] placeholderImage:nil success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
-        [CRDataManager saveImage:image withFilename:item.iImage];
-        block(image, nil);
-    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
-        block(nil, error);
+    SDWebImageManager *manager = [SDWebImageManager sharedManager];
+    [manager downloadImageWithURL:itemURL options:0 progress:^(NSInteger receivedSize, NSInteger expectedSize) {
+        
+    } completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
+        
     }];
 }
 
