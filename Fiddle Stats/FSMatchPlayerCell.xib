@@ -22,7 +22,7 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </imageView>
-                    <visualEffectView opaque="NO" clipsSubviews="YES" alpha="0.84999999999999998" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jmf-RZ-yrh">
+                    <visualEffectView opaque="NO" clipsSubviews="YES" alpha="0.59999999999999976" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jmf-RZ-yrh">
                         <rect key="frame" x="8" y="8" width="304" height="452"/>
                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="f3V-Xa-evk">
                             <rect key="frame" x="0.0" y="0.0" width="304" height="452"/>

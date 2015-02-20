@@ -13,6 +13,13 @@
 - (void)awakeFromNib {
     self.contentView.backgroundColor = [UIColor neutralColor];
     self.accessoryView.backgroundColor = [UIColor clearColor];
+    
+//    self.champNameLabelView.textColor = [UIColor fiddlesticksSecondaryColor];
+//    self.matchGameType.textColor = [UIColor fiddlesticksSecondaryColor];
+//    self.matchDate.textColor = [UIColor fiddlesticksSecondaryColor];
+//    self.kdaLabel.textColor = [UIColor fiddlesticksSecondaryColor];
+//    self.minionsLabel.textColor = [UIColor fiddlesticksSecondaryColor];
+//    self.matchTime.textColor = [UIColor fiddlesticksSecondaryColor];
 }
 
 - (void)prepareForReuse {

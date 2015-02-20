@@ -39,9 +39,13 @@
     
     // Setup refresh control
     UIRefreshControl *refreshControl = [UIRefreshControl new];
+    refreshControl.tintColor = [UIColor fiddlesticksSecondaryColor];
     [refreshControl addTarget:self action:@selector(refreshViews:) forControlEvents:UIControlEventValueChanged];
     [self.tableView addSubview:refreshControl];
     [self.tableView sendSubviewToBack:refreshControl];
+    
+    self.tableView.backgroundColor = [UIColor neutralColor];
+    self.tableView.separatorColor = [UIColor fiddlesticksSecondaryColor];
     
     UINib *matchCell = [UINib nibWithNibName:@"FSMatchTableViewCell" bundle:[NSBundle mainBundle]];
     [self.tableView registerNib:matchCell forCellReuseIdentifier:@"MatchCell"];
@@ -73,7 +77,6 @@
     }];
     
     // Grab our new matches
-    UIImageView *view = self.champView;
     [Match matchesInformationFor:summoner withBlock:^(NSArray *matches, NSError *e) {
         [self initializeDataDelegate];
         
@@ -83,16 +86,13 @@
                 
                 NSString *urlString = @"http://ddragon.leagueoflegends.com/cdn/img/champion/splash/%@_0.jpg";
                 NSString *champKey = champ.cKey;
-                NSString *url = [NSString stringWithFormat:urlString, champKey];
-                NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
+                NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:urlString, champKey]];
                 [self.champView setAlpha:0];
-                [self.champView setImageWithURLRequest:request placeholderImage:nil success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
-                    [view setImage:image];
+                [self.champView sd_setImageWithURL:url completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+                    [self.champView setImage:image];
                     [UIView animateWithDuration:0.25f animations:^{
-                        [view setAlpha:1];
+                        [self.champView setAlpha:1];
                     }];
-                } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
-                    
                 }];
             }];
         }

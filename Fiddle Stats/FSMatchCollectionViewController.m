@@ -154,6 +154,13 @@
                 NSString *url2 = [NSString stringWithFormat:@"http://ddragon.leagueoflegends.com/cdn/img/champion/loading/%@_0.jpg", champ.cKey];
                 [playerCell.championImage sd_setImageWithURL:[NSURL URLWithString:url1] placeholderImage:[UIImage imageNamed:@"Missing"]];
                 [playerCell.backgroundImage sd_setImageWithURL:[NSURL URLWithString:url2] placeholderImage:nil];
+                playerCell.backgroundImage.alpha = 0;
+                [playerCell.backgroundImage sd_setImageWithURL:[NSURL URLWithString:url2] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+                    playerCell.backgroundImage.image = image;
+                    [UIView animateWithDuration:0.25f animations:^{
+                        playerCell.backgroundImage.alpha = 1;
+                    }];
+                }];
             }];
         }];
         
