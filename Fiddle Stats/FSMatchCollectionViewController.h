@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <SDWebImage/UIImageView+WebCache.h>
+#import <DFImageManager/DFImageManager.h>
+#import <DFImageManager/DFImageRequest.h>
 
 #import "FSGameOverviewCell.h"
 #import "FSGamePlayerCell.h"

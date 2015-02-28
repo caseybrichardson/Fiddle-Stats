@@ -18,7 +18,6 @@
 		3B1CD94C1A7A194C004601DA /* FSItemTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B1CD94B1A7A194C004601DA /* FSItemTableViewCell.m */; };
 		3B2ABF9A1A36E4810095C015 /* Summoner.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B2ABF991A36E4810095C015 /* Summoner.m */; };
 		3B2F489C1A71A34000A80AA0 /* SummonerGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B2F489B1A71A34000A80AA0 /* SummonerGroup.m */; };
-		3B2F48BA1A71AE4400A80AA0 /* Match.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B2F48B91A71AE4400A80AA0 /* Match.m */; };
 		3B2F48BD1A71AE4400A80AA0 /* MatchTeam.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B2F48BC1A71AE4400A80AA0 /* MatchTeam.m */; };
 		3B2F48C31A71B2B700A80AA0 /* MatchParticipant+Helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B2F48C21A71B2B700A80AA0 /* MatchParticipant+Helpers.m */; };
 		3B2F48C61A71B67600A80AA0 /* MatchParticipantIdentity+Helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B2F48C51A71B67600A80AA0 /* MatchParticipantIdentity+Helpers.m */; };
@@ -39,15 +38,6 @@
 		3B8AD5491A1FDB6A00DFFA3A /* Fiddle_StatsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B8AD5481A1FDB6A00DFFA3A /* Fiddle_StatsTests.m */; };
 		3B917A871A83617B00ED75E0 /* NSObject+BlitMethodSwizzling.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B917A821A83617B00ED75E0 /* NSObject+BlitMethodSwizzling.m */; };
 		3B917A881A83617B00ED75E0 /* UIPopoverController+BlitFeedbackAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B917A841A83617B00ED75E0 /* UIPopoverController+BlitFeedbackAdditions.m */; };
-		3B917A8B1A83625600ED75E0 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B917A8A1A83625600ED75E0 /* AVFoundation.framework */; };
-		3B917A8D1A83625F00ED75E0 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B917A8C1A83625F00ED75E0 /* CoreVideo.framework */; };
-		3B917A8F1A83626900ED75E0 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B917A8E1A83626900ED75E0 /* CoreMedia.framework */; };
-		3B917A911A83627300ED75E0 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B917A901A83627300ED75E0 /* libz.dylib */; };
-		3B917A931A83627E00ED75E0 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B917A921A83627E00ED75E0 /* MediaPlayer.framework */; };
-		3B917A951A83628D00ED75E0 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B917A941A83628D00ED75E0 /* MessageUI.framework */; };
-		3B917A971A83629D00ED75E0 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B917A961A83629D00ED75E0 /* CoreFoundation.framework */; };
-		3B917A991A8362A600ED75E0 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B917A981A8362A600ED75E0 /* CoreMotion.framework */; };
-		3B917A9B1A8362B100ED75E0 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B917A9A1A8362B100ED75E0 /* SystemConfiguration.framework */; };
 		3B9A17A31A6BC11900473700 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B9A17A11A6BC11900473700 /* Main.storyboard */; };
 		3B9A17A61A6BCB6E00473700 /* FSDrawerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B9A17A51A6BCB6E00473700 /* FSDrawerTableViewController.m */; };
 		3B9A17BA1A6D0F1800473700 /* FSGameOverviewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B9A17B91A6D0F1800473700 /* FSGameOverviewCell.xib */; };
@@ -67,13 +57,12 @@
 		3BA9A9FA1A781875002FB316 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BA9A9F81A781875002FB316 /* Fabric.framework */; };
 		3BA9A9FE1A78E91C002FB316 /* FSMatchPlayerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BA9A9FD1A78E91C002FB316 /* FSMatchPlayerCell.xib */; };
 		3BA9AA011A78EED6002FB316 /* FSMatchPlayerCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BA9AA001A78EED6002FB316 /* FSMatchPlayerCollectionViewCell.m */; };
-		3BAF9C1E1A55135300460C5F /* FSParticipantStatsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BAF9C1D1A55135300460C5F /* FSParticipantStatsView.xib */; };
+		3BD24E7D1A96E6CB00196EEF /* Match.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BD24E7C1A96E6CB00196EEF /* Match.m */; };
 		3BEEE5871A3691DD00CEFE9F /* SummonerGroup+Helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BEEE5861A3691DD00CEFE9F /* SummonerGroup+Helpers.m */; };
 		3BF2263B1A1FE3CB004EB614 /* UIColor+AppColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BF2263A1A1FE3CB004EB614 /* UIColor+AppColors.m */; };
 		3BF226411A1FE3E0004EB614 /* Summoner+APIMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BF2263F1A1FE3E0004EB614 /* Summoner+APIMethods.m */; };
 		3BF226471A1FE47A004EB614 /* CRFiddleAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BF226461A1FE47A004EB614 /* CRFiddleAPIClient.m */; };
 		3BF2264A1A1FE57C004EB614 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BF226491A1FE57C004EB614 /* CoreText.framework */; };
-		3BF2264C1A1FE582004EB614 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BF2264B1A1FE582004EB614 /* QuartzCore.framework */; };
 		3BF472E81A25C78F000A93DA /* FSPlayerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BF472E71A25C78F000A93DA /* FSPlayerTableViewController.m */; };
 		3BF6B9791A479478007C10BF /* CRCheckMark.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BF6B9781A479478007C10BF /* CRCheckMark.m */; };
 		3BF6B97C1A4C1ED2007C10BF /* FSSummonerGroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BF6B97B1A4C1ED2007C10BF /* FSSummonerGroupViewController.m */; };
@@ -111,8 +100,6 @@
 		3B2ABF991A36E4810095C015 /* Summoner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Summoner.m; sourceTree = "<group>"; };
 		3B2F489A1A71A34000A80AA0 /* SummonerGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SummonerGroup.h; sourceTree = "<group>"; };
 		3B2F489B1A71A34000A80AA0 /* SummonerGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SummonerGroup.m; sourceTree = "<group>"; };
-		3B2F48B81A71AE4400A80AA0 /* Match.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Match.h; sourceTree = "<group>"; };
-		3B2F48B91A71AE4400A80AA0 /* Match.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Match.m; sourceTree = "<group>"; };
 		3B2F48BB1A71AE4400A80AA0 /* MatchTeam.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchTeam.h; sourceTree = "<group>"; };
 		3B2F48BC1A71AE4400A80AA0 /* MatchTeam.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchTeam.m; sourceTree = "<group>"; };
 		3B2F48C11A71B2B700A80AA0 /* MatchParticipant+Helpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MatchParticipant+Helpers.h"; sourceTree = "<group>"; };
@@ -193,7 +180,8 @@
 		3BA9A9FD1A78E91C002FB316 /* FSMatchPlayerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FSMatchPlayerCell.xib; sourceTree = "<group>"; };
 		3BA9A9FF1A78EED6002FB316 /* FSMatchPlayerCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSMatchPlayerCollectionViewCell.h; sourceTree = "<group>"; };
 		3BA9AA001A78EED6002FB316 /* FSMatchPlayerCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSMatchPlayerCollectionViewCell.m; sourceTree = "<group>"; };
-		3BAF9C1D1A55135300460C5F /* FSParticipantStatsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FSParticipantStatsView.xib; sourceTree = "<group>"; };
+		3BD24E7B1A96E6CB00196EEF /* Match.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Match.h; sourceTree = "<group>"; };
+		3BD24E7C1A96E6CB00196EEF /* Match.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Match.m; sourceTree = "<group>"; };
 		3BEEE5851A3691DD00CEFE9F /* SummonerGroup+Helpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SummonerGroup+Helpers.h"; sourceTree = "<group>"; };
 		3BEEE5861A3691DD00CEFE9F /* SummonerGroup+Helpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SummonerGroup+Helpers.m"; sourceTree = "<group>"; };
 		3BF226391A1FE3CB004EB614 /* UIColor+AppColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+AppColors.h"; sourceTree = "<group>"; };
@@ -219,16 +207,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3B917A9B1A8362B100ED75E0 /* SystemConfiguration.framework in Frameworks */,
-				3B917A991A8362A600ED75E0 /* CoreMotion.framework in Frameworks */,
-				3B917A971A83629D00ED75E0 /* CoreFoundation.framework in Frameworks */,
-				3B917A951A83628D00ED75E0 /* MessageUI.framework in Frameworks */,
-				3B917A931A83627E00ED75E0 /* MediaPlayer.framework in Frameworks */,
-				3B917A911A83627300ED75E0 /* libz.dylib in Frameworks */,
-				3B917A8F1A83626900ED75E0 /* CoreMedia.framework in Frameworks */,
-				3B917A8D1A83625F00ED75E0 /* CoreVideo.framework in Frameworks */,
-				3B917A8B1A83625600ED75E0 /* AVFoundation.framework in Frameworks */,
-				3BF2264C1A1FE582004EB614 /* QuartzCore.framework in Frameworks */,
 				3BA9A9FA1A781875002FB316 /* Fabric.framework in Frameworks */,
 				3BF2264A1A1FE57C004EB614 /* CoreText.framework in Frameworks */,
 				3BA9A9F91A781875002FB316 /* Crashlytics.framework in Frameworks */,
@@ -317,7 +295,6 @@
 				3B9D1A5F1A32C9E00052787C /* FSCollectionViewCell.xib */,
 				3B9D1A611A3303E50052787C /* FSMatchTableViewCell.xib */,
 				3B8AD53B1A1FDB6A00DFFA3A /* LaunchScreen.xib */,
-				3BAF9C1D1A55135300460C5F /* FSParticipantStatsView.xib */,
 				3B9A17B91A6D0F1800473700 /* FSGameOverviewCell.xib */,
 				3B9A17C41A6D4FF200473700 /* FSGamePlayerCell.xib */,
 				3BA9A9FD1A78E91C002FB316 /* FSMatchPlayerCell.xib */,
@@ -470,6 +447,8 @@
 		3BF226421A1FE3F7004EB614 /* Data Models */ = {
 			isa = PBXGroup;
 			children = (
+				3BD24E7B1A96E6CB00196EEF /* Match.h */,
+				3BD24E7C1A96E6CB00196EEF /* Match.m */,
 				3BA0B5B51A762B8200211EED /* Item.h */,
 				3BA0B5B61A762B8200211EED /* Item.m */,
 				3B2F48D31A71D92A00A80AA0 /* MatchParticipantStats.h */,
@@ -480,8 +459,6 @@
 				3B2F48CB1A71B86900A80AA0 /* MatchParticipantIdentity.m */,
 				3B2F48BB1A71AE4400A80AA0 /* MatchTeam.h */,
 				3B2F48BC1A71AE4400A80AA0 /* MatchTeam.m */,
-				3B2F48B81A71AE4400A80AA0 /* Match.h */,
-				3B2F48B91A71AE4400A80AA0 /* Match.m */,
 				3B2F489A1A71A34000A80AA0 /* SummonerGroup.h */,
 				3B2F489B1A71A34000A80AA0 /* SummonerGroup.m */,
 				3B2ABF981A36E4810095C015 /* Summoner.h */,
@@ -612,7 +589,6 @@
 			files = (
 				3B9D1A621A3303E50052787C /* FSMatchTableViewCell.xib in Resources */,
 				3B9A17BA1A6D0F1800473700 /* FSGameOverviewCell.xib in Resources */,
-				3BAF9C1E1A55135300460C5F /* FSParticipantStatsView.xib in Resources */,
 				3B1CD9491A7A157D004601DA /* FSItemTableViewCell.xib in Resources */,
 				3B2F48D71A72FD2800A80AA0 /* AppProperties.plist in Resources */,
 				3B9A17A31A6BC11900473700 /* Main.storyboard in Resources */,
@@ -703,11 +679,11 @@
 				3B917A871A83617B00ED75E0 /* NSObject+BlitMethodSwizzling.m in Sources */,
 				3B9A17BD1A6D155300473700 /* FSGameOverviewCell.m in Sources */,
 				3BA11FCA1A2F227D00AFC8EB /* Champion.m in Sources */,
-				3B2F48BA1A71AE4400A80AA0 /* Match.m in Sources */,
 				3BF6B9791A479478007C10BF /* CRCheckMark.m in Sources */,
 				3B2F48C91A71B68F00A80AA0 /* MatchParticipantStats+Helpers.m in Sources */,
 				3B9A17C81A6D55E700473700 /* FSGamePlayerCell.m in Sources */,
 				3BA0B5BA1A762BA500211EED /* Item+APIMethods.m in Sources */,
+				3BD24E7D1A96E6CB00196EEF /* Match.m in Sources */,
 				3B1CD94C1A7A194C004601DA /* FSItemTableViewCell.m in Sources */,
 				3BA11FCD1A2F22A200AFC8EB /* Champion+APIMethods.m in Sources */,
 				3B2F48BD1A71AE4400A80AA0 /* MatchTeam.m in Sources */,
@@ -862,8 +838,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/Fiddle",
-					Stats,
+					"$(PROJECT_DIR)/Fiddle\\ Stats",
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
@@ -887,6 +862,7 @@
 					"$(inherited)",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = "arm64 armv7 armv7s i386";
 			};
 			name = Debug;
@@ -907,8 +883,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/Fiddle",
-					Stats,
+					"$(PROJECT_DIR)/Fiddle\\ Stats",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -931,6 +906,7 @@
 					"$(inherited)",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = "arm64 armv7 armv7s i386";
 			};
 			name = Release;

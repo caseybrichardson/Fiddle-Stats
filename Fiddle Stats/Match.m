@@ -2,7 +2,7 @@
 //  Match.m
 //  Fiddle Stats
 //
-//  Created by Casey Richardson on 1/22/15.
+//  Created by Casey Richardson on 2/19/15.
 //  Copyright (c) 2015 Casey Richardson. All rights reserved.
 //
 
@@ -28,8 +28,9 @@
 @dynamic mQueueType;
 @dynamic mRegion;
 @dynamic mSeason;
+@dynamic mHasFullData;
 @dynamic mMatchParticipants;
-@dynamic mMatchTeams;
 @dynamic mMatchSummoners;
+@dynamic mMatchTeams;
 
 @end

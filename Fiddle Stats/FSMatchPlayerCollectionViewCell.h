@@ -7,12 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <DFImageManager/DFImageView.h>
 
 @interface FSMatchPlayerCollectionViewCell : UICollectionViewCell
 
-@property (strong, nonatomic) IBOutlet UIImageView *championImage;
+@property (strong, nonatomic) IBOutlet DFImageView *championImage;
 @property (strong, nonatomic) IBOutlet UILabel *playerNameLabel;
 @property (strong, nonatomic) IBOutlet UITableView *statisticsTableView;
-@property (strong, nonatomic) IBOutlet UIImageView *backgroundImage;
+@property (strong, nonatomic) IBOutlet DFImageView *backgroundImage;
 
 @end

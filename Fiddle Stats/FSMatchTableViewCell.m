@@ -38,4 +38,16 @@
     
 }
 
+- (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated {
+    if(highlighted) {
+        [UIView animateWithDuration:0.1f animations:^{
+            self.contentView.backgroundColor = [UIColor lightGrayColor];
+        }];
+    } else {
+        [UIView animateWithDuration:0.1f animations:^{
+            self.contentView.backgroundColor = [UIColor neutralColor];
+        }];
+    }
+}
+
 @end

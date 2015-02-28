@@ -13,7 +13,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="278" height="276"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Missing" translatesAutoresizingMaskIntoConstraints="NO" id="Z1g-Fa-WT5">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Missing" translatesAutoresizingMaskIntoConstraints="NO" id="Z1g-Fa-WT5" customClass="DFImageView">
                         <rect key="frame" x="0.0" y="0.0" width="278" height="276"/>
                     </imageView>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fE1-Ra-Nrs" userLabel="Label Background">

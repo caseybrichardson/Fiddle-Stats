@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <DFImageManager/DFImageView.h>
 
 @interface FSItemTableViewCell : UITableViewCell
 
-@property (strong, nonatomic) IBOutlet UIImageView *itemImage;
+@property (strong, nonatomic) IBOutlet DFImageView *itemImage;
 @property (strong, nonatomic) IBOutlet UILabel *itemNameLabel;
 @property (strong, nonatomic) IBOutlet UILabel *itemNumberLabel;
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6254" systemVersion="14C68m" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6254" systemVersion="14C109" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Champion" representedClassName="Champion" syncable="YES">
         <attribute name="cID" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="cKey" optional="YES" attributeType="String" syncable="YES"/>
@@ -14,6 +14,7 @@
         <attribute name="iPlaintext" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="Match" representedClassName="Match" syncable="YES">
+        <attribute name="mHasFullData" optional="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="mMapID" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="mMatchCreation" optional="YES" attributeType="Integer 64" defaultValueString="0.0" syncable="YES"/>
         <attribute name="mMatchDuration" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
@@ -126,13 +127,13 @@
     </entity>
     <elements>
         <element name="Champion" positionX="-441" positionY="158" width="128" height="103"/>
-        <element name="Match" positionX="-119" positionY="-298" width="128" height="298"/>
+        <element name="Item" positionX="-342" positionY="-144" width="128" height="120"/>
+        <element name="Match" positionX="-119" positionY="-298" width="128" height="315"/>
         <element name="MatchParticipant" positionX="162" positionY="-162" width="128" height="178"/>
         <element name="MatchParticipantIdentity" positionX="9" positionY="171" width="128" height="118"/>
         <element name="MatchParticipantStats" positionX="313" positionY="-297" width="128" height="658"/>
         <element name="MatchTeam" positionX="-225" positionY="63" width="128" height="208"/>
         <element name="Summoner" positionX="-549" positionY="-115" width="128" height="223"/>
         <element name="SummonerGroup" positionX="-335" positionY="-153" width="128" height="73"/>
-        <element name="Item" positionX="-342" positionY="-144" width="128" height="120"/>
     </elements>
 </model>

@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 Casey Richardson. All rights reserved.
 //
 
-#import <SDWebImage/SDWebImageManager.h>
+#import <DFImageManager/DFImageManager.h>
 
 #import "Item.h"
 #import "AppDelegate.h"

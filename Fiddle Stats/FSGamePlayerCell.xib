@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14C68m" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -71,7 +71,7 @@
                                 <color key="textColor" red="0.75294117650000003" green="0.71372549019999998" blue="0.54117647059999996" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="3" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Missing" translatesAutoresizingMaskIntoConstraints="NO" id="PL3-V2-vkI" userLabel="Item 3">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="3" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Missing" translatesAutoresizingMaskIntoConstraints="NO" id="PL3-V2-vkI" userLabel="Item 3" customClass="DFImageView">
                                 <rect key="frame" x="8" y="193" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="PL3-V2-vkI" secondAttribute="height" multiplier="1:1" id="KPQ-B4-0N2"/>
@@ -82,7 +82,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="2" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Missing" translatesAutoresizingMaskIntoConstraints="NO" id="0SH-dG-zKX" userLabel="Item 2">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="2" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Missing" translatesAutoresizingMaskIntoConstraints="NO" id="0SH-dG-zKX" userLabel="Item 2" customClass="DFImageView">
                                 <rect key="frame" x="8" y="150" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="0SH-dG-zKX" secondAttribute="height" multiplier="1:1" id="mm3-Ul-k2y"/>
@@ -93,7 +93,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="4" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Missing" translatesAutoresizingMaskIntoConstraints="NO" id="rE0-Ck-3bf" userLabel="Item 4">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="4" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Missing" translatesAutoresizingMaskIntoConstraints="NO" id="rE0-Ck-3bf" userLabel="Item 4" customClass="DFImageView">
                                 <rect key="frame" x="8" y="236" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="rE0-Ck-3bf" secondAttribute="height" multiplier="1:1" id="IjS-TN-ZMd"/>
@@ -104,7 +104,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="5" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Missing" translatesAutoresizingMaskIntoConstraints="NO" id="q0R-7R-Rgd" userLabel="Item 5">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="5" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Missing" translatesAutoresizingMaskIntoConstraints="NO" id="q0R-7R-Rgd" userLabel="Item 5" customClass="DFImageView">
                                 <rect key="frame" x="8" y="279" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="q0R-7R-Rgd" secondAttribute="height" multiplier="1:1" id="I9L-g8-dRT"/>
@@ -124,7 +124,7 @@
                                 <color key="textColor" red="0.75294117650000003" green="0.71372549019999998" blue="0.54117647059999996" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="6" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Missing" translatesAutoresizingMaskIntoConstraints="NO" id="Ivh-GT-aE0" userLabel="Item 6">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="6" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Missing" translatesAutoresizingMaskIntoConstraints="NO" id="Ivh-GT-aE0" userLabel="Item 6" customClass="DFImageView">
                                 <rect key="frame" x="8" y="322" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="Ivh-GT-aE0" secondAttribute="height" multiplier="1:1" id="Tai-IS-QoH"/>
@@ -135,7 +135,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="7" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Missing" translatesAutoresizingMaskIntoConstraints="NO" id="nvy-4I-nxP" userLabel="Trinket">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="7" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Missing" translatesAutoresizingMaskIntoConstraints="NO" id="nvy-4I-nxP" userLabel="Trinket" customClass="DFImageView">
                                 <rect key="frame" x="8" y="365" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="nvy-4I-nxP" secondAttribute="height" multiplier="1:1" id="jpC-OK-JWK"/>
@@ -146,7 +146,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Missing" translatesAutoresizingMaskIntoConstraints="NO" id="fjP-GX-tTd" userLabel="Item 1">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Missing" translatesAutoresizingMaskIntoConstraints="NO" id="fjP-GX-tTd" userLabel="Item 1" customClass="DFImageView">
                                 <rect key="frame" x="8" y="107" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="fjP-GX-tTd" secondAttribute="height" multiplier="1:1" id="Zt0-lS-crt"/>
@@ -157,7 +157,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Missing" translatesAutoresizingMaskIntoConstraints="NO" id="7fS-qe-txN" userLabel="ChampImage">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Missing" translatesAutoresizingMaskIntoConstraints="NO" id="7fS-qe-txN" userLabel="ChampImage" customClass="DFImageView">
                                 <rect key="frame" x="8" y="19" width="80" height="80"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="80" id="HW3-SF-0BY"/>

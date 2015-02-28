@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <DFImageManager/DFImageView.h>
 
 #import "Summoner+APIMethods.h"
 #import "Match+APIMethods.h"
@@ -30,7 +31,7 @@
 @property (weak, nonatomic) id<FSGameOverviewCellDelegate> delegate;
 @property (weak, nonatomic) id<FSGameOverviewCellDataSource> dataSource;
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *summonerButtons;
-@property (strong, nonatomic) IBOutletCollection(UIImageView) NSArray *summonerImages;
+@property (strong, nonatomic) IBOutletCollection(DFImageView) NSArray *summonerImages;
 
 - (IBAction)summonerPressed:(id)sender;
 

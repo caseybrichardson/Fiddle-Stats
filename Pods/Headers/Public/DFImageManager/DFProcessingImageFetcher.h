@@ -1,0 +1,1 @@
+../../../DFImageManager/DFImageManager/Source/Fetchers/Processing Fetcher/DFProcessingImageFetcher.h

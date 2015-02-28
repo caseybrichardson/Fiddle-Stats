@@ -63,56 +63,47 @@
         _itemCache = [NSCache new];
     });
     
-    Item *item = [_itemCache objectForKey:@(itemID)];
-    
-    if(!item) {
-        
-        item = [Item storedItemWithID:itemID];
+    if(itemID != 0) {
+        Item *item = [_itemCache objectForKey:@(itemID)];
         
         if(!item) {
-            NSDictionary *requestParams = @{@"api_key": @"8ad21685-9e9f-4c18-9e72-30b8d598fce9", @"itemData": @"image"};
-            NSString *url = [NSString stringWithFormat:@"/api/lol/static-data/%@/v1.2/item/%ld", region, ((long) itemID)];
             
-            [[CRFiddleAPIClient sharedInstance] GET:url parameters:requestParams success:^(NSURLSessionDataTask *task, id responseObject) {
-                NSDictionary *ItemDict = (NSDictionary *)responseObject;
+            item = [Item storedItemWithID:itemID];
+            
+            if(!item) {
+                NSDictionary *requestParams = @{@"api_key": @"8ad21685-9e9f-4c18-9e72-30b8d598fce9", @"itemData": @"image"};
+                NSString *url = [NSString stringWithFormat:@"/api/lol/static-data/%@/v1.2/item/%ld", region, ((long) itemID)];
                 
-                Item *item = [[Item alloc] initWithAttributes:ItemDict];
+                [[CRFiddleAPIClient sharedInstance] GET:url parameters:requestParams success:^(NSURLSessionDataTask *task, id responseObject) {
+                    NSDictionary *ItemDict = (NSDictionary *)responseObject;
+                    
+                    Item *item = [[Item alloc] initWithAttributes:ItemDict];
+                    [_itemCache setObject:item forKey:@(itemID)];
+                    
+                    if(block) {
+                        block(item, nil);
+                    }
+                } failure:^(NSURLSessionDataTask *task, NSError *error) {
+                    NSLog(@"Fail: %@", error);
+                    if(block) {
+                        block(nil, error);
+                    }
+                }];
+            } else {
                 [_itemCache setObject:item forKey:@(itemID)];
                 
                 if(block) {
                     block(item, nil);
                 }
-            } failure:^(NSURLSessionDataTask *task, NSError *error) {
-                NSLog(@"Fail: %@", task.taskDescription);
-                if(block) {
-                    block(nil, error);
-                }
-            }];
+            }
         } else {
-            [_itemCache setObject:item forKey:@(itemID)];
-            
             if(block) {
                 block(item, nil);
             }
         }
     } else {
-        if(block) {
-            block(item, nil);
-        }
+        block(nil, nil);
     }
-}
-
-+ (void)downloadItemImageForItem:(Item *)item withBlock:(void (^)(UIImage *image, NSError *error))block
-{
-    NSString *itemURLString = [NSString stringWithFormat:@"http://ddragon.leagueoflegends.com/cdn/%@/img/item/%@", @"", @"" ];
-    NSURL *itemURL = [NSURL URLWithString:itemURLString];
-    
-    SDWebImageManager *manager = [SDWebImageManager sharedManager];
-    [manager downloadImageWithURL:itemURL options:0 progress:^(NSInteger receivedSize, NSInteger expectedSize) {
-        
-    } completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
-        
-    }];
 }
 
 @end

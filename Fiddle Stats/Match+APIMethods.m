@@ -70,6 +70,8 @@
         }
     }
     
+    self.mHasFullData = @YES;
+    
     [del saveContext];
 }
 
@@ -168,23 +170,28 @@
 }
 
 + (void)expandedMatchInformationFor:(Match *)match withBlock:(void (^)(Match *match, NSError *error))block {
-    NSDictionary *requestParams = @{@"api_key": @"8ad21685-9e9f-4c18-9e72-30b8d598fce9"};
-    NSString *url = [NSString stringWithFormat:@"/api/lol/%@/v2.2/match/%lld", [match.mRegion lowercaseString], [match.mMatchID longLongValue]];
     
-    [[CRFiddleAPIClient sharedInstance] GET:url parameters:requestParams success:^(NSURLSessionDataTask *task, id responseObject) {
-        NSDictionary *details = (NSDictionary *)responseObject;
+    if([match.mHasFullData boolValue]) {
+        block(match, nil);
+    } else {
+        NSDictionary *requestParams = @{@"api_key": @"8ad21685-9e9f-4c18-9e72-30b8d598fce9"};
+        NSString *url = [NSString stringWithFormat:@"/api/lol/%@/v2.2/match/%lld", [match.mRegion lowercaseString], [match.mMatchID longLongValue]];
         
-        [match updateWithExtendedInformation:details];
-        
-        if(block) {
-            block(match, nil);
-        }
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        NSLog(@"Fail: %@", error);
-        if(block) {
-            block(nil, error);
-        }
-    }];
+        [[CRFiddleAPIClient sharedInstance] GET:url parameters:requestParams success:^(NSURLSessionDataTask *task, id responseObject) {
+            NSDictionary *details = (NSDictionary *)responseObject;
+            
+            [match updateWithExtendedInformation:details];
+            
+            if(block) {
+                block(match, nil);
+            }
+        } failure:^(NSURLSessionDataTask *task, NSError *error) {
+            NSLog(@"Fail: %@", error);
+            if(block) {
+                block(nil, error);
+            }
+        }];
+    }
 }
 
 @end

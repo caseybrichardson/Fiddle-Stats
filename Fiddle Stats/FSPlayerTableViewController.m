@@ -46,6 +46,7 @@
     
     self.tableView.backgroundColor = [UIColor neutralColor];
     self.tableView.separatorColor = [UIColor fiddlesticksSecondaryColor];
+    self.modeControl.tintColor = [UIColor fiddlesticksSecondaryColor];
     
     UINib *matchCell = [UINib nibWithNibName:@"FSMatchTableViewCell" bundle:[NSBundle mainBundle]];
     [self.tableView registerNib:matchCell forCellReuseIdentifier:@"MatchCell"];
@@ -73,7 +74,9 @@
         NSInteger iconID = [summoner.sProfileIconID integerValue];
         NSString *formattedURL = [NSString stringWithFormat:urlString, currentVersion, iconID];
         NSURL *imageURL = [NSURL URLWithString:formattedURL];
-        [self.summonerIcon sd_setImageWithURL:imageURL placeholderImage:[UIImage imageNamed:@"Missing"]];
+        DFImageRequest *req = [[DFImageRequest alloc] initWithResource:imageURL];
+        [self.summonerIcon setImageWithRequest:req];
+        //[self.summonerIcon sd_setImageWithURL:imageURL placeholderImage:[UIImage imageNamed:@"Missing"]];
     }];
     
     // Grab our new matches
@@ -83,17 +86,18 @@
         if(matches.count > 0) {
             MatchParticipant *participant = [[matches lastObject] matchParticipantForSummoner:summoner];
             [Champion championInformationFor:[participant.mpChampionID integerValue] region:@"na" withBlock:^(Champion *champ, NSError *error) {
-                
                 NSString *urlString = @"http://ddragon.leagueoflegends.com/cdn/img/champion/splash/%@_0.jpg";
                 NSString *champKey = champ.cKey;
                 NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:urlString, champKey]];
-                [self.champView setAlpha:0];
-                [self.champView sd_setImageWithURL:url completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+                DFImageRequest *req = [[DFImageRequest alloc] initWithResource:url];
+                [self.champView setImageWithRequest:req];
+                //[self.champView setAlpha:0];
+                /*[self.champView sd_setImageWithURL:url completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
                     [self.champView setImage:image];
                     [UIView animateWithDuration:0.25f animations:^{
                         [self.champView setAlpha:1];
                     }];
-                }];
+                }];*/
             }];
         }
         
@@ -142,8 +146,11 @@
         [Champion championInformationFor:[participant.mpChampionID integerValue] region:@"na" withBlock:^(Champion *champ, NSError *error) {
             [matchCell.champNameLabelView setText:champ.cName];
             
-            NSString *url = [NSString stringWithFormat:@"http://ddragon.leagueoflegends.com/cdn/4.20.1/img/champion/%@.png", champ.cKey];
-            [matchCell.champImageView sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"Missing"]];
+            [CRFiddleAPIClient currentAPIVersionForRegion:@"na" block:^(NSArray *versions, NSError *error1) {
+                NSString *url = [NSString stringWithFormat:@"http://ddragon.leagueoflegends.com/cdn/%@/img/champion/%@.png", versions[0], champ.cKey];
+                DFImageRequest *req = [[DFImageRequest alloc] initWithResource:[NSURL URLWithString:url]];
+                [matchCell.champImageView setImageWithRequest:req];
+            }];
         }];
         
         MatchParticipantStats *stats = participant.mpParticipantStats;
@@ -165,9 +172,12 @@
     }];
     
     [self.dataDelegate setItemSelectionHandler:^(id view, NSFetchedResultsController *frc, NSIndexPath *indexPath) {
-        [SVProgressHUD show];
-        [Match expandedMatchInformationFor:[frc objectAtIndexPath:indexPath] withBlock:^(Match *match, NSError *error) {
-            [SVProgressHUD dismiss];
+        Match *m = [frc objectAtIndexPath:indexPath];
+        
+        bool showHUD = [m.mHasFullData boolValue];
+        if(!showHUD) { [SVProgressHUD show]; }
+        [Match expandedMatchInformationFor:m withBlock:^(Match *match, NSError *error) {
+            if(!showHUD) { [SVProgressHUD dismiss]; }
             ptvc.selectedMatch = match;
             [ptvc performSegueWithIdentifier:@"MatchDetails" sender:ptvc];
         }];
@@ -189,8 +199,8 @@
     NSString *urlString = @"http://ddragon.leagueoflegends.com/cdn/%@/img/profileicon/%d.png";
     NSString *currentVersion = [CRFiddleAPIClient currentAPIVersionForRegion:summoner.sRegion];
     NSURL *imageURL = [NSURL URLWithString:[NSString stringWithFormat:urlString, currentVersion, [summoner.sProfileIconID integerValue]]];
-    
-    [self.summonerIcon sd_setImageWithURL:imageURL placeholderImage:[UIImage imageNamed:@"Missing"]];
+    DFImageRequest *req = [[DFImageRequest alloc] initWithResource:imageURL];
+    [self.summonerIcon setImageWithRequest:req];
     
     [Match matchesInformationFor:summoner withBlock:^(NSArray *matches, NSError *e) {
         [self.dataDelegate performFetch];
@@ -202,8 +212,8 @@
                 NSString *champKey = champ.cKey;
                 NSString *urlString = [NSString stringWithFormat:@"http://ddragon.leagueoflegends.com/cdn/img/champion/splash/%@_0.jpg", champKey];
                 NSURL *url = [NSURL URLWithString:urlString];
-                
-                [self.champView sd_setImageWithURL:url];
+                DFImageRequest *req = [[DFImageRequest alloc] initWithResource:url];
+                [self.champView setImageWithRequest:req];
             }];
         }
         
@@ -224,6 +234,9 @@
 - (IBAction)optionsPressed:(id)sender
 {
     [self showExternalServicesDialog];
+}
+
+- (IBAction)modeChanged:(id)sender {
 }
 
 - (void)showExternalServicesDialog {

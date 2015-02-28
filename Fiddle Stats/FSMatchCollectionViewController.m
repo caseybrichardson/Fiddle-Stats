@@ -77,7 +77,7 @@
             
             NSString *urlString = [NSString stringWithFormat:@"http://ddragon.leagueoflegends.com/cdn/%@/img/item/%@", [CRFiddleAPIClient currentAPIVersionForRegion:@"na"], item.iImage];
             NSURL *url = [NSURL URLWithString:urlString];
-            [cell.itemImage sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"Missing"]];
+            //[cell.itemImage sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"Missing"]];
         } else {
             cell.itemNameLabel.text = @"None";
             [cell.itemImage setImage:[UIImage imageNamed:@"Missing"]];
@@ -132,12 +132,14 @@
             }
         }
         
-        for(UIImageView *summonerImage in overviewCell.summonerImages) {
+        for(DFImageView *summonerImage in overviewCell.summonerImages) {
             MatchParticipant *p = [self.participants objectForKey:@(summonerImage.tag - 10)];
             [Champion championInformationFor:[p.mpChampionID integerValue] region:@"na" withBlock:^(Champion *champ, NSError *error) {
                 [CRFiddleAPIClient currentAPIVersionForRegion:@"na" block:^(NSArray *versions, NSError *error1) {
                     NSString *url = [NSString stringWithFormat:@"http://ddragon.leagueoflegends.com/cdn/%@/img/champion/%@.png", versions[0], champ.cKey];
-                    [summonerImage sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"Missing"]];
+                    DFImageRequest *req = [[DFImageRequest alloc] initWithResource:[NSURL URLWithString:url]];
+                    [summonerImage setImageWithRequest:req];
+                    //[summonerImage sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"Missing"]];
                 }];
             }];
         }
@@ -152,15 +154,19 @@
             [CRFiddleAPIClient currentAPIVersionForRegion:@"na" block:^(NSArray *versions, NSError *error1) {
                 NSString *url1 = [NSString stringWithFormat:@"http://ddragon.leagueoflegends.com/cdn/%@/img/champion/%@.png", versions[0], champ.cKey];
                 NSString *url2 = [NSString stringWithFormat:@"http://ddragon.leagueoflegends.com/cdn/img/champion/loading/%@_0.jpg", champ.cKey];
-                [playerCell.championImage sd_setImageWithURL:[NSURL URLWithString:url1] placeholderImage:[UIImage imageNamed:@"Missing"]];
-                [playerCell.backgroundImage sd_setImageWithURL:[NSURL URLWithString:url2] placeholderImage:nil];
-                playerCell.backgroundImage.alpha = 0;
-                [playerCell.backgroundImage sd_setImageWithURL:[NSURL URLWithString:url2] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+                DFImageRequest *req1 = [[DFImageRequest alloc] initWithResource:[NSURL URLWithString:url1]];
+                DFImageRequest *req2 = [[DFImageRequest alloc] initWithResource:[NSURL URLWithString:url2]];
+                [playerCell.championImage setImageWithRequest:req1];
+                [playerCell.backgroundImage setImageWithRequest:req2];
+                //[playerCell.championImage sd_setImageWithURL:[NSURL URLWithString:url1] placeholderImage:[UIImage imageNamed:@"Missing"]];
+                //[playerCell.backgroundImage sd_setImageWithURL:[NSURL URLWithString:url2] placeholderImage:nil];
+                //playerCell.backgroundImage.alpha = 0;
+                /*[playerCell.backgroundImage sd_setImageWithURL:[NSURL URLWithString:url2] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
                     playerCell.backgroundImage.image = image;
                     [UIView animateWithDuration:0.25f animations:^{
                         playerCell.backgroundImage.alpha = 1;
                     }];
-                }];
+                }];*/
             }];
         }];
         

@@ -9,12 +9,12 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-JVFloatingDrawer.xcscheme</key>
+		<key>Pods-DFImageManager.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-SDWebImage.xcscheme</key>
+		<key>Pods-JVFloatingDrawer.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -42,37 +42,37 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>325494AB8A9F6D1C2343C607</key>
+		<key>2CA36B0C45F94DB8CEC53335</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>3CB2D6E1FD213E7E0A93A899</key>
+		<key>52C55C18136C456B9CCEFD23</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>5DA495CFB586D9F6F0A99ADB</key>
+		<key>650E33083858831CF347F830</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>86852F8BA3CDAA2E294D58D3</key>
+		<key>724FB43B0E7CB0B02071A8AA</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>8A421EAF9B714200E2E35EDD</key>
+		<key>789EEEC1D6E098B68C5F59F5</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C9A5E3C769417A28EEC45309</key>
+		<key>D83443401D54B7E55EA26E13</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>F055878CF79F7A0E987007F0</key>
+		<key>E18707F210F00588E896CD85</key>
 		<dict>
 			<key>primary</key>
 			<true/>

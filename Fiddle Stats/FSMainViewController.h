@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <SDWebImage/UIImageView+WebCache.h>
-#import <SDWebImage/SDWebImagePrefetcher.h>
+#import <DFImageManager/DFImageView.h>
+#import <DFImageManager/DFImageRequest.h>
 
 #import "FSSummonerDataSource.h"
 #import "FSCollectionViewCell.h"

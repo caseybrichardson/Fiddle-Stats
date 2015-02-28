@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <DFImageManager/DFImageView.h>
 
 #import "UIView+Effects.h"
 #import "UIColor+AppColors.h"
@@ -14,7 +15,7 @@
 @interface FSMatchTableViewCell : UITableViewCell
 
 @property (strong, nonatomic) IBOutlet UIView *matchOutcomeView;
-@property (strong, nonatomic) IBOutlet UIImageView *champImageView;
+@property (strong, nonatomic) IBOutlet DFImageView *champImageView;
 @property (strong, nonatomic) IBOutlet UILabel *champNameLabelView;
 @property (strong, nonatomic) IBOutlet UILabel *matchGameType;
 @property (strong, nonatomic) IBOutlet UILabel *matchDate;

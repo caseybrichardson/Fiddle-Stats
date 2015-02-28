@@ -118,7 +118,9 @@
             NSString *urlString = @"http://ddragon.leagueoflegends.com/cdn/%@/img/profileicon/%d.png";
             NSString *currentVersion = versions[0];
             NSURL *imageURL = [NSURL URLWithString:[NSString stringWithFormat:urlString, currentVersion, [summoner.sProfileIconID integerValue]]];
-            [playerCell.backgroundImage sd_setImageWithURL:imageURL placeholderImage:[UIImage imageNamed:@"Missing"]];
+            DFImageRequest *req = [[DFImageRequest alloc] initWithResource:imageURL];
+            [playerCell.backgroundImage setImageWithRequest:req];
+            //[playerCell.backgroundImage sd_setImageWithURL:imageURL placeholderImage:[UIImage imageNamed:@"Missing"]];
         }];
     }];
     

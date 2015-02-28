@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <SDWebImage/UIImageView+WebCache.h>
 #import <STKWebKitViewController/STKWebKitViewController.h>
 #import <SVProgressHUD/SVProgressHUD.h>
+#import <DFImageManager/DFImageView.h>
+#import <DFImageManager/DFImageRequest.h>
 
 #import "FSDataPair.h"
 #import "FSDataDelegate.h"
@@ -27,16 +28,18 @@
 @interface FSPlayerTableViewController : UITableViewController <FSMatchDataSource>
 
 @property (strong, nonatomic) IBOutlet UIView *headerView;
-@property (strong, nonatomic) IBOutlet UIImageView *champView;
+@property (strong, nonatomic) IBOutlet DFImageView *champView;
 @property (strong, nonatomic) IBOutlet UILabel *nameLabel;
 @property (strong, nonatomic) IBOutlet UILabel *groupLabel;
-@property (strong, nonatomic) IBOutlet UIImageView *summonerIcon;
+@property (strong, nonatomic) IBOutlet DFImageView *summonerIcon;
 @property (strong, nonatomic) IBOutlet UIView *gradientView;
+@property (strong, nonatomic) IBOutlet UISegmentedControl *modeControl;
 
 @property (strong, nonatomic) id<FSSummonerDataSource> summonerDataSource;
 
 - (Match *)match;
 
 - (IBAction)optionsPressed:(id)sender;
+- (IBAction)modeChanged:(id)sender;
 
 @end
