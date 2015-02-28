@@ -36,8 +36,6 @@
 		3B8AD53A1A1FDB6A00DFFA3A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3B8AD5391A1FDB6A00DFFA3A /* Images.xcassets */; };
 		3B8AD53D1A1FDB6A00DFFA3A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B8AD53B1A1FDB6A00DFFA3A /* LaunchScreen.xib */; };
 		3B8AD5491A1FDB6A00DFFA3A /* Fiddle_StatsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B8AD5481A1FDB6A00DFFA3A /* Fiddle_StatsTests.m */; };
-		3B917A871A83617B00ED75E0 /* NSObject+BlitMethodSwizzling.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B917A821A83617B00ED75E0 /* NSObject+BlitMethodSwizzling.m */; };
-		3B917A881A83617B00ED75E0 /* UIPopoverController+BlitFeedbackAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B917A841A83617B00ED75E0 /* UIPopoverController+BlitFeedbackAdditions.m */; };
 		3B9A17A31A6BC11900473700 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B9A17A11A6BC11900473700 /* Main.storyboard */; };
 		3B9A17A61A6BCB6E00473700 /* FSDrawerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B9A17A51A6BCB6E00473700 /* FSDrawerTableViewController.m */; };
 		3B9A17BA1A6D0F1800473700 /* FSGameOverviewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B9A17B91A6D0F1800473700 /* FSGameOverviewCell.xib */; };
@@ -135,12 +133,6 @@
 		3B8AD5421A1FDB6A00DFFA3A /* Fiddle StatsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Fiddle StatsTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B8AD5471A1FDB6A00DFFA3A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3B8AD5481A1FDB6A00DFFA3A /* Fiddle_StatsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Fiddle_StatsTests.m; sourceTree = "<group>"; };
-		3B917A811A83617B00ED75E0 /* NSObject+BlitMethodSwizzling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+BlitMethodSwizzling.h"; sourceTree = "<group>"; };
-		3B917A821A83617B00ED75E0 /* NSObject+BlitMethodSwizzling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+BlitMethodSwizzling.m"; sourceTree = "<group>"; };
-		3B917A831A83617B00ED75E0 /* UIPopoverController+BlitFeedbackAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIPopoverController+BlitFeedbackAdditions.h"; sourceTree = "<group>"; };
-		3B917A841A83617B00ED75E0 /* UIPopoverController+BlitFeedbackAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIPopoverController+BlitFeedbackAdditions.m"; sourceTree = "<group>"; };
-		3B917A851A83617B00ED75E0 /* libBlitFeedback.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libBlitFeedback.a; sourceTree = "<group>"; };
-		3B917A861A83617B00ED75E0 /* BlitFeedback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlitFeedback.h; sourceTree = "<group>"; };
 		3B917A8A1A83625600ED75E0 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		3B917A8C1A83625F00ED75E0 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		3B917A8E1A83626900ED75E0 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
@@ -378,7 +370,6 @@
 		3B8AD5291A1FDB6A00DFFA3A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				3B917A7F1A83613600ED75E0 /* BlitFeedback */,
 				3B2F48D61A72FD2800A80AA0 /* AppProperties.plist */,
 				3B8AD52A1A1FDB6A00DFFA3A /* Info.plist */,
 				3B8AD5301A1FDB6A00DFFA3A /* Fiddle_Stats.xcdatamodeld */,
@@ -403,27 +394,6 @@
 				3B8AD5471A1FDB6A00DFFA3A /* Info.plist */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		3B917A7F1A83613600ED75E0 /* BlitFeedback */ = {
-			isa = PBXGroup;
-			children = (
-				3B917A801A83617B00ED75E0 /* Additions */,
-				3B917A851A83617B00ED75E0 /* libBlitFeedback.a */,
-				3B917A861A83617B00ED75E0 /* BlitFeedback.h */,
-			);
-			name = BlitFeedback;
-			sourceTree = "<group>";
-		};
-		3B917A801A83617B00ED75E0 /* Additions */ = {
-			isa = PBXGroup;
-			children = (
-				3B917A811A83617B00ED75E0 /* NSObject+BlitMethodSwizzling.h */,
-				3B917A821A83617B00ED75E0 /* NSObject+BlitMethodSwizzling.m */,
-				3B917A831A83617B00ED75E0 /* UIPopoverController+BlitFeedbackAdditions.h */,
-				3B917A841A83617B00ED75E0 /* UIPopoverController+BlitFeedbackAdditions.m */,
-			);
-			path = Additions;
 			sourceTree = "<group>";
 		};
 		3BA0B5BB1A763BEA00211EED /* Tools */ = {
@@ -661,7 +631,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				3BA0B5BE1A763C0200211EED /* CRDataManager.m in Sources */,
-				3B917A881A83617B00ED75E0 /* UIPopoverController+BlitFeedbackAdditions.m in Sources */,
 				3BA0B5B71A762B8200211EED /* Item.m in Sources */,
 				3BF2263B1A1FE3CB004EB614 /* UIColor+AppColors.m in Sources */,
 				3B9A17A61A6BCB6E00473700 /* FSDrawerTableViewController.m in Sources */,
@@ -676,7 +645,6 @@
 				3B8AD52F1A1FDB6A00DFFA3A /* AppDelegate.m in Sources */,
 				3B8AD52C1A1FDB6A00DFFA3A /* main.m in Sources */,
 				3BF226471A1FE47A004EB614 /* CRFiddleAPIClient.m in Sources */,
-				3B917A871A83617B00ED75E0 /* NSObject+BlitMethodSwizzling.m in Sources */,
 				3B9A17BD1A6D155300473700 /* FSGameOverviewCell.m in Sources */,
 				3BA11FCA1A2F227D00AFC8EB /* Champion.m in Sources */,
 				3BF6B9791A479478007C10BF /* CRCheckMark.m in Sources */,
