@@ -107,6 +107,44 @@
         <attribute name="mtWinner" optional="YES" attributeType="Boolean" syncable="YES"/>
         <relationship name="mtMatch" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Match" inverseName="mMatchTeams" inverseEntity="Match" syncable="YES"/>
     </entity>
+    <entity name="Statistics" syncable="YES">
+        <attribute name="stBotGamesPlayed" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="stChampionID" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="stKillingSpree" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="stMaxChampionsKilled" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="stMaxLargestCriticalStrike" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="stMaxLargestKillingSpree" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="stMaxNumDeaths" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="stMaxTimePlayed" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="stMaxTimeSpentLiving" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="stMostChampionsKillsPerSession" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="stMostSpellsCast" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="stNormalGamesPlayed" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="stRankedPremadeGamesPlayed" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="stRankedSoloGamesPlayed" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="stTotalAssists" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="stTotalChampionKills" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="stTotalDamageDealt" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="stTotalDamageTaken" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="stTotalDeathsPerSession" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="stTotalDoubleKills" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="stTotalFirstBlood" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="stTotalGoldEarned" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="stTotalHeal" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="stTotalMagicDamageDealt" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="stTotalMinionKills" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="stTotalNeutralMinionsKilled" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="stTotalPentaKills" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="stTotalPhysicalDamageDealt" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="stTotalQuadraKills" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="stTotalSessionsLost" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="stTotalSessionsPlayed" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="stTotalSessionsWon" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="stTotalTripleKills" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="stTotalTurretsKilled" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="stTotalUnrealKills" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <relationship name="stSummoner" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Summoner" inverseName="sStatistics" inverseEntity="Summoner" syncable="YES"/>
+    </entity>
     <entity name="Summoner" representedClassName="Summoner" syncable="YES">
         <attribute name="sAddedOn" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="sFavorited" optional="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
@@ -120,6 +158,7 @@
         <attribute name="sSummonerLevel" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <relationship name="sGroup" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SummonerGroup" inverseName="gSummoners" inverseEntity="SummonerGroup" syncable="YES"/>
         <relationship name="sMatches" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Match" inverseName="mMatchSummoners" inverseEntity="Match" syncable="YES"/>
+        <relationship name="sStatistics" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Statistics" inverseName="stSummoner" inverseEntity="Statistics" syncable="YES"/>
     </entity>
     <entity name="SummonerGroup" representedClassName="SummonerGroup" syncable="YES">
         <attribute name="gGroupTitle" optional="YES" attributeType="String" syncable="YES"/>
@@ -133,7 +172,8 @@
         <element name="MatchParticipantIdentity" positionX="9" positionY="171" width="128" height="118"/>
         <element name="MatchParticipantStats" positionX="313" positionY="-297" width="128" height="658"/>
         <element name="MatchTeam" positionX="-225" positionY="63" width="128" height="208"/>
-        <element name="Summoner" positionX="-549" positionY="-115" width="128" height="223"/>
-        <element name="SummonerGroup" positionX="-335" positionY="-153" width="128" height="73"/>
+        <element name="Statistics" positionX="-855" positionY="99" width="135" height="583"/>
+        <element name="Summoner" positionX="-621" positionY="-181" width="128" height="28"/>
+        <element name="SummonerGroup" positionX="-317" positionY="-280" width="128" height="73"/>
     </elements>
 </model>

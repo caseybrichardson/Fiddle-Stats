@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "789EEEC1D6E098B68C5F59F5"
+               BlueprintIdentifier = "C799378B0BF26181F3E7E2E8"
                BuildableName = "libPods-STKWebKitViewController.a"
                BlueprintName = "Pods-STKWebKitViewController"
                ReferencedContainer = "container:Pods.xcodeproj">

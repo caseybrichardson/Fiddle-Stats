@@ -1,1 +1,0 @@
-../../../DFImageManager/DFImageManager/Source/Other/DFImageManagerBlockValueTransformer.h

@@ -1,1 +1,1 @@
-../../../DFImageManager/DFImageManager/Source/Categories/UIImageView+DFImageManager.h
+../../../DFImageManager/DFImageManager/Source/UI/UIImageView+DFImageManager.h

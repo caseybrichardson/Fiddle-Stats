@@ -6,6 +6,9 @@
 //  Copyright (c) 2014 Casey Richardson. All rights reserved.
 //
 
+#import <PromiseKit/PromiseKit.h>
+#import <PromiseKit-AFNetworking/AFNetworking+PromiseKit.h>
+
 #import "Summoner.h"
 #import "CRFiddleAPIClient.h"
 #import "SummonerGroup.h"
@@ -13,10 +16,13 @@
 @interface Summoner (APIMethods)
 
 - (instancetype)initWithAttributes:(NSDictionary *)attributes inRegion:(NSString *)region;
+
 - (NSString *)groupName;
+
 - (void)markSummonerUpdated;
 
-+ (NSArray *)storedSummoners;
-+ (void)summonerInformationFor:(NSString *)summonerName region:(NSString *)region withBlock:(void (^)(Summoner *summoner, NSError *error))block;
+- (NSURL *)summonerIconURL;
+
++ (PMKPromise *)summonerWithName:(NSString *)summonerName region:(NSString *)region;
 
 @end

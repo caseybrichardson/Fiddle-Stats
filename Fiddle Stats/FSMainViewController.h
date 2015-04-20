@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <DFImageManager/DFImageView.h>
 #import <DFImageManager/DFImageRequest.h>
+#import <PromiseKit/PromiseKit.h>
 
 #import "FSSummonerDataSource.h"
 #import "FSCollectionViewCell.h"

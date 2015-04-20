@@ -22,7 +22,7 @@
 #import "Item+APIMethods.h"
 #import "UIColor+AppColors.h"
 
-@interface FSMatchCollectionViewController : UICollectionViewController <UICollectionViewDelegateFlowLayout, UITableViewDataSource, FSGameOverviewCellDelegate>
+@interface FSMatchCollectionViewController : UICollectionViewController <UICollectionViewDelegateFlowLayout, UITableViewDataSource, UITableViewDelegate, FSGameOverviewCellDelegate>
 
 @property (weak, nonatomic) id<FSMatchDataSource> dataSource;
 

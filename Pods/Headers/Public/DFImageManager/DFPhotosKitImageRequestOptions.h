@@ -1,1 +1,0 @@
-../../../DFImageManager/DFImageManager/Source/Fetchers/Photos Kit Fetcher/DFPhotosKitImageRequestOptions.h

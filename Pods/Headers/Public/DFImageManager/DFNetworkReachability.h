@@ -1,1 +1,1 @@
-../../../DFImageManager/DFImageManager/Source/Other/DFNetworkReachability.h
+../../../DFImageManager/DFImageManager/Source/Core/Utilities/DFNetworkReachability.h

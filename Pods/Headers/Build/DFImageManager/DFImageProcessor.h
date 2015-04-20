@@ -1,1 +1,1 @@
-../../../DFImageManager/DFImageManager/Source/Other/DFImageProcessor.h
+../../../DFImageManager/DFImageManager/Source/Core/Processing/DFImageProcessor.h

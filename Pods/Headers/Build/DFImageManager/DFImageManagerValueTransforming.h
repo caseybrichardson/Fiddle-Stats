@@ -1,1 +1,0 @@
-../../../DFImageManager/DFImageManager/Source/Protocols/DFImageManagerValueTransforming.h

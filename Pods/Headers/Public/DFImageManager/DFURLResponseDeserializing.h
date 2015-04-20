@@ -1,1 +1,1 @@
-../../../DFImageManager/DFImageManager/Source/Fetchers/URL Fetcher/DFURLResponseDeserializing.h
+../../../DFImageManager/DFImageManager/Source/NSURLSession/DFURLResponseDeserializing.h

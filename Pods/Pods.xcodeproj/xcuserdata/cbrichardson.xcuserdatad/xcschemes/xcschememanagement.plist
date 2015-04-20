@@ -19,6 +19,21 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-OMGHTTPURLRQ.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-PromiseKit-AFNetworking.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-PromiseKit.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-STKWebKitViewController.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -42,37 +57,52 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>2CA36B0C45F94DB8CEC53335</key>
+		<key>1A0F65D9EB9DD87A5B50C8F2</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>52C55C18136C456B9CCEFD23</key>
+		<key>2F0BF346F59F4F1739A9DD3E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>650E33083858831CF347F830</key>
+		<key>37999ED5C282717BEC7DFE00</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>724FB43B0E7CB0B02071A8AA</key>
+		<key>4238F2847BF08E06C6B3E86C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>789EEEC1D6E098B68C5F59F5</key>
+		<key>4B04F9E6AB66CEC7968494F0</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>D83443401D54B7E55EA26E13</key>
+		<key>91A5F548A59CA9DB7240BE5A</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>E18707F210F00588E896CD85</key>
+		<key>A36E67A02B85CBFA4E516787</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>B435B5A4BB013BE21613FB50</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C799378B0BF26181F3E7E2E8</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C9135733F724668C0B75D2CC</key>
 		<dict>
 			<key>primary</key>
 			<true/>

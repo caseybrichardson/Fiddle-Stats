@@ -43,11 +43,6 @@
     tgr.delegate = self;
     [self.playerCollectionView addGestureRecognizer:tgr];
     
-    /*UILongPressGestureRecognizer *lpgr = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];
-    lpgr.delegate = self;
-    lpgr.minimumPressDuration = 0.75f;
-    [self.playerCollectionView addGestureRecognizer:lpgr];*/
-    
     [self.inputHolderView addGradientWithColors:@[[UIColor clearColor], [UIColor blackColor]]];
     
     [self initializeDataDelegate];
@@ -120,7 +115,6 @@
             NSURL *imageURL = [NSURL URLWithString:[NSString stringWithFormat:urlString, currentVersion, [summoner.sProfileIconID integerValue]]];
             DFImageRequest *req = [[DFImageRequest alloc] initWithResource:imageURL];
             [playerCell.backgroundImage setImageWithRequest:req];
-            //[playerCell.backgroundImage sd_setImageWithURL:imageURL placeholderImage:[UIImage imageNamed:@"Missing"]];
         }];
     }];
     
@@ -279,9 +273,11 @@
     
     // TODO: implement a regex to check for nothing but whitespace
     if((![playerName isEqualToString:@""] && ![playerName isEqualToString:@" "])) {
-        [Summoner summonerInformationFor:playerName region:@"na" withBlock:^(Summoner *summoner, NSError *error) {
+        [Summoner summonerWithName:playerName region:@"na"].then(^(id summoner){
             [self.playerCollectionView reloadData];
-        }];
+        }).catch(^(NSError *error){
+            // TODO: implement error handling
+        });
     }
     
     [self.playerNameInputView setText:@""];

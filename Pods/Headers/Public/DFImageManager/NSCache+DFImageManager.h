@@ -1,1 +1,1 @@
-../../../DFImageManager/DFImageManager/Source/Categories/NSCache+DFImageManager.h
+../../../DFImageManager/DFImageManager/Source/Core/Caching/NSCache+DFImageManager.h

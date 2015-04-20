@@ -76,7 +76,6 @@
         NSURL *imageURL = [NSURL URLWithString:formattedURL];
         DFImageRequest *req = [[DFImageRequest alloc] initWithResource:imageURL];
         [self.summonerIcon setImageWithRequest:req];
-        //[self.summonerIcon sd_setImageWithURL:imageURL placeholderImage:[UIImage imageNamed:@"Missing"]];
     }];
     
     // Grab our new matches
@@ -91,13 +90,6 @@
                 NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:urlString, champKey]];
                 DFImageRequest *req = [[DFImageRequest alloc] initWithResource:url];
                 [self.champView setImageWithRequest:req];
-                //[self.champView setAlpha:0];
-                /*[self.champView sd_setImageWithURL:url completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-                    [self.champView setImage:image];
-                    [UIView animateWithDuration:0.25f animations:^{
-                        [self.champView setAlpha:1];
-                    }];
-                }];*/
             }];
         }
         

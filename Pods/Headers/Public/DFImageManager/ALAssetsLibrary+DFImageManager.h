@@ -1,1 +1,1 @@
-../../../DFImageManager/DFImageManager/Source/Fetchers/Assets Library Fetcher/ALAssetsLibrary+DFImageManager.h
+../../../DFImageManager/DFImageManager/Source/AssetsLibrary/ALAssetsLibrary+DFImageManager.h

@@ -70,43 +70,17 @@
     return ([summoners count] > 0 ? summoners[0] : nil);
 }
 
-+ (NSArray *)storedSummoners {
-    AppDelegate *del = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    
-    NSError *error;
-    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Summoner"];
-    NSArray *summoners = [del.managedObjectContext executeFetchRequest:request error:&error];
-    
-    if(!summoners) {
-        return nil;
-    }
-    
-    return summoners;
-}
-
 #pragma mark - Summoner API Calls
 
-+ (void)summonerInformationFor:(NSString *)summonerName region:(NSString *)region withBlock:(void (^)(Summoner *summoner, NSError *error))block {
-    NSDictionary *requestParams = @{@"api_key": @"8ad21685-9e9f-4c18-9e72-30b8d598fce9"};
-    
++ (PMKPromise *)summonerWithName:(NSString *)summonerName region:(NSString *)region {
     NSString *sanitizedName = [summonerName stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLPathAllowedCharacterSet]];
-    NSString *url = [NSString stringWithFormat:@"/api/lol/%@/v1.4/summoner/by-name/%@", region, sanitizedName];
-    
-    [[CRFiddleAPIClient sharedInstance] GET:url parameters:requestParams success:^(NSURLSessionDataTask *task, id responseObject) {
-        NSDictionary *dict = (NSDictionary *)responseObject;
-        Summoner *summoner = [[Summoner alloc] initWithAttributes:(NSDictionary *)[dict allValues].firstObject inRegion:region];
-        
-        if(block) {
-            block(summoner, nil);
-        }
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        NSLog(@"%ld", (long)((NSHTTPURLResponse *)task.response).statusCode);
-        NSLog(@"Failing to fetch summoner data with error: %@", error.description);
-        
-        if(block) {
-            block(nil, error);
-        }
-    }];
+    NSString *urlString = [NSString stringWithFormat:RiotAPISummonerEndpoint, region, sanitizedName];
+    return [[CRFiddleAPIClient sharedInstance] riotRequestForEndpoint:urlString parameters:@{}].then(^(id response){
+        NSDictionary *responseData = (NSDictionary *)response;
+        return [[Summoner alloc] initWithAttributes:[[responseData allValues] firstObject] inRegion:region];
+    }).catch(^(NSError *error){
+        return error;
+    });
 }
 
 @end

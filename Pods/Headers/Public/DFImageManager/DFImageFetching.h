@@ -1,1 +1,1 @@
-../../../DFImageManager/DFImageManager/Source/Protocols/DFImageFetching.h
+../../../DFImageManager/DFImageManager/Source/Core/Protocols/DFImageFetching.h

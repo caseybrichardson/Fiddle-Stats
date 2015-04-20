@@ -1,1 +1,1 @@
-../../../DFImageManager/DFImageManager/Source/Request/DFImageRequest.h
+../../../DFImageManager/DFImageManager/Source/Core/Support/DFImageRequest.h

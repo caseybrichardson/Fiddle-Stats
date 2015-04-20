@@ -1,1 +1,1 @@
-../../../DFImageManager/DFImageManager/Source/Other/DFCachedImage.h
+../../../DFImageManager/DFImageManager/Source/Core/Caching/DFCachedImage.h

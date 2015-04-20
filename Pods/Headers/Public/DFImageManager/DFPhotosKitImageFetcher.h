@@ -1,1 +1,1 @@
-../../../DFImageManager/DFImageManager/Source/Fetchers/Photos Kit Fetcher/DFPhotosKitImageFetcher.h
+../../../DFImageManager/DFImageManager/Source/PhotosKit/DFPhotosKitImageFetcher.h
