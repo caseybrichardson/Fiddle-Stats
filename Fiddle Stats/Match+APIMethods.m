@@ -144,53 +144,37 @@
     return ([matches count] > 0 ? matches[0] : nil);
 }
 
-+ (void)matchesInformationFor:(Summoner *)summoner withBlock:(void (^)(NSArray *matches, NSError *error))block {
-    NSDictionary *requestParams = @{@"api_key": @"8ad21685-9e9f-4c18-9e72-30b8d598fce9"};
-    NSString *url = [NSString stringWithFormat:@"/api/lol/%@/v2.2/matchhistory/%lld", summoner.sRegion, [summoner.sID longLongValue]];
-    
-    [[CRFiddleAPIClient sharedInstance] GET:url parameters:requestParams success:^(NSURLSessionDataTask *task, id responseObject) {
-        NSDictionary *dict = (NSDictionary *)responseObject;
-        NSArray *matches = dict[@"matches"];
++ (PMKPromise *)matchesInformationFor:(Summoner *)summoner {
+    NSString *url = [NSString stringWithFormat:RiotAPIMatchesEndpoint, summoner.sRegion, [summoner.sID longLongValue]];
+    return [[CRFiddleAPIClient sharedInstance] riotRequestForEndpoint:url parameters:@{}].then(^(id response){
+        NSDictionary *responseData = (NSDictionary *)response;
+        NSArray *matches = responseData[@"matches"];
         
         NSMutableArray *parsedData = [NSMutableArray array];
         
         for (NSDictionary *match in matches) {
             [parsedData addObject:[[Match alloc] initWithAttributes:match forSummoner:summoner]];
         }
-    
-        if(block) {
-            block(parsedData, nil);
-        }
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        NSLog(@"Fail: %@", task.taskDescription);
-        if(block) {
-            block(nil, error);
-        }
-    }];
+        
+        return parsedData;
+    });
 }
 
-+ (void)expandedMatchInformationFor:(Match *)match withBlock:(void (^)(Match *match, NSError *error))block {
++ (PMKPromise *)expandedMatchInformationFor:(Match *)match {
     
     if([match.mHasFullData boolValue]) {
-        block(match, nil);
-    } else {
-        NSDictionary *requestParams = @{@"api_key": @"8ad21685-9e9f-4c18-9e72-30b8d598fce9"};
-        NSString *url = [NSString stringWithFormat:@"/api/lol/%@/v2.2/match/%lld", [match.mRegion lowercaseString], [match.mMatchID longLongValue]];
-        
-        [[CRFiddleAPIClient sharedInstance] GET:url parameters:requestParams success:^(NSURLSessionDataTask *task, id responseObject) {
-            NSDictionary *details = (NSDictionary *)responseObject;
-            
-            [match updateWithExtendedInformation:details];
-            
-            if(block) {
-                block(match, nil);
-            }
-        } failure:^(NSURLSessionDataTask *task, NSError *error) {
-            NSLog(@"Fail: %@", error);
-            if(block) {
-                block(nil, error);
-            }
+        return [PMKPromise new:^(PMKFulfiller fulfill, PMKRejecter reject) {
+            fulfill(match);
         }];
+    } else {
+        NSString *url = [NSString stringWithFormat:RiotAPIMatchEndpoint, [match.mRegion lowercaseString], [match.mMatchID longLongValue]];
+        return [[CRFiddleAPIClient sharedInstance] riotRequestForEndpoint:url parameters:@{}].then(^(id response){
+            NSDictionary *responseData = (NSDictionary *)response;
+            [match updateWithExtendedInformation:responseData];
+            return match;
+        }).catch(^(NSError *error){
+            return error;
+        });
     }
 }
 

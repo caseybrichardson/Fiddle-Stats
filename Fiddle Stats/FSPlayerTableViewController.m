@@ -79,7 +79,7 @@
     }];
     
     // Grab our new matches
-    [Match matchesInformationFor:summoner withBlock:^(NSArray *matches, NSError *e) {
+    [Match matchesInformationFor:summoner].then(^(NSArray *matches) {
         [self initializeDataDelegate];
         
         if(matches.count > 0) {
@@ -95,7 +95,7 @@
         
         [SVProgressHUD dismiss];
         [self.tableView reloadData];
-    }];
+    });
 }
 
 - (void)viewDidLayoutSubviews {
@@ -168,11 +168,11 @@
         
         bool showHUD = [m.mHasFullData boolValue];
         if(!showHUD) { [SVProgressHUD show]; }
-        [Match expandedMatchInformationFor:m withBlock:^(Match *match, NSError *error) {
+        [Match expandedMatchInformationFor:m].then(^(Match *match) {
             if(!showHUD) { [SVProgressHUD dismiss]; }
             ptvc.selectedMatch = match;
             [ptvc performSegueWithIdentifier:@"MatchDetails" sender:ptvc];
-        }];
+        });
     }];
     
     [self.dataDelegate performFetch];
@@ -194,7 +194,7 @@
     DFImageRequest *req = [[DFImageRequest alloc] initWithResource:imageURL];
     [self.summonerIcon setImageWithRequest:req];
     
-    [Match matchesInformationFor:summoner withBlock:^(NSArray *matches, NSError *e) {
+    [Match matchesInformationFor:summoner].then(^(NSArray *matches) {
         [self.dataDelegate performFetch];
         
         if([matches count] > 0) {
@@ -210,7 +210,7 @@
         }
         
         [self.tableView reloadData];
-    }];
+    });
     
     [((UIRefreshControl *)sender) endRefreshing];
 }

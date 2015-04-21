@@ -24,62 +24,78 @@
 
 #import "UIImageView+Letters.h"
 
+// This multiplier sets the font size based on the view bounds
+static const CGFloat kFontResizingProportion = 0.48f;
+
+@interface UIImageView (LettersPrivate)
+
+- (UIImage *)imageSnapshotFromText:(NSString *)text backgroundColor:(UIColor *)color circular:(BOOL)isCircular fontName:(NSString*)fontName;
+
+@end
+
 @implementation UIImageView (Letters)
 
 - (void)setImageWithString:(NSString *)string {
-    [self setImageWithString:string color:nil];
+    [self setImageWithString:string color:nil circular:NO fontName:nil];
 }
 
 - (void)setImageWithString:(NSString *)string color:(UIColor *)color {
-    
-    //
-    // Set up a temporary view to contain the text label
-    //
-    UIView *tempView = [[UIView alloc] initWithFrame:self.bounds];
-    
-    UILabel *letterLabel = [[UILabel alloc] initWithFrame:self.bounds];
-    letterLabel.textAlignment = NSTextAlignmentCenter;
-    letterLabel.backgroundColor = [UIColor clearColor];
-    letterLabel.textColor = [UIColor whiteColor];
-    letterLabel.adjustsFontSizeToFitWidth = YES;
-    letterLabel.minimumScaleFactor = 8.0f / 65.0f;
-    letterLabel.font = [self fontForLetterLabel];
-    [tempView addSubview:letterLabel];
-    
+    [self setImageWithString:string color:color circular:NO fontName:nil];
+}
+
+- (void)setImageWithString:(NSString *)string color:(UIColor *)color circular:(BOOL)isCircular {
+    [self setImageWithString:string color:color circular:isCircular fontName:nil];
+}
+
+- (void)setImageWithString:(NSString *)string color:(UIColor *)color circular:(BOOL)isCircular fontName: (NSString *)fontName {
     NSMutableString *displayString = [NSMutableString stringWithString:@""];
     
-    NSArray *words = [string componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    NSMutableArray *words = [[string componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] mutableCopy];
     
+    //
+    // Get first letter of the first and last word
+    //
     if ([words count]) {
-        NSString *firstWord = words[0];
-        if ([firstWord length]) {
-            [displayString appendString:[firstWord substringWithRange:NSMakeRange(0, 1)]];
+        NSString *firstWord = [words firstObject];
+        if ([firstWord length] != 0) {
+            // Get character range to handle emoji (emojis consist of 2 characters in sequence)
+            NSRange firstLetterRange = [firstWord rangeOfComposedCharacterSequencesForRange:NSMakeRange(0, 1)];
+            [displayString appendString:[firstWord substringWithRange:firstLetterRange]];
         }
         
         if ([words count] >= 2) {
-            NSString *lastWord = words[[words count] - 1];
-            if ([lastWord length]) {
-                [displayString appendString:[lastWord substringWithRange:NSMakeRange(0, 1)]];
+            NSString *lastWord = [words lastObject];
+            
+            while ([lastWord length] == 0 && [words count] >= 2) {
+                [words removeLastObject];
+                lastWord = [words lastObject];
+            }
+            
+            if ([words count] > 1) {
+                // Get character range to handle emoji (emojis consist of 2 characters in sequence)
+                NSRange lastLetterRange = [lastWord rangeOfComposedCharacterSequencesForRange:NSMakeRange(0, 1)];
+                [displayString appendString:[lastWord substringWithRange:lastLetterRange]];
             }
         }
     }
-    letterLabel.text = [displayString uppercaseString];
     
-    //
-    // Set the background color
-    //
-    tempView.backgroundColor = color ? color : [self randomColor];
+    UIColor *backgroundColor = color ? color : [self randomColor];
     
-    //
-    // Return an image instance of the temporary view
-    //
-    self.image = [self imageSnapshotFromView:tempView];
+    self.image = [self imageSnapshotFromText:[displayString uppercaseString] backgroundColor:backgroundColor circular:isCircular fontName:fontName];
 }
 
 #pragma mark - Helpers
 
-- (UIFont *)fontForLetterLabel {
-    return [UIFont systemFontOfSize:CGRectGetWidth(self.bounds) * 0.48];
+- (UIFont *)fontForText:(NSString *)fontName {
+    
+    CGFloat fontSize = CGRectGetWidth(self.bounds) * kFontResizingProportion;
+    if (fontName) {
+        return [UIFont fontWithName:fontName size:fontSize];
+    }
+    else {
+        return [UIFont systemFontOfSize:fontSize];
+    }
+    
 }
 
 - (UIColor *)randomColor {
@@ -102,7 +118,7 @@
     return [UIColor colorWithRed:red green:green blue:blue alpha:1.0f];
 }
 
-- (UIImage *)imageSnapshotFromView:(UIView *)inputView {
+- (UIImage *)imageSnapshotFromText:(NSString *)text backgroundColor:(UIColor *)color circular:(BOOL)isCircular fontName:(NSString *)fontName {
     
     CGFloat scale = [UIScreen mainScreen].scale;
     
@@ -116,11 +132,41 @@
         size.height = floorf(size.height * scale) / scale;
     }
     
-    UIGraphicsBeginImageContextWithOptions(size, YES, scale);
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    CGContextTranslateCTM(context, -self.bounds.origin.x, -self.bounds.origin.y);
+    UIGraphicsBeginImageContextWithOptions(size, NO, scale);
     
-    [inputView.layer renderInContext:context];
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    
+    if (isCircular) {
+        //
+        // Clip context to a circle
+        //
+        CGPathRef path = CGPathCreateWithEllipseInRect(self.bounds, NULL);
+        CGContextAddPath(context, path);
+        CGContextClip(context);
+        CGPathRelease(path);
+    }
+    
+    //
+    // Fill background of context
+    //
+    CGContextSetFillColorWithColor(context, color.CGColor);
+    CGContextFillRect(context, CGRectMake(0, 0, size.width, size.height));
+    
+    //
+    // Draw text in the context
+    //
+    CGSize textSize = [text sizeWithAttributes:@{NSFontAttributeName:[self fontForText:fontName]}];
+    CGRect bounds = self.bounds;
+    
+    [text drawInRect:CGRectMake(bounds.size.width/2 - textSize.width/2,
+                                bounds.size.height/2 - textSize.height/2,
+                                textSize.width,
+                                textSize.height)
+      withAttributes:@{
+                       NSFontAttributeName:[self fontForText:fontName],
+                       NSForegroundColorAttributeName:[UIColor whiteColor]
+                       }];
+    
     UIImage *snapshot = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     

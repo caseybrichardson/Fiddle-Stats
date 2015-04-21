@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "5AC9C00E47E9465514D9C757"
-               BuildableName = "libPods-PromiseKit.a"
-               BlueprintName = "Pods-PromiseKit"
+               BlueprintIdentifier = "2CA66CE1A7AAA739A095F5BE"
+               BuildableName = "libPods-UAObfuscatedString.a"
+               BlueprintName = "Pods-UAObfuscatedString"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

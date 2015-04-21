@@ -10,6 +10,7 @@
 #import <AFNetworking/AFNetworking.h>
 #import <PromiseKit-AFNetworking/AFNetworking+PromiseKit.h>
 #import <PromiseKit/NSURLConnection+PromiseKit.h>
+#import <UAObfuscatedString/UAObfuscatedString.h>
 
 /* API URL Bases */
 extern NSString * const RiotAPIBaseURL;
@@ -17,6 +18,7 @@ extern NSString * const RiotAPIIconURL;
 
 /* API Endpoints */
 extern NSString * const RiotAPISummonerEndpoint;
+extern NSString * const RiotAPIMatchesEndpoint;
 extern NSString * const RiotAPIMatchEndpoint;
 extern NSString * const RiotAPIStatsEndpoint;
 extern NSString * const RiotAPIChampionEndpoint;

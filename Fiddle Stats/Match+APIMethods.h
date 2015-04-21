@@ -20,7 +20,7 @@
 
 + (NSArray *)storedMatchesForSummoner:(Summoner *)summoner;
 + (Match *)storedMatchWithID:(NSInteger)matchID;
-+ (void)matchesInformationFor:(Summoner *)summoner withBlock:(void (^)(NSArray *matches, NSError *error))block;
-+ (void)expandedMatchInformationFor:(Match *)match withBlock:(void (^)(Match *match, NSError *error))block;
++ (PMKPromise *)matchesInformationFor:(Summoner *)summoner;
++ (PMKPromise *)expandedMatchInformationFor:(Match *)match;
 
 @end
