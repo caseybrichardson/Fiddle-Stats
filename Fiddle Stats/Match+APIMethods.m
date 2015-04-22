@@ -10,7 +10,7 @@
 
 @implementation Match (APIMethods)
 
-- (Match *)initWithAttributes:(NSDictionary *)attributes forSummoner:(Summoner *)summoner {
++ (Match *)newMatchWithAttributes:(NSDictionary *)attributes forSummoner:(Summoner *)summoner {
     AppDelegate *del = (AppDelegate *)[UIApplication sharedApplication].delegate;
     
     Match *match = [Match storedMatchWithID:[attributes[@"matchId"] integerValue]];
@@ -36,14 +36,14 @@
     
     NSMutableDictionary *participants = [NSMutableDictionary dictionary];
     for (NSDictionary *participant in attributes[@"participants"]) {
-        MatchParticipant *p = [[MatchParticipant alloc] initWithAttributes:participant match:match];
+        MatchParticipant *p = [MatchParticipant newParticipantWithAttributes:participant match:match];
         [participants setObject:p forKey:p.mpParticipantID];
     }
     
     for (NSDictionary *identities in attributes[@"participantIdentities"]) {
         MatchParticipant *participant = participants[identities[@"participantId"]];
         if(participant) {
-            MatchParticipantIdentity *i = [[MatchParticipantIdentity alloc] initWithAttributes:identities participant:participant];
+            MatchParticipantIdentity *i = [MatchParticipantIdentity newIdentityWithAttributes:identities participant:participant];
             [i setMpiParticipant:participant];
         }
     }
@@ -58,14 +58,14 @@
     
     NSMutableDictionary *participants = [NSMutableDictionary dictionary];
     for (NSDictionary *participant in attributes[@"participants"]) {
-        MatchParticipant *p = [[MatchParticipant alloc] initWithAttributes:participant match:self];
+        MatchParticipant *p = [MatchParticipant newParticipantWithAttributes:participant match:self];
         [participants setObject:p forKey:p.mpParticipantID];
     }
     
     for (NSDictionary *identities in attributes[@"participantIdentities"]) {
         MatchParticipant *participant = participants[identities[@"participantId"]];
         if(participant) {
-            MatchParticipantIdentity *i = [[MatchParticipantIdentity alloc] initWithAttributes:identities participant:participant];
+            MatchParticipantIdentity *i = [MatchParticipantIdentity newIdentityWithAttributes:identities participant:participant];
             [i setMpiParticipant:participant];
         }
     }
@@ -153,7 +153,7 @@
         NSMutableArray *parsedData = [NSMutableArray array];
         
         for (NSDictionary *match in matches) {
-            [parsedData addObject:[[Match alloc] initWithAttributes:match forSummoner:summoner]];
+            [parsedData addObject:[Match newMatchWithAttributes:match forSummoner:summoner]];
         }
         
         return parsedData;

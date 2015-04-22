@@ -70,19 +70,17 @@
             break;
     }
     
-    [Item itemInformationFor:item region:@"na" withBlock:^(Item *item, NSError *error) {
-        if(!error && item.iName) {
-            cell.itemNameLabel.text = item.iName;
-            
-            NSString *urlString = [NSString stringWithFormat:@"http://ddragon.leagueoflegends.com/cdn/%@/img/item/%@", [CRFiddleAPIClient currentAPIVersionForRegion:@"na"], item.iImage];
-            NSURL *url = [NSURL URLWithString:urlString];
-            DFImageRequest *req = [[DFImageRequest alloc] initWithResource:url];
-            [cell.itemImage setImageWithRequest:req];
-        } else {
-            cell.itemNameLabel.text = @"None";
-            [cell.itemImage setImage:[UIImage imageNamed:@"Missing"]];
-        }
-    }];
+    [Item itemInformationFor:item region:@"na"].then(^(Item *item) {
+        cell.itemNameLabel.text = item.iName;
+        
+        NSString *urlString = [NSString stringWithFormat:@"http://ddragon.leagueoflegends.com/cdn/%@/img/item/%@", [CRFiddleAPIClient currentAPIVersionForRegion:@"na"], item.iImage];
+        NSURL *url = [NSURL URLWithString:urlString];
+        DFImageRequest *req = [[DFImageRequest alloc] initWithResource:url];
+        [cell.itemImage setImageWithRequest:req];
+    }).catch(^(NSError *error) {
+        cell.itemNameLabel.text = @"None";
+        [cell.itemImage setImage:[UIImage imageNamed:@"Missing"]];
+    });
     cell.itemNumberLabel.text = [NSString stringWithFormat:@"Item %ld", (long)path.row + 1];
     
     UIColor *col = [UIColor colorWithWhite:0.65f alpha:0.5f];

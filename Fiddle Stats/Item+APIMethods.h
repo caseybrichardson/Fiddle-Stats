@@ -15,10 +15,9 @@
 
 @interface Item (APIMethods)
 
-- (Item *)initWithAttributes:(NSDictionary *)attributes;
-
++ (Item *)newItemWithAttributes:(NSDictionary *)attributes;
 + (Item *)storedItemWithID:(NSInteger)itemID;
-+ (void)itemInformationFor:(NSInteger)itemID region:(NSString *)region withBlock:(void (^)(Item *item, NSError *error))block;
++ (PMKPromise *)itemInformationFor:(NSInteger)itemID region:(NSString *)region;
 + (void)downloadItemImageForItem:(Item *)item withBlock:(void (^)(UIImage *image, NSError *error))block;
 
 @end

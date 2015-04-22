@@ -107,7 +107,7 @@
     UIAlertController *groupDialog = [UIAlertController alertControllerWithTitle:@"Group" message:@"" preferredStyle:UIAlertControllerStyleAlert];
     
     UIAlertAction *groupAddAction = [UIAlertAction actionWithTitle:@"Set Group" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-        SummonerGroup *group = [[SummonerGroup alloc] initWithTitle:((UITextField *)groupDialog.textFields[0]).text];
+        SummonerGroup *group = [SummonerGroup newGroupWithTitle:((UITextField *)groupDialog.textFields[0]).text];
         UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 60, 60)];
         [imageView setImageWithString:group.gGroupTitle];
         [self.groupImageCache setObject:imageView.image forKey:group.gGroupTitle];

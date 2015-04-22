@@ -11,8 +11,7 @@
 
 @interface SummonerGroup (Helpers)
 
-- (SummonerGroup *)initWithTitle:(NSString *)title;
-
++ (SummonerGroup *)newGroupWithTitle:(NSString *)title;
 + (SummonerGroup *)storedSummonerGroupWithTitle:(NSString *)title;
 
 @end

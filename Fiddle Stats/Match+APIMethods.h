@@ -10,11 +10,11 @@
 #import "AppDelegate.h"
 #import "Summoner+APIMethods.h"
 #import "MatchParticipantIdentity+Helpers.h"
-#import "MatchParticipant+Helpers.m"
+#import "MatchParticipant+Helpers.h"
 
 @interface Match (APIMethods)
 
-- (Match *)initWithAttributes:(NSDictionary *)attributes forSummoner:(Summoner *)summoner;
++ (Match *)newMatchWithAttributes:(NSDictionary *)attributes forSummoner:(Summoner *)summoner;
 - (MatchParticipant *)matchParticipantForSummoner:(Summoner *)summoner;
 
 

@@ -12,7 +12,7 @@
 
 @interface MatchParticipant (Helpers)
 
-- (MatchParticipant *)initWithAttributes:(NSDictionary *)attributes match:(Match *)match;
++ (MatchParticipant *)newParticipantWithAttributes:(NSDictionary *)attributes match:(Match *)match;
 + (MatchParticipant *)storedMatchParticipantForMatch:(Match *)match participantID:(NSInteger)participantID;
 
 @end

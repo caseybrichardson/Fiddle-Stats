@@ -10,7 +10,7 @@
 
 @implementation Summoner (APIMethods)
 
-- (Summoner *)initWithAttributes:(NSDictionary *)attributes inRegion:(NSString *)region {
++ (Summoner *)newWithAttributes:(NSDictionary *)attributes inRegion:(NSString *)region {
     AppDelegate *del = (AppDelegate *)[UIApplication sharedApplication].delegate;
     
     Summoner *summoner = [Summoner storedSummonerWithID:[attributes[@"id"] integerValue]];
@@ -77,7 +77,7 @@
     NSString *urlString = [NSString stringWithFormat:RiotAPISummonerEndpoint, region, sanitizedName];
     return [[CRFiddleAPIClient sharedInstance] riotRequestForEndpoint:urlString parameters:@{}].then(^(id response){
         NSDictionary *responseData = (NSDictionary *)response;
-        return [[Summoner alloc] initWithAttributes:[[responseData allValues] firstObject] inRegion:region];
+        return [Summoner newWithAttributes:[[responseData allValues] firstObject] inRegion:region];
     }).catch(^(NSError *error){
         return error;
     });

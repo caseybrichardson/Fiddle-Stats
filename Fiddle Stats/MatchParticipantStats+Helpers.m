@@ -10,7 +10,7 @@
 
 @implementation MatchParticipantStats (Helpers)
 
-- (MatchParticipantStats *)initWithAttributes:(NSDictionary *)attributes participant:(MatchParticipant *)participant {
++ (MatchParticipantStats *)newStatsWithAttributes:(NSDictionary *)attributes participant:(MatchParticipant *)participant {
     AppDelegate *del = (AppDelegate *)[UIApplication sharedApplication].delegate;
     
     MatchParticipantStats *stats = [MatchParticipantStats storedMatchParticipantStatsForParticipant:participant];

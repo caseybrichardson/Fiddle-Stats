@@ -10,7 +10,7 @@
 
 @implementation Item (APIMethods)
 
-- (Item *)initWithAttributes:(NSDictionary *)attributes {
++ (Item *)newItemWithAttributes:(NSDictionary *)attributes {
     AppDelegate *del = (AppDelegate *)[UIApplication sharedApplication].delegate;
     Item *item = [Item storedItemWithID:[attributes[@"id"] integerValue]];
     
@@ -54,55 +54,53 @@
     return ([Items count] > 0 ? Items[0] : nil);
 }
 
-+ (void)itemInformationFor:(NSInteger)itemID region:(NSString *)region withBlock:(void (^)(Item *item, NSError *error))block {
++ (PMKPromise *)itemInformationFor:(NSInteger)itemID region:(NSString *)region {
     
-    // Caching for accessing the item data
+    /* Caching for accessing the item data */
     static NSCache *_itemCache;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         _itemCache = [NSCache new];
     });
     
+    Item *item = nil;
+    
+    /* Check if the item is an actual item (id != 0), if so, try and load from the cache */
     if(itemID != 0) {
-        Item *item = [_itemCache objectForKey:@(itemID)];
-        
-        if(!item) {
-            
-            item = [Item storedItemWithID:itemID];
-            
-            if(!item) {
-                NSDictionary *requestParams = @{@"api_key": @"8ad21685-9e9f-4c18-9e72-30b8d598fce9", @"itemData": @"image"};
-                NSString *url = [NSString stringWithFormat:@"/api/lol/static-data/%@/v1.2/item/%ld", region, ((long) itemID)];
-                
-                [[CRFiddleAPIClient sharedInstance] GET:url parameters:requestParams success:^(NSURLSessionDataTask *task, id responseObject) {
-                    NSDictionary *ItemDict = (NSDictionary *)responseObject;
-                    
-                    Item *item = [[Item alloc] initWithAttributes:ItemDict];
-                    [_itemCache setObject:item forKey:@(itemID)];
-                    
-                    if(block) {
-                        block(item, nil);
-                    }
-                } failure:^(NSURLSessionDataTask *task, NSError *error) {
-                    NSLog(@"Fail: %@", error);
-                    if(block) {
-                        block(nil, error);
-                    }
-                }];
-            } else {
-                [_itemCache setObject:item forKey:@(itemID)];
-                
-                if(block) {
-                    block(item, nil);
-                }
-            }
-        } else {
-            if(block) {
-                block(item, nil);
-            }
-        }
+        item = [_itemCache objectForKey:@(itemID)];
     } else {
-        block(nil, nil);
+        return [PMKPromise new:^(PMKFulfiller fulfill, PMKRejecter reject) {
+            reject([NSError errorWithDomain:@"com.caseybrichardon.fiddle.ItemNonExistent" code:0 userInfo:@{NSLocalizedDescriptionKey: @"ID Not Item"}]);
+        }];
+    }
+    
+    /* If we still don't have the item, attempt to load from Core Data */
+    if(!item) {
+        item = [Item storedItemWithID:itemID];
+    } else {
+        return [PMKPromise new:^(PMKFulfiller fulfill, PMKRejecter reject) {
+            fulfill(item);
+        }];
+    }
+    
+    /* If we STILL don't have the item, make the Riot API request for it */
+    if(!item) {
+        NSDictionary *requestParameters = @{@"itemData": @"image"};
+        NSString *url = [NSString stringWithFormat:RiotAPIItemEndpoint, region, ((long) itemID)];
+        
+        return [[CRFiddleAPIClient sharedInstance] riotRequestForEndpoint:url parameters:requestParameters].then(^(id response){
+            NSDictionary *responseData = (NSDictionary *)response;
+            
+            Item *newItem = [Item newItemWithAttributes:responseData];
+            [_itemCache setObject:newItem forKey:@(itemID)];
+            
+            return newItem;
+        });
+    } else {
+        [_itemCache setObject:item forKey:@(itemID)];
+        return [PMKPromise new:^(PMKFulfiller fulfill, PMKRejecter reject) {
+            fulfill(item);
+        }];
     }
 }
 

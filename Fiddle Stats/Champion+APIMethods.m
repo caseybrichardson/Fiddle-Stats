@@ -10,7 +10,7 @@
 
 @implementation Champion (APIMethods)
 
-- (Champion *)initWithAttributes:(NSDictionary *)attributes {
++ (Champion *)newChampionWithAttributes:(NSDictionary *)attributes {
     AppDelegate *del = (AppDelegate *)[UIApplication sharedApplication].delegate;
     Champion *champ = [Champion storedChampionWithID:[attributes[@"id"] integerValue]];
     
@@ -75,7 +75,7 @@
             [[CRFiddleAPIClient sharedInstance] GET:url parameters:requestParams success:^(NSURLSessionDataTask *task, id responseObject) {
                 NSDictionary *championDict = (NSDictionary *)responseObject;
                 
-                Champion *champ = [[Champion alloc] initWithAttributes:championDict];
+                Champion *champ = [Champion newChampionWithAttributes:championDict];
                 [_champCache setObject:champ forKey:@(champID)];
                 
                 if(block) {

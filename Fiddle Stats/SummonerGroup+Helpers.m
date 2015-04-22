@@ -10,7 +10,7 @@
 
 @implementation SummonerGroup (Helpers)
 
-- (SummonerGroup *)initWithTitle:(NSString *)title {
++ (SummonerGroup *)newGroupWithTitle:(NSString *)title {
     AppDelegate *del = (AppDelegate *)[UIApplication sharedApplication].delegate;
     
     SummonerGroup *group = [SummonerGroup storedSummonerGroupWithTitle:title];

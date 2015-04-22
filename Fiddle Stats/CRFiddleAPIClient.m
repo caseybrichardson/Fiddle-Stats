@@ -80,7 +80,6 @@ NSString * const KeyURL = @"https://caseybrichardson.com/fiddle/getkey.php";
     
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:KeyURL]];
     NSString *secret = Obfuscate.f.i.d.d.a.r.i.n.o._.i.s._.t.h.e._.b.e.s.t._._0._4.forward_slash._2._1.forward_slash._1._5;
-    NSLog(@"%@", secret);
     [request setValue:secret forHTTPHeaderField:@"Fiddlestats-Keyrequest"];
     
     return [NSURLConnection promise:request].then(^id(id response){
@@ -88,7 +87,6 @@ NSString * const KeyURL = @"https://caseybrichardson.com/fiddle/getkey.php";
         NSString *apiKey = responseData[@"api_key"];
         
         if(apiKey) {
-            NSLog(@"The key was returned: %@", apiKey);
             return apiKey;
         } else {
             return [NSError errorWithDomain:@"com.caseybrichardson.fiddle.KeyFail" code:0 userInfo:@{NSLocalizedDescriptionKey: @"Could not obtain API key"}];

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7531" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
@@ -62,12 +62,15 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7fO-zR-CfD" customClass="DFImageView">
                                 <rect key="frame" x="8" y="8" width="80" height="80"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="60" id="3C3-OS-Smf"/>
                                     <constraint firstAttribute="width" secondItem="7fO-zR-CfD" secondAttribute="height" multiplier="1:1" id="Pdi-uT-cIx"/>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="60" id="YAe-Px-94M"/>
-                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="80" id="bTe-et-2Ao"/>
-                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="80" id="pro-w6-OsX"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" priority="900" constant="60" id="YAe-Px-94M"/>
+                                    <constraint firstAttribute="width" constant="80" id="pro-w6-OsX"/>
                                 </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="YAe-Px-94M"/>
+                                    </mask>
+                                </variation>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.1019607843" green="0.16862745100000001" blue="0.18823529410000001" alpha="0.75" colorSpace="calibratedRGB"/>

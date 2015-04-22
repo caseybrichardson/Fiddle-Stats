@@ -15,7 +15,7 @@
 
 @interface Summoner (APIMethods)
 
-- (instancetype)initWithAttributes:(NSDictionary *)attributes inRegion:(NSString *)region;
++ (instancetype)newWithAttributes:(NSDictionary *)attributes inRegion:(NSString *)region;
 
 - (NSString *)groupName;
 

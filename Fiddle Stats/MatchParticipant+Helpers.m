@@ -10,7 +10,7 @@
 
 @implementation MatchParticipant (Helpers)
 
-- (MatchParticipant *)initWithAttributes:(NSDictionary *)attributes match:(Match *)match {
++ (MatchParticipant *)newParticipantWithAttributes:(NSDictionary *)attributes match:(Match *)match {
     AppDelegate *del = (AppDelegate *)[UIApplication sharedApplication].delegate;
     
     MatchParticipant *participant = [MatchParticipant storedMatchParticipantForMatch:match participantID:[attributes[@"participantId"] integerValue]];
@@ -27,7 +27,7 @@
     participant.mpTeamID = attributes[@"teamId"];
     
     participant.mpMatch = match;
-    participant.mpParticipantStats = [[MatchParticipantStats alloc] initWithAttributes:attributes[@"stats"] participant:participant];
+    participant.mpParticipantStats = [MatchParticipantStats newStatsWithAttributes:attributes[@"stats"] participant:participant];
     
     return participant;
 }

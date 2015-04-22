@@ -11,7 +11,8 @@
 
 @interface MatchParticipantStats (Helpers)
 
-- (MatchParticipantStats *)initWithAttributes:(NSDictionary *)attributes participant:(MatchParticipant *)participant;
++ (MatchParticipantStats *)newStatsWithAttributes:(NSDictionary *)attributes participant:(MatchParticipant *)participant;
+
 - (NSNumber *)mpsTotalMinionsKilled;
 
 + (MatchParticipantStats *)storedMatchParticipantStatsForParticipant:(MatchParticipant *)participant;

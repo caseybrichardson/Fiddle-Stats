@@ -10,7 +10,7 @@
 
 @implementation MatchParticipantIdentity (Helpers)
 
-- (MatchParticipantIdentity *)initWithAttributes:(NSDictionary *)attributes participant:(MatchParticipant *)participant {
++ (MatchParticipantIdentity *)newIdentityWithAttributes:(NSDictionary *)attributes participant:(MatchParticipant *)participant {
     AppDelegate *del = (AppDelegate *)[UIApplication sharedApplication].delegate;
     
     MatchParticipantIdentity *identity = [MatchParticipantIdentity storedMatchParticipantIdentityForMatchParticipant:participant];

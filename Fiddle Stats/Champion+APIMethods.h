@@ -12,8 +12,7 @@
 
 @interface Champion (APIMethods)
 
-- (Champion *)initWithAttributes:(NSDictionary *)attributes;
-
++ (Champion *)newChampionWithAttributes:(NSDictionary *)attributes;
 + (void)championInformationFor:(NSInteger)champID region:(NSString *)region withBlock:(void (^)(Champion *champ, NSError *error))block;
 
 @end

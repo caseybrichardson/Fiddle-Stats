@@ -11,7 +11,7 @@
 
 @interface MatchParticipantIdentity (Helpers)
 
-- (MatchParticipantIdentity *)initWithAttributes:(NSDictionary *)attributes participant:(MatchParticipant *)participant;
++ (MatchParticipantIdentity *)newIdentityWithAttributes:(NSDictionary *)attributes participant:(MatchParticipant *)participant;
 + (MatchParticipantIdentity *)storedMatchParticipantIdentityForMatchParticipant:(MatchParticipant *)participant;
 
 @end
