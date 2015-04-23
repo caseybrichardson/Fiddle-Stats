@@ -134,13 +134,13 @@
         for(DFImageView *championImage in overviewCell.summonerImages) {
             MatchParticipant *p = [self.participants objectForKey:@(championImage.tag - 10)];
             if(p) {
-                [Champion championInformationFor:[p.mpChampionID integerValue] region:@"na" withBlock:^(Champion *champ, NSError *error) {
+                [Champion championInformationFor:[p.mpChampionID integerValue] region:@"na"].then(^(Champion *champ) {
                     [CRFiddleAPIClient currentAPIVersionForRegion:@"na" block:^(NSArray *versions, NSError *error1) {
                         NSString *url = [NSString stringWithFormat:@"http://ddragon.leagueoflegends.com/cdn/%@/img/champion/%@.png", versions[0], champ.cKey];
                         DFImageRequest *req = [[DFImageRequest alloc] initWithResource:[NSURL URLWithString:url]];
                         [championImage setImageWithRequest:req];
                     }];
-                }];
+                });
             }
         }
     } else {
@@ -151,7 +151,7 @@
         [playerCell.statisticsTableView reloadData];
         MatchParticipant *p = [self.participants objectForKey:@(indexPath.row)];
         
-        [Champion championInformationFor:[p.mpChampionID integerValue] region:@"na" withBlock:^(Champion *champ, NSError *error) {
+        [Champion championInformationFor:[p.mpChampionID integerValue] region:@"na"].then(^(Champion *champ) {
             [CRFiddleAPIClient currentAPIVersionForRegion:@"na" block:^(NSArray *versions, NSError *error1) {
                 NSString *url1 = [NSString stringWithFormat:@"http://ddragon.leagueoflegends.com/cdn/%@/img/champion/%@.png", versions[0], champ.cKey];
                 NSString *url2 = [NSString stringWithFormat:@"http://ddragon.leagueoflegends.com/cdn/img/champion/loading/%@_0.jpg", champ.cKey];
@@ -160,7 +160,7 @@
                 [playerCell.championImage setImageWithRequest:req1];
                 [playerCell.backgroundImage setImageWithRequest:req2];
             }];
-        }];
+        });
         
         playerCell.playerNameLabel.text = p.mpParticipantIdentity.mpiSummonerName;
         NSValue *offset = [self.scrollPositions objectForKey:@(indexPath.row)];

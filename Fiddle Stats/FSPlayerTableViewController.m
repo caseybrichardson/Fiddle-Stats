@@ -84,13 +84,14 @@
         
         if(matches.count > 0) {
             MatchParticipant *participant = [[matches lastObject] matchParticipantForSummoner:summoner];
-            [Champion championInformationFor:[participant.mpChampionID integerValue] region:@"na" withBlock:^(Champion *champ, NSError *error) {
+            
+            [Champion championInformationFor:[participant.mpChampionID integerValue] region:@"na"].then(^(Champion *champ){
                 NSString *urlString = @"http://ddragon.leagueoflegends.com/cdn/img/champion/splash/%@_0.jpg";
                 NSString *champKey = champ.cKey;
                 NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:urlString, champKey]];
                 DFImageRequest *req = [[DFImageRequest alloc] initWithResource:url];
                 [self.champView setImageWithRequest:req];
-            }];
+            });
         }
         
         [SVProgressHUD dismiss];
@@ -135,7 +136,7 @@
         
         MatchParticipant *participant = [m matchParticipantForSummoner:[ptvc.summonerDataSource summoner]];
         
-        [Champion championInformationFor:[participant.mpChampionID integerValue] region:@"na" withBlock:^(Champion *champ, NSError *error) {
+        [Champion championInformationFor:[participant.mpChampionID integerValue] region:@"na"].then(^(Champion *champ){
             [matchCell.champNameLabelView setText:champ.cName];
             
             [CRFiddleAPIClient currentAPIVersionForRegion:@"na" block:^(NSArray *versions, NSError *error1) {
@@ -143,7 +144,7 @@
                 DFImageRequest *req = [[DFImageRequest alloc] initWithResource:[NSURL URLWithString:url]];
                 [matchCell.champImageView setImageWithRequest:req];
             }];
-        }];
+        });
         
         MatchParticipantStats *stats = participant.mpParticipantStats;
         matchCell.matchGameType.text = m.mMatchType;
@@ -199,14 +200,14 @@
         
         if([matches count] > 0) {
             MatchParticipant *participant = [[matches lastObject] matchParticipantForSummoner:[self.summonerDataSource summoner]];
-            [Champion championInformationFor:[participant.mpChampionID integerValue] region:@"na" withBlock:^(Champion *champ, NSError *error) {
+            [Champion championInformationFor:[participant.mpChampionID integerValue] region:@"na"].then(^(Champion *champ) {
                 
                 NSString *champKey = champ.cKey;
                 NSString *urlString = [NSString stringWithFormat:@"http://ddragon.leagueoflegends.com/cdn/img/champion/splash/%@_0.jpg", champKey];
                 NSURL *url = [NSURL URLWithString:urlString];
                 DFImageRequest *req = [[DFImageRequest alloc] initWithResource:url];
                 [self.champView setImageWithRequest:req];
-            }];
+            });
         }
         
         [self.tableView reloadData];

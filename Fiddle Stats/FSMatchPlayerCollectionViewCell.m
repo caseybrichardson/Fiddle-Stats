@@ -24,6 +24,7 @@
     
     self.playerNameLabel.text = @"";
     self.championImage.image = [UIImage imageNamed:@"Missing"];
+    self.backgroundImage.image = nil;
 }
 
 - (void)setSelected:(BOOL)selected {

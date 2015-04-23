@@ -53,7 +53,7 @@
     return ([champions count] > 0 ? champions[0] : nil);
 }
 
-+ (void)championInformationFor:(NSInteger)champID region:(NSString *)region withBlock:(void (^)(Champion *champ, NSError *error))block {
++ (PMKPromise *)championInformationFor:(NSInteger)champID region:(NSString *)region{
     
     // Caching for accessing the champ data
     static NSMutableDictionary *_champCache;
@@ -62,42 +62,43 @@
         _champCache = [NSMutableDictionary new];
     });
     
-    Champion *champion = [_champCache objectForKey:@(champID)];
+    Champion *champ = nil;
     
-    if(!champion) {
-        
-        champion = [Champion storedChampionWithID:champID];
-        
-        if(!champion) {
-            NSDictionary *requestParams = @{@"api_key": @"8ad21685-9e9f-4c18-9e72-30b8d598fce9"};
-            NSString *url = [NSString stringWithFormat:@"/api/lol/static-data/%@/v1.2/champion/%ld", region, ((long) champID)];
-            
-            [[CRFiddleAPIClient sharedInstance] GET:url parameters:requestParams success:^(NSURLSessionDataTask *task, id responseObject) {
-                NSDictionary *championDict = (NSDictionary *)responseObject;
-                
-                Champion *champ = [Champion newChampionWithAttributes:championDict];
-                [_champCache setObject:champ forKey:@(champID)];
-                
-                if(block) {
-                    block(champ, nil);
-                }
-            } failure:^(NSURLSessionDataTask *task, NSError *error) {
-                NSLog(@"Fail: %@", error);
-                if(block) {
-                    block(nil, error);
-                }
-            }];
-        } else {
-            [_champCache setObject:champion forKey:@(champID)];
-            
-            if(block) {
-                block(champion, nil);
-            }
-        }
+    /* Check if the champ is an actual champion (id != 0), if so, try and load from the cache */
+    if(champID != 0) {
+        champ = [_champCache objectForKey:@(champID)];
     } else {
-        if(block) {
-            block(champion, nil);
-        }
+        return [PMKPromise new:^(PMKFulfiller fulfill, PMKRejecter reject) {
+            reject([NSError errorWithDomain:@"com.caseybrichardon.fiddle.ChampNonExistent" code:0 userInfo:@{NSLocalizedDescriptionKey: @"Champ Not Real"}]);
+        }];
+    }
+    
+    /* If we still don't have the champ, attempt to load from Core Data */
+    if(!champ) {
+        champ = [Champion storedChampionWithID:champID];
+    } else {
+        return [PMKPromise new:^(PMKFulfiller fulfill, PMKRejecter reject) {
+            fulfill(champ);
+        }];
+    }
+    
+    /* If we STILL don't have the champ, make the Riot API request for it */
+    if(!champ) {
+        NSString *url = [NSString stringWithFormat:RiotAPIChampionEndpoint, region, ((long) champID)];
+        
+        return [[CRFiddleAPIClient sharedInstance] riotRequestForEndpoint:url parameters:@{}].then(^(id response){
+            NSDictionary *responseData = (NSDictionary *)response;
+            
+            Champion *newChamp = [Champion newChampionWithAttributes:responseData];
+            [_champCache setObject:newChamp forKey:@(champID)];
+            
+            return newChamp;
+        });
+    } else {
+        [_champCache setObject:champ forKey:@(champID)];
+        return [PMKPromise new:^(PMKFulfiller fulfill, PMKRejecter reject) {
+            fulfill(champ);
+        }];
     }
 }
 
