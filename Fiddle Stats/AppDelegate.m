@@ -42,7 +42,6 @@
     [self configureDrawerViewController];
     
     [self.window makeKeyAndVisible];
-    NSLog(@"test");
     return YES;
 }
 

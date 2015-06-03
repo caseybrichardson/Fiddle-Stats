@@ -52,8 +52,10 @@ NSString * const KeyURL = @"https://caseybrichardson.com/fiddle/getkey.php";
     dispatch_once(&onceToken, ^{
         _sharedClient = [[CRFiddleAPIClient alloc] initWithBaseURL:[NSURL URLWithString:RiotAPIBaseURL]];
         _sharedClient.securityPolicy = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeNone];
-        _sharedClient.apiKeyPromise = [_sharedClient fetchAPIKey];
-        _sharedClient.apiVersionPromise = [_sharedClient fetchVersionInRegion:@"na"];
+        _sharedClient.apiKeyPromise = [_sharedClient fetchAPIKey].then(^(NSString *key){
+            _sharedClient.apiVersionPromise = [_sharedClient fetchVersionInRegion:@"na"];
+            return key;
+        });
     });
     
     return _sharedClient;
