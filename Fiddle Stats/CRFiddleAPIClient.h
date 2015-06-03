@@ -20,6 +20,8 @@ extern NSString * const RiotAPIIconURL;
 
 /** Summoner Endpoint Format: Requires a region and a summoner name */
 extern NSString * const RiotAPISummonerEndpoint;
+/** Summoner Update Endpoint Format: Requires an arbitrary number of summoner ids less than 40 */
+extern NSString * const RiotAPISummonerUpdateEndpoint;
 /** Matches Endpoint Format: Requires a region and a summoner ID */
 extern NSString * const RiotAPIMatchesEndpoint;
 /** Match Endpoint Format: Requires a region and a match ID */

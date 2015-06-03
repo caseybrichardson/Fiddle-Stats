@@ -25,4 +25,6 @@
 
 + (PMKPromise *)summonerWithName:(NSString *)summonerName region:(NSString *)region;
 
++ (PMKPromise *)updateSummonersIn:(NSArray *)summoners;
+
 @end

@@ -38,8 +38,8 @@
     }];
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.window.rootViewController = self.drawerViewController;
-    [self configureDrawerViewController];
+    self.window.rootViewController = self.summonersViewController;
+    //[self configureDrawerViewController];
     
     [self.window makeKeyAndVisible];
     return YES;

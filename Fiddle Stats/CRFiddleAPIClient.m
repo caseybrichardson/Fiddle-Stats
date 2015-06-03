@@ -14,6 +14,7 @@ NSString * const RiotAPIIconURL = @"https://avatar.leagueoflegends.com/";
 
 /* API Endpoints */
 NSString * const RiotAPISummonerEndpoint = @"/api/lol/%@/v1.4/summoner/by-name/%@";
+NSString * const RiotAPISummonerUpdateEndpoint = @"/api/lol/%@/v1.4/summoner/%@";
 NSString * const RiotAPIMatchesEndpoint = @"/api/lol/%@/v2.2/matchhistory/%lld";
 NSString * const RiotAPIMatchEndpoint = @"/api/lol/%@/v2.2/match/%lld";
 NSString * const RiotAPIStatsEndpoint = @"/api/lol/%@/v1.3/stats/by-summoner/%lld/ranked";

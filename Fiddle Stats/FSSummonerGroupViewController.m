@@ -72,8 +72,20 @@
         [cell setSelected:NO];
         
         if(indexPath.row < [frc.fetchedObjects count]) {
+            AppDelegate *del = (AppDelegate *)[UIApplication sharedApplication].delegate;
+            NSMutableArray *groups = [NSMutableArray array];
             for (Summoner *s in [sgvc.summonerDataSource summoners]) {
+                if(s.sGroup) {
+                    [groups addObject:s.sGroup];
+                }
+                
                 s.sGroup = [frc objectAtIndexPath:indexPath];
+            }
+            
+            for(SummonerGroup *g in groups) {
+                if([g.gSummoners count] == 0) {
+                    [del.managedObjectContext deleteObject:g];
+                }
             }
             
             sgvc.completion(YES);

@@ -83,4 +83,21 @@
     });
 }
 
++ (PMKPromise *)updateSummonersIn:(NSArray *)summoners {
+    NSString *sanitizedNames = [[[summoners valueForKey:@"sID"] componentsJoinedByString:@","] stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLPathAllowedCharacterSet]];
+    NSString *region = ((Summoner *)[summoners firstObject]).sRegion;
+    NSString *urlString = [NSString stringWithFormat:RiotAPISummonerUpdateEndpoint, region, sanitizedNames];
+    return [[CRFiddleAPIClient sharedInstance] riotRequestForEndpoint:urlString parameters:@{}].then(^(id response){
+        NSDictionary *responseData = (NSDictionary *)response;
+        
+        for(NSString *summoner in responseData) {
+            [Summoner newWithAttributes:responseData[summoner] inRegion:region];
+        }
+        
+        return;
+    }).catch(^(NSError *error){
+        return error;
+    });
+}
+
 @end

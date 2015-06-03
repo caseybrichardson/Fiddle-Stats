@@ -35,6 +35,12 @@
     self.cancelBarButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancelPressed:)];
     self.navigationItem.rightBarButtonItem = self.selectBarButton;
     
+    UIRefreshControl *refreshControl = [UIRefreshControl new];
+    refreshControl.tintColor = [UIColor fiddlesticksSecondaryColor];
+    [refreshControl addTarget:self action:@selector(updateSummoners:) forControlEvents:UIControlEventValueChanged];
+    [self.playerCollectionView addSubview:refreshControl];
+    [self.playerCollectionView sendSubviewToBack:refreshControl];
+    
     UIBarButtonItem *flexibleSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
     UIBarButtonItem *actionSheet = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(actionPressed:)];
     [self setToolbarItems:@[flexibleSpace, actionSheet, flexibleSpace]];
@@ -182,6 +188,15 @@
             self.editingCells = nil;
         }
     }
+}
+
+- (void)updateSummoners:(id)sender {
+    [Summoner updateSummonersIn:self.dataDelegate.fetchedObjects].then(^(){
+        [self.playerCollectionView reloadData];
+    }).finally(^(){
+        [((UIRefreshControl *)sender) endRefreshing];
+        [self setEditing:NO];
+    });
 }
 
 #pragma mark - UIGestureRecognizer Handlers
@@ -343,6 +358,21 @@
     
     UIAlertController *optionsDialog = [UIAlertController alertControllerWithTitle:@"Actions" message:@"Choose an action to perform." preferredStyle:UIAlertControllerStyleActionSheet];
     
+    NSString *updateSummonersTitle = (self.editingCells.count > 1 ? @"Update Summoners" : @"Update Summoner");
+    UIAlertAction *updateSummonersAction = [UIAlertAction actionWithTitle:updateSummonersTitle style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        NSMutableArray *summoners = [NSMutableArray array];
+        
+        for (NSIndexPath *path in self.editingCells) {
+            [summoners addObject:[self.dataDelegate objectInResultsAtIndexPath:path]];
+        }
+        
+        [Summoner updateSummonersIn:self.dataDelegate.fetchedObjects].then(^(){
+            [self.playerCollectionView reloadData];
+        }).finally(^(){
+            [self setEditing:NO];
+        });
+    }];
+    
     UIAlertAction *groupDialogDisplayAction = [UIAlertAction actionWithTitle:@"Edit Group" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
         [self performSegueWithIdentifier:@"SummonerGroupAdd" sender:self];
     }];
@@ -385,6 +415,7 @@
     
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
     
+    [optionsDialog addAction:updateSummonersAction];
     [optionsDialog addAction:groupDialogDisplayAction];
     [optionsDialog addAction:groupRemoveAction];
     [optionsDialog addAction:deleteSummonerAction];
