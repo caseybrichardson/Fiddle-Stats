@@ -13,6 +13,7 @@
 
 @property (strong, nonatomic) IBOutlet DFImageView *championImage;
 @property (strong, nonatomic) IBOutlet UILabel *playerNameLabel;
+@property (strong, nonatomic) IBOutlet UILabel *playerHighestRank;
 @property (strong, nonatomic) IBOutlet UITableView *statisticsTableView;
 @property (strong, nonatomic) IBOutlet DFImageView *backgroundImage;
 

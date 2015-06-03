@@ -34,12 +34,14 @@
     [match addMMatchSummonersObject:summoner];
     [summoner addSMatchesObject:match];
     
+    /* Need to build up a lookup table for when we setup our identities */
     NSMutableDictionary *participants = [NSMutableDictionary dictionary];
     for (NSDictionary *participant in attributes[@"participants"]) {
         MatchParticipant *p = [MatchParticipant newParticipantWithAttributes:participant match:match];
         [participants setObject:p forKey:p.mpParticipantID];
     }
     
+    /* For each identity, we need to use our lookup table and create the new identity with our participant */
     for (NSDictionary *identities in attributes[@"participantIdentities"]) {
         MatchParticipant *participant = participants[identities[@"participantId"]];
         if(participant) {

@@ -163,6 +163,7 @@
         });
         
         playerCell.playerNameLabel.text = p.mpParticipantIdentity.mpiSummonerName;
+        playerCell.playerHighestRank.text = p.mpHighestAchievedSeasonTier;
         NSValue *offset = [self.scrollPositions objectForKey:@(indexPath.row)];
         playerCell.statisticsTableView.contentOffset = [offset CGPointValue];
     }

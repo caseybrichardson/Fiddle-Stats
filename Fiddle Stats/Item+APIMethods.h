@@ -18,6 +18,5 @@
 + (Item *)newItemWithAttributes:(NSDictionary *)attributes;
 + (Item *)storedItemWithID:(NSInteger)itemID;
 + (PMKPromise *)itemInformationFor:(NSInteger)itemID region:(NSString *)region;
-+ (void)downloadItemImageForItem:(Item *)item withBlock:(void (^)(UIImage *image, NSError *error))block;
 
 @end

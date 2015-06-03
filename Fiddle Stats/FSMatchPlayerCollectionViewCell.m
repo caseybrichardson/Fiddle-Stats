@@ -23,6 +23,7 @@
     [super prepareForReuse];
     
     self.playerNameLabel.text = @"";
+    self.playerHighestRank.text = @"";
     self.championImage.image = [UIImage imageNamed:@"Missing"];
     self.backgroundImage.image = nil;
 }

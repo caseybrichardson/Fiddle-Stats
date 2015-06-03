@@ -72,6 +72,12 @@
                                     </mask>
                                 </variation>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HighestRank" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.69999998807907104" translatesAutoresizingMaskIntoConstraints="NO" id="GO6-Sd-uzK">
+                                <rect key="frame" x="96" y="43" width="200" height="15"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" red="0.75294117650000003" green="0.71372549019999998" blue="0.54117647059999996" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.1019607843" green="0.16862745100000001" blue="0.18823529410000001" alpha="0.75" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -82,14 +88,23 @@
                             <constraint firstItem="aYp-5e-lLx" firstAttribute="leading" secondItem="8nl-Kj-NMF" secondAttribute="leading" constant="8" id="KOu-bK-Sff"/>
                             <constraint firstAttribute="trailing" secondItem="aYp-5e-lLx" secondAttribute="trailing" constant="8" id="LIb-Tx-oPF"/>
                             <constraint firstItem="aYp-5e-lLx" firstAttribute="top" secondItem="7fO-zR-CfD" secondAttribute="bottom" constant="8" id="WUY-1K-aT4"/>
+                            <constraint firstItem="GO6-Sd-uzK" firstAttribute="leading" secondItem="7fO-zR-CfD" secondAttribute="trailing" constant="8" id="cD2-Y9-0Vd"/>
+                            <constraint firstAttribute="trailing" secondItem="GO6-Sd-uzK" secondAttribute="trailing" constant="8" id="gBD-Cf-f9G"/>
                             <constraint firstItem="7fO-zR-CfD" firstAttribute="top" secondItem="PVY-SN-dNJ" secondAttribute="top" id="gQI-tz-lKu"/>
+                            <constraint firstItem="GO6-Sd-uzK" firstAttribute="top" secondItem="PVY-SN-dNJ" secondAttribute="bottom" constant="8" id="jT1-LA-cBH"/>
                             <constraint firstItem="PVY-SN-dNJ" firstAttribute="leading" secondItem="7fO-zR-CfD" secondAttribute="trailing" constant="8" id="l4c-WE-ffm"/>
+                            <constraint firstItem="GO6-Sd-uzK" firstAttribute="top" secondItem="PVY-SN-dNJ" secondAttribute="bottom" id="yfy-OS-SUW"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                 <integer key="value" value="5"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="jT1-LA-cBH"/>
+                            </mask>
+                        </variation>
                     </view>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -113,6 +128,7 @@
             <connections>
                 <outlet property="backgroundImage" destination="iav-W3-tLo" id="jMP-JW-H6R"/>
                 <outlet property="championImage" destination="7fO-zR-CfD" id="Css-X4-Yk3"/>
+                <outlet property="playerHighestRank" destination="GO6-Sd-uzK" id="tLG-sS-vrp"/>
                 <outlet property="playerNameLabel" destination="PVY-SN-dNJ" id="CO7-w4-7pQ"/>
                 <outlet property="statisticsTableView" destination="aYp-5e-lLx" id="MDT-r6-nrh"/>
             </connections>

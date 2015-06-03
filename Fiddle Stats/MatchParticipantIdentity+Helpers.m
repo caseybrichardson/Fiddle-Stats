@@ -23,7 +23,7 @@
     identity.mpiProfileIconID = attributes[@"player"][@"profileIcon"];
     identity.mpiSummonerID = attributes[@"player"][@"summonerId"];
     identity.mpiSummonerName = attributes[@"player"][@"summonerName"];
-    
+
     return identity;
 }
 

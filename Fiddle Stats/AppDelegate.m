@@ -21,7 +21,7 @@
 @synthesize drawersStoryboard = _drawersStoryboard;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    [Fabric with:@[CrashlyticsKit]];
+    //[Fabric with:@[CrashlyticsKit]];
     
     [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeBlack];
     
@@ -33,16 +33,16 @@
     [[UIBarButtonItem appearance] setTitleTextAttributes:@{NSFontAttributeName : [UIFont fontWithName:@"HelveticaNeue-Medium" size:16]} forState:UIControlStateNormal];
     [[UIBarButtonItem appearance] setTintColor:[UIColor fiddlesticksSecondaryColor]];
     
-    [CRFiddleAPIClient currentAPIVersionForRegion:@"na" block:^(NSArray *versions, NSError *error) {
+    /*[CRFiddleAPIClient currentAPIVersionForRegion:@"na" block:^(NSArray *versions, NSError *error) {
         //NSLog(@"%@", [versions firstObject]);
-    }];
+    }];*/
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.rootViewController = self.drawerViewController;
     [self configureDrawerViewController];
     
     [self.window makeKeyAndVisible];
-    
+    NSLog(@"test");
     return YES;
 }
 

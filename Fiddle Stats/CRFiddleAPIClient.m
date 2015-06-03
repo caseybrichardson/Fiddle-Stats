@@ -19,6 +19,7 @@ NSString * const RiotAPIMatchEndpoint = @"/api/lol/%@/v2.2/match/%lld";
 NSString * const RiotAPIStatsEndpoint = @"/api/lol/%@/v1.3/stats/by-summoner/%lld/ranked";
 NSString * const RiotAPIChampionEndpoint = @"/api/lol/static-data/%@/v1.2/champion/%ld";
 NSString * const RiotAPIItemEndpoint = @"/api/lol/static-data/%@/v1.2/item/%ld";
+NSString * const RiotAPIVersionEndpoint = @"/api/lol/static-data/%@/v1.2/versions";
 
 /* Private URLs */
 NSString * const KeyURL = @"https://caseybrichardson.com/fiddle/getkey.php";
@@ -27,6 +28,7 @@ NSString * const KeyURL = @"https://caseybrichardson.com/fiddle/getkey.php";
 
 @property (strong, nonatomic) NSCache *versionCache;
 @property (strong, nonatomic) PMKPromise *apiKeyPromise;
+@property (strong, nonatomic) PMKPromise *apiVersionPromise;
 
 @end
 
@@ -51,6 +53,7 @@ NSString * const KeyURL = @"https://caseybrichardson.com/fiddle/getkey.php";
         _sharedClient = [[CRFiddleAPIClient alloc] initWithBaseURL:[NSURL URLWithString:RiotAPIBaseURL]];
         _sharedClient.securityPolicy = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeNone];
         _sharedClient.apiKeyPromise = [_sharedClient fetchAPIKey];
+        _sharedClient.apiVersionPromise = [_sharedClient fetchVersionInRegion:@"na"];
     });
     
     return _sharedClient;
@@ -99,17 +102,15 @@ NSString * const KeyURL = @"https://caseybrichardson.com/fiddle/getkey.php";
 }
 
 /* Gets the API version from Riot's API */
-- (PMKPromise *)fetchVersion {
-    return [PMKPromise new:^(PMKFulfiller fulfill, PMKRejecter reject) {
-        
-    }];
+- (PMKPromise *)fetchVersionInRegion:(NSString *)region {
+    NSString *url = [NSString stringWithFormat:RiotAPIVersionEndpoint, region];
+    return [[CRFiddleAPIClient sharedInstance] riotRequestForEndpoint:url parameters:@{}].then(^(id response) {
+        NSArray *responseData = (NSArray *)response;
+        return [responseData firstObject];
+    }).catch(^(NSError *error) {
+        return error;
+    });
 }
-
-- (void)test {
-    //NSString *url1 = [NSString stringWithFormat:@"http://ddragon.leagueoflegends.com/cdn/%@/img/champion/%@.png", @"", @2];
-    //NSString *url2 = [NSString stringWithFormat:@"http://ddragon.leagueoflegends.com/cdn/img/champion/loading/%@_0.jpg", @2];
-}
-
 
 /******************* LEGACY (GONNA GET DESTROYED (I'M GONNA WRECK IT!!)) *******************/
 + (NSString *)currentAPIVersionForRegion:(NSString *)region {

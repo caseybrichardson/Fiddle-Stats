@@ -17,12 +17,21 @@ extern NSString * const RiotAPIBaseURL;
 extern NSString * const RiotAPIIconURL;
 
 /* API Endpoints */
+
+/** Summoner Endpoint Format: Requires a region and a summoner name */
 extern NSString * const RiotAPISummonerEndpoint;
+/** Matches Endpoint Format: Requires a region and a summoner ID */
 extern NSString * const RiotAPIMatchesEndpoint;
+/** Match Endpoint Format: Requires a region and a match ID */
 extern NSString * const RiotAPIMatchEndpoint;
+/** Stats Endpoint Format: Requires a region and a summoner ID */
 extern NSString * const RiotAPIStatsEndpoint;
+/** Champion Endpoint Format: Requires a region and a champion ID */
 extern NSString * const RiotAPIChampionEndpoint;
+/** Item Endpoint Format: Requires a region and a item ID */
 extern NSString * const RiotAPIItemEndpoint;
+/** Version Endpoint Format: Requires a region */
+extern NSString * const RiotAPIVersionEndpoint;
 
 @interface CRFiddleAPIClient : AFHTTPSessionManager
 

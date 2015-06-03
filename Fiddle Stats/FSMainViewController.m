@@ -114,6 +114,8 @@
             NSString *currentVersion = versions[0];
             NSURL *imageURL = [NSURL URLWithString:[NSString stringWithFormat:urlString, currentVersion, [summoner.sProfileIconID integerValue]]];
             DFImageRequest *req = [[DFImageRequest alloc] initWithResource:imageURL];
+            playerCell.backgroundImage.allowsAnimations = YES;
+            [playerCell.backgroundImage prepareForReuse];
             [playerCell.backgroundImage setImageWithRequest:req];
         }];
     }];
