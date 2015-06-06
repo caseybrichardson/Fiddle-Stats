@@ -344,10 +344,6 @@
 				3BF226441A1FE458004EB614 /* API & Tools */,
 				3B8AD52D1A1FDB6A00DFFA3A /* AppDelegate.h */,
 				3B8AD52E1A1FDB6A00DFFA3A /* AppDelegate.m */,
-				3B0681721A25E8D3009B2F6E /* FSDataPair.h */,
-				3B0681731A25E8D3009B2F6E /* FSDataPair.m */,
-				3B06816F1A25D657009B2F6E /* FSDataDelegate.h */,
-				3B0681701A25D657009B2F6E /* FSDataDelegate.m */,
 				3B5F8B7F1A2F12EB00CE3AC5 /* FSNavigationController.h */,
 				3B5F8B801A2F12EB00CE3AC5 /* FSNavigationController.m */,
 				3B9A17A41A6BCB6E00473700 /* FSDrawerTableViewController.h */,
@@ -399,6 +395,10 @@
 		3BA0B5BB1A763BEA00211EED /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				3B0681721A25E8D3009B2F6E /* FSDataPair.h */,
+				3B0681731A25E8D3009B2F6E /* FSDataPair.m */,
+				3B06816F1A25D657009B2F6E /* FSDataDelegate.h */,
+				3B0681701A25D657009B2F6E /* FSDataDelegate.m */,
 				3BA0B5BC1A763C0200211EED /* CRDataManager.h */,
 				3BA0B5BD1A763C0200211EED /* CRDataManager.m */,
 			);

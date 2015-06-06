@@ -115,15 +115,14 @@
         
         playerCell.nameLabel.text = summoner.sName;
         
-        [CRFiddleAPIClient currentAPIVersionForRegion:@"na" block:^(NSArray *versions, NSError *error) {
+        [CRFiddleAPIClient sharedInstance].currentVersion.then(^(NSString *version){
             NSString *urlString = @"http://ddragon.leagueoflegends.com/cdn/%@/img/profileicon/%d.png";
-            NSString *currentVersion = versions[0];
-            NSURL *imageURL = [NSURL URLWithString:[NSString stringWithFormat:urlString, currentVersion, [summoner.sProfileIconID integerValue]]];
+            NSURL *imageURL = [NSURL URLWithString:[NSString stringWithFormat:urlString, version, [summoner.sProfileIconID integerValue]]];
             DFImageRequest *req = [[DFImageRequest alloc] initWithResource:imageURL];
             playerCell.backgroundImage.allowsAnimations = YES;
             [playerCell.backgroundImage prepareForReuse];
             [playerCell.backgroundImage setImageWithRequest:req];
-        }];
+        });
     }];
     
     [self.dataDelegate setItemSelectionHandler:^(id view, NSFetchedResultsController *frc, NSIndexPath *path) {

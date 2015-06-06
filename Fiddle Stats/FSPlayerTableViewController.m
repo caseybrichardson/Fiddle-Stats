@@ -67,16 +67,14 @@
     
     [SVProgressHUD show];
     
-    // Get our current version number
-    [CRFiddleAPIClient currentAPIVersionForRegion:@"na" block:^(NSArray *versions, NSError *error) {
+    [CRFiddleAPIClient sharedInstance].currentVersion.then(^(NSString *version){
         NSString *urlString = @"http://ddragon.leagueoflegends.com/cdn/%@/img/profileicon/%d.png";
-        NSString *currentVersion = versions[0];
         NSInteger iconID = [summoner.sProfileIconID integerValue];
-        NSString *formattedURL = [NSString stringWithFormat:urlString, currentVersion, iconID];
+        NSString *formattedURL = [NSString stringWithFormat:urlString, version, iconID];
         NSURL *imageURL = [NSURL URLWithString:formattedURL];
         DFImageRequest *req = [[DFImageRequest alloc] initWithResource:imageURL];
         [self.summonerIcon setImageWithRequest:req];
-    }];
+    });
     
     // Grab our new matches
     [Match matchesInformationFor:summoner].then(^(NSArray *matches) {
@@ -139,11 +137,11 @@
         [Champion championInformationFor:[participant.mpChampionID integerValue] region:@"na"].then(^(Champion *champ){
             [matchCell.champNameLabelView setText:champ.cName];
             
-            [CRFiddleAPIClient currentAPIVersionForRegion:@"na" block:^(NSArray *versions, NSError *error1) {
-                NSString *url = [NSString stringWithFormat:@"http://ddragon.leagueoflegends.com/cdn/%@/img/champion/%@.png", versions[0], champ.cKey];
+            [CRFiddleAPIClient sharedInstance].currentVersion.then(^(NSString *version){
+                NSString *url = [NSString stringWithFormat:@"http://ddragon.leagueoflegends.com/cdn/%@/img/champion/%@.png", version, champ.cKey];
                 DFImageRequest *req = [[DFImageRequest alloc] initWithResource:[NSURL URLWithString:url]];
                 [matchCell.champImageView setImageWithRequest:req];
-            }];
+            });
         });
         
         MatchParticipantStats *stats = participant.mpParticipantStats;
@@ -189,11 +187,12 @@
         return;
     }
     
-    NSString *urlString = @"http://ddragon.leagueoflegends.com/cdn/%@/img/profileicon/%d.png";
-    NSString *currentVersion = [CRFiddleAPIClient currentAPIVersionForRegion:summoner.sRegion];
-    NSURL *imageURL = [NSURL URLWithString:[NSString stringWithFormat:urlString, currentVersion, [summoner.sProfileIconID integerValue]]];
-    DFImageRequest *req = [[DFImageRequest alloc] initWithResource:imageURL];
-    [self.summonerIcon setImageWithRequest:req];
+    [CRFiddleAPIClient sharedInstance].currentVersion.then(^(NSString *version){
+        NSString *urlString = @"http://ddragon.leagueoflegends.com/cdn/%@/img/profileicon/%d.png";
+        NSURL *imageURL = [NSURL URLWithString:[NSString stringWithFormat:urlString, version, [summoner.sProfileIconID integerValue]]];
+        DFImageRequest *req = [[DFImageRequest alloc] initWithResource:imageURL];
+        [self.summonerIcon setImageWithRequest:req];
+    });
     
     [Match matchesInformationFor:summoner].then(^(NSArray *matches) {
         [self.dataDelegate performFetch];

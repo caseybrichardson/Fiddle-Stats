@@ -38,8 +38,9 @@ extern NSString * const RiotAPIVersionEndpoint;
 @interface CRFiddleAPIClient : AFHTTPSessionManager
 
 + (instancetype)sharedInstance;
-+ (NSString *)currentAPIVersionForRegion:(NSString *)region;
-+ (void)currentAPIVersionForRegion:(NSString *)region block:(void (^)(NSArray *, NSError *))block;
+
+- (PMKPromise *)currentVersion;
+
 - (PMKPromise *)riotRequestForEndpoint:(NSString *)riotAPIEndpoint parameters:(NSDictionary *)params;
 
 @end

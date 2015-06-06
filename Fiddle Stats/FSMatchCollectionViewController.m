@@ -73,7 +73,7 @@
     [Item itemInformationFor:item region:@"na"].then(^(Item *item) {
         cell.itemNameLabel.text = item.iName;
         
-        NSString *urlString = [NSString stringWithFormat:@"http://ddragon.leagueoflegends.com/cdn/%@/img/item/%@", [CRFiddleAPIClient currentAPIVersionForRegion:@"na"], item.iImage];
+        NSString *urlString = [NSString stringWithFormat:@"http://ddragon.leagueoflegends.com/cdn/%@/img/item/%@", [[CRFiddleAPIClient sharedInstance] currentVersion].value, item.iImage];
         NSURL *url = [NSURL URLWithString:urlString];
         DFImageRequest *req = [[DFImageRequest alloc] initWithResource:url];
         [cell.itemImage setImageWithRequest:req];
@@ -135,11 +135,11 @@
             MatchParticipant *p = [self.participants objectForKey:@(championImage.tag - 10)];
             if(p) {
                 [Champion championInformationFor:[p.mpChampionID integerValue] region:@"na"].then(^(Champion *champ) {
-                    [CRFiddleAPIClient currentAPIVersionForRegion:@"na" block:^(NSArray *versions, NSError *error1) {
-                        NSString *url = [NSString stringWithFormat:@"http://ddragon.leagueoflegends.com/cdn/%@/img/champion/%@.png", versions[0], champ.cKey];
+                    [CRFiddleAPIClient sharedInstance].currentVersion.then(^(NSString *version){
+                        NSString *url = [NSString stringWithFormat:@"http://ddragon.leagueoflegends.com/cdn/%@/img/champion/%@.png", version, champ.cKey];
                         DFImageRequest *req = [[DFImageRequest alloc] initWithResource:[NSURL URLWithString:url]];
                         [championImage setImageWithRequest:req];
-                    }];
+                    });
                 });
             }
         }
@@ -152,14 +152,14 @@
         MatchParticipant *p = [self.participants objectForKey:@(indexPath.row)];
         
         [Champion championInformationFor:[p.mpChampionID integerValue] region:@"na"].then(^(Champion *champ) {
-            [CRFiddleAPIClient currentAPIVersionForRegion:@"na" block:^(NSArray *versions, NSError *error1) {
-                NSString *url1 = [NSString stringWithFormat:@"http://ddragon.leagueoflegends.com/cdn/%@/img/champion/%@.png", versions[0], champ.cKey];
+            [CRFiddleAPIClient sharedInstance].currentVersion.then(^(NSString *version){
+                NSString *url1 = [NSString stringWithFormat:@"http://ddragon.leagueoflegends.com/cdn/%@/img/champion/%@.png", version, champ.cKey];
                 NSString *url2 = [NSString stringWithFormat:@"http://ddragon.leagueoflegends.com/cdn/img/champion/loading/%@_0.jpg", champ.cKey];
                 DFImageRequest *req1 = [[DFImageRequest alloc] initWithResource:[NSURL URLWithString:url1]];
                 DFImageRequest *req2 = [[DFImageRequest alloc] initWithResource:[NSURL URLWithString:url2]];
                 [playerCell.championImage setImageWithRequest:req1];
                 [playerCell.backgroundImage setImageWithRequest:req2];
-            }];
+            });
         });
         
         playerCell.playerNameLabel.text = p.mpParticipantIdentity.mpiSummonerName;

@@ -27,7 +27,6 @@ NSString * const KeyURL = @"https://caseybrichardson.com/fiddle/getkey.php";
 
 @interface CRFiddleAPIClient()
 
-@property (strong, nonatomic) NSCache *versionCache;
 @property (strong, nonatomic) PMKPromise *apiKeyPromise;
 @property (strong, nonatomic) PMKPromise *apiVersionPromise;
 
@@ -40,7 +39,11 @@ NSString * const KeyURL = @"https://caseybrichardson.com/fiddle/getkey.php";
     self = [super initWithBaseURL:url];
     
     if(self) {
-        _versionCache = [NSCache new];
+        self.securityPolicy = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeNone];
+        
+        // Getting the api key from the server then fetching the version number
+        self.apiKeyPromise = [self fetchAPIKey];
+        self.apiVersionPromise = [self fetchVersionInRegion:@"na"];
     }
     
     return self;
@@ -52,18 +55,17 @@ NSString * const KeyURL = @"https://caseybrichardson.com/fiddle/getkey.php";
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         _sharedClient = [[CRFiddleAPIClient alloc] initWithBaseURL:[NSURL URLWithString:RiotAPIBaseURL]];
-        _sharedClient.securityPolicy = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeNone];
-        _sharedClient.apiKeyPromise = [_sharedClient fetchAPIKey].then(^(NSString *key){
-            _sharedClient.apiVersionPromise = [_sharedClient fetchVersionInRegion:@"na"];
-            return key;
-        });
     });
     
     return _sharedClient;
 }
 
+- (PMKPromise *)currentVersion {
+    return self.apiVersionPromise;
+}
+
 /* Performs a request to Riot's API */
-- (PMKPromise *)riotRequestForEndpoint:(NSString *)riotAPIEndpoint parameters:(NSDictionary *)params {
+- (PMKPromise *)riotRequestForEndpoint:(NSString *)riotAPIEndpoint parameters:(NSDictionary *)params{
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     
     NSMutableDictionary *fullParameters = [NSMutableDictionary dictionaryWithDictionary:params];
@@ -107,51 +109,12 @@ NSString * const KeyURL = @"https://caseybrichardson.com/fiddle/getkey.php";
 /* Gets the API version from Riot's API */
 - (PMKPromise *)fetchVersionInRegion:(NSString *)region {
     NSString *url = [NSString stringWithFormat:RiotAPIVersionEndpoint, region];
-    return [[CRFiddleAPIClient sharedInstance] riotRequestForEndpoint:url parameters:@{}].then(^(id response) {
-        NSArray *responseData = (NSArray *)response;
-        return [responseData firstObject];
-    }).catch(^(NSError *error) {
-        return error;
+    return self.apiKeyPromise.then(^{
+        return [[CRFiddleAPIClient sharedInstance] riotRequestForEndpoint:url parameters:@{}].then(^(id response) {
+            NSArray *responseData = (NSArray *)response;
+            return [responseData firstObject];
+        });
     });
-}
-
-/******************* LEGACY (GONNA GET DESTROYED (I'M GONNA WRECK IT!!)) *******************/
-+ (NSString *)currentAPIVersionForRegion:(NSString *)region {
-    NSString *version = [[[CRFiddleAPIClient sharedInstance].versionCache objectForKey:region] firstObject];
-    if(version) {
-        return version;
-    } else {
-        // TODO: Add last good version persistence to Info.plist
-        return @"4.21.5";
-    }
-}
-
-+ (void)currentAPIVersionForRegion:(NSString *)region block:(void (^)(NSArray *, NSError *))block {
-    if(![[CRFiddleAPIClient sharedInstance].versionCache objectForKey:region]) {
-        NSDictionary *requestParams = @{@"api_key": @"8ad21685-9e9f-4c18-9e72-30b8d598fce9"};
-        
-        NSString *url = [NSString stringWithFormat:@"/api/lol/static-data/%@/v1.2/versions", region];
-        
-        [[CRFiddleAPIClient sharedInstance] GET:url parameters:requestParams success:^(NSURLSessionDataTask *task, id responseObject) {
-            NSArray *versions = (NSArray *)responseObject;
-            [[CRFiddleAPIClient sharedInstance].versionCache setObject:versions forKey:region];
-            
-            if(block) {
-                block(versions, nil);
-            }
-        } failure:^(NSURLSessionDataTask *task, NSError *error) {
-            NSLog(@"%ld", (long)((NSHTTPURLResponse *)task.response).statusCode);
-            NSLog(@"Failing to fetch version data with error: %@", error.description);
-            
-            if(block) {
-                block(nil, error);
-            }
-        }];
-    } else {
-        if(block) {
-            block([[CRFiddleAPIClient sharedInstance].versionCache objectForKey:region], nil);
-        }
-    }
 }
 
 @end
