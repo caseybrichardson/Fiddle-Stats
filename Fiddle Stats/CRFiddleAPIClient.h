@@ -35,6 +35,9 @@ extern NSString * const RiotAPIItemEndpoint;
 /** Version Endpoint Format: Requires a region */
 extern NSString * const RiotAPIVersionEndpoint;
 
+extern NSString * const MiddlemanURL;
+extern NSString * const EndpointURL;
+
 @interface CRFiddleAPIClient : AFHTTPSessionManager
 
 + (instancetype)sharedInstance;
@@ -42,5 +45,7 @@ extern NSString * const RiotAPIVersionEndpoint;
 - (PMKPromise *)currentVersion;
 
 - (PMKPromise *)riotRequestForEndpoint:(NSString *)riotAPIEndpoint parameters:(NSDictionary *)params;
+
+- (PMKPromise *)riotRequestForEndpoint:(NSString *)riotAPIEndpoint region:(NSString *)region parameters:(NSDictionary *)params;
 
 @end

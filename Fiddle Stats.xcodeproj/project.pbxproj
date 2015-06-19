@@ -57,6 +57,7 @@
 		3BA9AA011A78EED6002FB316 /* FSMatchPlayerCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BA9AA001A78EED6002FB316 /* FSMatchPlayerCollectionViewCell.m */; };
 		3BD24E7D1A96E6CB00196EEF /* Match.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BD24E7C1A96E6CB00196EEF /* Match.m */; };
 		3BEEE5871A3691DD00CEFE9F /* SummonerGroup+Helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BEEE5861A3691DD00CEFE9F /* SummonerGroup+Helpers.m */; };
+		3BF13C121B33B7B6003FBF1E /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BF13C111B33B7B6003FBF1E /* iAd.framework */; };
 		3BF2263B1A1FE3CB004EB614 /* UIColor+AppColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BF2263A1A1FE3CB004EB614 /* UIColor+AppColors.m */; };
 		3BF226411A1FE3E0004EB614 /* Summoner+APIMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BF2263F1A1FE3E0004EB614 /* Summoner+APIMethods.m */; };
 		3BF226471A1FE47A004EB614 /* CRFiddleAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BF226461A1FE47A004EB614 /* CRFiddleAPIClient.m */; };
@@ -176,6 +177,7 @@
 		3BD24E7C1A96E6CB00196EEF /* Match.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Match.m; sourceTree = "<group>"; };
 		3BEEE5851A3691DD00CEFE9F /* SummonerGroup+Helpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SummonerGroup+Helpers.h"; sourceTree = "<group>"; };
 		3BEEE5861A3691DD00CEFE9F /* SummonerGroup+Helpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SummonerGroup+Helpers.m"; sourceTree = "<group>"; };
+		3BF13C111B33B7B6003FBF1E /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
 		3BF226391A1FE3CB004EB614 /* UIColor+AppColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+AppColors.h"; sourceTree = "<group>"; };
 		3BF2263A1A1FE3CB004EB614 /* UIColor+AppColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+AppColors.m"; sourceTree = "<group>"; };
 		3BF2263E1A1FE3E0004EB614 /* Summoner+APIMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Summoner+APIMethods.h"; sourceTree = "<group>"; };
@@ -199,6 +201,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3BF13C121B33B7B6003FBF1E /* iAd.framework in Frameworks */,
 				3BA9A9FA1A781875002FB316 /* Fabric.framework in Frameworks */,
 				3BF2264A1A1FE57C004EB614 /* CoreText.framework in Frameworks */,
 				3BA9A9F91A781875002FB316 /* Crashlytics.framework in Frameworks */,
@@ -219,6 +222,7 @@
 		13A46C9BF1EF2D1B53206024 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3BF13C111B33B7B6003FBF1E /* iAd.framework */,
 				3B917A9A1A8362B100ED75E0 /* SystemConfiguration.framework */,
 				3B917A981A8362A600ED75E0 /* CoreMotion.framework */,
 				3B917A961A83629D00ED75E0 /* CoreFoundation.framework */,

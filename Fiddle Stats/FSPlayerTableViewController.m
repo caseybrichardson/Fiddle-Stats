@@ -200,7 +200,6 @@
         if([matches count] > 0) {
             MatchParticipant *participant = [[matches lastObject] matchParticipantForSummoner:[self.summonerDataSource summoner]];
             [Champion championInformationFor:[participant.mpChampionID integerValue] region:@"na"].then(^(Champion *champ) {
-                
                 NSString *champKey = champ.cKey;
                 NSString *urlString = [NSString stringWithFormat:@"http://ddragon.leagueoflegends.com/cdn/img/champion/splash/%@_0.jpg", champKey];
                 NSURL *url = [NSURL URLWithString:urlString];

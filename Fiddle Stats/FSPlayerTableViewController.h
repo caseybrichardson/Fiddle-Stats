@@ -11,6 +11,7 @@
 #import <SVProgressHUD/SVProgressHUD.h>
 #import <DFImageManager/DFImageView.h>
 #import <DFImageManager/DFImageRequest.h>
+#import <iAd/iAd.h>
 
 #import "FSDataPair.h"
 #import "FSDataDelegate.h"
@@ -25,7 +26,7 @@
 #import "UIView+Effects.h"
 #import "SummonerGroup+Helpers.h"
 
-@interface FSPlayerTableViewController : UITableViewController <FSMatchDataSource>
+@interface FSPlayerTableViewController : UITableViewController <FSMatchDataSource, ADBannerViewDelegate>
 
 @property (strong, nonatomic) IBOutlet UIView *headerView;
 @property (strong, nonatomic) IBOutlet DFImageView *champView;
@@ -34,6 +35,7 @@
 @property (strong, nonatomic) IBOutlet DFImageView *summonerIcon;
 @property (strong, nonatomic) IBOutlet UIView *gradientView;
 @property (strong, nonatomic) IBOutlet UISegmentedControl *modeControl;
+@property (strong, nonatomic) IBOutlet ADBannerView *adView;
 
 @property (strong, nonatomic) id<FSSummonerDataSource> summonerDataSource;
 

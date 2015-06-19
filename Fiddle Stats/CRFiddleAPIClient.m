@@ -12,22 +12,22 @@
 NSString * const RiotAPIBaseURL = @"https://na.api.pvp.net";
 NSString * const RiotAPIIconURL = @"https://avatar.leagueoflegends.com/";
 
-/* API Endpoints */
-NSString * const RiotAPISummonerEndpoint = @"/api/lol/%@/v1.4/summoner/by-name/%@";
-NSString * const RiotAPISummonerUpdateEndpoint = @"/api/lol/%@/v1.4/summoner/%@";
-NSString * const RiotAPIMatchesEndpoint = @"/api/lol/%@/v2.2/matchhistory/%lld";
-NSString * const RiotAPIMatchEndpoint = @"/api/lol/%@/v2.2/match/%lld";
-NSString * const RiotAPIStatsEndpoint = @"/api/lol/%@/v1.3/stats/by-summoner/%lld/ranked";
-NSString * const RiotAPIChampionEndpoint = @"/api/lol/static-data/%@/v1.2/champion/%ld";
-NSString * const RiotAPIItemEndpoint = @"/api/lol/static-data/%@/v1.2/item/%ld";
-NSString * const RiotAPIVersionEndpoint = @"/api/lol/static-data/%@/v1.2/versions";
+/* API Endpoint Names */
+NSString * const RiotAPISummonerEndpoint = @"Summoner-ByName";
+NSString * const RiotAPISummonerUpdateEndpoint = @"Summoner-ByIDs";
+NSString * const RiotAPIMatchesEndpoint = @"Match-List";
+NSString * const RiotAPIMatchEndpoint = @"Match-Detail";
+NSString * const RiotAPIStatsEndpoint = @"Stats-Summary";
+NSString * const RiotAPIChampionEndpoint = @"Champion-Detail";
+NSString * const RiotAPIItemEndpoint = @"Item-Detail";
+NSString * const RiotAPIVersionEndpoint = @"Version";
 
 /* Private URLs */
-NSString * const KeyURL = @"https://caseybrichardson.com/fiddle/getkey.php";
+NSString * const MiddlemanURL = @"https://caseybrichardson.com";
+NSString * const EndpointURL = @"/fiddle/api-middleman.php";
 
 @interface CRFiddleAPIClient()
 
-@property (strong, nonatomic) PMKPromise *apiKeyPromise;
 @property (strong, nonatomic) PMKPromise *apiVersionPromise;
 
 @end
@@ -42,7 +42,6 @@ NSString * const KeyURL = @"https://caseybrichardson.com/fiddle/getkey.php";
         self.securityPolicy = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeNone];
         
         // Getting the api key from the server then fetching the version number
-        self.apiKeyPromise = [self fetchAPIKey];
         self.apiVersionPromise = [self fetchVersionInRegion:@"na"];
     }
     
@@ -54,7 +53,7 @@ NSString * const KeyURL = @"https://caseybrichardson.com/fiddle/getkey.php";
     static CRFiddleAPIClient *_sharedClient;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        _sharedClient = [[CRFiddleAPIClient alloc] initWithBaseURL:[NSURL URLWithString:RiotAPIBaseURL]];
+        _sharedClient = [[CRFiddleAPIClient alloc] initWithBaseURL:[NSURL URLWithString:MiddlemanURL]];
     });
     
     return _sharedClient;
@@ -65,41 +64,22 @@ NSString * const KeyURL = @"https://caseybrichardson.com/fiddle/getkey.php";
 }
 
 /* Performs a request to Riot's API */
-- (PMKPromise *)riotRequestForEndpoint:(NSString *)riotAPIEndpoint parameters:(NSDictionary *)params{
+- (PMKPromise *)riotRequestForEndpoint:(NSString *)riotAPIEndpoint parameters:(NSDictionary *)params {
+    return [self riotRequestForEndpoint:riotAPIEndpoint region:@"na" parameters:params];
+}
+
+- (PMKPromise *)riotRequestForEndpoint:(NSString *)riotAPIEndpoint region:(NSString *)region parameters:(NSDictionary *)params {
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     
     NSMutableDictionary *fullParameters = [NSMutableDictionary dictionaryWithDictionary:params];
-    return self.apiKeyPromise.then(^(NSString *key){
-        [fullParameters setObject:key forKey:@"api_key"];
-    }).then(^{
-        return [self GET:riotAPIEndpoint parameters:fullParameters].then(^(id response){
-            return response;
-        }).catch(^(NSError *error){
-            return error;
-        }).finally(^{
-            [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-        });
-    });
-}
-
-/* Gets the API key from our server */
-- (PMKPromise *)fetchAPIKey {
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:KeyURL]];
-    NSString *secret = Obfuscate.f.i.d.d.a.r.i.n.o._.i.s._.t.h.e._.b.e.s.t._._0._4.forward_slash._2._1.forward_slash._1._5;
-    [request setValue:secret forHTTPHeaderField:@"Fiddlestats-Keyrequest"];
+    [fullParameters setObject:riotAPIEndpoint forKey:@"endpoint_name"];
+    [fullParameters setObject:region forKey:@"endpoint_region"];
+    [fullParameters setObject:[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"] forKey:@"app_version"];
     
-    return [NSURLConnection promise:request].then(^id(id response){
-        NSDictionary *responseData = (NSDictionary *)response;
-        NSString *apiKey = responseData[@"api_key"];
-        
-        if(apiKey) {
-            return apiKey;
-        } else {
-            return [NSError errorWithDomain:@"com.caseybrichardson.fiddle.KeyFail" code:0 userInfo:@{NSLocalizedDescriptionKey: @"Could not obtain API key"}];
-        }
-    }).catch(^(NSError *error){
+    return [self GET:EndpointURL parameters:fullParameters].then(^(id response){
+        return response;
+    }).catch(^(AFHTTPRequestOperation *operation, NSError *error){
         return error;
     }).finally(^{
         [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
@@ -108,12 +88,11 @@ NSString * const KeyURL = @"https://caseybrichardson.com/fiddle/getkey.php";
 
 /* Gets the API version from Riot's API */
 - (PMKPromise *)fetchVersionInRegion:(NSString *)region {
-    NSString *url = [NSString stringWithFormat:RiotAPIVersionEndpoint, region];
-    return self.apiKeyPromise.then(^{
-        return [[CRFiddleAPIClient sharedInstance] riotRequestForEndpoint:url parameters:@{}].then(^(id response) {
-            NSArray *responseData = (NSArray *)response;
-            return [responseData firstObject];
-        });
+    return [self riotRequestForEndpoint:RiotAPIVersionEndpoint parameters:@{}].then(^(id response) {
+        NSArray *responseData = (NSArray *)response;
+        return [responseData firstObject];
+    }).catch(^(NSError *error){
+        return error;
     });
 }
 

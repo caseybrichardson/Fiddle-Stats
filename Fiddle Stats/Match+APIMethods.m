@@ -147,8 +147,8 @@
 }
 
 + (PMKPromise *)matchesInformationFor:(Summoner *)summoner {
-    NSString *url = [NSString stringWithFormat:RiotAPIMatchesEndpoint, summoner.sRegion, [summoner.sID longLongValue]];
-    return [[CRFiddleAPIClient sharedInstance] riotRequestForEndpoint:url parameters:@{}].then(^(id response){
+    NSDictionary *params = @{@"endpoint_summoner_id": summoner.sID};
+    return [[CRFiddleAPIClient sharedInstance] riotRequestForEndpoint:RiotAPIMatchesEndpoint parameters:params].then(^(id response){
         NSDictionary *responseData = (NSDictionary *)response;
         NSArray *matches = responseData[@"matches"];
         
@@ -169,8 +169,8 @@
             fulfill(match);
         }];
     } else {
-        NSString *url = [NSString stringWithFormat:RiotAPIMatchEndpoint, [match.mRegion lowercaseString], [match.mMatchID longLongValue]];
-        return [[CRFiddleAPIClient sharedInstance] riotRequestForEndpoint:url parameters:@{}].then(^(id response){
+        NSDictionary *params = @{@"endpoint_match_id": match.mMatchID};
+        return [[CRFiddleAPIClient sharedInstance] riotRequestForEndpoint:RiotAPIMatchEndpoint parameters:params].then(^(id response){
             NSDictionary *responseData = (NSDictionary *)response;
             [match updateWithExtendedInformation:responseData];
             return match;

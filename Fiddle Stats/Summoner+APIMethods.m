@@ -74,8 +74,9 @@
 
 + (PMKPromise *)summonerWithName:(NSString *)summonerName region:(NSString *)region {
     NSString *sanitizedName = [summonerName stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLPathAllowedCharacterSet]];
-    NSString *urlString = [NSString stringWithFormat:RiotAPISummonerEndpoint, region, sanitizedName];
-    return [[CRFiddleAPIClient sharedInstance] riotRequestForEndpoint:urlString parameters:@{}].then(^(id response){
+    NSDictionary *params = @{@"endpoint_summoner_name": sanitizedName};
+    
+    return [[CRFiddleAPIClient sharedInstance] riotRequestForEndpoint:RiotAPISummonerEndpoint parameters:params].then(^(id response){
         NSDictionary *responseData = (NSDictionary *)response;
         return [Summoner newWithAttributes:[[responseData allValues] firstObject] inRegion:region];
     }).catch(^(NSError *error){
@@ -84,10 +85,11 @@
 }
 
 + (PMKPromise *)updateSummonersIn:(NSArray *)summoners {
-    NSString *sanitizedNames = [[[summoners valueForKey:@"sID"] componentsJoinedByString:@","] stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLPathAllowedCharacterSet]];
+    NSString *sanitizedIDs = [[[summoners valueForKey:@"sID"] componentsJoinedByString:@","] stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLPathAllowedCharacterSet]];
     NSString *region = ((Summoner *)[summoners firstObject]).sRegion;
-    NSString *urlString = [NSString stringWithFormat:RiotAPISummonerUpdateEndpoint, region, sanitizedNames];
-    return [[CRFiddleAPIClient sharedInstance] riotRequestForEndpoint:urlString parameters:@{}].then(^(id response){
+    NSDictionary *params = @{@"endpoint_summoner_ids": sanitizedIDs};
+    
+    return [[CRFiddleAPIClient sharedInstance] riotRequestForEndpoint:RiotAPISummonerUpdateEndpoint parameters:params].then(^(id response){
         NSDictionary *responseData = (NSDictionary *)response;
         
         for(NSString *summoner in responseData) {

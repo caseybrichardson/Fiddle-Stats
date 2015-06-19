@@ -70,7 +70,7 @@
         item = [_itemCache objectForKey:@(itemID)];
     } else {
         return [PMKPromise new:^(PMKFulfiller fulfill, PMKRejecter reject) {
-            reject([NSError errorWithDomain:@"com.caseybrichardon.fiddle.ItemNonExistent" code:0 userInfo:@{NSLocalizedDescriptionKey: @"ID Not Item"}]);
+            reject([NSError errorWithDomain:@"com.caseybrichardon.fiddle.ItemNonExistent" code:0 userInfo:@{NSLocalizedDescriptionKey: @"ID Not An Item"}]);
         }];
     }
     
@@ -85,10 +85,9 @@
     
     /* If we STILL don't have the item, make the Riot API request for it */
     if(!item) {
-        NSDictionary *requestParameters = @{@"itemData": @"image"};
-        NSString *url = [NSString stringWithFormat:RiotAPIItemEndpoint, region, ((long) itemID)];
+        NSDictionary *requestParameters = @{@"endpoint_item_id": @(itemID)};
         
-        return [[CRFiddleAPIClient sharedInstance] riotRequestForEndpoint:url parameters:requestParameters].then(^(id response){
+        return [[CRFiddleAPIClient sharedInstance] riotRequestForEndpoint:RiotAPIItemEndpoint parameters:requestParameters].then(^(id response){
             NSDictionary *responseData = (NSDictionary *)response;
             
             Item *newItem = [Item newItemWithAttributes:responseData];

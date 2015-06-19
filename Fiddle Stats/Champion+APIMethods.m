@@ -54,7 +54,6 @@
 }
 
 + (PMKPromise *)championInformationFor:(NSInteger)champID region:(NSString *)region{
-    
     // Caching for accessing the champ data
     static NSMutableDictionary *_champCache;
     static dispatch_once_t onceToken;
@@ -84,11 +83,9 @@
     
     /* If we STILL don't have the champ, make the Riot API request for it */
     if(!champ) {
-        NSString *url = [NSString stringWithFormat:RiotAPIChampionEndpoint, region, ((long) champID)];
-        
-        return [[CRFiddleAPIClient sharedInstance] riotRequestForEndpoint:url parameters:@{}].then(^(id response){
+        NSDictionary *params = @{@"endpoint_champion_id": @(champID)};
+        return [[CRFiddleAPIClient sharedInstance] riotRequestForEndpoint:RiotAPIChampionEndpoint parameters:params].then(^(id response){
             NSDictionary *responseData = (NSDictionary *)response;
-            
             Champion *newChamp = [Champion newChampionWithAttributes:responseData];
             [_champCache setObject:newChamp forKey:@(champID)];
             
